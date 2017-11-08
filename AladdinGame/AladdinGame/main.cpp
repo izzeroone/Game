@@ -1,9 +1,9 @@
-#include <iostream>
+﻿#include <iostream>
 
 using namespace std;
 
 int main()
 {
-	cout << "link";
+	cout << "dda";
 	system("pause");
 }
