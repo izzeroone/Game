@@ -147,7 +147,6 @@
     <ClCompile Include="Framework\animation.cpp" />
     <ClCompile Include="Framework\CollisionBody.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
-    <ClCompile Include="Framework\IElement.cpp" />
     <ClCompile Include="Framework\Singleton\dxdevice.cpp" />
     <ClCompile Include="Framework\Singleton\gamecontroller.cpp" />
     <ClCompile Include="Framework\Singleton\gametime.cpp" />
@@ -163,9 +162,9 @@
   <ItemGroup>
     <ClInclude Include="Framework\animation.h" />
     <ClInclude Include="Framework\CollisionBody.h" />
+    <ClInclude Include="Framework\Component\MovingComponent.h" />
     <ClInclude Include="Framework\define.h" />
     <ClInclude Include="Framework\GameObject.h" />
-    <ClInclude Include="Framework\IElement.h" />
     <ClInclude Include="Framework\Singleton\dxdevice.h" />
     <ClInclude Include="Framework\Singleton\gamecontroller.h" />
     <ClInclude Include="Framework\Singleton\gametime.h" />
