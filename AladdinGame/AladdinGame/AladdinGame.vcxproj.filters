@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Framework">
+      <UniqueIdentifier>{d74161e3-70cb-4a66-8e75-d98b7ecd21b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework">
+      <UniqueIdentifier>{436ef9e7-3bc5-4e32-b159-cc2e3aa70c97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\Singleton">
+      <UniqueIdentifier>{e04789ac-0033-43df-b2c9-caa1b832256a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Singleton">
+      <UniqueIdentifier>{c26d668f-1b23-4ebe-95fd-a98c50df39d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{7f055356-5a95-4d34-99ec-94b992d2b9ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{2953bd6d-50a9-4154-a159-cd688c1ca61a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Singleton\windowGUI.cpp">
+      <Filter>Source Files\Framework\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Singleton\dxdevice.cpp">
+      <Filter>Source Files\Framework\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\IElement.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\sprite.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\transform.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\texture.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\viewport.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\animation.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Singleton\spriteresource.cpp">
+      <Filter>Source Files\Framework\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\timespan.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Singleton\gametime.cpp">
+      <Filter>Source Files\Framework\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Singleton\gamecontroller.cpp">
+      <Filter>Source Files\Framework\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\CollisionBody.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\GameObject.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Framework\Singleton\windowGUI.h">
+      <Filter>Header Files\Framework\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\define.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Singleton\dxdevice.h">
+      <Filter>Header Files\Framework\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\IElement.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\sprite.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\transform.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\texture.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\viewport.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\animation.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Singleton\spriteresource.h">
+      <Filter>Header Files\Framework\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\timespan.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Singleton\gametime.h">
+      <Filter>Header Files\Framework\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Singleton\gamecontroller.h">
+      <Filter>Header Files\Framework\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\CollisionBody.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObject.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\CollisionBody.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\GameObject.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

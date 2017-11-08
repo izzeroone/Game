@@ -1,0 +1,9 @@
+﻿  IElement.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+dxdevice.obj : error LNK2019: unresolved external symbol _Direct3DCreate9@4 referenced in function "public: void __thiscall Framework::DXDevice::Init(class Framework::WindowGUI)" (?Init@DXDevice@Framework@@QAEXVWindowGUI@2@@Z)
+texture.obj : error LNK2019: unresolved external symbol _D3DXMatrixMultiply@12 referenced in function "public: struct D3DXMATRIX __thiscall D3DXMATRIX::operator*(struct D3DXMATRIX const &)const " (??DD3DXMATRIX@@QBE?AU0@ABU0@@Z)
+texture.obj : error LNK2019: unresolved external symbol _D3DXMatrixTransformation2D@28 referenced in function "public: void __thiscall Framework::Texture::render(struct ID3DXSprite *,struct tagRECT *,struct D3DXVECTOR2,struct D3DXVECTOR2,float,struct D3DXVECTOR2,float)" (?render@Texture@Framework@@QAEXPAUID3DXSprite@@PAUtagRECT@@UD3DXVECTOR2@@2M2M@Z)
+texture.obj : error LNK2019: unresolved external symbol _D3DXGetImageInfoFromFileW@8 referenced in function "public: long __thiscall Framework::Texture::loadFromFile(struct ID3DXSprite *,wchar_t *,struct D3DXCOLOR,struct D3DXCOLOR)" (?loadFromFile@Texture@Framework@@QAEJPAUID3DXSprite@@PA_WUD3DXCOLOR@@2@Z)
+texture.obj : error LNK2019: unresolved external symbol _D3DXCreateTextureFromFileExW@56 referenced in function "public: long __thiscall Framework::Texture::loadFromFile(struct ID3DXSprite *,wchar_t *,struct D3DXCOLOR,struct D3DXCOLOR)" (?loadFromFile@Texture@Framework@@QAEJPAUID3DXSprite@@PA_WUD3DXCOLOR@@2@Z)
+viewport.obj : error LNK2019: unresolved external symbol _D3DXVec3Transform@12 referenced in function "public: struct D3DXVECTOR3 __thiscall Viewport::getPositionInViewport(struct D3DXVECTOR3 *)" (?getPositionInViewport@Viewport@@QAE?AUD3DXVECTOR3@@PAU2@@Z)
+D:\Project\AladdinGame\Debug\AladdinGame.exe : fatal error LNK1120: 6 unresolved externals
