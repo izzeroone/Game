@@ -86,3 +86,18 @@ void PhysicsComponent::removeMovingComponent(string name, MovingComponent * movi
 {
 	_componentList.erase(name);
 }
+
+GVector2 PhysicsComponent::getVelocity()
+{
+	return VECTOR2ZERO;
+}
+
+void PhysicsComponent::setPhysicsBodySide(eDirection side)
+{
+	_physicsSide = side;
+}
+
+eDirection PhysicsComponent::getPhysicsBodySide()
+{
+	return _physicsSide;
+}

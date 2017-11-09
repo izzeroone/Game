@@ -100,6 +100,13 @@ enum eWeaponType
 	APPLE
 };
 
+enum eCommand
+{
+	MOVELEFT,
+	MOVERIGHT,
+	JUMP,
+	CLIMB
+};
 
 enum eSoundId
 {

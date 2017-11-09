@@ -84,8 +84,11 @@
     <ClCompile Include="Framework\Component\PhysicsComponent.cpp">
       <Filter>Source Files\Framework\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Component\BehaviorComponent.cpp">
+      <Filter>Source Files\Framework\Component</Filter>
+    </ClCompile>
     <ClCompile Include="Framework\Component\AnimationComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Framework\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

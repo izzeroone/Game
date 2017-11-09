@@ -27,10 +27,16 @@ public:
 	void addMovingComponent(string name, MovingComponent *movingComponent);
 	void removeMovingComponent(string name, MovingComponent *movingComponent);
 
+	virtual GVector2 getVelocity();
+
+	virtual void setPhysicsBodySide(eDirection side);
+	virtual eDirection getPhysicsBodySide();
+
 
 protected:
 	GVector2			_position;
 	float				_zIndex;
 	map<string, MovingComponent*> _componentList;
+	eDirection _physicsSide;
 
 };

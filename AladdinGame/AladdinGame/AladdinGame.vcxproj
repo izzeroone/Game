@@ -147,6 +147,7 @@
     <ClCompile Include="Framework\animation.cpp" />
     <ClCompile Include="Framework\CollisionBody.cpp" />
     <ClCompile Include="Framework\Component\AnimationComponent.cpp" />
+    <ClCompile Include="Framework\Component\BehaviorComponent.cpp" />
     <ClCompile Include="Framework\Component\PhysicsComponent.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\Singleton\dxdevice.cpp" />
