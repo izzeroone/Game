@@ -12,12 +12,12 @@ Vy
 #include <stdarg.h>
 #include "define.h"
 #include "Sprite.h"
-#include "IElement.h"
+#include "Component\MovingComponent.h"
 #include "Singleton\spriteresource.h"
 
 LINK_FRAMEWORK
 
-class Animation : public IElement
+class Animation : public MovingComponent
 {
 public:
 	~Animation();

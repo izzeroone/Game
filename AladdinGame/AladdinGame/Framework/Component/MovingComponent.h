@@ -1,21 +1,21 @@
 ﻿
 #ifndef __ICOMPONENT_H__
 #define __ICOMPONENT_H__
-#include "define.h"
-#include "Sprite.h"
+#include "../define.h"
+#include "../Sprite.h"
 #include <numeric>
 #include <map>
 using namespace std;
 LINK_FRAMEWORK // Link into the framework
 //Các thành phần ảnh hưởng đến sự chuyển động của object
-class IMovingCompoment
+class MovingComponent
 {
 public:
 	virtual void update(float deltatime) = 0;
 };
 
 
-class Movement : public IMovingCompoment
+class Movement : public MovingComponent
 {
 public:
 	Movement(GVector2 accel, GVector2 veloc, Sprite* refSprite);
@@ -38,7 +38,7 @@ enum eGravityStatus
 	LANDED
 };
 
-class Gravity : public IMovingCompoment
+class Gravity : public MovingComponent
 {
 public:
 	Gravity(GVector2 gravity, Movement *movement);

@@ -146,6 +146,8 @@
   <ItemGroup>
     <ClCompile Include="Framework\animation.cpp" />
     <ClCompile Include="Framework\CollisionBody.cpp" />
+    <ClCompile Include="Framework\Component\AnimationComponent.cpp" />
+    <ClCompile Include="Framework\Component\PhysicsComponent.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\Singleton\dxdevice.cpp" />
     <ClCompile Include="Framework\Singleton\gamecontroller.cpp" />
@@ -162,6 +164,10 @@
   <ItemGroup>
     <ClInclude Include="Framework\animation.h" />
     <ClInclude Include="Framework\CollisionBody.h" />
+    <ClInclude Include="Framework\Component\AnimationComponent.h" />
+    <ClInclude Include="Framework\Component\BehaviorComponent.h" />
+    <ClInclude Include="Framework\Component\Component.h" />
+    <ClInclude Include="Framework\Component\PhysicsComponent.h" />
     <ClInclude Include="Framework\Component\MovingComponent.h" />
     <ClInclude Include="Framework\define.h" />
     <ClInclude Include="Framework\GameObject.h" />
@@ -175,8 +181,6 @@
     <ClInclude Include="Framework\timespan.h" />
     <ClInclude Include="Framework\transform.h" />
     <ClInclude Include="Framework\viewport.h" />
-    <ClInclude Include="Game\CollisionBody.h" />
-    <ClInclude Include="Game\GameObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\sigcxx\sigcxx.vcxproj">

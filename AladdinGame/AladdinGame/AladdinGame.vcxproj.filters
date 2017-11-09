@@ -19,9 +19,6 @@
     <Filter Include="Source Files\Framework">
       <UniqueIdentifier>{436ef9e7-3bc5-4e32-b159-cc2e3aa70c97}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Framework\Singleton">
-      <UniqueIdentifier>{e04789ac-0033-43df-b2c9-caa1b832256a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Framework\Singleton">
       <UniqueIdentifier>{c26d668f-1b23-4ebe-95fd-a98c50df39d9}</UniqueIdentifier>
     </Filter>
@@ -33,6 +30,12 @@
     </Filter>
     <Filter Include="Header Files\Framework\Component">
       <UniqueIdentifier>{3d4b6131-a3bd-4047-8c40-712fe6ec17f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Component">
+      <UniqueIdentifier>{83f9b994-c15e-4425-89d6-e87821c38d20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\Component\Singleton">
+      <UniqueIdentifier>{e04789ac-0033-43df-b2c9-caa1b832256a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -78,16 +81,22 @@
     <ClCompile Include="Framework\GameObject.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Component\PhysicsComponent.cpp">
+      <Filter>Source Files\Framework\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Component\AnimationComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
-      <Filter>Header Files\Framework\Singleton</Filter>
+      <Filter>Header Files\Framework\Component\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Framework\define.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Singleton\dxdevice.h">
-      <Filter>Header Files\Framework\Singleton</Filter>
+      <Filter>Header Files\Framework\Component\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Framework\sprite.h">
       <Filter>Header Files\Framework</Filter>
@@ -105,22 +114,16 @@
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Singleton\spriteresource.h">
-      <Filter>Header Files\Framework\Singleton</Filter>
+      <Filter>Header Files\Framework\Component\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Framework\timespan.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Singleton\gametime.h">
-      <Filter>Header Files\Framework\Singleton</Filter>
+      <Filter>Header Files\Framework\Component\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Singleton\gamecontroller.h">
-      <Filter>Header Files\Framework\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\CollisionBody.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\GameObject.h">
-      <Filter>Header Files\Game</Filter>
+      <Filter>Header Files\Framework\Component\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Framework\CollisionBody.h">
       <Filter>Header Files\Framework</Filter>
@@ -129,6 +132,18 @@
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Component\MovingComponent.h">
+      <Filter>Header Files\Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\AnimationComponent.h">
+      <Filter>Header Files\Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\BehaviorComponent.h">
+      <Filter>Header Files\Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\Component.h">
+      <Filter>Header Files\Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\PhysicsComponent.h">
       <Filter>Header Files\Framework\Component</Filter>
     </ClInclude>
   </ItemGroup>
