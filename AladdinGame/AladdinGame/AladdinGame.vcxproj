@@ -148,6 +148,7 @@
     <ClCompile Include="Framework\CollisionBody.cpp" />
     <ClCompile Include="Framework\Component\AnimationComponent.cpp" />
     <ClCompile Include="Framework\Component\BehaviorComponent.cpp" />
+    <ClCompile Include="Framework\Component\MovingComponent.cpp" />
     <ClCompile Include="Framework\Component\PhysicsComponent.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\Singleton\dxdevice.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Framework\timespan.cpp" />
     <ClCompile Include="Framework\transform.cpp" />
     <ClCompile Include="Framework\viewport.cpp" />
+    <ClCompile Include="Game\Player\Aladdin.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +184,7 @@
     <ClInclude Include="Framework\timespan.h" />
     <ClInclude Include="Framework\transform.h" />
     <ClInclude Include="Framework\viewport.h" />
+    <ClInclude Include="Game\Player\Aladdin.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\sigcxx\sigcxx.vcxproj">

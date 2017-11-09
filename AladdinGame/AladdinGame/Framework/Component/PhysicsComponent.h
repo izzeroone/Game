@@ -34,6 +34,7 @@ public:
 
 
 protected:
+	int					_movingSpeed;
 	GVector2			_position;
 	float				_zIndex;
 	map<string, MovingComponent*> _componentList;

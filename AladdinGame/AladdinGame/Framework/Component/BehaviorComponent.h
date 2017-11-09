@@ -22,7 +22,7 @@ public:
 	virtual void executeCommand(eCommand command) = 0;
 	virtual void updateAnimation() = 0;
 
-private:
+protected:
 	eStatus _status;
 	eStatus _preStatus;
 	eStatus _facingDirection;

@@ -159,7 +159,6 @@ void Animation::canAnimate(bool can)
 }
 bool Animation::isAnimate()
 {
-	// 7ung => use in AirCraft::draw
 	return _canAnimate;
 }
 bool Animation::isLastAnimation()

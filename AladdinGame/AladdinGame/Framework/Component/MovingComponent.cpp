@@ -1,22 +1,22 @@
 ﻿
-#include "IElement.h"
+#include "MovingComponent.h"
 
 #pragma region Movement
-Movement::Movement(GVector2 accel, GVector2 veloc, Sprite* refSprite)
+Movement::Movement(GVector2 accel, GVector2 veloc, PhysicsComponent* physicsComponent )
 {
 	this->_accelerate = accel;
 	this->_velocity = veloc;
-	this->_refSprite = refSprite;
+	this->_physicsComponent = physicsComponent;
 
 }
 void Movement::update(float deltatime)
 {
-	if (_refSprite == NULL)
+	if (_physicsComponent == NULL)
 		return;
-	auto position = this->_refSprite->getPosition();
+	auto position = _physicsComponent->getPosition();
 	this->_velocity += this->_accelerate * deltatime / 1000;
 	position += this->_velocity * deltatime / 1000;
-	this->_refSprite->setPosition(position);
+	this->_physicsComponent->setPosition(position);
 }
 void Movement::setAccelerate(GVector2 accel)
 {

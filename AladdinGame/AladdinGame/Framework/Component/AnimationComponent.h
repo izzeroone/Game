@@ -5,7 +5,7 @@
 #include "../animation.h"
 using namespace std;
 
-class AnimationComponent
+class AnimationComponent : public Component
 {
 public:
 	AnimationComponent();
@@ -41,7 +41,7 @@ public:
 	virtual float getOpacity();
 
 	virtual void setSpriteHandle(LPD3DXSPRITE spriteHandle);
-private:
+protected:
 	Sprite* _sprite;
 	map<int, Animation*> _animations;
 	int _index;

@@ -67,6 +67,7 @@ enum eStatus
 
 	//Dung cho aladdin nhay hieu ung
 	MOVINGJUMPING = (1 << 12), 
+	SLASH = (1 << 13),
 	CLIMBVERTICAL = (1 << 14),
 	CLIMBHORIZON = (1 << 21),
 	MOVE_UP = (1 << 22),

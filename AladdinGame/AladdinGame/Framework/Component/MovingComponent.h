@@ -3,6 +3,7 @@
 #define __ICOMPONENT_H__
 #include "../define.h"
 #include "../Sprite.h"
+#include "PhysicsComponent.h"
 #include <numeric>
 #include <map>
 using namespace std;
@@ -18,7 +19,7 @@ public:
 class Movement : public MovingComponent
 {
 public:
-	Movement(GVector2 accel, GVector2 veloc, Sprite* refSprite);
+	Movement(GVector2 accel, GVector2 veloc, PhysicsComponent* physicsComponent);
 	void update(float deltatime);
 
 	void setAccelerate(GVector2 accel);
@@ -29,7 +30,7 @@ public:
 private:
 	GVector2 _accelerate;
 	GVector2 _velocity;
-	Sprite* _refSprite;
+	PhysicsComponent* _physicsComponent;
 };
 
 enum eGravityStatus
@@ -51,7 +52,7 @@ private:
 	GVector2 _additionalVeloc;
 	Movement* _refmovement;
 	eGravityStatus _status;
-	Sprite* _refSprite;
+	PhysicsComponent* _physicsComponent;
 };
 
 #endif // !__ICOMPONENT_H__

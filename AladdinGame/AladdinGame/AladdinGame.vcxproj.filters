@@ -34,7 +34,13 @@
     <Filter Include="Source Files\Framework\Component">
       <UniqueIdentifier>{83f9b994-c15e-4425-89d6-e87821c38d20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Framework\Component\Singleton">
+    <Filter Include="Header Files\Game\Player">
+      <UniqueIdentifier>{f965eb11-5ab0-4a45-91f2-4340d21feea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Player">
+      <UniqueIdentifier>{d0748dd1-2215-4d37-9cb2-650ab79cddba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\Singleton">
       <UniqueIdentifier>{e04789ac-0033-43df-b2c9-caa1b832256a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -90,16 +96,22 @@
     <ClCompile Include="Framework\Component\AnimationComponent.cpp">
       <Filter>Source Files\Framework\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Player\Aladdin.cpp">
+      <Filter>Source Files\Game\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Component\MovingComponent.cpp">
+      <Filter>Source Files\Framework\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
-      <Filter>Header Files\Framework\Component\Singleton</Filter>
+      <Filter>Header Files\Framework\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Framework\define.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Singleton\dxdevice.h">
-      <Filter>Header Files\Framework\Component\Singleton</Filter>
+      <Filter>Header Files\Framework\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Framework\sprite.h">
       <Filter>Header Files\Framework</Filter>
@@ -117,16 +129,16 @@
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Singleton\spriteresource.h">
-      <Filter>Header Files\Framework\Component\Singleton</Filter>
+      <Filter>Header Files\Framework\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Framework\timespan.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Singleton\gametime.h">
-      <Filter>Header Files\Framework\Component\Singleton</Filter>
+      <Filter>Header Files\Framework\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Singleton\gamecontroller.h">
-      <Filter>Header Files\Framework\Component\Singleton</Filter>
+      <Filter>Header Files\Framework\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Framework\CollisionBody.h">
       <Filter>Header Files\Framework</Filter>
@@ -148,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="Framework\Component\PhysicsComponent.h">
       <Filter>Header Files\Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\Aladdin.h">
+      <Filter>Header Files\Game\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
