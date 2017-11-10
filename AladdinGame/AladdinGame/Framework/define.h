@@ -44,8 +44,6 @@ enum eStatus
 	RUNNING = (1 << 4),				// 10000 = 2^4
 	LOOKING_UP = (1 << 5),				// 2^5
 	THROWING = (1 << 6),
-
-	MOVING = (1 << 11),
 	FALLING = (1 << 16),
 
 	//Dung cho aladdin nhay hieu ung

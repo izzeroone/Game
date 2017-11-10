@@ -85,7 +85,7 @@ void AladdinAnimationComponent::init()
 
 void AladdinBehaviorComponent::init()
 {
-	_preStatus = NORMAL;
+	_preStatus = eStatus::NORMAL;
 	standing();
 }
 
@@ -126,7 +126,7 @@ void AladdinBehaviorComponent::update(float detatime)
 	case RUNNING:
 		if (!_input->isKeyDown(DIK_LEFT) || !_input->isKeyDown(DIK_RIGHT))
 		{
-			standing();
+			//standing();
 		}
 		break;
 	case LOOKING_UP:
@@ -196,7 +196,7 @@ void AladdinBehaviorComponent::updateAnimation()
 		_animationComponent->setAnimation(eStatus::FALLING);
 		break;
 	case CLIMBVERTICAL:
-		_animationComponent->setAnimation(eStatus::RUNNING);
+		_animationComponent->setAnimation(eStatus::CLIMBVERTICAL);
 		break;
 	case BORING1:
 		_animationComponent->setAnimation(eStatus::BORING1);
@@ -246,7 +246,7 @@ void AladdinBehaviorComponent::moveLeft()
 	faceLeft();
 	auto move = (Movement*)_physicsComponent->getMovingComponent("Movement");
 	move->setVelocity(GVector2(-_physicsComponent->getMovingSpeed(), move->getVelocity().y));
-	setStatus(eStatus::MOVING);
+	setStatus(eStatus::RUNNING);
 	setFacingDirection(eStatus::LEFTFACING);
 }
 
@@ -255,7 +255,7 @@ void AladdinBehaviorComponent::moveRight()
 	faceRight();
 	auto move = (Movement*)_physicsComponent->getMovingComponent("Movement");
 	move->setVelocity(GVector2(_physicsComponent->getMovingSpeed(), move->getVelocity().y));
-	setStatus(eStatus::MOVING);
+	setStatus(eStatus::RUNNING);
 	setFacingDirection(eStatus::RIGHTFACING);
 }
 

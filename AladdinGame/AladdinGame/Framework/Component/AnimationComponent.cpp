@@ -29,17 +29,22 @@ Animation * AnimationComponent::getCurrentAnimation()
 
 void AnimationComponent::setAnimation(int status)
 {
-	_preindex = _index;
-	_animations[_index]->restart();
-	_index = status;
+	if (_index != status)
+	{
+		OutputDebugStringW(L"Animation set");
+		__debugoutput(status);
+		_preindex = _index;
+		_animations[_index]->restart();
+		_index = status;
+	}
 }
 
 void AnimationComponent::draw(LPD3DXSPRITE spriteHandle, Viewport * viewport)
 {
 	_sprite->setPosition(_physicsComponent->getPosition());
-	OutputDebugStringW(L"Position ");
-	__debugoutput(_physicsComponent->getPositionX());
-	__debugoutput(_physicsComponent->getPositionY());
+	//OutputDebugStringW(L"Position ");
+	//__debugoutput(_physicsComponent->getPositionX());
+	//__debugoutput(_physicsComponent->getPositionY());
 	_animations[_index]->draw(spriteHandle, viewport);
 }
 
