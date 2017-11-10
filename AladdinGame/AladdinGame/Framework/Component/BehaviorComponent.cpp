@@ -1,16 +1,19 @@
 #include "BehaviorComponent.h"
+#include "AnimationComponent.h"
+#include "PhysicsComponent.h"
+#include "../Singleton/gamecontroller.h"
 
 BehaviorComponent::BehaviorComponent()
 {
 }
 
-BehaviorComponent::BehaviorComponent(AnimationComponent * animationComponent, PhysicsComponent * physicsComponent, GameController *input)
+BehaviorComponent::BehaviorComponent(AnimationComponent * animationComponent, PhysicsComponent * physicsComponent, GameController * input)
 {
 	_animationComponent = animationComponent;
 	_physicsComponent = physicsComponent;
 	_input = input;
-	
 }
+
 
 BehaviorComponent::~BehaviorComponent()
 {
@@ -44,7 +47,7 @@ eStatus BehaviorComponent::getWeapon()
 
 void BehaviorComponent::setWeapon(eStatus weapon)
 {
-	_weapon = weapon
+	_weapon = weapon;
 }
 
 
@@ -56,3 +59,4 @@ void BehaviorComponent::executeCommand(eCommand command)
 void BehaviorComponent::updateAnimation()
 {
 }
+

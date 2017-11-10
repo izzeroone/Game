@@ -1,5 +1,5 @@
-﻿
-#include "MovingComponent.h"
+﻿#include "MovingComponent.h"
+#include "PhysicsComponent.h"
 
 #pragma region Movement
 Movement::Movement(GVector2 accel, GVector2 veloc, PhysicsComponent* physicsComponent )

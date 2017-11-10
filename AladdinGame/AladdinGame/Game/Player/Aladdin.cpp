@@ -213,7 +213,7 @@ void AladdinBehaviorComponent::faceLeft()
 	{
 		_animationComponent->setScaleX(_animationComponent->getScale().x * (-1));
 	}
-	setFacingDirection(eStatus::LEFT);
+	setFacingDirection(eStatus::LEFTFACING);
 }
 
 void AladdinBehaviorComponent::faceRight()
@@ -222,7 +222,7 @@ void AladdinBehaviorComponent::faceRight()
 	{
 		_animationComponent->setScaleX(_animationComponent->getScale().x * (-1));
 	}
-	setFacingDirection(eStatus::RIGHT);
+	setFacingDirection(eStatus::RIGHTFACING);
 }
 
 void AladdinBehaviorComponent::standing()

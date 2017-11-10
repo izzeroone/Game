@@ -1,5 +1,5 @@
 #include "AnimationComponent.h"
-
+#include "PhysicsComponent.h"
 AnimationComponent::AnimationComponent()
 {
 }

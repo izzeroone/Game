@@ -2,9 +2,9 @@
 
 #ifndef __SOUND_MANAGER__
 #define __SOUND_MANAGER__
-#include "define.h"
-#include "Game.h"
-#include "dxaudio.h"
+#include "../define.h"
+#include "../../Game/game.h"
+#include "../../dxaudio.h"
 
 #include <map>
 using namespace std;

@@ -1,7 +1,12 @@
 ﻿#pragma once
+#ifndef __PHYSICSCOMPONENT_H__
+#define __PHYSICSCOMPONENT_H__
 #include "../define.h"
 #include "Component.h"
-#include "MovingComponent.h"
+
+//forward declarations
+class MovingComponent;
+
 class PhysicsComponent: public Component
 {
 public:
@@ -24,8 +29,8 @@ public:
 	virtual float getZIndex();
 
 	virtual void update(float deltatime);
-	virtual void addMovingComponent(string name, MovingComponent *movingComponent);
-	virtual void removeMovingComponent(string name, MovingComponent *movingComponent);
+	virtual void addMovingComponent(string name, MovingComponent* movingComponent);
+	virtual void removeMovingComponent(string name, MovingComponent* movingComponent);
 	virtual MovingComponent* getMovingComponent(string name);
 
 	virtual GVector2 getVelocity();
@@ -45,3 +50,4 @@ protected:
 	eDirection _physicsSide;
 
 };
+#endif // !__PHYSICSCOMPONENT_H__

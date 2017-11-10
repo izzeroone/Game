@@ -1,6 +1,6 @@
 ﻿
-#ifndef __texture_H__
-#define __texture_H__
+#ifndef __TEXTURE_H__
+#define __TEXTURE_H__
 //File ảnh để vẽ lên
 #include "define.h"
 #include "Singleton\dxdevice.h"
@@ -75,5 +75,5 @@ typedef Texture* pTexture;
 
 DEFINE_FRAMEWORK_END
 
-#endif // !__texture_H__
+#endif // !__TEXTURE_H__
 

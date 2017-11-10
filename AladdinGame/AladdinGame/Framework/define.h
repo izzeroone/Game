@@ -81,10 +81,10 @@ enum eRopeType
 
 enum eCommand
 {
-	MOVELEFT,
-	MOVERIGHT,
-	JUMP,
-	CLIMB
+	cmdMOVELEFT,
+	cmdMOVERIGHT,
+	cmdJUMP,
+	cmdCLIMB
 };
 
 enum eSoundId

@@ -1,12 +1,12 @@
 ﻿
-#ifndef __PLAY_SCENE_H__
-#define __PLAY_SCENE_H__
+#ifndef __TEST_SCENE_H__
+#define __TEST_SCENE_H__
 
 #include "Scene.h"
 
 #include "../../Framework/define.h"
 #include "../../Framework/sprite.h"
-#include "../../Framework/spritecollection.h"
+#include "../../Framework/Singleton/spriteresource.h"
 #include "../../Framework/Singleton/SoundManager.h"
 #include "../../Framework/animation.h"
 #include "../ObjectFactory.h"
@@ -67,4 +67,4 @@ private:
 
 };
 
-#endif // !__PLAY_SCENE_H__
+#endif // !__TEST_SCENE_H__

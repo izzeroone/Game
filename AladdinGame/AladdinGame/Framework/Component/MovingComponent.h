@@ -1,14 +1,18 @@
 ﻿
-#ifndef __ICOMPONENT_H__
-#define __ICOMPONENT_H__
+#ifndef __MOVINGCOMPONENT_H__
+#define __MOVINGCOMPONENT_H__
 #include "../define.h"
 #include "../Sprite.h"
-#include "PhysicsComponent.h"
+
 #include <numeric>
 #include <map>
 using namespace std;
 LINK_FRAMEWORK // Link into the framework
 //Các thành phần ảnh hưởng đến sự chuyển động của object
+
+//forward declarations
+class PhysicsComponent;
+
 class MovingComponent
 {
 public:
@@ -55,4 +59,4 @@ private:
 	PhysicsComponent* _physicsComponent;
 };
 
-#endif // !__ICOMPONENT_H__
+#endif // !__MOVINGCOMPONENT_H__

@@ -1,9 +1,13 @@
 #pragma once
+#ifndef __ANIMATIONCOMPONENT_H__
+#define __ANIMATIONCOMPONENT_H__
 #include "Component.h"
-#include "PhysicsComponent.h"
 #include <map>
 #include "../animation.h"
 using namespace std;
+
+//forward declarations
+class PhysicsComponent;
 
 class AnimationComponent : public Component
 {
@@ -37,9 +41,6 @@ public:
 	virtual void setZIndex(float z);
 	virtual float getZIndex();
 
-	virtual void setOpacity(float opacity);
-	virtual float getOpacity();
-
 	virtual void setSpriteHandle(LPD3DXSPRITE spriteHandle);
 protected:
 	Sprite* _sprite;
@@ -49,3 +50,4 @@ protected:
 	LPD3DXSPRITE _spriteHandle;
 	PhysicsComponent* _physicsComponent;
 };
+#endif // __ANIMATIONCOMPONENT_H__

@@ -17,7 +17,6 @@ typedef LPDIRECTINPUT			pGInput;
 typedef LPDIRECTINPUTDEVICE8	pGKeyboard;
 
 
-[event_source(native)]
 class GameController
 {
 public:

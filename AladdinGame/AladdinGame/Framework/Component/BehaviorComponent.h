@@ -1,9 +1,13 @@
 #pragma once
+#ifndef __BEHAVIORCOMPONENT_H__
+#define __BEHAVIORCOMPONENT_H__
 #include "../define.h"
 #include "Component.h"
-#include "AnimationComponent.h"
-#include "PhysicsComponent.h"
-#include "../Singleton/gamecontroller.h"
+
+//forward declarations
+class AnimationComponent;
+class PhysicsComponent;
+
 class BehaviorComponent: public Component
 {
 public:
@@ -32,11 +36,10 @@ protected:
 
 	eStatus _weapon;
 
-	GameController* _input;
+	GameController * _input;
 
-	AnimationComponent* _animationComponent;
+	AnimationComponent * _animationComponent;
 	PhysicsComponent* _physicsComponent;
-
-
-	
 };
+
+#endif //__BEHAVIORCOMPONENT_H__

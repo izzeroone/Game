@@ -147,7 +147,6 @@
   <ItemGroup>
     <ClCompile Include="dxaudio.cpp" />
     <ClCompile Include="Framework\animation.cpp" />
-    <ClCompile Include="Framework\CollisionBody.cpp" />
     <ClCompile Include="Framework\Component\AnimationComponent.cpp" />
     <ClCompile Include="Framework\Component\BehaviorComponent.cpp" />
     <ClCompile Include="Framework\Component\MovingComponent.cpp" />
@@ -177,7 +176,6 @@
     <ClInclude Include="debug.h" />
     <ClInclude Include="dxaudio.h" />
     <ClInclude Include="Framework\animation.h" />
-    <ClInclude Include="Framework\CollisionBody.h" />
     <ClInclude Include="Framework\Component\AnimationComponent.h" />
     <ClInclude Include="Framework\Component\BehaviorComponent.h" />
     <ClInclude Include="Framework\Component\Component.h" />
