@@ -36,7 +36,7 @@ void AnimationComponent::setAnimation(int status)
 
 void AnimationComponent::draw(LPD3DXSPRITE spriteHandle, Viewport * viewport)
 {
-	_animations[_index]->setPosition(_physicsComponent->getPosition());
+	_sprite->setPosition(_physicsComponent->getPosition());
 	OutputDebugStringW(L"Position ");
 	__debugoutput(_physicsComponent->getPositionX());
 	__debugoutput(_physicsComponent->getPositionY());

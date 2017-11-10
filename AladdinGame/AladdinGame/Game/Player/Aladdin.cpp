@@ -82,6 +82,7 @@ void AladdinAnimationComponent::init()
 	}
 }
 
+
 void AladdinBehaviorComponent::init()
 {
 	_preStatus = NORMAL;
