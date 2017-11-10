@@ -23,6 +23,8 @@ eStatus BehaviorComponent::getStatus()
 
 void BehaviorComponent::setStatus(eStatus status)
 {
+	_preStatus = _status;
+	_status = status;
 }
 
 eStatus BehaviorComponent::getFacingDirection()
@@ -33,6 +35,16 @@ eStatus BehaviorComponent::getFacingDirection()
 void BehaviorComponent::setFacingDirection(eStatus status)
 {
 	_facingDirection = status;
+}
+
+eStatus BehaviorComponent::getWeapon()
+{
+	return _weapon;
+}
+
+void BehaviorComponent::setWeapon(eStatus weapon)
+{
+	_weapon = weapon
 }
 
 

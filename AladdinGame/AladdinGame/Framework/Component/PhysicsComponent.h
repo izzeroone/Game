@@ -23,11 +23,15 @@ public:
 	virtual void setZIndex(float z);
 	virtual float getZIndex();
 
-	void update(float deltatime);
-	void addMovingComponent(string name, MovingComponent *movingComponent);
-	void removeMovingComponent(string name, MovingComponent *movingComponent);
+	virtual void update(float deltatime);
+	virtual void addMovingComponent(string name, MovingComponent *movingComponent);
+	virtual void removeMovingComponent(string name, MovingComponent *movingComponent);
+	virtual MovingComponent* getMovingComponent(string name);
 
 	virtual GVector2 getVelocity();
+
+	virtual int getMovingSpeed();
+	virtual void setMovingSpeed(int movingSpeed);
 
 	virtual void setPhysicsBodySide(eDirection side);
 	virtual eDirection getPhysicsBodySide();

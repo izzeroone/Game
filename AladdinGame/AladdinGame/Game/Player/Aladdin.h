@@ -26,8 +26,26 @@ class AladdinAnimationComponent : public AnimationComponent
 
 class AladdinBehaviorComponent : public BehaviorComponent
 {
+	void init();
+	void update(float detatime);
 private:
-
+	void updateTimeOut(float deltaTime);
+	void updateAnimation();
+	//
+	void faceLeft();
+	void faceRight();
+	//character action
+	void standing();
+	void moveLeft();
+	void moveRight();
+	void moveUp(); //for climbing
+	void moveDown(); // for climbing
+	void jump();
+	void slash();
+	void falling();
+	void climbvertical();
+	void climbhorizon();
+	void climbJump();
 };
 
 #endif // !__GameObject_H__
