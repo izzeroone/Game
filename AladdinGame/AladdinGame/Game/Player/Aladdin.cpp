@@ -102,33 +102,48 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			jump();
 		}
+		if (_input->isKeyDown(DIK_UP))
+		{
+			setStatus(eStatus::LOOKING_UP);
+		}
+		if (_input->isKeyDown(DIK_DOWN))
+		{
+			setStatus(eStatus::LAYING_DOWN);
+		}
 		break;
 	case JUMPING:
 		break;
 	case LAYING_DOWN:
-		if(_input->isKeyRelease())
+		if (_input->isKeyRelease(DIK_DOWN))
+		{
+			setStatus(eStatus::NORMAL);
+		}
 		break;
 	case RUNNING:
+		if (!_input->isKeyDown(DIK_LEFT) || !_input->isKeyDown(DIK_RIGHT))
+		{
+			standing();
+		}
 		break;
 	case LOOKING_UP:
-		break;
-	case THROWING:
-		break;
-	case MOVING:
+		if (_input->isKeyRelease(DIK_UP))
+		{
+			setStatus(eStatus::NORMAL);
+		}
 		break;
 	case FALLING:
 		break;
-	case MOVINGJUMPING:
-		break;
-	case SWORD:
-		break;
 	case CLIMBVERTICAL:
+		if (_input->isKeyDown(DIK_UP))
+		{
+			moveUp();
+		}
+		if (_input->isKeyDown(DIK_DOWN))
+		{
+			moveDown();
+		}
 		break;
 	case CLIMBHORIZON:
-		break;
-	case MOVE_UP:
-		break;
-	case MOVE_DOWN:
 		break;
 	case BORING1:
 		break;
@@ -139,6 +154,7 @@ void AladdinBehaviorComponent::update(float detatime)
 	default:
 		break;
 	}
+	updateAnimation();
 }
 
 void AladdinBehaviorComponent::updateTimeOut(float deltaTime)
@@ -284,5 +300,10 @@ void AladdinBehaviorComponent::climbhorizon()
 void AladdinBehaviorComponent::climbJump()
 {
 	jump();
+}
+
+void AladdinBehaviorComponent::executeCommand(eCommand command)
+{
+
 }
 

@@ -144,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dxaudio.cpp" />
     <ClCompile Include="Framework\animation.cpp" />
     <ClCompile Include="Framework\CollisionBody.cpp" />
     <ClCompile Include="Framework\Component\AnimationComponent.cpp" />
@@ -161,10 +162,14 @@
     <ClCompile Include="Framework\timespan.cpp" />
     <ClCompile Include="Framework\transform.cpp" />
     <ClCompile Include="Framework\viewport.cpp" />
+    <ClCompile Include="Game\ObjectFactory.cpp" />
     <ClCompile Include="Game\Player\Aladdin.cpp" />
+    <ClCompile Include="Game\Scene\Scene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="debug.h" />
+    <ClInclude Include="dxaudio.h" />
     <ClInclude Include="Framework\animation.h" />
     <ClInclude Include="Framework\CollisionBody.h" />
     <ClInclude Include="Framework\Component\AnimationComponent.h" />
@@ -184,7 +189,9 @@
     <ClInclude Include="Framework\timespan.h" />
     <ClInclude Include="Framework\transform.h" />
     <ClInclude Include="Framework\viewport.h" />
+    <ClInclude Include="Game\ObjectFactory.h" />
     <ClInclude Include="Game\Player\Aladdin.h" />
+    <ClInclude Include="Game\Scene\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\sigcxx\sigcxx.vcxproj">

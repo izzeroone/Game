@@ -14,7 +14,7 @@ public:
 	virtual void update(float deltatime);
 	virtual Animation* getCurrentAnimation();
 	virtual void setAnimation(int status);
-	virtual void draw(Viewport* viewport);
+	virtual void draw(LPD3DXSPRITE spriteHander, Viewport* viewport);
 	virtual void setOpacity(float opacity);
 	virtual float getOpacity();
 	virtual void setColor(D3DXCOLOR color);

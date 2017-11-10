@@ -62,7 +62,6 @@ void Animation::nextFrame()
 }
 int Animation::getIndex()
 {
-	// 7ung -> use in Explostion::update
 	return _index;
 }
 int Animation::getCount()

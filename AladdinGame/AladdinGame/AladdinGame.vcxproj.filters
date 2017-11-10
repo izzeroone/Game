@@ -43,6 +43,12 @@
     <Filter Include="Header Files\Framework\Singleton">
       <UniqueIdentifier>{e04789ac-0033-43df-b2c9-caa1b832256a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\Scene">
+      <UniqueIdentifier>{29fc7863-d44f-4a7e-b05f-4fffb5820ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Scene">
+      <UniqueIdentifier>{3a2722a6-a3bd-4124-8556-1db493582a96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -101,6 +107,15 @@
     </ClCompile>
     <ClCompile Include="Framework\Component\MovingComponent.cpp">
       <Filter>Source Files\Framework\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ObjectFactory.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\Scene.cpp">
+      <Filter>Source Files\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="dxaudio.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +178,18 @@
     </ClInclude>
     <ClInclude Include="Game\Player\Aladdin.h">
       <Filter>Header Files\Game\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ObjectFactory.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\Scene.h">
+      <Filter>Header Files\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dxaudio.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

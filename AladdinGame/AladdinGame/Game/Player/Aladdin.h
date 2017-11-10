@@ -1,7 +1,8 @@
 ﻿
-#ifndef __GAMEOBJECT_H__
-#define __GAMEOBJECT_H__
+#ifndef __ALADDIN_H__
+#define __ALADDIN_H__
 #include "../../Framework/define.h"
+#include "../../Framework/GameObject.h"
 #include "../../Framework/Component/AnimationComponent.h"
 #include "../../Framework/Component/BehaviorComponent.h"
 #include "../../Framework/Component/PhysicsComponent.h"
@@ -46,6 +47,11 @@ private:
 	void climbvertical();
 	void climbhorizon();
 	void climbJump();
+
+	// Inherited via BehaviorComponent
+	virtual void executeCommand(eCommand command) override;
 };
 
-#endif // !__GameObject_H__
+
+
+#endif // !__ALADDIN_H__

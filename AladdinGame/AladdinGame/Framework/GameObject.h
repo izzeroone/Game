@@ -18,11 +18,23 @@ public:
 	GameObject(eObjectID eid, AnimationComponent* animationComponent, BehaviorComponent* behaviorComponent, PhysicsComponent* physicsComponent);
 	virtual ~GameObject();
 
-	virtual void init() = 0;
-	virtual void update(float deltatime) = 0;
-	virtual void draw(LPD3DXSPRITE, Viewport*) = 0;
-	virtual void release() = 0;
+	virtual void init();
+	virtual void update(float deltatime);
+	virtual void draw(LPD3DXSPRITE, Viewport*);
+	virtual void release();
 
+	virtual AnimationComponent* getAnimationComponent();
+	virtual void setAnimationComponent(AnimationComponent* animationComponent);
+
+	virtual PhysicsComponent* getPhysicsComponent();
+	virtual void setPhysicsComponent(PhysicsComponent* PhysicsComponent);
+
+	virtual BehaviorComponent* getBehaviorComponent();
+	virtual void setBehaviorComponent(BehaviorComponent* BehaviorComponent);
+
+
+	eObjectID getID();
+	void setID(eObjectID eid);
 
 protected:
 	eObjectID _id;

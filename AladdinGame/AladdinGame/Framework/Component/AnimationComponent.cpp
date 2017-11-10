@@ -34,12 +34,11 @@ void AnimationComponent::setAnimation(int status)
 	_index = status;
 }
 
-void AnimationComponent::draw(Viewport * viewport)
+void AnimationComponent::draw(LPD3DXSPRITE spriteHandle, Viewport * viewport)
 {
 	_animations[_index]->setPosition(_physicsComponent->getPosition());
-	_animations[_index]->draw(_spriteHandle, viewport);
+	_animations[_index]->draw(spriteHandle, viewport);
 }
-
 
 GVector2 AnimationComponent::getScale()
 {
