@@ -1,8 +1,8 @@
-#ifndef __CONTRA_GAME_H__
-#define __CONTRA_GAME_H__
-#define BACKGROUND1  L"bg.png"
+#ifndef __ALADDIN_GAME_H__
+#define __ALADDIN_GAME_H__
+
 #include "Game.h"
-#include "BaseObject.h"
+#include "../Framework/GameObject.h"
 class AladdinGame : public Game
 {
 public:
@@ -19,7 +19,7 @@ public:
 
 private:
 	LPDIRECT3DSURFACE9 _Background;
-	BaseObject* _bill;
+	GameObject* _aladdin;
 };
 
 #endif // !__CONTRA_GAME_H__

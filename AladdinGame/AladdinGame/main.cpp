@@ -1,9 +1,21 @@
-﻿#include <iostream>
+#include <Windows.h>
+#include <iostream>
+
+#include "Game\AladdinGame.h"
 
 using namespace std;
+LINK_FRAMEWORK
 
-int main()
+#define APP_TITTLE L"Aladdin"
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpcmdLine, int nCmdShow)
 {
-	cout << "thanhthao";
-	system("pause");
+	Game* myGame;
+	myGame = new AladdinGame(hInstance, APP_TITTLE);
+
+	myGame->init();
+	myGame->run();
+	myGame->release();
+
+	delete myGame;
 }

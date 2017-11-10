@@ -94,6 +94,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;legacy_stdio_definitions.lib;dinput8.lib;dxguid.lib;dsound.lib;dxerr.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -155,6 +156,7 @@
     <ClCompile Include="Framework\Singleton\dxdevice.cpp" />
     <ClCompile Include="Framework\Singleton\gamecontroller.cpp" />
     <ClCompile Include="Framework\Singleton\gametime.cpp" />
+    <ClCompile Include="Framework\Singleton\SoundManager.cpp" />
     <ClCompile Include="Framework\Singleton\spriteresource.cpp" />
     <ClCompile Include="Framework\Singleton\windowGUI.cpp" />
     <ClCompile Include="Framework\sprite.cpp" />
@@ -162,9 +164,13 @@
     <ClCompile Include="Framework\timespan.cpp" />
     <ClCompile Include="Framework\transform.cpp" />
     <ClCompile Include="Framework\viewport.cpp" />
+    <ClCompile Include="Game\AladdinGame.cpp" />
+    <ClCompile Include="Game\game.cpp" />
     <ClCompile Include="Game\ObjectFactory.cpp" />
     <ClCompile Include="Game\Player\Aladdin.cpp" />
     <ClCompile Include="Game\Scene\Scene.cpp" />
+    <ClCompile Include="Game\Scene\SceneManager.cpp" />
+    <ClCompile Include="Game\Scene\TestScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +188,7 @@
     <ClInclude Include="Framework\Singleton\dxdevice.h" />
     <ClInclude Include="Framework\Singleton\gamecontroller.h" />
     <ClInclude Include="Framework\Singleton\gametime.h" />
+    <ClInclude Include="Framework\Singleton\SoundManager.h" />
     <ClInclude Include="Framework\Singleton\spriteresource.h" />
     <ClInclude Include="Framework\Singleton\windowGUI.h" />
     <ClInclude Include="Framework\sprite.h" />
@@ -189,9 +196,13 @@
     <ClInclude Include="Framework\timespan.h" />
     <ClInclude Include="Framework\transform.h" />
     <ClInclude Include="Framework\viewport.h" />
+    <ClInclude Include="Game\AladdinGame.h" />
+    <ClInclude Include="Game\game.h" />
     <ClInclude Include="Game\ObjectFactory.h" />
     <ClInclude Include="Game\Player\Aladdin.h" />
     <ClInclude Include="Game\Scene\Scene.h" />
+    <ClInclude Include="Game\Scene\SceneManager.h" />
+    <ClInclude Include="Game\Scene\TestScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\sigcxx\sigcxx.vcxproj">

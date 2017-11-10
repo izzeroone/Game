@@ -37,8 +37,8 @@ enum eStatus
 {
 
 	NORMAL = 0,					// 00000 = 0	
-	LEFT = (1 << 0),				// 00001 = 2^0
-	RIGHT = (1 << 1),				// 00010 = 2^1
+	LEFTFACING = (1 << 0),				// 00001 = 2^0
+	RIGHTFACING = (1 << 1),				// 00010 = 2^1
 	JUMPING = (1 << 2),				// 00100 = 2^2
 	LAYING_DOWN = (1 << 3),				// 01000 = 2^3
 	RUNNING = (1 << 4),				// 10000 = 2^4
@@ -78,12 +78,6 @@ enum eRopeType
 	HORIZONTAL = 1
 };
 
-enum eWeaponType
-{
-	NONE,
-	SWORD,
-	APPLE
-};
 
 enum eCommand
 {

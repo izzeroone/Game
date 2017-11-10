@@ -51,9 +51,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Singleton\windowGUI.cpp">
       <Filter>Source Files\Framework\Singleton</Filter>
     </ClCompile>
@@ -115,6 +112,24 @@
       <Filter>Source Files\Game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="dxaudio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Singleton\SoundManager.cpp">
+      <Filter>Source Files\Framework\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\TestScene.cpp">
+      <Filter>Source Files\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\game.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\AladdinGame.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\SceneManager.cpp">
+      <Filter>Source Files\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -190,6 +205,21 @@
     </ClInclude>
     <ClInclude Include="dxaudio.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\TestScene.h">
+      <Filter>Header Files\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Singleton\SoundManager.h">
+      <Filter>Header Files\Framework\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\game.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\AladdinGame.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\SceneManager.h">
+      <Filter>Header Files\Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

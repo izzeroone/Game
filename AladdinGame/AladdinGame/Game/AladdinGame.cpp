@@ -1,6 +1,6 @@
 ﻿#include "AladdinGame.h"
-#include "SceneManager.h"
-#include "TestScene.h"
+#include "Scene/SceneManager.h"
+#include "Scene/TestScene.h"
 AladdinGame::AladdinGame(HINSTANCE hInstance, LPWSTR title) : Game(hInstance, title, WINDOW_WIDTH, WINDOW_HEIGHT)
 {
 
@@ -52,7 +52,7 @@ void AladdinGame::loadResource()
 {
 	// Game::init đã gọi hàm này rồi nên không cần gọi lại AladdinGame::loadResource
 	// load resource
-	SpriteManager::getInstance()->loadResource(_spriteHandle);
+	SpriteResource::getInstance()->loadResource(_spriteHandle);
 	SoundManager::getInstance()->loadSound(Game::hWindow->getWnd());
 
 }

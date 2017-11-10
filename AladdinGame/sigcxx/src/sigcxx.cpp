@@ -24,7 +24,7 @@
  * SOFTWARE.
  */
 
-#include <sigcxx/sigcxx.hpp>
+#include "../include/sigcxx/sigcxx.hpp"
 
 namespace sigcxx {
 

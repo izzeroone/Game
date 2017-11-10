@@ -1,17 +1,16 @@
 ﻿#include <string>
 #include "Game.h"
-#include "Event.h"
 
 using namespace std;
-US_FRAMEWORK
+LINK_FRAMEWORK
 
 #if _DEBUG
-#include "debug.h"	// for print to output. call: __debugoutput()
+#include "../debug.h"	// for print to output. call: __debugoutput()
 #endif // _DEBUG
 
 int Game::isExit = 0;
-Graphics* Game::hWindow = NULL;
-Graphics* Game::getWindow()
+WindowGUI* Game::hWindow = NULL;
+WindowGUI* Game::getWindow()
 {
 	return hWindow;
 }
@@ -29,10 +28,10 @@ Game::~Game(void)
 Game::Game(HINSTANCE hInstance, LPWSTR name, int width, int height, int fps, int isFullScreen)
 {
 	//this->wnd_Instance = new Graphics(hInstance, name, width, height, fps, isFullScreen);
-	hWindow = new Graphics(hInstance, name, width, height, fps, isFullScreen);
+	hWindow = new WindowGUI(hInstance, name, width, height, fps, isFullScreen);
 	_gametime = GameTime::getInstance();
-	_devicemanager = DeviceManager::getInstance();
-	_input = InputController::getInstance();
+	_dxdevice = DXDevice::getInstance();
+	_input = GameController::getInstance();
 	_spriteHandle = NULL;
 }
 
@@ -43,13 +42,13 @@ void Game::init()
 		throw;
 	hWindow->initWindow();
 	_gametime->init();
-	_devicemanager->Init(*hWindow);
-	//_devicemanager->Init(*wnd_Instance);
-	_input->init(hWindow->getWnd(), hWindow->gethInstance());
+	_dxdevice->Init(*hWindow);
+	//_dxdevice->Init(*wnd_Instance);
+	_input->init(hWindow->getWnd(), hWindow->getInstance());
 	//_input->init(wnd_Instance->getWnd(), wnd_Instance->gethInstance());
 	this->_frameRate = 1000.0f / hWindow->getFrameRate();	 //1000/30 = 33 milisecond
 
-	D3DXCreateSprite(_devicemanager->getDevice(), &this->_spriteHandle);
+	D3DXCreateSprite(_dxdevice->getDevice(), &this->_spriteHandle);
 	this->loadResource();
 
 	_oldTime = _gametime->getTotalGameTime();
@@ -89,7 +88,7 @@ void Game::render()												// call once per frame
 	// kiểm tra nếu cửa sổ đang focus không phải game thì không cập nhật
 	if (GetActiveWindow() != hWindow->getWnd())
 		return;
-	auto device = _devicemanager->getInstance();
+	auto device = _dxdevice->getInstance();
 	float time = _gametime->getElapsedGameTime();
 
 	// để xử lý kéo cửa sổ không vị dồn frame
@@ -134,8 +133,8 @@ void Game::loadResource()
 }
 void Game::release()
 {
-	_devicemanager->release();
-	//SAFE_DELETE(_devicemanager);
+	_dxdevice->release();
+	//SAFE_DELETE(_dxdevice);
 	_gametime->release();
 	//SAFE_DELETE(_gametime);
 	//_input->release();

@@ -1,58 +1,17 @@
 
-/*
-HOW TO USE:
-
-this is a basic game class.
-inheritance it to which game you want to build
-override virtual methods (init, release, draw, updateinput, update)
-
-example:
-class GameX: public Game
-{
-public:
-void init()
-{
-Game::init();
-some objects created
-}
-void release()
-{
-Game::release();
-some objects deleted
-}
-
-void updateInput(float deltatime) {check input event and implement action}
-void update(float deltatime){ update all object on screen}
-void draw(float deltatime) {draw to screen}
-
-//5 overrided methods
-
-// updateinput, update, draw. they are called automatic in Game::run()
-}
-
-in main function:
-call:
-game* game = new GameX(...);
-game->init();
-game->run();
-game->release();
-delete game;
-
-when you build GameY. just replace "new GameX(...)" into "new GameY(...)"
-*/
 #ifndef __GAME_H__
 #define __GAME_H__
 
 #include <windows.h>
-#include "Graphics.h"
-#include "DeviceManager.h"
-#include "Sprite.h"
-#include "GameTime.h"
-#include "InputController.h"
 
 
-NS_FRAMEWORK
-NS_FRAMEWORK_BEGIN
+#include "../Framework/Singleton/windowGUI.h"
+#include "../Framework/Singleton/dxdevice.h"
+#include "../Framework/sprite.h"
+#include "../Framework/Singleton/gametime.h"
+#include "../Framework/Singleton/gamecontroller.h"
+
+DEFINE_FRAMEWORK_START
 
 //define basic game's loop
 class Game
@@ -74,14 +33,14 @@ public:
 	void run();
 	void render();
 	static void exit();			// exit the game. call: Game::exit()
-	static Graphics* getWindow();
+	static WindowGUI* getWindow();
 protected:
-	pGraphics wnd_Instance;		// for init window. 
+	pWindowGUI wnd_Instance;		// for init window. 
 	pGameTime _gametime;
-	pDeviceManager _devicemanager;
-	pInputController _input;
+	pDXDevice _dxdevice;
+	pGameController _input;
 	LPD3DXSPRITE _spriteHandle;
-	static Graphics *hWindow;
+	static WindowGUI *hWindow;
 private:
 	float _frameRate;			// time for 1 frame, milisecond
 	float _oldTime;
@@ -90,7 +49,7 @@ private:
 
 typedef Game* pGame;
 
-NS_FRAMEWORK_END
+DEFINE_FRAMEWORK_END
 
 #endif // !__GAME_H__
 
