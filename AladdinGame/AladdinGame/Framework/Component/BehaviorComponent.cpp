@@ -7,11 +7,10 @@ BehaviorComponent::BehaviorComponent()
 {
 }
 
-BehaviorComponent::BehaviorComponent(AnimationComponent * animationComponent, PhysicsComponent * physicsComponent, GameController * input)
+BehaviorComponent::BehaviorComponent(AnimationComponent * animationComponent, PhysicsComponent * physicsComponent)
 {
 	_animationComponent = animationComponent;
 	_physicsComponent = physicsComponent;
-	_input = input;
 }
 
 
@@ -26,6 +25,7 @@ eStatus BehaviorComponent::getStatus()
 
 void BehaviorComponent::setStatus(eStatus status)
 {
+	__debugoutput(status);
 	_preStatus = _status;
 	_status = status;
 }
@@ -58,5 +58,20 @@ void BehaviorComponent::executeCommand(eCommand command)
 
 void BehaviorComponent::updateAnimation()
 {
+}
+
+void BehaviorComponent::setGameController(GameController * input)
+{
+	_input = input;
+}
+
+void BehaviorComponent::setAnimationComponent(AnimationComponent * animationComponent)
+{
+	_animationComponent = animationComponent;
+}
+
+void BehaviorComponent::setPhysicsComponent(PhysicsComponent * physicsComponent)
+{
+	_physicsComponent = physicsComponent;
 }
 

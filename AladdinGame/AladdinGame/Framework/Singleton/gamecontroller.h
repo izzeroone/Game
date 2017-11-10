@@ -5,7 +5,6 @@
 
 #include "../define.h"
 #include "windowGUI.h"
-#include "../../../sigcxx/include/sigcxx/sigcxx.hpp"
 
 #include <vector>
 
@@ -31,9 +30,6 @@ public:
 	bool	isKeyPressed(int keycode);
 	bool	isKeyRelease(int keycode);
 
-	sigcxx::SignalRef<const int> keyPressed();
-	sigcxx::SignalRef<const int> keyReleased();
-
 
 private:
 	GameController();
@@ -44,11 +40,6 @@ private:
 	BYTE		_keyBuffer[256];			// BYTE = unsigned char
 	HWND		_hWnd;						// refference to another place. Dont release!!!
 	DIDEVICEOBJECTDATA _keyEvents[KEYBOARD_BUFFER_SIZE];
-
-	sigcxx::Signal<const int> _keyPressed;
-	sigcxx::Signal<const int> _keyReleased;
-	
-
 
 	bool		_previousKeyBuffer[256];
 };

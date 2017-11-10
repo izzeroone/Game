@@ -10,6 +10,9 @@ void AladdinPhysicsComponent::init()
 
 void AladdinAnimationComponent::init()
 {
+	_sprite = SpriteResource::getInstance()->getSprite(eObjectID::ALADDIN);
+	_sprite->setFrameRect(SpriteResource::getInstance()->getSourceRect(eObjectID::ALADDIN, "normal_01"));
+	_sprite->setZIndex(0.0f);
 
 	_animations[eStatus::NORMAL] = new Animation(_sprite, 1000.0f);
 	_animations[eStatus::NORMAL]->addFrameRect(eObjectID::ALADDIN, "normal_01", NULL);
@@ -69,7 +72,7 @@ void AladdinAnimationComponent::init()
 	_animations[eStatus::BORING3] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::BORING3]->addFrameRect(eObjectID::ALADDIN, "boring_circus_01", "boring_circus_02", "boring_circus_03", "boring_circus_04", "boring_circus_05", "boring_circus_06", "boring_circus_07", "boring_circus_08", "boring_circus_09", "boring_circus_10", "boring_circus_11", "boring_circus_12", "boring_circus_13", "boring_circus_14", "boring_circus_15", "boring_circus_16", "boring_circus_17", NULL);
 
-	setOrigin(GVector2(0.0f, 0.0f));
+	setOrigin(GVector2(0.0f, 0.5f));
 	setScale(SCALE_FACTOR);
 
 
@@ -82,7 +85,7 @@ void AladdinAnimationComponent::init()
 void AladdinBehaviorComponent::init()
 {
 	_preStatus = NORMAL;
-	_status = NORMAL;
+	standing();
 }
 
 void AladdinBehaviorComponent::update(float detatime)
@@ -166,6 +169,7 @@ void AladdinBehaviorComponent::updateAnimation()
 	switch (_status)
 	{
 	case NORMAL:
+
 		_animationComponent->setAnimation(eStatus::NORMAL);
 		break;
 	case JUMPING:
@@ -227,8 +231,12 @@ void AladdinBehaviorComponent::faceRight()
 
 void AladdinBehaviorComponent::standing()
 {
-	auto move = (Movement*)_physicsComponent->getMovingComponent("movement");
+	auto move = (Movement*)_physicsComponent->getMovingComponent("Movement");
 	move->setVelocity(GVector2(0, 0));
+
+	auto gravity = (Gravity*)_physicsComponent->getMovingComponent("Gravity");
+	gravity->setStatus(eGravityStatus::LANDED);
+
 	setStatus(eStatus::NORMAL);
 }
 
@@ -238,7 +246,7 @@ void AladdinBehaviorComponent::moveLeft()
 	auto move = (Movement*)_physicsComponent->getMovingComponent("Movement");
 	move->setVelocity(GVector2(-_physicsComponent->getMovingSpeed(), move->getVelocity().y));
 	setStatus(eStatus::MOVING);
-	setFacingDirection(eStatus::RUNNING);
+	setFacingDirection(eStatus::LEFTFACING);
 }
 
 void AladdinBehaviorComponent::moveRight()
@@ -247,7 +255,7 @@ void AladdinBehaviorComponent::moveRight()
 	auto move = (Movement*)_physicsComponent->getMovingComponent("Movement");
 	move->setVelocity(GVector2(_physicsComponent->getMovingSpeed(), move->getVelocity().y));
 	setStatus(eStatus::MOVING);
-	setFacingDirection(eStatus::RUNNING);
+	setFacingDirection(eStatus::RIGHTFACING);
 }
 
 void AladdinBehaviorComponent::moveUp()

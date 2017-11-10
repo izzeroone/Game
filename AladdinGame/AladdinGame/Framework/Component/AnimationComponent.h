@@ -4,6 +4,7 @@
 #include "Component.h"
 #include <map>
 #include "../animation.h"
+#include "../../debug.h"
 using namespace std;
 
 //forward declarations
@@ -41,13 +42,12 @@ public:
 	virtual void setZIndex(float z);
 	virtual float getZIndex();
 
-	virtual void setSpriteHandle(LPD3DXSPRITE spriteHandle);
+	virtual void setPhysiscComponent(PhysicsComponent * physicsComponent);
 protected:
 	Sprite* _sprite;
 	map<int, Animation*> _animations;
 	int _index;
 	int _preindex;
-	LPD3DXSPRITE _spriteHandle;
 	PhysicsComponent* _physicsComponent;
 };
 #endif // __ANIMATIONCOMPONENT_H__

@@ -22,7 +22,7 @@ bool TestScene::init()
 
 	auto Aladdin = ObjectFactory::getAladdin();
 	Aladdin->init();
-	Aladdin->getPhysicsComponent()->setPosition(100, 200);
+	Aladdin->getPhysicsComponent()->setPosition(300, 200);
 
 	this->_Aladdin = Aladdin;
 	_listobject.push_back(Aladdin);
@@ -53,10 +53,11 @@ void TestScene::update(float dt)
 void TestScene::draw(LPD3DXSPRITE spriteHandle)
 {
 	_map->render(spriteHandle, _viewport);
-	for (GameObject* object : _active_object)
-	{
-		object->draw(spriteHandle, _viewport);
-	}
+	_Aladdin->draw(spriteHandle, _viewport);
+	//for (GameObject* object : _active_object)
+	//{
+	//	object->draw(spriteHandle, _viewport);
+	//}
 }
 
 void TestScene::release()

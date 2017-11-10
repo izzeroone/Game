@@ -1,64 +1,6 @@
 ﻿  Aladdin.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(15): error C2061: syntax error: identifier 'GameController'
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(39): error C2143: syntax error: missing ';' before '*'
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(39): error C2238: unexpected token(s) preceding ';'
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(93): error C2065: '_input': undeclared identifier
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(93): error C2227: left of '->isKeyDown' must point to class/struct/union/generic type
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(93): note: type is 'unknown-type'
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(97): error C2065: '_input': undeclared identifier
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(97): error C2227: left of '->isKeyDown' must point to class/struct/union/generic type
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(97): note: type is 'unknown-type'
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(101): error C2065: '_input': undeclared identifier
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(101): error C2227: left of '->isKeyPressed' must point to class/struct/union/generic type
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(101): note: type is 'unknown-type'
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(105): error C2065: '_input': undeclared identifier
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(105): error C2227: left of '->isKeyDown' must point to class/struct/union/generic type
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(105): note: type is 'unknown-type'
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(109): error C2065: '_input': undeclared identifier
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(109): error C2227: left of '->isKeyDown' must point to class/struct/union/generic type
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(109): note: type is 'unknown-type'
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(117): error C2065: '_input': undeclared identifier
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(117): error C2227: left of '->isKeyRelease' must point to class/struct/union/generic type
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(117): note: type is 'unknown-type'
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(123): error C2065: '_input': undeclared identifier
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(123): error C2227: left of '->isKeyDown' must point to class/struct/union/generic type
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(123): note: type is 'unknown-type'
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(129): error C2065: '_input': undeclared identifier
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(129): error C2227: left of '->isKeyRelease' must point to class/struct/union/generic type
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(129): note: type is 'unknown-type'
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(137): error C2065: '_input': undeclared identifier
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(137): error C2227: left of '->isKeyDown' must point to class/struct/union/generic type
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(137): note: type is 'unknown-type'
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(141): error C2065: '_input': undeclared identifier
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(141): error C2227: left of '->isKeyDown' must point to class/struct/union/generic type
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(141): note: type is 'unknown-type'
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(239): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(248): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-  ObjectFactory.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(15): error C2061: syntax error: identifier 'GameController'
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(39): error C2143: syntax error: missing ';' before '*'
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(39): error C2238: unexpected token(s) preceding ';'
-  GameObject.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(15): error C2061: syntax error: identifier 'GameController'
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(39): error C2143: syntax error: missing ';' before '*'
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(39): error C2238: unexpected token(s) preceding ';'
-  BehaviorComponent.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(15): error C2061: syntax error: identifier 'GameController'
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(39): error C2143: syntax error: missing ';' before '*'
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(39): error C2238: unexpected token(s) preceding ';'
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.cpp(11): error C2511: 'BehaviorComponent::BehaviorComponent(AnimationComponent *,PhysicsComponent *,Framework::GameController *)': overloaded member function not found in 'BehaviorComponent'
-  d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(11): note: see declaration of 'BehaviorComponent'
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.cpp(12): error C2597: illegal reference to non-static member 'BehaviorComponent::_animationComponent'
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.cpp(13): error C2597: illegal reference to non-static member 'BehaviorComponent::_physicsComponent'
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.cpp(14): error C2065: '_input': undeclared identifier
-d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.cpp(63): error C2039: 'getInput': is not a member of 'BehaviorComponent'
-  d:\githubproject\game\aladdingame\aladdingame\framework\component\behaviorcomponent.h(11): note: see declaration of 'BehaviorComponent'
-  Generating Code...
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(247): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(256): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+  AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
+  AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)

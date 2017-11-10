@@ -14,11 +14,7 @@ void AladdinGame::init()
 {
 	Game::init();
 	// init game
-#if _DEBUG
 	SceneManager::getInstance()->addScene(new TestScene());
-#else
-	SceneManager::getInstance()->addScene(new IntroScene());
-#endif
 }
 
 void AladdinGame::release()

@@ -24,4 +24,5 @@ void __debugoutput(T var)
 #endif // UNICOE
 }
 
+
 #endif // !__DEBUG_H__

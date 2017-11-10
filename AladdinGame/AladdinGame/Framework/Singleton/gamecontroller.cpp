@@ -106,11 +106,11 @@ void GameController::update()
 		keystate = _keyEvents[i].dwData;
 		if ((keystate & 0x80) > 0)
 		{
-			_keyPressed.Emit(keycode); // raise a key press signal
+			//_keyPressed.Emit(keycode); // raise a key press signal
 		}
 		else
 		{
-			_keyReleased.Emit(keycode);
+			//_keyReleased.Emit(keycode);
 		}
 	}
 }
@@ -132,12 +132,3 @@ bool GameController::isKeyRelease(int keycode)
 	return !isKeyDown(keycode) && (_previousKeyBuffer[keycode]);
 }
 
-sigcxx::SignalRef<const int> GameController::keyPressed()
-{
-	return _keyPressed;
-}
-
-sigcxx::SignalRef<const int> GameController::keyReleased()
-{
-	return _keyReleased;
-}

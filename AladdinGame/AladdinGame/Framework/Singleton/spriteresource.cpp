@@ -23,8 +23,8 @@ void SpriteResource::loadResource(LPD3DXSPRITE spriteHandle)
 	Sprite* sp = NULL;
 
 
-	Sprite* bill = new Sprite(spriteHandle, L"Resources//Images//aladdin_animation_genesis.png");
-	this->_listSprite[eObjectID::ALADDIN] = bill;
+	Sprite* aladdin = new Sprite(spriteHandle, L"Resources//Images//aladdin_animation_genesis.png");
+	this->_listSprite[eObjectID::ALADDIN] = aladdin;
 	this->loadSpriteInfo(eObjectID::ALADDIN, "Resources//Images//aladdin_animation_genesis.txt");
 
 	Sprite* map = new Sprite(spriteHandle, L"Resources//Images//map1.png");

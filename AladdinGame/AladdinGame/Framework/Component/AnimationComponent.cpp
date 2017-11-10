@@ -37,6 +37,9 @@ void AnimationComponent::setAnimation(int status)
 void AnimationComponent::draw(LPD3DXSPRITE spriteHandle, Viewport * viewport)
 {
 	_animations[_index]->setPosition(_physicsComponent->getPosition());
+	OutputDebugStringW(L"Position ");
+	__debugoutput(_physicsComponent->getPositionX());
+	__debugoutput(_physicsComponent->getPositionY());
 	_animations[_index]->draw(spriteHandle, viewport);
 }
 
@@ -105,9 +108,10 @@ float AnimationComponent::getOpacity()
 	return _sprite->getOpacity();
 }
 
-void AnimationComponent::setSpriteHandle(LPD3DXSPRITE spriteHandle)
+
+void AnimationComponent::setPhysiscComponent(PhysicsComponent * physicsComponent)
 {
-	_spriteHandle = spriteHandle;
+	_physicsComponent = physicsComponent;
 }
 
 
