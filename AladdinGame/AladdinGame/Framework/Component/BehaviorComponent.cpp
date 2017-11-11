@@ -25,9 +25,12 @@ eStatus BehaviorComponent::getStatus()
 
 void BehaviorComponent::setStatus(eStatus status)
 {
-	__debugoutput(status);
-	_preStatus = _status;
-	_status = status;
+	if (_status != status)
+	{
+		__debugoutput(status);
+		_preStatus = _status;
+		_status = status;
+	}
 }
 
 eStatus BehaviorComponent::getFacingDirection()

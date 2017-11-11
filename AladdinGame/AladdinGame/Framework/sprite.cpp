@@ -183,6 +183,11 @@ void Sprite::setRotate(float degree)
 	this->updateBounding();
 }
 
+void Sprite::setAnchorPoint(GVector2 anchorPoint)
+{
+	_anchorPoint = anchorPoint;
+}
+
 void Sprite::setOrigin(GVector2 origin)
 {
 	if (origin == _origin)

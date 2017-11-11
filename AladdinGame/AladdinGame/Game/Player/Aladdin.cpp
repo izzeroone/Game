@@ -13,6 +13,9 @@ void AladdinAnimationComponent::init()
 	_sprite = SpriteResource::getInstance()->getSprite(eObjectID::ALADDIN);
 	_sprite->setFrameRect(SpriteResource::getInstance()->getSourceRect(eObjectID::ALADDIN, "normal_01"));
 	_sprite->setZIndex(0.0f);
+	setOrigin(GVector2(0.0f, 0.0f));
+	setScale(SCALE_FACTOR);
+	
 
 	_animations[eStatus::NORMAL] = new Animation(_sprite, 1000.0f);
 	_animations[eStatus::NORMAL]->addFrameRect(eObjectID::ALADDIN, "normal_01", NULL);
@@ -72,9 +75,6 @@ void AladdinAnimationComponent::init()
 	_animations[eStatus::BORING3] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::BORING3]->addFrameRect(eObjectID::ALADDIN, "boring_circus_01", "boring_circus_02", "boring_circus_03", "boring_circus_04", "boring_circus_05", "boring_circus_06", "boring_circus_07", "boring_circus_08", "boring_circus_09", "boring_circus_10", "boring_circus_11", "boring_circus_12", "boring_circus_13", "boring_circus_14", "boring_circus_15", "boring_circus_16", "boring_circus_17", NULL);
 
-	setOrigin(GVector2(0.0f, 0.5f));
-	setScale(SCALE_FACTOR);
-
 
 	for (auto animate : _animations)
 	{
@@ -86,6 +86,8 @@ void AladdinAnimationComponent::init()
 void AladdinBehaviorComponent::init()
 {
 	_preStatus = eStatus::NORMAL;
+	moveLeft();
+	moveRight();
 	standing();
 }
 
@@ -124,9 +126,9 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		break;
 	case RUNNING:
-		if (!_input->isKeyDown(DIK_LEFT) || !_input->isKeyDown(DIK_RIGHT))
+		if (!_input->isKeyDown(DIK_LEFT) && !_input->isKeyDown(DIK_RIGHT))
 		{
-			//standing();
+			standing();
 		}
 		break;
 	case LOOKING_UP:
@@ -217,6 +219,7 @@ void AladdinBehaviorComponent::faceLeft()
 	if (_animationComponent->getScale().x > 0)
 	{
 		_animationComponent->setScaleX(_animationComponent->getScale().x * (-1));
+		_animationComponent->setOrigin(GVector2(0.0f, 0.0f));
 	}
 	setFacingDirection(eStatus::LEFTFACING);
 }
@@ -226,6 +229,7 @@ void AladdinBehaviorComponent::faceRight()
 	if (_animationComponent->getScale().x < 0)
 	{
 		_animationComponent->setScaleX(_animationComponent->getScale().x * (-1));
+		_animationComponent->setOrigin(GVector2(1.0f, 0.0f));
 	}
 	setFacingDirection(eStatus::RIGHTFACING);
 }

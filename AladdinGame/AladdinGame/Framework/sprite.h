@@ -52,6 +52,7 @@ public:
 	void setScaleY(float sy);
 
 	void setRotate(float degree);
+	void setAnchorPoint(GVector2 anchorPoint);
 
 	void setOrigin(GVector2 origin);
 
