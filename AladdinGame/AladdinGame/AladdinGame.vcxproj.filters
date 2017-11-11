@@ -129,6 +129,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Component\CollisionComponent.cpp">
+      <Filter>Source Files\Framework\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="Game\Scene\SceneManager.h">
       <Filter>Header Files\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\CollisionComponent.h">
+      <Filter>Header Files\Framework\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -77,17 +77,17 @@ void PhysicsComponent::update(float deltatime)
 	}
 }
 
-void PhysicsComponent::addMovingComponent(string name, MovingComponent * movingComponent)
+void PhysicsComponent::addComponent(string name, Component * movingComponent)
 {
 	_componentList.emplace(name, movingComponent);
 }
 
-void PhysicsComponent::removeMovingComponent(string name, MovingComponent * movingComponent)
+void PhysicsComponent::removeComponent(string name, Component * movingComponent)
 {
 	_componentList.erase(name);
 }
 
-MovingComponent * PhysicsComponent::getMovingComponent(string name)
+Component * PhysicsComponent::getComponent(string name)
 {
 	return _componentList[name];
 }

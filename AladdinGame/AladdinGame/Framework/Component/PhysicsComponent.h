@@ -29,9 +29,9 @@ public:
 	virtual float getZIndex();
 
 	virtual void update(float deltatime);
-	virtual void addMovingComponent(string name, MovingComponent* movingComponent);
-	virtual void removeMovingComponent(string name, MovingComponent* movingComponent);
-	virtual MovingComponent* getMovingComponent(string name);
+	virtual void addComponent(string name, Component* movingComponent);
+	virtual void removeComponent(string name, Component* movingComponent);
+	virtual Component* getComponent(string name);
 
 	virtual GVector2 getVelocity();
 
@@ -46,7 +46,7 @@ protected:
 	int					_movingSpeed;
 	GVector2			_position;
 	float				_zIndex;
-	map<string, MovingComponent*> _componentList;
+	map<string, Component*> _componentList;
 	eDirection _physicsSide;
 
 };

@@ -35,6 +35,9 @@ GVector2 Movement::getVelocity()
 {
 	return this->_velocity;
 }
+void Movement::init()
+{
+}
 #pragma endregion
 
 #pragma region Gravity
@@ -61,6 +64,9 @@ void Gravity::setStatus(eGravityStatus status)
 void Gravity::setGravity(GVector2 gravity)
 {
 	this->_gravity = gravity;
+}
+void Gravity::init()
+{
 }
 Gravity::Gravity(GVector2 gravity, Movement *movement)
 {

@@ -149,6 +149,7 @@
     <ClCompile Include="Framework\animation.cpp" />
     <ClCompile Include="Framework\Component\AnimationComponent.cpp" />
     <ClCompile Include="Framework\Component\BehaviorComponent.cpp" />
+    <ClCompile Include="Framework\Component\CollisionComponent.cpp" />
     <ClCompile Include="Framework\Component\MovingComponent.cpp" />
     <ClCompile Include="Framework\Component\PhysicsComponent.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Framework\animation.h" />
     <ClInclude Include="Framework\Component\AnimationComponent.h" />
     <ClInclude Include="Framework\Component\BehaviorComponent.h" />
+    <ClInclude Include="Framework\Component\CollisionComponent.h" />
     <ClInclude Include="Framework\Component\Component.h" />
     <ClInclude Include="Framework\Component\PhysicsComponent.h" />
     <ClInclude Include="Framework\Component\MovingComponent.h" />

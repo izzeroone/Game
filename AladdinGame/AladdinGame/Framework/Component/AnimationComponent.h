@@ -42,6 +42,7 @@ public:
 	virtual void setZIndex(float z);
 	virtual float getZIndex();
 
+
 	virtual void setPhysiscComponent(PhysicsComponent * physicsComponent);
 protected:
 	Sprite* _sprite;

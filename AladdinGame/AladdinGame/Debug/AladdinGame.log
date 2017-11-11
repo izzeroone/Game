@@ -1,6 +1,28 @@
-﻿  Aladdin.cpp
+﻿  CollisionComponent.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(252): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(261): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(135): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(136): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(140): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(141): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(147): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(148): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(152): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(153): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(236): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(237): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(238): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(239): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(309): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(310): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(311): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(312): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(324): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(325): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(326): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(327): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(337): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(338): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(339): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(340): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)

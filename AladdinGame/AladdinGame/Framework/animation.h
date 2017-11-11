@@ -17,7 +17,7 @@ Vy
 
 LINK_FRAMEWORK
 
-class Animation : public MovingComponent
+class Animation : public Component
 {
 public:
 	~Animation();
@@ -172,6 +172,9 @@ private:
 	bool					_canFlashes;
 	float					_valueFlashes;
 	D3DXCOLOR				_flashColor;
+
+	// Inherited via Component
+	virtual void init() override;
 };
 
 #endif // !__ANIMATION_H__

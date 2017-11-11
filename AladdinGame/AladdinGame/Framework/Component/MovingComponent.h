@@ -3,6 +3,7 @@
 #define __MOVINGCOMPONENT_H__
 #include "../define.h"
 #include "../Sprite.h"
+#include "Component.h"
 
 #include <numeric>
 #include <map>
@@ -13,14 +14,8 @@ LINK_FRAMEWORK // Link into the framework
 //forward declarations
 class PhysicsComponent;
 
-class MovingComponent
-{
-public:
-	virtual void update(float deltatime) = 0;
-};
 
-
-class Movement : public MovingComponent
+class Movement : public Component
 {
 public:
 	Movement(GVector2 accel, GVector2 veloc, PhysicsComponent* physicsComponent);
@@ -35,6 +30,9 @@ private:
 	GVector2 _accelerate;
 	GVector2 _velocity;
 	PhysicsComponent* _physicsComponent;
+
+	// Inherited via Component
+	virtual void init() override;
 };
 
 enum eGravityStatus
@@ -43,7 +41,7 @@ enum eGravityStatus
 	LANDED
 };
 
-class Gravity : public MovingComponent
+class Gravity : public Component
 {
 public:
 	Gravity(GVector2 gravity, Movement *movement);
@@ -57,6 +55,9 @@ private:
 	Movement* _refmovement;
 	eGravityStatus _status;
 	PhysicsComponent* _physicsComponent;
+
+	// Inherited via Component
+	virtual void init() override;
 };
 
 #endif // !__MOVINGCOMPONENT_H__

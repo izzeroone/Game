@@ -171,6 +171,10 @@ RECT Animation::getCurrentBounding()
 	return _frameRectList[_index];
 }
 
+void Animation::init()
+{
+}
+
 void Animation::addFrameRect(RECT rect)
 {
 	//nếu là rect đầu tiên thì set current luôn
