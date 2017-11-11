@@ -21,7 +21,6 @@ bool TestScene::init()
 {
 
 	auto Aladdin = ObjectFactory::getAladdin();
-	Aladdin->init();
 	Aladdin->getPhysicsComponent()->setPosition(300, 200);
 
 	this->_Aladdin = Aladdin;

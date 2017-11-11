@@ -43,19 +43,20 @@ enum eStatus
 	LAYING_DOWN = (1 << 3),				// 01000 = 2^3
 	RUNNING = (1 << 4),				// 10000 = 2^4
 	LOOKING_UP = (1 << 5),				// 2^5
-	THROWING = (1 << 6),
-	FALLING = (1 << 16),
+	THROW = (1 << 6),
+	FALLING = (1 << 7),
 
 	//Dung cho aladdin nhay hieu ung
-	MOVINGJUMPING = (1 << 12), 
-	SWORD = (1 << 13),
-	CLIMBVERTICAL = (1 << 14),
-	CLIMBHORIZON = (1 << 21),
-	MOVE_UP = (1 << 22),
-	MOVE_DOWN = (1 << 23),
-	BORING1 = (1 << 24),
-	BORING2 = (1 << 25),
-	BORING3 = (1 << 26)
+	MOVINGJUMPING = (1 << 8),
+	SLASH = (1 << 9),
+	CLIMBVERTICAL = (1 << 10),
+	CLIMBHORIZON = (1 << 11),
+	MOVE_UP = (1 << 12),
+	MOVE_DOWN = (1 << 13),
+	BORING1 = (1 << 14),
+	BORING2 = (1 << 15),
+	BORING3 = (1 << 16),
+	LANDING = (1 << 17)
 };
 
 

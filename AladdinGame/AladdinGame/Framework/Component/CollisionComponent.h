@@ -8,6 +8,7 @@
 class CollisionComponent : public Component
 {
 public:
+	CollisionComponent();
 	CollisionComponent(GameObject* target);
 
 	/*
@@ -24,6 +25,7 @@ public:
 
 	~CollisionComponent();
 
+	void setTargerGameObject(GameObject * gameObject);
 	/*
 	kiểm tra va chạm với object khác, gọi event Begin, End.
 	@otherObject: object cần kt va chạm
@@ -42,6 +44,7 @@ public:
 	bool checkCollision(GameObject* otherObject, eDirection& direction, float dt, bool updatePosition = true);
 
 	bool isColliding(GameObject* otherObject);
+	GameObject * isColliding(eObjectID eid);
 
 	void update(float dt);
 
@@ -75,6 +78,10 @@ private:
 	float _txEntry, _tyEntry, _txExit, _tyExit;
 
 	map<GameObject*, bool> _listColliding;
+
+
+	// Inherited via Component
+	virtual void init() override;
 
 };
 

@@ -20,5 +20,9 @@ GameObject * ObjectFactory::getAladdin()
 	behaviorComponent->setGameController(GameController::getInstance());
 
 	auto aladdin = new GameObject(eObjectID::ALADDIN, animationComponent, behaviorComponent, physicsComponent);
+	aladdin->init();
+	auto collisionComponent = (CollisionComponent*)aladdin->getPhysicsComponent()->getComponent("Collision");
+	collisionComponent->setTargerGameObject(aladdin);
+
 	return aladdin;
 }

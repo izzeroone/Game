@@ -6,6 +6,7 @@
 #include "../../Framework/Component/AnimationComponent.h"
 #include "../../Framework/Component/BehaviorComponent.h"
 #include "../../Framework/Component/PhysicsComponent.h"
+#include "../../Framework/Component/CollisionComponent.h"
 
 #define ALADDIN_MOVE_SPEED 300
 #define ALADDIN_CLIMB_SPEED 100
@@ -17,16 +18,21 @@
 LINK_FRAMEWORK
 class AladdinPhysicsComponent : public PhysicsComponent
 {
+public:
 	void init();
+
+	GVector2 getVelocity();
 };
 
 class AladdinAnimationComponent : public AnimationComponent
 {
+public:
 	void init();
 };
 
 class AladdinBehaviorComponent : public BehaviorComponent
 {
+public:
 	void init();
 	void update(float detatime);
 private:

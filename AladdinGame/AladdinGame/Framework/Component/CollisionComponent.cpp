@@ -1,5 +1,9 @@
 ﻿#include "CollisionComponent.h"
 
+CollisionComponent::CollisionComponent()
+{
+}
+
 CollisionComponent::CollisionComponent(GameObject * target)
 {
 	_target = target;
@@ -19,6 +23,11 @@ CollisionComponent::CollisionComponent(GameObject * target, RECT bodyRect)
 CollisionComponent::~CollisionComponent()
 {
 
+}
+
+void CollisionComponent::setTargerGameObject(GameObject * gameObject)
+{
+	_target = gameObject;
 }
 
 void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool updatePosition)
@@ -382,6 +391,11 @@ eDirection CollisionComponent::getSide(GameObject* otherObject)
 	}
 }
 
+void CollisionComponent::init()
+{
+
+}
+
 RECT CollisionComponent::getCollisionRect()
 {
 	RECT rect;
@@ -401,6 +415,18 @@ bool CollisionComponent::isColliding(GameObject* otherObject)
 		return true;
 	else
 		return false;
+}
+
+GameObject * CollisionComponent::isColliding(eObjectID eid)
+{
+	for (auto it = _listColliding.begin(); it != _listColliding.end(); it++)
+	{
+		if (it->first->getID() == eid)
+		{
+			return it->first;
+		}
+	}
+	return nullptr;
 }
 
 void CollisionComponent::update(float dt)
