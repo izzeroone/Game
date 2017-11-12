@@ -27,7 +27,9 @@ void BehaviorComponent::setStatus(eStatus status)
 {
 	if (_status != status)
 	{
+		OutputDebugStringW(L"Status : ");
 		__debugoutput(status);
+		OutputDebugStringW(L"\n");
 		_preStatus = _status;
 		_status = status;
 	}

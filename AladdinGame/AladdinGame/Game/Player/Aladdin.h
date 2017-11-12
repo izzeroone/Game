@@ -15,6 +15,15 @@
 #define PROTECT_TIME 3000
 #define ALADDIN_BORING_TIME 3000
 
+#define BT_LEFT DIK_LEFT
+#define BT_RIGHT DIK_RIGHT
+#define	BT_UP DIK_UP
+#define BT_DOWN DIK_DOWN
+#define BT_JUMP DIK_X
+#define BT_SLASH DIK_C
+#define BT_THROW DIK_Z
+
+
 LINK_FRAMEWORK
 class AladdinPhysicsComponent : public PhysicsComponent
 {
@@ -48,11 +57,14 @@ private:
 	void moveUp(); //for climbing
 	void moveDown(); // for climbing
 	void jump();
-	void slash();
 	void falling();
 	void climbvertical();
 	void climbhorizon();
 	void climbJump();
+	//weapon action
+	void slash();
+	void throwApple();
+	void removeWeapon();
 
 	// Inherited via BehaviorComponent
 	virtual void executeCommand(eCommand command) override;

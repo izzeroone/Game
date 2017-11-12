@@ -45,8 +45,6 @@ enum eStatus
 	LOOKING_UP = (1 << 5),				// 2^5
 	THROW = (1 << 6),
 	FALLING = (1 << 7),
-
-	//Dung cho aladdin nhay hieu ung
 	MOVINGJUMPING = (1 << 8),
 	SLASH = (1 << 9),
 	CLIMBVERTICAL = (1 << 10),
@@ -56,7 +54,15 @@ enum eStatus
 	BORING1 = (1 << 14),
 	BORING2 = (1 << 15),
 	BORING3 = (1 << 16),
-	LANDING = (1 << 17)
+	LANDING = (1 << 17),
+	BRAKING = (1 << 18),
+	JUMPOUT = (1 << 19),
+	PUSH = (1 << 20),
+	BURNED = (1 << 21),
+	DYING = (1 << 22),
+	CARE = (1 << 23),
+	REVIVE = (1 << 24),
+	JEALOUS = (1 << 25)
 };
 
 

@@ -49,6 +49,12 @@
     <Filter Include="Source Files\Game\Scene">
       <UniqueIdentifier>{3a2722a6-a3bd-4124-8556-1db493582a96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\Object">
+      <UniqueIdentifier>{deb88a7f-58b9-426e-9377-0023320da55b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Object">
+      <UniqueIdentifier>{8388da7a-5b7f-470d-b313-46853e52e687}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Singleton\windowGUI.cpp">
@@ -131,6 +137,9 @@
     </ClCompile>
     <ClCompile Include="Framework\Component\CollisionComponent.cpp">
       <Filter>Source Files\Framework\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Land.cpp">
+      <Filter>Source Files\Game\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="Framework\Component\CollisionComponent.h">
       <Filter>Header Files\Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Land.h">
+      <Filter>Header Files\Game\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
