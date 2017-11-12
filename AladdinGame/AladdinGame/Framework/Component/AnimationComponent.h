@@ -20,6 +20,7 @@ public:
 	virtual Animation* getCurrentAnimation();
 	virtual void setAnimation(int status);
 	virtual Animation* getAnimation(int status);
+	virtual int getAnimationStatus();
 	virtual void draw(LPD3DXSPRITE spriteHander, Viewport* viewport);
 	virtual void setOpacity(float opacity);
 	virtual float getOpacity();

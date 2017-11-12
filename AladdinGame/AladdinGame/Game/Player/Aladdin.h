@@ -69,7 +69,9 @@ private:
 	//weapon action
 	void slash();
 	void throwApple();
-	void removeWeapon();
+	void checkAndAddWeaponAnimation();
+	void removeWeaponAnimation();
+	void checkAndRemoveWeapon();
 
 
 	// Inherited via BehaviorComponent
