@@ -18,6 +18,10 @@ BehaviorComponent::~BehaviorComponent()
 {
 }
 
+void BehaviorComponent::update(float deltatime)
+{
+}
+
 eStatus BehaviorComponent::getStatus()
 {
 	return _status;

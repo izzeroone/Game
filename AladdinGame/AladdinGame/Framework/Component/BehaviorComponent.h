@@ -16,7 +16,7 @@ public:
 	BehaviorComponent(AnimationComponent* animationComponent, PhysicsComponent* physicsComponent);
 	~BehaviorComponent();
 	
-	virtual void update(float deltatime) = 0;
+	virtual void update(float deltatime);
 
 	virtual eStatus getStatus();
 	virtual void setStatus(eStatus status);
@@ -27,8 +27,8 @@ public:
 	virtual eStatus getWeapon();
 	virtual void setWeapon(eStatus weapon);
 
-	virtual void executeCommand(eCommand command) = 0;
-	virtual void updateAnimation() = 0;
+	virtual void executeCommand(eCommand command);
+	virtual void updateAnimation();
 
 	virtual void setGameController(GameController * input);
 	virtual void setAnimationComponent(AnimationComponent * animationComponent);
@@ -38,7 +38,6 @@ protected:
 	eStatus _status;
 	eStatus _preStatus;
 	eStatus _facingDirection;
-
 	eStatus _weapon;
 
 	GameController * _input;

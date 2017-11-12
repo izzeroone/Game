@@ -151,6 +151,7 @@
     <ClCompile Include="Framework\Component\BehaviorComponent.cpp" />
     <ClCompile Include="Framework\Component\CollisionComponent.cpp" />
     <ClCompile Include="Framework\Component\MovingComponent.cpp" />
+    <ClCompile Include="Framework\Component\NullComponent.cpp" />
     <ClCompile Include="Framework\Component\PhysicsComponent.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\Singleton\dxdevice.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Framework\Component\BehaviorComponent.h" />
     <ClInclude Include="Framework\Component\CollisionComponent.h" />
     <ClInclude Include="Framework\Component\Component.h" />
+    <ClInclude Include="Framework\Component\NullComponent.h" />
     <ClInclude Include="Framework\Component\PhysicsComponent.h" />
     <ClInclude Include="Framework\Component\MovingComponent.h" />
     <ClInclude Include="Framework\define.h" />

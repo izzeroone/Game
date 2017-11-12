@@ -41,11 +41,15 @@ public:
 	virtual void setPhysicsBodySide(eDirection side);
 	virtual eDirection getPhysicsBodySide();
 
+	virtual RECT getBounding();
+	virtual void setBounding(RECT bounding);
+
 
 protected:
 	int					_movingSpeed;
 	GVector2			_position;
 	float				_zIndex;
+	RECT				_bounding;
 	map<string, Component*> _componentList;
 	eDirection _physicsSide;
 

@@ -46,17 +46,55 @@ void TestScene::update(float dt)
 	{
 		obj->update(dt);
 	}
+	GVector2 viewport_position = _viewport->getPositionWorld();
+	RECT viewport_in_transform = _viewport->getBounding();
 
+	RECT screen;
+	// left right không đổi dù hệ top-left hay hệ bot-left
+	screen.left = viewport_in_transform.left;
+	screen.right = viewport_in_transform.right;
+	screen.top = this->_map->getTextureHeight() - viewport_position.y;
+	screen.bottom = screen.top + _viewport->getHeight();
+	// getlistobject
+
+	// [Bước 1]
+	this->destroyobject();
+
+	// [Bước 2]
+	_active_object.clear();
+
+
+	// [Bước 5]
+	_active_object.insert(_active_object.end(), _listobject.begin(), _listobject.end());
+
+	// [Bước 6]
+	for (GameObject* obj : _active_object)
+	{
+		// một vài trạng thái không cần thiết phải check hàm va chạm
+		if (obj == nullptr  || obj->getID() == eObjectID::LAND)
+			continue;
+
+		for (GameObject* passiveobj : _active_object)
+		{
+			if (passiveobj == nullptr || passiveobj == obj)
+				continue;
+			auto collisionComponent = (CollisionComponent*)obj->getPhysicsComponent()->getComponent("Collision");
+			if (collisionComponent != nullptr)
+			{
+				collisionComponent->checkCollision(passiveobj, dt);
+			}
+			
+		}
+	}
 }
 
 void TestScene::draw(LPD3DXSPRITE spriteHandle)
 {
 	_map->render(spriteHandle, _viewport);
-	_Aladdin->draw(spriteHandle, _viewport);
-	//for (GameObject* object : _active_object)
-	//{
-	//	object->draw(spriteHandle, _viewport);
-	//}
+	for (GameObject* object : _active_object)
+	{
+		object->draw(spriteHandle, _viewport);
+	}
 }
 
 void TestScene::release()

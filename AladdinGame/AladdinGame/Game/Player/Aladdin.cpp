@@ -141,6 +141,16 @@ GVector2 AladdinPhysicsComponent::getVelocity()
 	return move->getVelocity();
 }
 
+void AladdinPhysicsComponent::setAnimationComponent(AnimationComponent * animationComponent)
+{
+	_animationComponent = animationComponent;
+}
+
+RECT AladdinPhysicsComponent::getBounding()
+{
+	return _animationComponent->getBounding();
+}
+
 
 void AladdinBehaviorComponent::init()
 {

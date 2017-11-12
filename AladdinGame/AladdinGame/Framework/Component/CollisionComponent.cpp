@@ -10,8 +10,8 @@ CollisionComponent::CollisionComponent(GameObject * target)
 
 	_collisionComponentRect.top = 0;
 	_collisionComponentRect.left = 0;
-	_collisionComponentRect.right = abs(_target->getAnimationComponent()->getBounding().left - _target->getAnimationComponent()->getBounding().right);
-	_collisionComponentRect.bottom = abs(_target->getAnimationComponent()->getBounding().top - _target->getAnimationComponent()->getBounding().bottom);
+	_collisionComponentRect.right = abs(_target->getPhysicsComponent()->getBounding().left - _target->getPhysicsComponent()->getBounding().right);
+	_collisionComponentRect.bottom = abs(_target->getPhysicsComponent()->getBounding().top - _target->getPhysicsComponent()->getBounding().bottom);
 }
 
 CollisionComponent::CollisionComponent(GameObject * target, RECT bodyRect)
@@ -34,6 +34,11 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 {
 	eDirection direction;
 	float time = isCollide(otherObject, direction, dt);
+	//check if other game object has physiscs component
+	if (otherObject->getPhysicsComponent() == nullptr)
+	{
+		return;
+	}
 
 	if (time < 1.0f)
 	{
@@ -47,7 +52,7 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 	}
 	else if (_listColliding.find(otherObject) == _listColliding.end())	// ko có trong list đã va chạm
 	{
-		if (isColliding(_target->getAnimationComponent()->getBounding(), otherObject->getAnimationComponent()->getBounding()))
+		if (isColliding(_target->getPhysicsComponent()->getBounding(), otherObject->getPhysicsComponent()->getBounding()))
 		{
 
 			_listColliding[otherObject] = true;
@@ -115,8 +120,8 @@ bool CollisionComponent::checkCollision(GameObject * otherObject, eDirection & d
 
 float CollisionComponent::isCollide(GameObject * otherSprite, eDirection & direction, float dt)
 {
-	RECT myRect = _target->getAnimationComponent()->getBounding();
-	RECT otherRect = otherSprite->getAnimationComponent()->getBounding();
+	RECT myRect = _target->getPhysicsComponent()->getBounding();
+	RECT otherRect = otherSprite->getPhysicsComponent()->getBounding();
 
 	// sử dụng Broadphase rect để kt vùng tiếp theo có va chạm ko
 	RECT broadphaseRect = getSweptBroadphaseRect(_target, dt);	// là bound của object được mở rộng ra thêm một phần bằng với vận tốc (dự đoán trước bound)
@@ -239,8 +244,8 @@ float CollisionComponent::isCollide(GameObject * otherSprite, eDirection & direc
 bool CollisionComponent::isColliding(GameObject * otherObject, float & moveX, float & moveY, float dt)
 {
 	moveX = moveY = 0.0f;
-	auto myRect = _target->getAnimationComponent()->getBounding();
-	auto otherRect = otherObject->getAnimationComponent()->getBounding();
+	auto myRect = _target->getPhysicsComponent()->getBounding();
+	auto otherRect = otherObject->getPhysicsComponent()->getBounding();
 
 	float left = otherRect.left - myRect.right;
 	float top = otherRect.top - myRect.bottom;
@@ -327,7 +332,7 @@ RECT CollisionComponent::getSweptBroadphaseRect(GameObject* object, float dt)
 {
 	// vận tốc mỗi frame
 	auto velocity = GVector2(object->getPhysicsComponent()->getVelocity().x * dt / 1000, object->getPhysicsComponent()->getVelocity().y * dt / 1000);
-	auto myRect = object->getAnimationComponent()->getBounding();
+	auto myRect = object->getPhysicsComponent()->getBounding();
 
 	RECT rect;
 	rect.top = velocity.y > 0 ? myRect.top + velocity.y : myRect.top;
@@ -340,8 +345,8 @@ RECT CollisionComponent::getSweptBroadphaseRect(GameObject* object, float dt)
 
 eDirection CollisionComponent::getSide(GameObject* otherObject)
 {
-	auto myRect = _target->getAnimationComponent()->getBounding();
-	auto otherRect = otherObject->getAnimationComponent()->getBounding();
+	auto myRect = _target->getPhysicsComponent()->getBounding();
+	auto otherRect = otherObject->getPhysicsComponent()->getBounding();
 
 	float left = otherRect.left - myRect.right;
 	float top = otherRect.top - myRect.bottom;
@@ -400,8 +405,8 @@ RECT CollisionComponent::getCollisionRect()
 {
 	RECT rect;
 
-	rect.top = _target->getAnimationComponent()->getBounding().top - _collisionComponentRect.top;
-	rect.left = _target->getAnimationComponent()->getBounding().left + _collisionComponentRect.left;
+	rect.top = _target->getPhysicsComponent()->getBounding().top - _collisionComponentRect.top;
+	rect.left = _target->getPhysicsComponent()->getBounding().left + _collisionComponentRect.left;
 
 	rect.bottom = rect.top - abs(_collisionComponentRect.top - _collisionComponentRect.bottom);
 	rect.right = rect.left + abs(_collisionComponentRect.right - _collisionComponentRect.left);

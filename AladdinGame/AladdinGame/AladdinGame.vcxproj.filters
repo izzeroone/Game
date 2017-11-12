@@ -141,6 +141,9 @@
     <ClCompile Include="Game\Object\Land.cpp">
       <Filter>Source Files\Game\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Component\NullComponent.cpp">
+      <Filter>Source Files\Framework\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
@@ -232,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="Game\Object\Land.h">
       <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\NullComponent.h">
+      <Filter>Header Files\Framework\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

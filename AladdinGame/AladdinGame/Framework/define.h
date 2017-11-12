@@ -92,6 +92,12 @@ enum eCommand
 	cmdCLIMB
 };
 
+enum eLandType
+{
+	lNORMAL,
+	lFLAME
+};
+
 enum eSoundId
 {
 	// Nhạc nền map 1

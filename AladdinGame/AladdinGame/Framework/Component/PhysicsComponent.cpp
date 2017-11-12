@@ -116,3 +116,13 @@ eDirection PhysicsComponent::getPhysicsBodySide()
 {
 	return _physicsSide;
 }
+
+RECT PhysicsComponent::getBounding()
+{
+	return _bounding;
+}
+
+void PhysicsComponent::setBounding(RECT bounding)
+{
+	_bounding = bounding;
+}
