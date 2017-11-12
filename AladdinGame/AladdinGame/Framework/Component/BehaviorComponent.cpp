@@ -1,6 +1,7 @@
 #include "BehaviorComponent.h"
 #include "AnimationComponent.h"
 #include "PhysicsComponent.h"
+#include "../GameObject.h"
 #include "../Singleton/gamecontroller.h"
 
 BehaviorComponent::BehaviorComponent()
@@ -57,6 +58,10 @@ eStatus BehaviorComponent::getWeapon()
 void BehaviorComponent::setWeapon(eStatus weapon)
 {
 	_weapon = weapon;
+}
+
+void BehaviorComponent::checkWeaponAnimation()
+{
 }
 
 

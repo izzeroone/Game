@@ -10,6 +10,7 @@ void Land::init(int x, int y, int width, int height, eDirection physicBodyDirect
 	bounding.left = x;
 	bounding.bottom = y - height;
 	bounding.right = x + width;
+	_physicsComponent->setBounding(bounding);
 	_landType = type;
 	_physicsComponent->setPhysicsBodySide(physicBodyDirection);
 }

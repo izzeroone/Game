@@ -13,7 +13,7 @@
 #define ALADDIN_JUMP_VEL 400
 #define GRAVITY 800
 #define PROTECT_TIME 3000
-#define ALADDIN_BORING_TIME 3000
+#define ALADDIN_BORING_TIME 3
 
 #define BT_LEFT DIK_LEFT
 #define BT_RIGHT DIK_RIGHT
@@ -51,6 +51,7 @@ public:
 private:
 	void updateTimeOut(float deltaTime);
 	void updateAnimation();
+	void setBoringAnimation();
 	//
 	void faceLeft();
 	void faceRight();
@@ -70,8 +71,11 @@ private:
 	void throwApple();
 	void removeWeapon();
 
+
 	// Inherited via BehaviorComponent
 	virtual void executeCommand(eCommand command) override;
+
+	bool _isBoring; // flag set not to update animation when boring
 };
 
 

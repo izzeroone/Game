@@ -4,10 +4,12 @@
 #include "../define.h"
 #include "Component.h"
 #include "../Singleton/gamecontroller.h"
+
 LINK_FRAMEWORK
 //forward declarations
 class AnimationComponent;
 class PhysicsComponent;
+class GameObject;
 
 class BehaviorComponent: public Component
 {
@@ -26,6 +28,7 @@ public:
 
 	virtual eStatus getWeapon();
 	virtual void setWeapon(eStatus weapon);
+	virtual void checkWeaponAnimation();
 
 	virtual void executeCommand(eCommand command);
 	virtual void updateAnimation();
@@ -41,7 +44,7 @@ protected:
 	eStatus _weapon;
 
 	GameController * _input;
-
+	GameObject * _preObject;
 	AnimationComponent * _animationComponent;
 	PhysicsComponent* _physicsComponent;
 };

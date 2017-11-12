@@ -60,6 +60,11 @@ public:
 	int getCount();
 
 	/*
+	Lấy tổng số thời gian animation đã chạy
+	*/
+	float getTotalTimeAnimation();
+
+	/*
 	Đặt giá trị animation tùy chọn mà thời gian chuyển cảnh không bằng nhau
 	*/
 	void setCustomTime(vector<float> customTimes);
@@ -157,6 +162,7 @@ private:
 
 	float					_timeAnimate;							// thời gian chuyển giữa các frame
 	float					_timer;
+	float					_totalTimeAnimate;
 
 	vector<float>			_customTimeAnimate;
 	bool					_isCustom;

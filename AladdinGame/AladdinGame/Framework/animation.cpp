@@ -9,8 +9,10 @@ Animation::Animation(Sprite * spriteSheet, float timeAnimate, bool loop)
 	_totalFrames = 0;
 	_index = 0;
 	_timer = 0;
+	_totalTimeAnimate = 0;
 	_isCustom = false;
 	_valueFlashes = 0.5f;
+	_count = 0;
 
 	_startFrame = 0;
 	_endFrame = _totalFrames - 1;
@@ -27,10 +29,12 @@ Animation::Animation(Sprite * spriteSheet, int totalFrames, int cols, float time
 	_timeAnimate = timeAnimate;
 	_canAnimate = true;
 	_totalFrames = totalFrames;
+	_totalTimeAnimate = 0;
 	_index = 0;
 	_timer = 0;
 	_isCustom = 0;
 	_valueFlashes = 0.5f;
+	_count = 0;
 
 	_startFrame = 0;
 	_endFrame = _totalFrames - 1;
@@ -68,6 +72,10 @@ int Animation::getCount()
 {
 	return _count;
 }
+float Animation::getTotalTimeAnimation()
+{
+	return _totalTimeAnimate;
+}
 void Animation::setIndex(int index)
 {
 	if (index == _index || _totalFrames == 0)
@@ -99,7 +107,7 @@ void Animation::update(float dt)
 {
 	if (!_canFlashes && !_canAnimate)
 		return;
-
+	_totalTimeAnimate += dt / 1000;
 	_timer += dt / 1000;
 	float timeAnimate = _timeAnimate;
 	if (_isCustom)
@@ -256,6 +264,7 @@ void Animation::restart(int from)
 		_canAnimate = true;
 	
 	_count = 0;
+	_totalTimeAnimate = 0;
 }
 
 void Animation::enableFlashes(bool enable)

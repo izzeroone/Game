@@ -16,11 +16,11 @@ void __debugoutput(T var)
 #if UNICODE
 	wstring str = to_wstring(var);
 	OutputDebugStringW(str.c_str());
-	//OutputDebugStringW(L"\n");
+	OutputDebugStringW(L"\n");
 #else
 	string str = to_string(var);
 	OutputDebugStringA(str);
-	//OutputDebugStringA("\n");
+	OutputDebugStringA("\n");
 #endif // UNICOE
 }
 
