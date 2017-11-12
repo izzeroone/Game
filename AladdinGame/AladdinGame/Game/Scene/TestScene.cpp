@@ -20,11 +20,13 @@ void TestScene::setViewport(Viewport * viewport)
 bool TestScene::init()
 {
 
-	auto Aladdin = ObjectFactory::getAladdin();
-	Aladdin->getPhysicsComponent()->setPosition(300, 200);
+	_Aladdin = ObjectFactory::getAladdin();
+	_Aladdin->getPhysicsComponent()->setPosition(300, 200);
 
-	this->_Aladdin = Aladdin;
-	_listobject.push_back(Aladdin);
+	_listobject.push_back(_Aladdin);
+
+	auto land = ObjectFactory::getLand(0, 75, 1000, 5, eDirection::TOP, eLandType::lNORMAL);
+	_listobject.push_back(land);
 	
 	_map = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
 	_map->setFrameRect(0.0f, _map->getFrameWidth(), (float)_map->getFrameHeight(), 0.0f);

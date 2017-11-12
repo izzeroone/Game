@@ -33,6 +33,7 @@ GameObject * ObjectFactory::getLand(int x, int y, int width, int height, eDirect
 	auto physicsComponent = new LandPhysiscsComponent();
 
 	auto land = new Land();
+	land->setPhysicsComponent(physicsComponent);
 	land->init(x, y, width, height, physicBodyDirection, type);
 
 	auto collisionComponent = (CollisionComponent*)land->getPhysicsComponent()->getComponent("Collision");

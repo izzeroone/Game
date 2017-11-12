@@ -134,10 +134,6 @@ void Game::loadResource()
 void Game::release()
 {
 	_dxdevice->release();
-	//SAFE_DELETE(_dxdevice);
 	_gametime->release();
-	//SAFE_DELETE(_gametime);
-	//_input->release();
-	//SAFE_DELETE(_input);
 }
 

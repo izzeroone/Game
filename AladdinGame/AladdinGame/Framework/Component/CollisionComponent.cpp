@@ -32,29 +32,51 @@ void CollisionComponent::setTargerGameObject(GameObject * gameObject)
 
 void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool updatePosition)
 {
-	eDirection direction;
-	float time = isCollide(otherObject, direction, dt);
 	//check if other game object has physiscs component
 	if (otherObject->getPhysicsComponent() == nullptr)
 	{
 		return;
 	}
-
+	eDirection direction;
+	float time = isCollide(otherObject, direction, dt);
 	if (time < 1.0f)
 	{
+		
 		if (otherObject->getPhysicsComponent()->getPhysicsBodySide()!= eDirection::NONE && (direction & otherObject->getPhysicsComponent()->getPhysicsBodySide()) == direction)
 		{
 			// cập nhật tọa độ
 			updateTargetPosition(otherObject, direction, true);
 		}
-
 		_listColliding[otherObject] = true;
 	}
 	else if (_listColliding.find(otherObject) == _listColliding.end())	// ko có trong list đã va chạm
 	{
+		RECT rect = _target->getPhysicsComponent()->getBounding();
+		OutputDebugStringW(L"Targer bounding : ");
+		OutputDebugStringW(L"Top : ");
+		__debugoutput(rect.top);
+		OutputDebugStringW(L" Bottom : ");
+		__debugoutput(rect.bottom);
+		OutputDebugStringW(L" Left : ");
+		__debugoutput(rect.left);
+		OutputDebugStringW(L" Right : ");
+		__debugoutput(rect.right);
+		OutputDebugStringW(L" \n ");
+
+		rect = otherObject->getPhysicsComponent()->getBounding();
+		OutputDebugStringW(L"other bounding : ");
+		OutputDebugStringW(L"Top : ");
+		__debugoutput(rect.top);
+		OutputDebugStringW(L" Bottom : ");
+		__debugoutput(rect.bottom);
+		OutputDebugStringW(L" Left : ");
+		__debugoutput(rect.left);
+		OutputDebugStringW(L" Right : ");
+		__debugoutput(rect.right);
+		OutputDebugStringW(L" \n ");
+
 		if (isColliding(_target->getPhysicsComponent()->getBounding(), otherObject->getPhysicsComponent()->getBounding()))
 		{
-
 			_listColliding[otherObject] = true;
 		}
 	}

@@ -7,6 +7,7 @@ void AladdinPhysicsComponent::init()
 	_componentList["Movement"] = movement;
 	_componentList["Gravity"] = new Gravity(GVector2(0, -GRAVITY), movement);
 	_componentList["Collision"] = new CollisionComponent();
+	setPhysicsBodySide(eDirection::BOTTOM);
 }
 
 void AladdinAnimationComponent::init()
@@ -162,6 +163,7 @@ void AladdinBehaviorComponent::init()
 
 void AladdinBehaviorComponent::update(float detatime)
 {
+	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 	switch (_status)
 	{
 	case NORMAL:
@@ -189,10 +191,9 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		break;
 	case JUMPING:
-		if (_physicsComponent->getPositionY() <= 200)
+		if (collisionComponent->isColliding(eObjectID::LAND) != nullptr)
 		{
-			_physicsComponent->setPositionY(200);
-			standing();
+			jump();
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{

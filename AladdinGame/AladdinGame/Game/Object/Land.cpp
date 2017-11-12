@@ -2,6 +2,7 @@
 
 void Land::init(int x, int y, int width, int height, eDirection physicBodyDirection, eLandType type)
 {
+	GameObject::init();
 	_id = eObjectID::LAND;
 	// X là left. Y là top
 	RECT bounding;
