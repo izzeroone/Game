@@ -17,6 +17,7 @@ public:
 	void clearScreen();
 	void present();
 	void Init(WindowGUI);
+	void drawBounding(RECT, D3DXCOLOR);
 
 	LPDIRECT3DDEVICE9 getDevice();
 	LPDIRECT3DSURFACE9 getSurface();

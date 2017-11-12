@@ -37,17 +37,17 @@ void GameObject::init()
 
 void GameObject::update(float deltatime)
 {
-	if (_physicsComponent != nullptr)
+	if (_behaviorComponent != nullptr)
 	{
-		_physicsComponent->update(deltatime);
+		_behaviorComponent->update(deltatime);
 	}
 	if (_animationComponent != nullptr)
 	{
 		_animationComponent->update(deltatime);
 	}
-	if (_behaviorComponent != nullptr)
+	if (_physicsComponent != nullptr)
 	{
-		_behaviorComponent->update(deltatime);
+		_physicsComponent->update(deltatime);
 	}
 }
 

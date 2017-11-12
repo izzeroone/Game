@@ -37,6 +37,8 @@ public:
 	virtual void setAnimationComponent(AnimationComponent * animationComponent);
 	virtual void setPhysicsComponent(PhysicsComponent * physicsComponent);
 
+	wstring getStatusString(eStatus status);
+
 protected:
 	eStatus _status;
 	eStatus _preStatus;

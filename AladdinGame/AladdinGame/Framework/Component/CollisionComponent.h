@@ -45,6 +45,7 @@ public:
 
 	bool isColliding(GameObject* otherObject);
 	GameObject * isColliding(eObjectID eid);
+	eDirection getCollidingDirection(GameObject * otherObject);
 
 	void update(float dt);
 
@@ -78,6 +79,7 @@ private:
 	float _txEntry, _tyEntry, _txExit, _tyExit;
 
 	map<GameObject*, bool> _listColliding;
+	map<GameObject*, eDirection> _listDirection; // direction colliding
 
 
 	// Inherited via Component

@@ -86,3 +86,88 @@ void BehaviorComponent::setPhysicsComponent(PhysicsComponent * physicsComponent)
 	_physicsComponent = physicsComponent;
 }
 
+wstring BehaviorComponent::getStatusString(eStatus status)
+{
+	switch (status)
+	{
+	case NORMAL:
+		return L"normal";
+		break;
+	case JUMPING:
+		return L"jumping";
+		break;
+	case LAYING_DOWN:
+		return L"laying_down";
+		break;
+	case RUNNING:
+		return L"running";
+		break;
+	case LOOKING_UP:
+		return L"look_up";
+		break;
+	case THROW:
+		return L"throw";
+		break;
+	case FALLING:
+		return L"falling";
+		break;
+	case MOVINGJUMPING:
+		return L"movingjumping";
+		break;
+	case SLASH:
+		return L"slash";
+		break;
+	case CLIMBVERTICAL:
+		return L"climb vertical";
+		break;
+	case CLIMBHORIZON:
+		return L"climb horizon";
+		break;
+	case MOVE_UP:
+		return L"move up";
+		break;
+	case MOVE_DOWN:
+		return L"move down";
+		break;
+	case BORING1:
+		return L"boring1";
+		break;
+	case BORING2:
+		return L"boring2";
+		break;
+	case BORING3:
+		return L"boring3";
+		break;
+	case LANDING:
+		return L"landing";
+		break;
+	case BRAKING:
+		return L"braking";
+		break;
+	case JUMPOUT:
+		return L"jumoout";
+		break;
+	case PUSH:
+		return L"push";
+		break;
+	case BURNED:
+		return L"burned";
+		break;
+	case DYING:
+		return L"dying";
+		break;
+	case CARE:
+		return L"care";
+		break;
+	case REVIVE:
+		return L"revive";
+		break;
+	case JEALOUS:
+		return L"jealous";
+		break;
+	default:
+		return L"unknown";
+		break;
+	}
+}
+

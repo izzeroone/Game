@@ -25,4 +25,5 @@ void __debugoutput(T var)
 }
 
 
+
 #endif // !__DEBUG_H__

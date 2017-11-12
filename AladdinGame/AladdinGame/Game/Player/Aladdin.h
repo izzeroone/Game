@@ -48,6 +48,7 @@ class AladdinBehaviorComponent : public BehaviorComponent
 public:
 	void init();
 	void update(float detatime);
+	virtual void setStatus(eStatus status) override;
 private:
 	void updateTimeOut(float deltaTime);
 	void updateAnimation();

@@ -18,6 +18,7 @@ void AnimationComponent::update(float deltatime)
 {
 	if (_animations[_index] != nullptr)
 	{
+		_sprite->setPosition(_physicsComponent->getPosition());
 		_animations[_index]->update(deltatime);
 	}
 }
@@ -49,7 +50,6 @@ int AnimationComponent::getAnimationStatus()
 
 void AnimationComponent::draw(LPD3DXSPRITE spriteHandle, Viewport * viewport)
 {
-	_sprite->setPosition(_physicsComponent->getPosition());
 	_animations[_index]->draw(spriteHandle, viewport);
 }
 

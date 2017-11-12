@@ -38,6 +38,26 @@ void DXDevice::Init(WindowGUI windows)
 	_pDevice->GetBackBuffer(NULL, NULL, D3DBACKBUFFER_TYPE_MONO, &_surface);
 }
 
+void DXDevice::drawBounding(RECT rect, D3DXCOLOR color)
+{
+	RECT r;
+	r.top = WINDOW_HEIGHT - rect.top;
+	r.left = rect.left;
+	r.bottom = WINDOW_HEIGHT - rect.bottom;
+	r.right = rect.right;
+
+	DXDevice::getInstance()->getDevice()->ColorFill(_surface, NULL, D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f));
+
+	DXDevice::getInstance()->getDevice()->StretchRect(
+		_surface,
+		NULL,
+		DXDevice::getInstance()->getSurface(),
+		&r,
+		D3DTEXF_NONE
+	);
+
+}
+
 DXDevice* DXDevice::getInstance()
 {
 	if (_instance == NULL)

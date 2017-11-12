@@ -40,11 +40,11 @@ void AladdinAnimationComponent::init()
 
 	_animations[eStatus::JUMPING | eStatus::SLASH] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::JUMPING | eStatus::SLASH]->addFrameRect(eObjectID::ALADDIN, "slash_jump_01", "slash_jump_02", "slash_jump_03", "slash_jump_04", "slash_jump_05", "slash_jump_06", NULL);
-
+	
 	_animations[eStatus::MOVINGJUMPING] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::MOVINGJUMPING]->addFrameRect(eObjectID::ALADDIN, "jump_moving_01", "jump_moving_02", "jump_moving_03", "jump_moving_04", "jump_moving_05", "jump_moving_06", "jump_moving_07", "jump_moving_08", "jump_moving_09", NULL);
+	_animations[eStatus::MOVINGJUMPING]->addFrameRect(eObjectID::ALADDIN, "jump_stand_01", "jump_stand_02", "jump_stand_03", "jump_stand_04", "jump_stand_05", "jump_stand_06", "jump_stand_07", "jump_stand_08", "jump_stand_09", "jump_stand_10", "jump_stand_11", "jump_stand_12", NULL);
 
-	//_animations[eStatus::MOVINGJUMPING | eStatus::SLASH] = _animations[eStatus::JUMPING | eStatus::SLASH];
+	_animations[eStatus::MOVINGJUMPING | eStatus::SLASH] = _animations[eStatus::JUMPING | eStatus::SLASH];
 
 
 	_animations[eStatus::FALLING] = new Animation(_sprite, 0.1f);
@@ -161,8 +161,6 @@ void AladdinBehaviorComponent::init()
 	_preObject = new GameObject();
 	_preObject->setID(eObjectID::LAND);
 	setWeapon(eStatus::NORMAL);
-	moveLeft();
-	moveRight();
 	jump();
 	srand(time(0));
 }
@@ -196,17 +194,20 @@ void AladdinBehaviorComponent::update(float detatime)
 		if (_input->isKeyPressed(BT_JUMP))
 		{
 			_isBoring = false;
+			setStatus(eStatus::JUMPING);
 			jump();
 		}
 		if (_input->isKeyDown(BT_UP))
 		{
 			_isBoring = false;
 			setStatus(eStatus::LOOKING_UP);
+			break;
 		}
 		if (_input->isKeyDown(BT_DOWN))
 		{
 			_isBoring = false;
 			setStatus(eStatus::LAYING_DOWN);
+			break;
 		}
 		if (_input->isKeyPressed(BT_SLASH))
 		{
@@ -214,6 +215,7 @@ void AladdinBehaviorComponent::update(float detatime)
 			if (getWeapon() == eStatus::NORMAL)
 			{
 				slash();
+				break;
 			}
 		}
 		if (_input->isKeyPressed(BT_THROW))
@@ -222,6 +224,7 @@ void AladdinBehaviorComponent::update(float detatime)
 			if (getWeapon() == eStatus::NORMAL)
 			{
 				throwApple();
+				break;
 			}
 		}
 		break;
@@ -231,6 +234,23 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			standing();
 			_preObject = object;
+			
+			int offset = object->getPhysicsComponent()->getBounding().top - _physicsComponent->getBounding().bottom;
+			OutputDebugStringW(L"Offset : ");
+			__debugoutput(offset);
+			//_physicsComponent->setPositionY(_physicsComponent->getPositionY() - offset);
+
+			RECT rect = _physicsComponent->getBounding();
+			OutputDebugStringW(L"Aladdin bounding : ");
+			OutputDebugStringW(L"Top : ");
+			__debugoutput(rect.top);
+			OutputDebugStringW(L" Bottom : ");
+			__debugoutput(rect.bottom);
+			OutputDebugStringW(L" Left : ");
+			__debugoutput(rect.left);
+			OutputDebugStringW(L" Right : ");
+			__debugoutput(rect.right);
+			OutputDebugStringW(L" \n ");
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
@@ -292,13 +312,6 @@ void AladdinBehaviorComponent::update(float detatime)
 				setWeapon(eStatus::SLASH);
 			}
 		}
-		if (_input->isKeyPressed(BT_THROW))
-		{
-			if (getWeapon() == eStatus::NORMAL)
-			{
-				setWeapon(eStatus::THROW);
-			}
-		}
 		break;
 	case LOOKING_UP:
 		if (_input->isKeyRelease(BT_UP))
@@ -347,6 +360,12 @@ void AladdinBehaviorComponent::update(float detatime)
 	updateAnimation();
 }
 
+void AladdinBehaviorComponent::setStatus(eStatus status)
+{
+	BehaviorComponent::setStatus(status);
+	setWeapon(eStatus::NORMAL);
+}
+
 void AladdinBehaviorComponent::updateTimeOut(float deltaTime)
 {
 }
@@ -362,15 +381,21 @@ void AladdinBehaviorComponent::updateAnimation()
 		}
 		break;
 	case JUMPING:
-		if (_preStatus == eStatus::RUNNING)
+		if (getWeapon() != eStatus::NORMAL)
 		{
-			_animationComponent->setAnimation(eStatus::MOVINGJUMPING);
+			_animationComponent->setAnimation(eStatus::JUMPING | getWeapon());
 		}
 		else
 		{
-			_animationComponent->setAnimation(eStatus::JUMPING);
+			if (_preStatus == eStatus::RUNNING)
+			{
+				_animationComponent->setAnimation(eStatus::JUMPING);
+			}
+			else
+			{
+				_animationComponent->setAnimation(eStatus::MOVINGJUMPING);
+			}
 		}
-		checkAndAddWeaponAnimation();
 		break;
 	case LAYING_DOWN:
 		checkAndAddWeaponAnimation();

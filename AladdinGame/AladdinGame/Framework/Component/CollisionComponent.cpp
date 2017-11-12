@@ -41,6 +41,29 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 	float time = isCollide(otherObject, direction, dt);
 	if (time < 1.0f)
 	{
+		RECT rect = _target->getPhysicsComponent()->getBounding();
+		OutputDebugStringW(L"Targer bounding : ");
+		OutputDebugStringW(L"Top : ");
+		__debugoutput(rect.top);
+		OutputDebugStringW(L" Bottom : ");
+		__debugoutput(rect.bottom);
+		OutputDebugStringW(L" Left : ");
+		__debugoutput(rect.left);
+		OutputDebugStringW(L" Right : ");
+		__debugoutput(rect.right);
+		OutputDebugStringW(L" \n ");
+
+		rect = otherObject->getPhysicsComponent()->getBounding();
+		OutputDebugStringW(L"other bounding : ");
+		OutputDebugStringW(L"Top : ");
+		__debugoutput(rect.top);
+		OutputDebugStringW(L" Bottom : ");
+		__debugoutput(rect.bottom);
+		OutputDebugStringW(L" Left : ");
+		__debugoutput(rect.left);
+		OutputDebugStringW(L" Right : ");
+		__debugoutput(rect.right);
+		OutputDebugStringW(L" \n ");
 		
 		if (otherObject->getPhysicsComponent()->getPhysicsBodySide()!= eDirection::NONE && (direction & otherObject->getPhysicsComponent()->getPhysicsBodySide()) == direction)
 		{
@@ -48,6 +71,7 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 			updateTargetPosition(otherObject, direction, true);
 		}
 		_listColliding[otherObject] = true;
+		_listDirection[otherObject] = direction;
 	}
 	else if (_listColliding.find(otherObject) == _listColliding.end())	// ko có trong list đã va chạm
 	{
@@ -77,6 +101,7 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 			__debugoutput(rect.right);
 			OutputDebugStringW(L" \n ");
 			_listColliding[otherObject] = true;
+			_listDirection[otherObject] = direction;
 		}
 	}
 	else	// có trong list đã va chạm
@@ -96,6 +121,7 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 		else // nếu ko va chạm nữa là kết thúc va chạm
 		{
 			_listColliding.erase(otherObject);
+			_listDirection.erase(otherObject);
 		}
 	}
 
@@ -453,6 +479,11 @@ GameObject * CollisionComponent::isColliding(eObjectID eid)
 		}
 	}
 	return nullptr;
+}
+
+eDirection CollisionComponent::getCollidingDirection(GameObject * otherObject)
+{
+	return _listDirection[otherObject];
 }
 
 void CollisionComponent::update(float dt)
