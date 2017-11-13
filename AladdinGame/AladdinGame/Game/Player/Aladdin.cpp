@@ -1,4 +1,5 @@
 #include "Aladdin.h"
+#include "../../Framework/Singleton/gametime.h"
 #include <ctime>;
 
 void AladdinPhysicsComponent::init()
@@ -17,6 +18,8 @@ void AladdinAnimationComponent::init()
 	_sprite->setFrameRect(SpriteResource::getInstance()->getSourceRect(eObjectID::ALADDIN, "normal_01"));
 	_sprite->setZIndex(0.0f);
 
+	_sprite->drawBounding(true);
+
 	setOrigin(GVector2(0.0f, 0.0f));
 	setScale(SCALE_FACTOR);
 
@@ -34,17 +37,18 @@ void AladdinAnimationComponent::init()
 
 	_animations[eStatus::RUNNING | eStatus::SLASH] = _animations[eStatus::NORMAL | eStatus::SLASH];
 
-	_animations[eStatus::JUMPING] = new Animation(_sprite, 0.07f);
-	_animations[eStatus::JUMPING]->addFrameRect(eObjectID::ALADDIN, "jump_stand_01", "jump_stand_02", "jump_stand_03", "jump_stand_04", "jump_stand_05", NULL);
+	_animations[eStatus::JUMPING] = new Animation(_sprite, 0.168f);
+	_animations[eStatus::JUMPING]->addFrameRect(eObjectID::ALADDIN, "jump_stand_01", "jump_stand_02", "jump_stand_03", "jump_stand_04", "jump_stand_05", "jump_stand_06", "jump_stand_07", "jump_stand_08", "jump_stand_09", "jump_stand_10", NULL);
 
 	_animations[eStatus::FALLING] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::FALLING]->addFrameRect(eObjectID::ALADDIN, "jump_stand_06", "jump_stand_07", "jump_stand_08", "jump_stand_09", "jump_stand_10", NULL);
+	_animations[eStatus::FALLING]->animateFromTo(3, 4, true);
 
 	_animations[eStatus::JUMPING | eStatus::SLASH] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::JUMPING | eStatus::SLASH]->addFrameRect(eObjectID::ALADDIN, "slash_jump_01", "slash_jump_02", "slash_jump_03", "slash_jump_04", "slash_jump_05", "slash_jump_06", NULL);
 	
-	_animations[eStatus::MOVINGJUMPING] = new Animation(_sprite, 0.07f);
-	_animations[eStatus::MOVINGJUMPING]->addFrameRect(eObjectID::ALADDIN, "jump_stand_01", "jump_stand_02", "jump_stand_03", "jump_stand_04", "jump_stand_05", "jump_stand_06", "jump_stand_07", "jump_stand_08", "jump_stand_09", "jump_stand_10", "jump_stand_11", "jump_stand_12", NULL);
+	_animations[eStatus::MOVINGJUMPING] = new Animation(_sprite, 0.168f);
+	_animations[eStatus::MOVINGJUMPING]->addFrameRect(eObjectID::ALADDIN, "jump_moving_01", "jump_moving_02", "jump_moving_03", "jump_moving_04", "jump_moving_05", "jump_moving_06", "jump_moving_07", "jump_moving_08", "jump_moving_09", NULL);
 
 	_animations[eStatus::MOVINGJUMPING | eStatus::SLASH] = _animations[eStatus::JUMPING | eStatus::SLASH];
 
@@ -206,7 +210,6 @@ void AladdinBehaviorComponent::update(float detatime)
 			standing();
 			if (object->getLandType() == eLandType::lFLAME)
 			{
-				OutputDebugStringW(L"Buring Land");
 				setStatus(eStatus::BURNED);
 			}
 			_preObject = object;
@@ -216,7 +219,15 @@ void AladdinBehaviorComponent::update(float detatime)
 	switch (_status)
 	{
 	case NORMAL:
-		if (_animationComponent->getCurrentAnimation()->getTotalTimeAnimation() >= 3.0f)
+		object = collisionComponent->isColliding(eObjectID::LAND);
+		if (object == nullptr)
+		{
+			setStatus(eStatus::FALLING);
+			standing(); // to remove velocity
+			falling();
+			_preObject = nullptr;
+		}
+		if (_animationComponent->getCurrentAnimation()->getTotalTimeAnimation() >= ALADDIN_BORING_TIME)
 		{
 			_isBoring = true;
 			_animationComponent->setAnimation(eStatus::BORING1);
@@ -316,6 +327,14 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		break;
 	case RUNNING:
+		object = collisionComponent->isColliding(eObjectID::LAND);
+		if (object == nullptr)
+		{
+			setStatus(eStatus::FALLING);
+			standing(); // to remove velocity
+			falling();
+			_preObject = nullptr;
+		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
 			moveLeft();
@@ -331,7 +350,15 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (!_input->isKeyDown(BT_LEFT) && !_input->isKeyDown(BT_RIGHT))
 		{
-			setStatus(eStatus::NORMAL);
+			if (_animationComponent->getCurrentAnimation()->getTotalTimeAnimation() >= RUNNING_BRAKE_TIME)
+			{
+				setStatus(eStatus::BRAKING);
+			}
+			else
+			{
+				setStatus(eStatus::NORMAL);
+			}
+
 			standing();
 		}
 		if (_input->isKeyPressed(BT_SLASH))
@@ -429,6 +456,12 @@ void AladdinBehaviorComponent::update(float detatime)
 				break;
 			}
 		}
+	case BRAKING:
+		if (_animationComponent->getCurrentAnimation()->getCount() >= 1)
+		{
+			setStatus(eStatus::NORMAL);
+		}
+		break;
 	default:
 		break;
 	}
@@ -462,20 +495,13 @@ void AladdinBehaviorComponent::updateAnimation()
 		}
 		else
 		{
-			if (_physicsComponent->getVelocity().y > 0)
+			if (_preStatus == eStatus::RUNNING)
 			{
-				if (_preStatus == eStatus::RUNNING)
-				{
-					_animationComponent->setAnimation(eStatus::JUMPING);
-				}
-				else
-				{
-					_animationComponent->setAnimation(eStatus::MOVINGJUMPING);
-				}
+				_animationComponent->setAnimation(eStatus::MOVINGJUMPING);
 			}
 			else
 			{
-				_animationComponent->setAnimation(eStatus::FALLING);
+				_animationComponent->setAnimation(eStatus::JUMPING);
 			}
 		}
 		break;
@@ -496,6 +522,9 @@ void AladdinBehaviorComponent::updateAnimation()
 		break;
 	case BURNED:
 		_animationComponent->setAnimation(eStatus::BURNED);
+		break;
+	case BRAKING:
+		_animationComponent->setAnimation(eStatus::BRAKING);
 	default:
 		break;
 	}
@@ -589,6 +618,7 @@ void AladdinBehaviorComponent::moveDown()
 
 void AladdinBehaviorComponent::jump()
 {
+	_physicsComponent->setPositionY(_physicsComponent->getPositionY() + JUMP_OFFSET);
 	auto move = (Movement*)this->_physicsComponent->getComponent("Movement");
 	move->setVelocity(GVector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
 

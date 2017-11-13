@@ -14,7 +14,9 @@
 #define ALADDIN_JUMP_VEL 400
 #define GRAVITY 800
 #define PROTECT_TIME 3000
-#define ALADDIN_BORING_TIME 3
+#define ALADDIN_BORING_TIME 3.0f
+#define RUNNING_BRAKE_TIME 2.0f
+#define JUMP_OFFSET 10 // trick to allow burning land to collide
 
 #define BT_LEFT DIK_LEFT
 #define BT_RIGHT DIK_RIGHT

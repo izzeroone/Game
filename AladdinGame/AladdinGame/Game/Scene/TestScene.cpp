@@ -28,8 +28,8 @@ bool TestScene::init()
 	auto land = ObjectFactory::getLand(0, 120, 918, 1, eDirection::TOP, eLandType::lNORMAL);
 	_listobject.push_back(land);
 	
-	auto land2 = ObjectFactory::getLand(919, 120, 175, 1, eDirection::TOP, eLandType::lFLAME);
-	_listobject.push_back(land2);
+	//auto land2 = ObjectFactory::getLand(919, 120, 175, 1, eDirection::TOP, eLandType::lFLAME);
+	//_listobject.push_back(land2);
 
 	_map = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
 	_map->setFrameRect(0.0f, _map->getFrameWidth(), (float)_map->getFrameHeight(), 0.0f);
