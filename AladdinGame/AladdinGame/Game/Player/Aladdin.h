@@ -8,6 +8,7 @@
 #include "../../Framework/Component/PhysicsComponent.h"
 #include "../../Framework/Component/CollisionComponent.h"
 #include "../../Game/Object/Land.h"
+#include "../../../sigcxx/include/sigcxx/sigcxx.hpp"
 
 #define ALADDIN_MOVE_SPEED 300
 #define ALADDIN_CLIMB_SPEED 100
@@ -17,6 +18,7 @@
 #define ALADDIN_BORING_TIME 3.0f
 #define RUNNING_BRAKE_TIME 2.0f
 #define JUMP_OFFSET 10 // trick to allow burning land to collide
+#define VIEWPORT_MOVEUP_OFFSET 30 // use when aladdin lookup
 
 #define BT_LEFT DIK_LEFT
 #define BT_RIGHT DIK_RIGHT
@@ -53,6 +55,7 @@ public:
 	void init();
 	void update(float detatime);
 	virtual void setStatus(eStatus status) override;
+	sigcxx::Signal<float, bool> move_viewport; //float is offset, bool: true move up, false: revert back
 private:
 	void updateTimeOut(float deltaTime);
 	void updateAnimation();

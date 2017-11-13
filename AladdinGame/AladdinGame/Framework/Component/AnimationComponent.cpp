@@ -24,6 +24,11 @@ void AnimationComponent::update(float deltatime)
 		if (_transition[_preindex][_index]->getCount() < 1)
 		{
 			_transition[_preindex][_index]->update(deltatime);
+			return;
+		}
+		else
+		{
+			_transitionPlayed = true;
 		}
 	}
 	if (_animations[_index] != nullptr)
@@ -44,6 +49,10 @@ void AnimationComponent::setAnimation(int status)
 		_preindex = _index;
 		_animations[_index]->restart();
 		_index = status;
+		if (_transition[_preindex][_index] != nullptr)
+		{
+			_transition[_preindex][_index]->restart();
+		}
 		_transitionPlayed = false;
 	}
 }
@@ -60,7 +69,14 @@ int AnimationComponent::getAnimationStatus()
 
 void AnimationComponent::draw(LPD3DXSPRITE spriteHandle, Viewport * viewport)
 {
-	_animations[_index]->draw(spriteHandle, viewport);
+	if (_transitionPlayed == false && _transition[_preindex][_index] != nullptr)
+	{
+		_transition[_preindex][_index]->draw(spriteHandle, viewport);
+	}
+	else
+	{
+		_animations[_index]->draw(spriteHandle, viewport);
+	}
 }
 
 GVector2 AnimationComponent::getScale()

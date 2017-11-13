@@ -17,11 +17,29 @@ void TestScene::setViewport(Viewport * viewport)
 		_viewport = viewport;
 }
 
+void TestScene::moveViewport(float offset, bool moveup, sigcxx::SLOT slot)
+{
+	GVector2 position = _viewport->getPositionWorld();
+	if (moveup == true)
+	{
+		position.y += offset;
+		_updateViewport = false;
+	}
+	else
+	{
+		position.y -= offset;
+		_updateViewport = true;
+	}
+	_viewport->setPositionWorld(position);
+}
+
 bool TestScene::init()
 {
 
 	_Aladdin = ObjectFactory::getAladdin();
 	_Aladdin->getPhysicsComponent()->setPosition(100, 200);
+	auto aladdinBehavior = (AladdinBehaviorComponent*)_Aladdin->getBehaviorComponent();
+	aladdinBehavior->move_viewport.Connect(this, &TestScene::moveViewport);
 
 	_listobject.push_back(_Aladdin);
 
@@ -37,6 +55,7 @@ bool TestScene::init()
 	_map->setPositionY(_map->getFrameHeight());
 	_map->setScale(2.0f);
 
+	_updateViewport = true;
 	//SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE1);
 	return true;
 }
@@ -136,6 +155,10 @@ void TestScene::destroyobject()
 
 void TestScene::updateViewport(GameObject * objTracker)
 {
+	if (_updateViewport == false)
+	{
+		return;
+	}
 	// Vị trí hiện tại của viewport. 
 	GVector2 current_position = _viewport->getPositionWorld();
 	GVector2 worldsize;

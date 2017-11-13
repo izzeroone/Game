@@ -17,7 +17,7 @@ using namespace std;
 LINK_FRAMEWORK
 
 
-class TestScene : public Scene
+class TestScene : public Scene, public sigcxx::Trackable
 {
 public:
 	TestScene();
@@ -30,7 +30,7 @@ public:
 
 
 	void setViewport(Viewport* viewport);
-	//static Viewport* getViewport();
+	void moveViewport(float offset, bool moveup, sigcxx::SLOT slot = nullptr);
 
 	// Trả về một đối tượng theo id.
 	// id: kiểu enum eID, định danh một đối tượng.
@@ -60,7 +60,8 @@ private:
 	Sprite* _map;
 	void updateViewport(GameObject* objTracker);
 
-
+	// Check if need to update viewport
+	bool _updateViewport;
 
 	// Inherited via Scene
 	virtual void updateInput(float dt) override;
