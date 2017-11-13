@@ -21,7 +21,7 @@ bool TestScene::init()
 {
 
 	_Aladdin = ObjectFactory::getAladdin();
-	_Aladdin->getPhysicsComponent()->setPosition(300, 200);
+	_Aladdin->getPhysicsComponent()->setPosition(100, 200);
 
 	_listobject.push_back(_Aladdin);
 
