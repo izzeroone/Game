@@ -21,6 +21,17 @@ public:
 	virtual void setPositionX(float x);
 	virtual void setPositionY(float y);
 
+	virtual GVector2 getTranslate();
+	virtual float getTranslateX();
+	virtual float getTranslateY();
+
+	virtual void setTranslate(GVector3 vector);
+	virtual void setTranslate(float x, float y, float z);
+	virtual void setTranslate(GVector2 Translate);
+	virtual void setTranslate(float x, float y);
+	virtual void setTranslateX(float x);
+	virtual void setTranslateY(float y);
+
 	virtual GVector2 getScale();
 	virtual void setScale(GVector2 scale);
 	virtual void setScale(float scale);
@@ -44,6 +55,7 @@ protected:
 	float				_rotate;				// theo độ a từ 0 đến 360 (ko phải rad)
 	GVector2			_origin;				// gốc của Transform, dùng để xoay, scale (anchor: điểm neo)
 	GVector2			_anchorPoint;	
+	GVector2			_translate;				// vector tịnh tiến
 	float				_zIndex;
 };
 

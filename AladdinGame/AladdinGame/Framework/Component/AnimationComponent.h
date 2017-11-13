@@ -29,11 +29,18 @@ public:
 	virtual GVector2 getAnchorPoint();
 	virtual Sprite * getSprite();
 	virtual RECT getBounding();
+
 	virtual GVector2 getScale();
 	virtual void setScale(GVector2 scale);
 	virtual void setScale(float scale);
 	virtual void setScaleX(float sx);
 	virtual void setScaleY(float sy);
+
+	virtual GVector2 getTranslate();
+	virtual void setTranslate(GVector2 Translate);
+	virtual void setTranslate(float Translate);
+	virtual void setTranslateX(float sx);
+	virtual void setTranslateY(float sy);
 
 	virtual float getRotate();
 	virtual void setRotate(float degree);

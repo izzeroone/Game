@@ -12,6 +12,7 @@ Sprite::Sprite(LPD3DXSPRITE spriteHandle, LPWSTR filePath, int totalFrames, int 
 {
 	_origin = GVector2(0.5f, 0.5f);
 	_scale = GVector2(1.0f, 1.0f);
+	_translate = VECTOR2ZERO;
 	_zIndex = 1;
 	_rotate = 0.0f;
 
@@ -59,7 +60,8 @@ void Sprite::render(LPD3DXSPRITE spriteHandle)
 		_scale,
 		_rotate,
 		_origin,
-		_zIndex
+		_zIndex,
+		_translate
 	);
 
 	return;
@@ -75,7 +77,8 @@ void Sprite::render(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 		_scale,
 		_rotate,
 		_origin,
-		_zIndex
+		_zIndex,
+		_translate
 	);
 
 	//Vẽ bounding để xem

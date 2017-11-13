@@ -58,6 +58,55 @@ void Transform::setPositionY(float y)
 		_position.y = y;
 }
 
+
+GVector2 Transform::getTranslate()
+{
+	return _translate;
+}
+
+float Transform::getTranslateX()
+{
+	return _translate.x;
+}
+
+float Transform::getTranslateY()
+{
+	return _translate.y;
+}
+
+void Transform::setTranslate(float x, float y, float z)
+{
+	GVector3 v(x, y, z);
+	this->setTranslate(v);
+}
+
+void Transform::setTranslate(GVector3 vector)
+{
+	this->_translate = GVector2(vector.x, vector.y);
+}
+
+void Transform::setTranslate(GVector2 Translate)
+{
+	this->_translate = GVector2(Translate.x, Translate.y);
+}
+
+void Transform::setTranslate(float x, float y)
+{
+	this->setTranslateX(x);
+	this->setTranslateY(y);
+}
+
+void Transform::setTranslateX(float x)
+{
+	if (x != _translate.x)
+		_translate.x = x;
+}
+
+void Transform::setTranslateY(float y)
+{
+	if (y != _translate.y)
+		_translate.y = y;
+}
 GVector2 Transform::getScale()
 {
 	return _scale;

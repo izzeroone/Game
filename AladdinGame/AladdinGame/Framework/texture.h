@@ -43,8 +43,9 @@ public:
 	@rotate: góc xoay theo số độ (0-360)
 	@origin: điểm neo để transform
 	@zIndex: độ sâu
+	@translation: tịnh tiến
 	*/
-	void render(LPD3DXSPRITE spriteHandle, RECT* srcRect, GVector2 position, GVector2 scale, float rotate, GVector2 origin, float zIndex = 0);
+	void render(LPD3DXSPRITE spriteHandle, RECT* srcRect, GVector2 position, GVector2 scale, float rotate, GVector2 origin, float zIndex = 0, GVector2 translation = VECTOR2ZERO);
 
 	/*
 	render texture với các tham số tranform, trong viewport
@@ -54,8 +55,9 @@ public:
 	@rotate: góc xoay theo số độ (0-360)
 	@origin: điểm neo để transform
 	@zIndex: độ sâu
+	@translation: tịnh tiến
 	*/
-	void render(LPD3DXSPRITE spriteHandle, RECT* srcRect, Viewport viewport, GVector2 position, GVector2 scale, float rotate, GVector2 origin, float zIndex = 0);
+	void render(LPD3DXSPRITE spriteHandle, RECT* srcRect, Viewport viewport, GVector2 position, GVector2 scale, float rotate, GVector2 origin, float zIndex = 0, GVector2 translation = VECTOR2ZERO);
 
 	void setColor(D3DXCOLOR);
 	D3DXCOLOR getColor();

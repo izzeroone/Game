@@ -17,7 +17,7 @@ void AladdinAnimationComponent::init()
 	_sprite->setFrameRect(SpriteResource::getInstance()->getSourceRect(eObjectID::ALADDIN, "normal_01"));
 	_sprite->setZIndex(0.0f);
 
-	setOrigin(GVector2(0.5f, 0.0f));
+	setOrigin(GVector2(0.0f, 0.0f));
 	setScale(SCALE_FACTOR);
 
 	_animations[eStatus::NORMAL] = new Animation(_sprite, 1000.0f);
@@ -522,7 +522,10 @@ void AladdinBehaviorComponent::faceLeft()
 	if (_animationComponent->getScale().x > 0)
 	{
 		_animationComponent->setScaleX(_animationComponent->getScale().x * (-1));
-		//_animationComponent->setOrigin(GVector2(0.5f, 0.0f));
+		
+		RECT bound = _physicsComponent->getBounding();
+		float width = bound.right - bound.left;
+		_animationComponent->setTranslateX(width);
 	}
 	setFacingDirection(eStatus::LEFTFACING);
 }
@@ -532,7 +535,8 @@ void AladdinBehaviorComponent::faceRight()
 	if (_animationComponent->getScale().x < 0)
 	{
 		_animationComponent->setScaleX(_animationComponent->getScale().x * (-1));
-		//_animationComponent->setOrigin(GVector2(0.5f, 0.0f));
+		
+		_animationComponent->setTranslateX(0);
 	}
 	setFacingDirection(eStatus::RIGHTFACING);
 }

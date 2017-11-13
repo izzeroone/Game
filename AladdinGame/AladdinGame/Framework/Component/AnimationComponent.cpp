@@ -78,6 +78,30 @@ void AnimationComponent::setScaleY(float sy)
 	_sprite->setScaleY(sy);
 }
 
+GVector2 AnimationComponent::getTranslate()
+{
+	return _sprite->getTranslate();
+}
+
+void AnimationComponent::setTranslate(GVector2 Translate)
+{
+	_sprite->setTranslate(Translate);
+}
+
+void AnimationComponent::setTranslate(float Translate)
+{
+	_sprite->setTranslate(GVector2(Translate, Translate));
+}
+
+void AnimationComponent::setTranslateX(float sx)
+{
+	_sprite->setTranslateX(sx);
+}
+
+void AnimationComponent::setTranslateY(float sy)
+{
+	_sprite->setTranslateY(sy);
+}
 GVector2 AnimationComponent::getOrigin()
 {
 	return _sprite->getOrigin();
