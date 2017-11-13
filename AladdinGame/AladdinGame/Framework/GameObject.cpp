@@ -49,6 +49,7 @@ void GameObject::update(float deltatime)
 	{
 		_physicsComponent->update(deltatime);
 	}
+
 }
 
 void GameObject::draw(LPD3DXSPRITE spriteHandle, Viewport *viewport)

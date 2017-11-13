@@ -170,7 +170,6 @@ bool Animation::isAnimate()
 }
 bool Animation::isLastAnimation()
 {
-	//
 	return false;
 }
 
@@ -192,7 +191,6 @@ void Animation::addFrameRect(RECT rect)
 
 		// trường hợp kiểm tra _bounding trước khi vẽ lần đầu tiên, nếu ko có setFrameRect thì nó sẽ lấy nguyên spriteSheet
 		// sẽ làm sai kích thước của frame hiện tại
-		// vậy lần đầu gán cho frame đầu. (nhưng bị lỗi ở AirCraft)
 		// cách khác là setframeRect ở object cho sprite.
 
 		// _spriteSheet->setFrameRect(_currentRect);

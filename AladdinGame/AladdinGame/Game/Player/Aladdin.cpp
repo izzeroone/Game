@@ -170,6 +170,41 @@ void AladdinBehaviorComponent::update(float detatime)
 	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 	GameObject * object;
 	eDirection direction;
+	if (_input->isKeyPressed(BT_BOUND))
+	{
+		RECT rect = _physicsComponent->getBounding();
+		OutputDebugStringW(L"Aladdin bounding : ");
+		OutputDebugStringW(L"Top : ");
+		__debugoutput(rect.top);
+		OutputDebugStringW(L" Bottom : ");
+		__debugoutput(rect.bottom);
+		OutputDebugStringW(L" Left : ");
+		__debugoutput(rect.left);
+		OutputDebugStringW(L" Right : ");
+		__debugoutput(rect.right);
+		OutputDebugStringW(L" \n ");
+	}
+	switch (_status)
+	{
+	case NORMAL:
+	case JUMPING:
+	case LAYING_DOWN:
+	case RUNNING:
+	case LOOKING_UP:
+	case PUSH:
+		auto object = (Land*)collisionComponent->isColliding(eObjectID::LAND);
+		if (object != nullptr)
+		{
+			standing();
+			if (object->getLandType() == eLandType::lFLAME)
+			{
+				OutputDebugStringW(L"Buring Land");
+				setStatus(eStatus::BURNED);
+			}
+			_preObject = object;
+		}
+		break;
+	}
 	switch (_status)
 	{
 	case NORMAL:
@@ -234,23 +269,6 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			standing();
 			_preObject = object;
-			
-			int offset = object->getPhysicsComponent()->getBounding().top - _physicsComponent->getBounding().bottom;
-			OutputDebugStringW(L"Offset : ");
-			__debugoutput(offset);
-			//_physicsComponent->setPositionY(_physicsComponent->getPositionY() - offset);
-
-			RECT rect = _physicsComponent->getBounding();
-			OutputDebugStringW(L"Aladdin bounding : ");
-			OutputDebugStringW(L"Top : ");
-			__debugoutput(rect.top);
-			OutputDebugStringW(L" Bottom : ");
-			__debugoutput(rect.bottom);
-			OutputDebugStringW(L" Left : ");
-			__debugoutput(rect.left);
-			OutputDebugStringW(L" Right : ");
-			__debugoutput(rect.right);
-			OutputDebugStringW(L" \n ");
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
@@ -412,6 +430,8 @@ void AladdinBehaviorComponent::updateAnimation()
 	case CLIMBVERTICAL:
 		_animationComponent->setAnimation(eStatus::CLIMBVERTICAL);
 		break;
+	case BURNED:
+		_animationComponent->setAnimation(eStatus::BURNED);
 	default:
 		break;
 	}

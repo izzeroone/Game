@@ -7,6 +7,7 @@
 #include "../../Framework/Component/BehaviorComponent.h"
 #include "../../Framework/Component/PhysicsComponent.h"
 #include "../../Framework/Component/CollisionComponent.h"
+#include "../../Game/Object/Land.h"
 
 #define ALADDIN_MOVE_SPEED 300
 #define ALADDIN_CLIMB_SPEED 100
@@ -22,6 +23,7 @@
 #define BT_JUMP DIK_X
 #define BT_SLASH DIK_C
 #define BT_THROW DIK_Z
+#define BT_BOUND DIK_A
 
 
 LINK_FRAMEWORK
