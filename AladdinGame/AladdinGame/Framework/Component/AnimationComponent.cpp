@@ -2,10 +2,12 @@
 #include "PhysicsComponent.h"
 AnimationComponent::AnimationComponent()
 {
+	_transitionPlayed = true;
 }
 
 AnimationComponent::AnimationComponent(PhysicsComponent * physicsComponent)
 {
+	_transitionPlayed = true;
 	_physicsComponent = physicsComponent;
 }
 
@@ -16,9 +18,16 @@ AnimationComponent::~AnimationComponent()
 
 void AnimationComponent::update(float deltatime)
 {
+	_sprite->setPosition(_physicsComponent->getPosition());
+	if (_transition[_preindex][_index] != nullptr)
+	{
+		if (_transition[_preindex][_index]->getCount() < 1)
+		{
+			_transition[_preindex][_index]->update(deltatime);
+		}
+	}
 	if (_animations[_index] != nullptr)
 	{
-		_sprite->setPosition(_physicsComponent->getPosition());
 		_animations[_index]->update(deltatime);
 	}
 }
@@ -35,6 +44,7 @@ void AnimationComponent::setAnimation(int status)
 		_preindex = _index;
 		_animations[_index]->restart();
 		_index = status;
+		_transitionPlayed = false;
 	}
 }
 

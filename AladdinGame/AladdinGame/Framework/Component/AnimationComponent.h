@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef __ANIMATIONCOMPONENT_H__
 #define __ANIMATIONCOMPONENT_H__
 #include "Component.h"
@@ -56,8 +56,10 @@ public:
 protected:
 	Sprite* _sprite;
 	map<int, Animation*> _animations;
+	map<int, map<int, Animation*>> _transition;
 	int _index;
 	int _preindex;
+	bool _transitionPlayed; // cờ hiệu đánh dấu chuyển cảnh
 	PhysicsComponent* _physicsComponent;
 };
 #endif // __ANIMATIONCOMPONENT_H__
