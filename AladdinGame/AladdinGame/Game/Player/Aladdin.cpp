@@ -18,8 +18,6 @@ void AladdinAnimationComponent::init()
 	_sprite->setFrameRect(SpriteResource::getInstance()->getSourceRect(eObjectID::ALADDIN, "normal_01"));
 	_sprite->setZIndex(0.0f);
 
-	_sprite->drawBounding(true);
-
 	setOrigin(GVector2(0.0f, 0.0f));
 	setScale(SCALE_FACTOR);
 
@@ -140,6 +138,10 @@ void AladdinAnimationComponent::init()
 	_animations[eStatus::BORING3]->setCustomTime(customTime3);
 	_animations[eStatus::BORING3]->setLoop(true);
 
+	_transition[eStatus::JUMPING][eStatus::NORMAL] = new Animation(_sprite, 0.1f);
+	_transition[eStatus::JUMPING][eStatus::NORMAL]->addFrameRect(eObjectID::ALADDIN, "jump_stand_01", NULL);
+	_transition[eStatus::FALLING][eStatus::NORMAL] = _transition[eStatus::JUMPING][eStatus::NORMAL];
+
 
 	for (auto animate : _animations)
 	{
@@ -255,6 +257,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			_isBoring = false;
 			setStatus(eStatus::LOOKING_UP);
+			move_viewport.Emit(VIEWPORT_MOVEUP_OFFSET, true);
 			break;
 		}
 		if (_input->isKeyDown(BT_DOWN))
@@ -372,6 +375,7 @@ void AladdinBehaviorComponent::update(float detatime)
 	case LOOKING_UP:
 		if (_input->isKeyRelease(BT_UP))
 		{
+			move_viewport.Emit(VIEWPORT_MOVEUP_OFFSET, false);
 			setStatus(eStatus::NORMAL);
 		}
 		if (_input->isKeyPressed(BT_SLASH))
@@ -431,6 +435,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		if (_input->isKeyDown(BT_UP))
 		{
 			setStatus(eStatus::LOOKING_UP);
+			move_viewport.Emit(VIEWPORT_MOVEUP_OFFSET, true);
 			break;
 		}
 		if (_input->isKeyDown(BT_DOWN))

@@ -2,10 +2,12 @@
 #include "PhysicsComponent.h"
 AnimationComponent::AnimationComponent()
 {
+	_transitionPlayed = true;
 }
 
 AnimationComponent::AnimationComponent(PhysicsComponent * physicsComponent)
 {
+	_transitionPlayed = true;
 	_physicsComponent = physicsComponent;
 }
 
@@ -16,9 +18,21 @@ AnimationComponent::~AnimationComponent()
 
 void AnimationComponent::update(float deltatime)
 {
+	_sprite->setPosition(_physicsComponent->getPosition());
+	if (_transition[_preindex][_index] != nullptr)
+	{
+		if (_transition[_preindex][_index]->getCount() < 1)
+		{
+			_transition[_preindex][_index]->update(deltatime);
+			return;
+		}
+		else
+		{
+			_transitionPlayed = true;
+		}
+	}
 	if (_animations[_index] != nullptr)
 	{
-		_sprite->setPosition(_physicsComponent->getPosition());
 		_animations[_index]->update(deltatime);
 	}
 }
@@ -35,6 +49,11 @@ void AnimationComponent::setAnimation(int status)
 		_preindex = _index;
 		_animations[_index]->restart();
 		_index = status;
+		if (_transition[_preindex][_index] != nullptr)
+		{
+			_transition[_preindex][_index]->restart();
+		}
+		_transitionPlayed = false;
 	}
 }
 
@@ -50,7 +69,14 @@ int AnimationComponent::getAnimationStatus()
 
 void AnimationComponent::draw(LPD3DXSPRITE spriteHandle, Viewport * viewport)
 {
-	_animations[_index]->draw(spriteHandle, viewport);
+	if (_transitionPlayed == false && _transition[_preindex][_index] != nullptr)
+	{
+		_transition[_preindex][_index]->draw(spriteHandle, viewport);
+	}
+	else
+	{
+		_animations[_index]->draw(spriteHandle, viewport);
+	}
 }
 
 GVector2 AnimationComponent::getScale()

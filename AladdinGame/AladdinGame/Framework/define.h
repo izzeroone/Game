@@ -80,8 +80,8 @@ enum eDirection
 
 enum eRopeType
 {
-	VERTICAL = 0,
-	HORIZONTAL = 1
+	rVERTICAL = 0,
+	rHORIZONTAL = 1
 };
 
 
