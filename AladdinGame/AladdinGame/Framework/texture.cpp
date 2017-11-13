@@ -87,7 +87,7 @@ void Texture::render(LPD3DXSPRITE spriteHandle, RECT * srcRect, GVector2 positio
 		&matTranslate,
 		translation.x,
 		translation.y,
-		zIndex
+		0.0f
 	);
 
 	matFinal = matOld * matTransformed * matTranslate;

@@ -20,113 +20,121 @@ void AladdinAnimationComponent::init()
 	setOrigin(GVector2(0.0f, 0.0f));
 	setScale(SCALE_FACTOR);
 
-	_animations[eStatus::NORMAL] = new Animation(_sprite, 1000.0f);
+	_animations[eStatus::NORMAL] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::NORMAL]->addFrameRect(eObjectID::ALADDIN, "normal_01", NULL);
 
-	_animations[eStatus::NORMAL | eStatus::SLASH] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::NORMAL | eStatus::SLASH] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::NORMAL | eStatus::SLASH]->addFrameRect(eObjectID::ALADDIN, "slash_stand_01", "slash_stand_02", "slash_stand_03", "slash_stand_04", "slash_stand_05", NULL);
 
-	_animations[eStatus::NORMAL | eStatus::THROW] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::NORMAL | eStatus::THROW] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::NORMAL | eStatus::THROW]->addFrameRect(eObjectID::ALADDIN, "stand_throw_01", "stand_throw_02", "stand_throw_03", "stand_throw_04", "stand_throw_05","stand_throw_06", NULL);
 
-	_animations[eStatus::RUNNING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::RUNNING] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::RUNNING]->addFrameRect(eObjectID::ALADDIN, "run_01", "run_02", "run_03", "run_04", "run_05", "run_06", "run_07", "run_08", "run_09", "run_10", "run_11", "run_12", "run_13", NULL);
 
 	_animations[eStatus::RUNNING | eStatus::SLASH] = _animations[eStatus::NORMAL | eStatus::SLASH];
 
-	_animations[eStatus::JUMPING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::JUMPING] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::JUMPING]->addFrameRect(eObjectID::ALADDIN, "jump_stand_01", "jump_stand_02", "jump_stand_03", "jump_stand_04", "jump_stand_05", NULL);
 
-	_animations[eStatus::FALLING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::FALLING] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::FALLING]->addFrameRect(eObjectID::ALADDIN, "jump_stand_06", "jump_stand_07", "jump_stand_08", "jump_stand_09", "jump_stand_10", NULL);
 
-	_animations[eStatus::JUMPING | eStatus::SLASH] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::JUMPING | eStatus::SLASH] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::JUMPING | eStatus::SLASH]->addFrameRect(eObjectID::ALADDIN, "slash_jump_01", "slash_jump_02", "slash_jump_03", "slash_jump_04", "slash_jump_05", "slash_jump_06", NULL);
 	
-	_animations[eStatus::MOVINGJUMPING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::MOVINGJUMPING] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::MOVINGJUMPING]->addFrameRect(eObjectID::ALADDIN, "jump_stand_01", "jump_stand_02", "jump_stand_03", "jump_stand_04", "jump_stand_05", "jump_stand_06", "jump_stand_07", "jump_stand_08", "jump_stand_09", "jump_stand_10", "jump_stand_11", "jump_stand_12", NULL);
 
 	_animations[eStatus::MOVINGJUMPING | eStatus::SLASH] = _animations[eStatus::JUMPING | eStatus::SLASH];
 
 
-	_animations[eStatus::LANDING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::LANDING] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::LANDING]->addFrameRect(eObjectID::ALADDIN, "landing_01", "landing_02", "landing_03", "landing_04", "landing_05", "landing_06", "landing_07", "landing_08", "landing_09", "landing_10", "landing_11", "landing_12", NULL);
 
-	_animations[eStatus::LAYING_DOWN] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::LAYING_DOWN] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::LAYING_DOWN]->addFrameRect(eObjectID::ALADDIN, "laydown_01", "laydown_02", "laydown_03", "laydown_04", NULL);
 	_animations[eStatus::LAYING_DOWN]->animateFromTo(0, 2, false);
 
-	_animations[eStatus::LAYING_DOWN | eStatus::SLASH] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::LAYING_DOWN | eStatus::SLASH] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::LAYING_DOWN | eStatus::SLASH]->addFrameRect(eObjectID::ALADDIN, "slash_laydown_01", "slash_laydown_02", "slash_laydown_03", "slash_laydown_04", "slash_laydown_05", "slash_laydown_06", "slash_laydown_07", NULL);
 
-	_animations[eStatus::LAYING_DOWN | eStatus::THROW] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::LAYING_DOWN | eStatus::THROW] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::LAYING_DOWN | eStatus::THROW]->addFrameRect(eObjectID::ALADDIN, "throw_laydown_01", "throw_laydown_02", "throw_laydown_03", "throw_laydown_04", "throw_laydown_05", "throw_laydown_06", "throw_laydown_07", NULL);
 
-	_animations[eStatus::LOOKING_UP] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::LOOKING_UP] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::LOOKING_UP]->addFrameRect(eObjectID::ALADDIN, "lookup_01", "lookup_02", "lookup_03", NULL);
 	_animations[eStatus::LOOKING_UP]->animateFromTo(0, 1, false);
 
-	_animations[eStatus::LOOKING_UP | eStatus::SLASH] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::LOOKING_UP | eStatus::SLASH] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::LOOKING_UP | eStatus::SLASH]->addFrameRect(eObjectID::ALADDIN, "lookup_slash_01", "lookup_slash_02", "lookup_slash_03", "lookup_slash_04", "lookup_slash_05", "lookup_slash_06", "lookup_slash_07", "lookup_slash_08", "lookup_slash_09", "lookup_slash_10", "lookup_slash_11", "lookup_slash_12", NULL);
 
-	_animations[eStatus::CLIMBVERTICAL] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CLIMBVERTICAL] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::CLIMBVERTICAL]->addFrameRect(eObjectID::ALADDIN, "climb_vertical_01", "climb_vertical_02", "climb_vertical_03", "climb_vertical_04", "climb_vertical_05", "climb_vertical_06", "climb_vertical_07", "climb_vertical_08", "climb_vertical_09", "climb_vertical_10", NULL);
 
 
-	_animations[eStatus::CLIMBHORIZON] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CLIMBHORIZON] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::CLIMBHORIZON]->addFrameRect(eObjectID::ALADDIN, "climb_horizon_01", "climb_horizon_02", "climb_horizon_03", "climb_horizon_04", "climb_horizon_05", "climb_horizon_06", "climb_horizon_07", "climb_horizon_08","climb_horizon_09","climb_horizon_10", NULL);
 
-	_animations[eStatus::CLIMBHORIZON | eStatus::BORING1] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CLIMBHORIZON | eStatus::BORING1] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::CLIMBHORIZON | eStatus::BORING1]->addFrameRect(eObjectID::ALADDIN, "climb_horizon_boring_01", "climb_horizon_boring_02", "climb_horizon_boring_03", "climb_horizon_boring_04", "climb_horizon_boring_05", NULL);
 
-	_animations[eStatus::CLIMBHORIZON | eStatus::JUMPING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CLIMBHORIZON | eStatus::JUMPING] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::CLIMBHORIZON | eStatus::JUMPING]->addFrameRect(eObjectID::ALADDIN, "tumble_01", "tumble_02", "tumble_03", "tumble_04", "tumble_05", "tumble_06", "tumble_07", "tumble_08", NULL);
 
-	_animations[eStatus::CLIMBHORIZON | eStatus::THROW] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CLIMBHORIZON | eStatus::THROW] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::CLIMBHORIZON | eStatus::THROW]->addFrameRect(eObjectID::ALADDIN, "throw_climb_01", "throw_climb_02", "throw_climb_03", "throw_climb_04", "throw_climb_05", NULL);
 
-	_animations[eStatus::CLIMBHORIZON | eStatus::SLASH] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CLIMBHORIZON | eStatus::SLASH] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::CLIMBHORIZON | eStatus::SLASH]->addFrameRect(eObjectID::ALADDIN, "slash_climb_01", "slash_climb_02", "slash_climb_03", "slash_climb_04", "slash_climb_05", NULL);
 
-	_animations[eStatus::JUMPOUT] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::JUMPOUT] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::JUMPOUT]->addFrameRect(eObjectID::ALADDIN, "jump_out_01", "jump_out_02", "jump_out_03", "jump_out_04", "jump_out_05", "jump_out_06", "jump_out_07", "jump_out_08", "jump_out_09", NULL);
 
-	_animations[eStatus::PUSH] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::PUSH] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::PUSH]->addFrameRect(eObjectID::ALADDIN, "push_01", "push_02", "push_03", "push_04", "push_05", "push_06", "push_07", "push_08", "push_09", NULL);
 
-	_animations[eStatus::BURNED] = new Animation(_sprite, 0.1f);
-	_animations[eStatus::BURNED]->addFrameRect(eObjectID::ALADDIN, "burned_01", "burned_02", "burned_03", "burned_04", "burned_05", "burned_06", "burned_07", "burned_08", NULL);
+	_animations[eStatus::BURNED] = new Animation(_sprite, 0.07f);
+	_animations[eStatus::BURNED]->addFrameRect(eObjectID::ALADDIN, "burned_01", "burned_02", "burned_03", "burned_04", "burned_05", "burned_06", NULL);
 
-	_animations[eStatus::DYING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::DYING] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::DYING]->addFrameRect(eObjectID::ALADDIN, "die_01", "die_02", "die_03", "die_04", "die_05", "die_06", "die_07", "die_08", "die_09", "die_10", "die_11", "die_12", "die_13", NULL);
 
-	_animations[eStatus::CARE] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::CARE] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::CARE]->addFrameRect(eObjectID::ALADDIN, "care_01", "care_02", "care_03", "care_04", "care_05", "care_06", "care_07", "care_08", "care_09", "care_10", "care_11", "care_12", "care_13", "care_14", "care_15", NULL);
 
-	_animations[eStatus::REVIVE] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::REVIVE] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::REVIVE]->addFrameRect(eObjectID::ALADDIN, "revive_01", "revive_02", "revive_03", "revive_04", "revive_05", "revive_06", "revive_07", "revive_08", "revive_09", "revive_10", "revive_11", "revive_12", "revive_13", "revive_14", NULL);
 
-	_animations[eStatus::REVIVE] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::REVIVE] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::REVIVE]->addFrameRect(eObjectID::ALADDIN, "jealous_01", "jealous_02", "jealous_03", "jealous_04", "jealous_05", "jealous_06", "jealous_07", "jealous_08", NULL);
 
-	_animations[eStatus::BRAKING] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::BRAKING] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::BRAKING]->addFrameRect(eObjectID::ALADDIN, "braking_01", "braking_02", "braking_03", "braking_04", "braking_05", "braking_06", "braking_07", "braking_08", "braking_09", NULL);
 
-	_animations[eStatus::BORING1] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::BORING1] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::BORING1]->addFrameRect(eObjectID::ALADDIN, "normal_01", "normal_02", "normal_03", "normal_04", "normal_05", "normal_06", "normal_07", NULL);
-	vector<float> customTime(7, 0.1f);
+	vector<float> customTime(7, 0.07f);
 	customTime[3] = 0.5f;
 	customTime[6] = 0.5f;
 	_animations[eStatus::BORING1]->setCustomTime(customTime);
 	_animations[eStatus::BORING1]->setLoop(true);
 
 
-	_animations[eStatus::BORING2] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::BORING2] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::BORING2]->addFrameRect(eObjectID::ALADDIN, "boring_01", "boring_02", "boring_03", "boring_04", "boring_05", "boring_06", "boring_07", "boring_08", "boring_09", "boring_10", "boring_11", "boring_12", "boring_13", "boring_14", "boring_15", NULL);
 	_animations[eStatus::BORING2]->animateFromTo(5, 14, true);
+	vector<float> customTime2(15, 0.07f);
+	customTime2[13] = 0.5f;
+	_animations[eStatus::BORING2]->setCustomTime(customTime2);
+	_animations[eStatus::BORING2]->setLoop(true);
 
-	_animations[eStatus::BORING3] = new Animation(_sprite, 0.1f);
+	_animations[eStatus::BORING3] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::BORING3]->addFrameRect(eObjectID::ALADDIN, "boring_circus_01", "boring_circus_02", "boring_circus_03", "boring_circus_04", "boring_circus_05", "boring_circus_06", "boring_circus_07", "boring_circus_08", "boring_circus_09", "boring_circus_10", "boring_circus_11", "boring_circus_12", "boring_circus_13", "boring_circus_14", "boring_circus_15", "boring_circus_16", "boring_circus_17", NULL);
+	vector<float> customTime3(17, 0.07f);
+	customTime3[15] = 0.5f;
+	_animations[eStatus::BORING3]->setCustomTime(customTime3);
+	_animations[eStatus::BORING3]->setLoop(true);
 
 
 	for (auto animate : _animations)

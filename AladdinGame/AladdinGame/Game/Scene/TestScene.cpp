@@ -25,10 +25,10 @@ bool TestScene::init()
 
 	_listobject.push_back(_Aladdin);
 
-	auto land = ObjectFactory::getLand(0, 75, 918, 5, eDirection::TOP, eLandType::lNORMAL);
+	auto land = ObjectFactory::getLand(0, 120, 918, 1, eDirection::TOP, eLandType::lNORMAL);
 	_listobject.push_back(land);
 	
-	auto land2 = ObjectFactory::getLand(919, 75, 175, 5, eDirection::TOP, eLandType::lFLAME);
+	auto land2 = ObjectFactory::getLand(919, 120, 175, 1, eDirection::TOP, eLandType::lFLAME);
 	_listobject.push_back(land2);
 
 	_map = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
