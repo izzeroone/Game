@@ -1,5 +1,5 @@
 ﻿#include "Animation.h"
-
+#include "../debug.h"
 Animation::Animation(Sprite * spriteSheet, float timeAnimate, bool loop)
 {
 	_spriteSheet = spriteSheet;
@@ -209,12 +209,6 @@ void Animation::addFrameRect(RECT rect)
 	if (_frameRectList.empty())
 	{
 		_currentRect = rect;
-
-		// trường hợp kiểm tra _bounding trước khi vẽ lần đầu tiên, nếu ko có setFrameRect thì nó sẽ lấy nguyên spriteSheet
-		// sẽ làm sai kích thước của frame hiện tại
-		// cách khác là setframeRect ở object cho sprite.
-
-		// _spriteSheet->setFrameRect(_currentRect);
 	}
 
 
@@ -222,6 +216,11 @@ void Animation::addFrameRect(RECT rect)
 	_totalFrames = _frameRectList.size();
 
 	_endFrame = _totalFrames - 1;
+}
+
+void Animation::addFrameTransition(GVector2 transition)
+{
+	_frameTransition.push_back(transition);
 }
 
 void Animation::addFrameRect(float left, float top, int width, int height)
@@ -258,6 +257,7 @@ void Animation::addFrameRect(eObjectID id, char* firstRectName, ...)
 	while (name != NULL)
 	{
 		this->addFrameRect(SpriteResource::getInstance()->getSourceRect(id, name));
+		this->addFrameTransition(SpriteResource::getInstance()->getSourceTransition(id, name));
 		name = va_arg(vl, char*);
 	}
 
@@ -340,5 +340,12 @@ D3DXCOLOR Animation::getColorFlash()
 void Animation::draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 {
 	_spriteSheet->setFrameRect(_currentRect);
-	_spriteSheet->render(spriteHandle, viewport);
+	_spriteSheet->render(spriteHandle, viewport, _frameTransition[_index]);
+	if (_frameTransition[_index] != VECTOR2ZERO)
+	{
+		OutputDebugStringW(L"Transition : ");
+		__debugoutput(_index);
+		__debugoutput(_frameTransition[_index].x);
+		__debugoutput(_frameTransition[_index].y);
+	}
 }

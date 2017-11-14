@@ -20,6 +20,7 @@ public:
 	Sprite* getSprite(eObjectID  id);
 
 	RECT getSourceRect(eObjectID id, string name);
+	GVector2 getSourceTransition(eObjectID id, string name);
 	void loadSpriteInfo(eObjectID id, const char* fileInfoPath);
 
 	// release Sprite, dont release Texture, keep Texture to use in another Sprite.
@@ -36,6 +37,7 @@ private:
 	static SpriteResource* _instance;
 	map<eObjectID, Sprite*> _listSprite;
 	map<eObjectID, map<string, RECT> > _sourceRectList;
+	map<eObjectID, map<string, GVector2> > _sourceTransitionList;
 
 };
 

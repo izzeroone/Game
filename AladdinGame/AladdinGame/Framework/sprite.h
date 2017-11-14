@@ -34,7 +34,7 @@ public:
 	vẽ hình
 	*/
 	void render(LPD3DXSPRITE spriteHandle);
-	void render(LPD3DXSPRITE spriteHandle, Viewport* viewport);
+	void render(LPD3DXSPRITE spriteHandle, Viewport* viewport, GVector2 transition = VECTOR2ONE);
 
 	/*
 	vẽ hình với viewport

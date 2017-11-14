@@ -86,11 +86,11 @@ void AladdinAnimationComponent::init()
 	_animations[eStatus::CLIMB_HORIZON | eStatus::JUMPING] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::CLIMB_HORIZON | eStatus::JUMPING]->addFrameRect(eObjectID::ALADDIN, "tumble_01", "tumble_02", "tumble_03", "tumble_04", "tumble_05", "tumble_06", "tumble_07", "tumble_08", NULL);
 
-	_animations[eStatus::CLIMB_HORIZON | eStatus::THROW] = new Animation(_sprite, 0.07f);
+	_animations[eStatus::CLIMB_HORIZON | eStatus::THROW] = new Animation(_sprite, 0.50f);
 	_animations[eStatus::CLIMB_HORIZON | eStatus::THROW]->addFrameRect(eObjectID::ALADDIN, "throw_climb_01", "throw_climb_02", "throw_climb_03", "throw_climb_04", "throw_climb_05", NULL);
 
 	_animations[eStatus::CLIMB_HORIZON | eStatus::SLASH] = new Animation(_sprite, 0.07f);
-	_animations[eStatus::CLIMB_HORIZON | eStatus::SLASH]->addFrameRect(eObjectID::ALADDIN, "slash_climb_01", "slash_climb_02", "slash_climb_03", "slash_climb_04", "slash_climb_05", NULL);
+	_animations[eStatus::CLIMB_HORIZON | eStatus::SLASH]->addFrameRect(eObjectID::ALADDIN, "slash_climb_01", "slash_climb_02", "slash_climb_03", "slash_climb_04", "slash_climb_05", "slash_climb_06", "slash_climb_07", NULL);
 
 	_animations[eStatus::CLIMB_VERTICAL | eStatus::SLASH] = _animations[eStatus::CLIMB_HORIZON | eStatus::SLASH];
 

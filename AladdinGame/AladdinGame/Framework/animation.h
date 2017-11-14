@@ -107,6 +107,7 @@ public:
 	void canAnimate(bool can);
 	bool isAnimate();
 	void addFrameRect(RECT rect);
+	void addFrameTransition(GVector2 transition);
 	void addFrameRect(float left, float top, int width, int height);
 	void addFrameRect(float left, float top, float right, float bottom);
 
@@ -177,6 +178,7 @@ private:
 
 	Sprite*					_spriteSheet;							// ref to object's sprite
 	vector<RECT>			_frameRectList;
+	vector<GVector2>		_frameTransition;
 	string					_nameAnimation;
 	RECT					_currentRect;
 
