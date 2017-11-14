@@ -11,6 +11,7 @@ Animation::Animation(Sprite * spriteSheet, float timeAnimate, bool loop)
 	_timer = 0;
 	_totalTimeAnimate = 0;
 	_isCustom = false;
+	_isReserve = false;
 	_valueFlashes = 0.5f;
 	_count = 0;
 
@@ -33,6 +34,7 @@ Animation::Animation(Sprite * spriteSheet, int totalFrames, int cols, float time
 	_index = 0;
 	_timer = 0;
 	_isCustom = 0;
+	_isReserve = false;
 	_valueFlashes = 0.5f;
 	_count = 0;
 
@@ -64,6 +66,10 @@ void Animation::nextFrame()
 {
 	this->setIndex(_index + 1);
 }
+void Animation::prevFrame()
+{
+	setIndex(_index - 1);
+}
 int Animation::getIndex()
 {
 	return _index;
@@ -87,6 +93,12 @@ void Animation::setIndex(int index)
 	{
 		_count++;
 		_index = _startFrame;
+	}
+
+	if (_index < _startFrame)
+	{
+		_count++;
+		_index = _endFrame;
 	}
 
 	_currentRect = _frameRectList[_index];
@@ -117,7 +129,16 @@ void Animation::update(float dt)
 	if (_timer >= timeAnimate)
 	{
 		if (_canAnimate)
-			this->nextFrame();
+		{
+			if (_isReserve == false)
+			{
+				this->nextFrame();
+			}
+			else
+			{
+				this->prevFrame();
+			}
+		}
 
 		_timer -= timeAnimate;				// không thể gán bằng 0. vì như vậy là làm tròn. sẽ có sai số
 
@@ -247,6 +268,11 @@ void Animation::setLoop(bool isLoop)
 {
 	if (isLoop != _isLoop)
 		_isLoop = isLoop;
+}
+
+void Animation::setReserve(bool isReserve)
+{
+	_isReserve = isReserve;
 }
 
 bool Animation::isLoop()

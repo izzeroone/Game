@@ -46,11 +46,11 @@ bool TestScene::init()
 	auto land = ObjectFactory::getLand(0, 120, 918, 1, eDirection::TOP, eLandType::lNORMAL);
 	_listobject.push_back(land);
 
-	auto rope = ObjectFactory::getRope(464, 500, 5, 350, eDirection::ALL, eRopeType::rHORIZONTAL);
+	auto rope = ObjectFactory::getRope(455, 500, 5, 200, eDirection::ALL, eRopeType::rVERTICAL);
 	_listobject.push_back(rope);
 	
-	//auto land2 = ObjectFactory::getLand(919, 120, 175, 1, eDirection::TOP, eLandType::lFLAME);
-	//_listobject.push_back(land2);
+	auto land2 = ObjectFactory::getLand(919, 120, 175, 1, eDirection::TOP, eLandType::lFLAME);
+	_listobject.push_back(land2);
 
 	_map = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
 	_map->setFrameRect(0.0f, _map->getFrameWidth(), (float)_map->getFrameHeight(), 0.0f);
@@ -98,7 +98,7 @@ void TestScene::update(float dt)
 	for (GameObject* obj : _active_object)
 	{
 		// một vài trạng thái không cần thiết phải check hàm va chạm
-		if (obj == nullptr  || obj->getID() == eObjectID::LAND)
+		if (obj == nullptr  || obj->getID() == eObjectID::LAND || obj->getID() == eObjectID::ROPE)
 			continue;
 
 		for (GameObject* passiveobj : _active_object)
@@ -108,7 +108,10 @@ void TestScene::update(float dt)
 			auto collisionComponent = (CollisionComponent*)obj->getPhysicsComponent()->getComponent("Collision");
 			if (collisionComponent != nullptr)
 			{
-				collisionComponent->checkCollision(passiveobj, dt);
+				if (passiveobj->getID() != eObjectID::ROPE) // aladdin can overlap rope so don't update target postion. Let aladdin behavior do it instead
+					collisionComponent->checkCollision(passiveobj, dt);
+				else
+					collisionComponent->checkCollision(passiveobj, dt, false);
 			}
 			
 		}

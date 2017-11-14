@@ -45,6 +45,11 @@ public:
 	void nextFrame();
 
 	/*
+	Chuyển qua frame trước
+	*/
+	void prevFrame();
+
+	/*
 	Truyền thứ tự frame cụ thể
 	*/
 	void setIndex(int index);
@@ -115,11 +120,10 @@ public:
 
 	void setPosition(GVector2 p)
 	{ 
-		// không làm gì TT.TT
-		// để tạm ở đây cho hết lỗi, nếu setPosition thì set ở sprite reference tới
 	}
 
 	void setLoop(bool isLoop);
+	void setReserve(bool isReserve);
 	bool isLoop();
 
 	/*
@@ -169,6 +173,7 @@ private:
 
 	bool					_canAnimate;
 	bool					_isLoop;
+	bool					_isReserve; 
 
 	Sprite*					_spriteSheet;							// ref to object's sprite
 	vector<RECT>			_frameRectList;

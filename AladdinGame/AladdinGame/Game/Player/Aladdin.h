@@ -82,7 +82,9 @@ private:
 	void removeWeaponAnimation();
 	void checkAndRemoveWeapon();
 
-
+	//movement helper
+	void removeGravity();
+	void removeMovementX();
 	// Inherited via BehaviorComponent
 	virtual void executeCommand(eCommand command) override;
 
