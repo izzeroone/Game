@@ -45,6 +45,9 @@ bool TestScene::init()
 
 	auto land = ObjectFactory::getLand(0, 120, 918, 1, eDirection::TOP, eLandType::lNORMAL);
 	_listobject.push_back(land);
+
+	auto rope = ObjectFactory::getRope(464, 500, 5, 350, eDirection::ALL, eRopeType::rHORIZONTAL);
+	_listobject.push_back(rope);
 	
 	//auto land2 = ObjectFactory::getLand(919, 120, 175, 1, eDirection::TOP, eLandType::lFLAME);
 	//_listobject.push_back(land2);

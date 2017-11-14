@@ -8,6 +8,7 @@
 #include "../../Framework/Component/PhysicsComponent.h"
 #include "../../Framework/Component/CollisionComponent.h"
 #include "../../Game/Object/Land.h"
+#include "../../Game/Object/Rope.h"
 #include "../../../sigcxx/include/sigcxx/sigcxx.hpp"
 
 #define ALADDIN_MOVE_SPEED 300

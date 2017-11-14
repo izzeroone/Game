@@ -183,6 +183,8 @@ void AladdinBehaviorComponent::update(float detatime)
 {
 	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 	GameObject * object;
+	Land *	landObject;
+	Rope * ropeObject;
 	eDirection direction;
 	if (_input->isKeyPressed(BT_BOUND))
 	{
@@ -206,15 +208,15 @@ void AladdinBehaviorComponent::update(float detatime)
 	case RUNNING:
 	case LOOKING_UP:
 	case PUSH:
-		auto object = (Land*)collisionComponent->isColliding(eObjectID::LAND);
-		if (object != nullptr)
+		landObject = (Land*)collisionComponent->isColliding(eObjectID::LAND);
+		if (landObject != nullptr)
 		{
 			standing();
-			if (object->getLandType() == eLandType::lFLAME)
+			if (landObject->getLandType() == eLandType::lFLAME)
 			{
 				setStatus(eStatus::BURNED);
 			}
-			_preObject = object;
+			_preObject = landObject;
 		}
 		break;
 	}
@@ -286,6 +288,24 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		break;
 	case JUMPING: case FALLING:
+		ropeObject = (Rope*)collisionComponent->isColliding(eObjectID::ROPE);
+		if (ropeObject != nullptr)
+		{
+			if (ropeObject->getRopeType() == eRopeType::rVERTICAL)
+			{
+				//RECT aladdinBound = _physicsComponent->getBounding();
+				//RECT ropeBound = ropeObject->getPhysicsComponent()->getBounding();
+
+				//float newPostionY = ropeBound.left + (ropeBound.right - ropeBound.left) / 2;// middle postion of the rope
+				////since the origin is 0.0f 0.0f so must minus haft width of aladdin to get the right positon
+				//newPostionY -= (aladdinBound.right - aladdinBound.left) / 2;
+				//_physicsComponent->setPositionY(newPostionY);
+
+				//setStatus(eStatus::CLIMBVERTICAL);
+				climbvertical();
+
+			}
+		}
 		object = collisionComponent->isColliding(eObjectID::LAND);
 		if ( object != nullptr)
 		{
