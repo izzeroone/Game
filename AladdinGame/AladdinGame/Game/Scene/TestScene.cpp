@@ -39,6 +39,7 @@ bool TestScene::init()
 	_Aladdin = ObjectFactory::getAladdin();
 	_Aladdin->getPhysicsComponent()->setPosition(100, 200);
 	auto aladdinBehavior = (AladdinBehaviorComponent*)_Aladdin->getBehaviorComponent();
+	aladdinBehavior->setRespawnPosition(GVector2(100, 200));
 	aladdinBehavior->move_viewport.Connect(this, &TestScene::moveViewport);
 
 	_listobject.push_back(_Aladdin);
@@ -171,7 +172,7 @@ void TestScene::updateViewport(GameObject * objTracker)
 	worldsize.x = _map->getTextureWidth();
 	worldsize.y = _map->getTextureHeight();
 	// Bám theo object.
-	GVector2 new_position = GVector2(max(objTracker->getPhysicsComponent()->getPositionX() - 260, 0), WINDOW_HEIGHT);		// 200 khoảng cách tối đa giữa object và map -> hardcode
+	GVector2 new_position = GVector2(max(objTracker->getPhysicsComponent()->getPositionX() - 260, 0), max(objTracker->getPhysicsComponent()->getPositionY() + 300,WINDOW_HEIGHT));		// 200 khoảng cách tối đa giữa object và map -> hardcode
 
 	// Không cho đi quá map.
 	if (new_position.x + WINDOW_WIDTH > worldsize.x)

@@ -218,26 +218,10 @@ void AladdinBehaviorComponent::update(float detatime)
 		OutputDebugStringW(L" \n ");
 
 	}
-
-	switch (_status)
+	if (_physicsComponent->getPositionY() + ALADDIN_HEIGHT < 0)
 	{
-	case NORMAL:
-	case JUMPING:
-	case LAYING_DOWN:
-	case RUNNING:
-	case LOOKING_UP:
-	case PUSH:
-		landObject = (Land*)collisionComponent->isColliding(eObjectID::LAND);
-		if (landObject != nullptr)
-		{
-			standing();
-			if (landObject->getLandType() == eLandType::lFLAME)
-			{
-				setStatus(eStatus::BURNED);
-			}
-			_preObject = landObject;
-		}
-		break;
+		respawn();
+		return;
 	}
 
 	switch (_status)
@@ -318,8 +302,8 @@ void AladdinBehaviorComponent::update(float detatime)
 
 				float newPostionX = ropeBound.left + (ropeBound.right - ropeBound.left) / 2;// middle postion of the rope
 				//since the origin is 0.0f 0.0f so must minus haft width of aladdin to get the right positon
-				newPostionX -= (aladdinBound.right - aladdinBound.left) / 2;
-
+				newPostionX -= ALADDIN_WIDTH / 2;
+				_physicsComponent->setPositionX(newPostionX);
 				setStatus(eStatus::CLIMB_VERTICAL);
 				climbvertical();
 				faceRight();
@@ -363,7 +347,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		break;
 	case JUMPING:
-		if (_physicsComponent->getVelocity().y <= 0)
+		if (_physicsComponent->getVelocity().y < 0)
 		{
 			setStatus(eStatus::FALLING);
 		}
@@ -418,7 +402,6 @@ void AladdinBehaviorComponent::update(float detatime)
 			setStatus(eStatus::FALLING);
 			standing(); // to remove velocity
 			falling();
-			_preObject = nullptr;
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
@@ -479,7 +462,17 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (_input->isKeyDown(BT_UP))
 		{
-			moveUp();
+			if (ropeObject != nullptr)
+			{
+				if (ropeObject->getPhysicsComponent()->getPositionY() >= _physicsComponent->getPositionY() + 10)
+				{
+					moveUp();
+				}
+				else
+				{
+					standing();
+				}
+			}
 		}
 		if (_input->isKeyDown(BT_DOWN))
 		{
@@ -595,6 +588,26 @@ void AladdinBehaviorComponent::update(float detatime)
 		break;
 	default:
 		break;
+	}
+	//check running or burning land
+	switch (_status)
+	{
+	case NORMAL:
+	case JUMPING:
+	case LAYING_DOWN:
+	case RUNNING:
+	case LOOKING_UP:
+	case PUSH:
+		landObject = (Land*)collisionComponent->isColliding(eObjectID::LAND);
+		if (landObject != nullptr)
+		{
+			if (landObject->getLandType() == eLandType::lFLAME)
+			{
+				setStatus(eStatus::BURNED);
+			}
+			_preObject = landObject;
+			break;
+		}
 	}
 	updateAnimation();
 }
@@ -852,10 +865,14 @@ void AladdinBehaviorComponent::climbhorizon()
 	move->setVelocity(GVector2(0, 0));
 }
 
-
-void AladdinBehaviorComponent::climbJump()
+void AladdinBehaviorComponent::setRespawnPosition(GVector2 respawnPosition)
 {
-	jump();
+	_respawnPostion = respawnPosition;
+}
+
+void AladdinBehaviorComponent::respawn()
+{
+	_physicsComponent->setPosition(_respawnPostion);
 }
 
 void AladdinBehaviorComponent::executeCommand(eCommand command)
