@@ -13,7 +13,7 @@
 
 #define ALADDIN_MOVE_SPEED 300
 #define ALADDIN_CLIMB_SPEED 100
-#define ALADDIN_JUMP_VEL 400
+#define ALADDIN_JUMP_VEL 450
 #define GRAVITY 800
 #define PROTECT_TIME 3000
 #define ALADDIN_BORING_TIME 3.0f
@@ -89,6 +89,7 @@ private:
 	void slash();
 	void throwApple();
 	void checkAndAddWeaponAnimation();
+	void checkAndAddWeaponAnimation(eStatus status);
 	void removeWeaponAnimation();
 	void checkAndRemoveWeapon();
 

@@ -57,6 +57,20 @@ void AnimationComponent::setAnimation(int status)
 	}
 }
 
+void AnimationComponent::setAnimationNoRestart(int status)
+{
+	if (_index != status)
+	{
+		_preindex = _index;
+		_index = status;
+		if (_transition[_preindex][_index] != nullptr)
+		{
+			_transition[_preindex][_index]->restart();
+		}
+		_transitionPlayed = false;
+	}
+}
+
 Animation * AnimationComponent::getAnimation(int status)
 {
 	return _animations[status];
