@@ -47,17 +47,21 @@ bool TestScene::init()
 	auto land = ObjectFactory::getLand(0, 120, 918, 1, eDirection::TOP, eLandType::lNORMAL);
 	_listobject.push_back(land);
 
-	auto rope = ObjectFactory::getRope(455, 500, 5, 200, eDirection::ALL, eRopeType::rVERTICAL);
+	auto rope = ObjectFactory::getRope(278 * SCALE_FACTOR, (692 - 357) * SCALE_FACTOR, 3 * SCALE_FACTOR, 235 * SCALE_FACTOR, eDirection::ALL, eRopeType::rVERTICAL);
 	_listobject.push_back(rope);
+
+	auto rope2 = ObjectFactory::getRope(351 * SCALE_FACTOR, (692 - 358) * SCALE_FACTOR, 300 * SCALE_FACTOR, 3 * SCALE_FACTOR, eDirection::ALL, eRopeType::rHORIZONTAL);
+	_listobject.push_back(rope2);
 	
 	auto land2 = ObjectFactory::getLand(919, 120, 175, 1, eDirection::TOP, eLandType::lFLAME);
 	_listobject.push_back(land2);
 
 	_map = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
-	_map->setFrameRect(0.0f, _map->getFrameWidth(), (float)_map->getFrameHeight(), 0.0f);
-	_map->setPositionX(_map->getFrameWidth());
-	_map->setPositionY(_map->getFrameHeight());
-	_map->setScale(2.0f);
+	//_map->setFrameRect(0.0f, _map->getFrameWidth(), (float)_map->getFrameHeight(), 0.0f);
+	_map->setPositionX(0);
+	_map->setPositionY(0);
+	_map->setOrigin(GVector2(0.f, 0.f));
+	_map->setScale(SCALE_FACTOR);
 
 	_updateViewport = true;
 	//SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE1);
@@ -126,6 +130,7 @@ void TestScene::draw(LPD3DXSPRITE spriteHandle)
 	{
 		object->draw(spriteHandle, _viewport);
 	}
+
 }
 
 void TestScene::release()

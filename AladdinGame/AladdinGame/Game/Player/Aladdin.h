@@ -17,8 +17,9 @@
 #define GRAVITY 800
 #define PROTECT_TIME 3000
 #define ALADDIN_BORING_TIME 3.0f
-#define ALADDIN_WIDTH 37
-#define ALADDIN_HEIGHT 56
+#define ALADDIN_WIDTH 37 * SCALE_FACTOR
+#define ALADDIN_HEIGHT 56 * SCALE_FACTOR
+#define ALADDIN_CLIMB_HEIGHT 78 * SCALE_FACTOR
 #define RUNNING_BRAKE_TIME 2.0f
 #define JUMP_OFFSET 10 // trick to allow burning land to collide
 #define VIEWPORT_MOVEUP_OFFSET 30 // use when aladdin lookup

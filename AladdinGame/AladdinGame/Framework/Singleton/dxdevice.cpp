@@ -46,10 +46,22 @@ void DXDevice::drawBounding(RECT rect, D3DXCOLOR color)
 	r.bottom = WINDOW_HEIGHT - rect.bottom;
 	r.right = rect.right;
 
-	DXDevice::getInstance()->getDevice()->ColorFill(_surface, NULL, D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f));
+	LPDIRECT3DSURFACE9 surface = nullptr;
+
+	//create surface
+	DXDevice::getInstance()->getDevice()->CreateOffscreenPlainSurface(
+		WINDOW_WIDTH,
+		WINDOW_HEIGHT,
+		D3DFMT_X8R8G8B8,
+		D3DPOOL_DEFAULT,
+		&surface,
+		NULL
+	);
+
+	DXDevice::getInstance()->getDevice()->ColorFill(surface, NULL, D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f));
 
 	DXDevice::getInstance()->getDevice()->StretchRect(
-		_surface,
+		surface,
 		NULL,
 		DXDevice::getInstance()->getSurface(),
 		&r,
