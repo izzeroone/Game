@@ -8,6 +8,7 @@
 #include "../../Framework/Component/PhysicsComponent.h"
 #include "../../Framework/Component/CollisionComponent.h"
 #include "../../Game/Object/Land.h"
+#include "../../Game/Object/Rope.h"
 #include "../../../sigcxx/include/sigcxx/sigcxx.hpp"
 
 #define ALADDIN_MOVE_SPEED 300
@@ -16,6 +17,9 @@
 #define GRAVITY 800
 #define PROTECT_TIME 3000
 #define ALADDIN_BORING_TIME 3.0f
+#define ALADDIN_WIDTH 37 * SCALE_FACTOR
+#define ALADDIN_HEIGHT 56 * SCALE_FACTOR
+#define ALADDIN_CLIMB_HEIGHT 78 * SCALE_FACTOR
 #define RUNNING_BRAKE_TIME 2.0f
 #define JUMP_OFFSET 10 // trick to allow burning land to collide
 #define VIEWPORT_MOVEUP_OFFSET 30 // use when aladdin lookup
@@ -55,14 +59,18 @@ public:
 	void init();
 	void update(float detatime);
 	virtual void setStatus(eStatus status) override;
+	void setRespawnPosition(GVector2 respawnPosition);
 	sigcxx::Signal<float, bool> move_viewport; //float is offset, bool: true move up, false: revert back
 private:
 	void updateTimeOut(float deltaTime);
+
 	void updateAnimation();
 	void setBoringAnimation();
+
 	//
 	void faceLeft();
 	void faceRight();
+
 	//character action
 	void standing();
 	void moveLeft();
@@ -73,7 +81,10 @@ private:
 	void falling();
 	void climbvertical();
 	void climbhorizon();
-	void climbJump();
+
+
+	void respawn();
+
 	//weapon action
 	void slash();
 	void throwApple();
@@ -81,11 +92,14 @@ private:
 	void removeWeaponAnimation();
 	void checkAndRemoveWeapon();
 
-
+	//movement helper
+	void removeGravity();
+	void removeMovementX();
 	// Inherited via BehaviorComponent
 	virtual void executeCommand(eCommand command) override;
 
 	bool _isBoring; // flag set not to update animation when boring
+	GVector2 _respawnPostion;
 };
 
 

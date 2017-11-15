@@ -111,16 +111,16 @@ wstring BehaviorComponent::getStatusString(eStatus status)
 	case FALLING:
 		return L"falling";
 		break;
-	case MOVINGJUMPING:
+	case MOVING_JUMPING:
 		return L"movingjumping";
 		break;
 	case SLASH:
 		return L"slash";
 		break;
-	case CLIMBVERTICAL:
+	case CLIMB_VERTICAL:
 		return L"climb vertical";
 		break;
-	case CLIMBHORIZON:
+	case CLIMB_HORIZON:
 		return L"climb horizon";
 		break;
 	case MOVE_UP:
@@ -143,9 +143,6 @@ wstring BehaviorComponent::getStatusString(eStatus status)
 		break;
 	case BRAKING:
 		return L"braking";
-		break;
-	case JUMPOUT:
-		return L"jumoout";
 		break;
 	case PUSH:
 		return L"push";

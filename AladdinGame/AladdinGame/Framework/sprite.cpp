@@ -67,8 +67,12 @@ void Sprite::render(LPD3DXSPRITE spriteHandle)
 	return;
 }
 
-void Sprite::render(LPD3DXSPRITE spriteHandle, Viewport* viewport)
+void Sprite::render(LPD3DXSPRITE spriteHandle, Viewport* viewport, GVector2 transition)
 {
+	//upscale the transition
+	transition.x *= _scale.x;
+	transition.y *= _scale.y;
+
 	_texture.render(
 		spriteHandle,
 		&_frameRect,
@@ -78,7 +82,7 @@ void Sprite::render(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 		_rotate,
 		_origin,
 		_zIndex,
-		_translate
+		_translate + transition
 	);
 
 	//Vẽ bounding để xem

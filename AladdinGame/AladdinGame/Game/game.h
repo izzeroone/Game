@@ -8,6 +8,7 @@
 #include "../Framework/Singleton/windowGUI.h"
 #include "../Framework/Singleton/dxdevice.h"
 #include "../Framework/sprite.h"
+#include "../Framework/define.h"
 #include "../Framework/Singleton/gametime.h"
 #include "../Framework/Singleton/gamecontroller.h"
 
@@ -21,7 +22,7 @@ public:
 
 	static int isExit;
 
-	Game(HINSTANCE, LPWSTR = L"Window Game", int width = 800, int height = 600, int fps = 60, int isFullScreen = 0);
+	Game(HINSTANCE, LPWSTR = L"Window Game", int width = WINDOW_WIDTH, int height = WINDOW_HEIGHT, int fps = 60, int isFullScreen = 0);
 	void virtual init();						// init your objects
 	void virtual release();						// release your objects
 

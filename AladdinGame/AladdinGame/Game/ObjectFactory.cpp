@@ -40,3 +40,16 @@ GameObject * ObjectFactory::getLand(int x, int y, int width, int height, eDirect
 	collisionComponent->setTargerGameObject(land);
 	return land;
 }
+
+GameObject * ObjectFactory::getRope(int x, int y, int width, int height, eDirection physicBodyDirection, eRopeType type)
+{
+	auto physicsComponent = new RopePhysiscsComponent();
+
+	auto rope = new Rope();
+	rope->setPhysicsComponent(physicsComponent);
+	rope->init(x, y, width, height, physicBodyDirection, type);
+
+	auto collisionComponent = (CollisionComponent*)rope->getPhysicsComponent()->getComponent("Collision");
+	collisionComponent->setTargerGameObject(rope);
+	return rope;
+}

@@ -1,4 +1,5 @@
 ﻿#include "spriteresource.h"
+#include "../../debug.h"
 LINK_FRAMEWORK
 
 SpriteResource* SpriteResource::_instance = nullptr;
@@ -50,6 +51,11 @@ RECT SpriteResource::getSourceRect(eObjectID id, string name)
 	return _sourceRectList[id][name];
 }
 
+GVector2 SpriteResource::getSourceTransition(eObjectID id, string name)
+{
+	return _sourceTransitionList[id][name];
+}
+
 void SpriteResource::loadSpriteInfo(eObjectID id, const char* fileInfoPath)
 {
 	FILE* file;
@@ -60,12 +66,14 @@ void SpriteResource::loadSpriteInfo(eObjectID id, const char* fileInfoPath)
 		while (!feof(file))
 		{
 			RECT rect;
+			GVector2 transition;
 			char name[100];
 			fgets(name, 100, file);
 
-			fscanf(file, "%s %d %d %d %d", &name, &rect.left, &rect.top, &rect.right, &rect.bottom);
+			fscanf(file, "%s %d %d %d %d %f %f", &name, &rect.left, &rect.top, &rect.right, &rect.bottom, &transition.x, &transition.y);
 
 			_sourceRectList[id][string(name)] = rect;
+			_sourceTransitionList[id][string(name)] = transition;
 		}
 	}
 

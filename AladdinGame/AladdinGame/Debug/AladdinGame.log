@@ -1,23 +1,15 @@
-﻿  TestScene.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(80): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(81): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(165): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(166): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-  Aladdin.cpp
+﻿  Aladdin.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(179): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(186): warning C4101: 'direction': unreferenced local variable
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(569): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(600): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(608): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  ObjectFactory.cpp
-  AladdinGame.cpp
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(189): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(312): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(328): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(513): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(578): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(600): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(198): warning C4101: 'direction': unreferenced local variable
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(859): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(890): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(898): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)

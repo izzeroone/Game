@@ -39,21 +39,29 @@ bool TestScene::init()
 	_Aladdin = ObjectFactory::getAladdin();
 	_Aladdin->getPhysicsComponent()->setPosition(100, 200);
 	auto aladdinBehavior = (AladdinBehaviorComponent*)_Aladdin->getBehaviorComponent();
+	aladdinBehavior->setRespawnPosition(GVector2(100, 200));
 	aladdinBehavior->move_viewport.Connect(this, &TestScene::moveViewport);
 
 	_listobject.push_back(_Aladdin);
 
 	auto land = ObjectFactory::getLand(0, 120, 918, 1, eDirection::TOP, eLandType::lNORMAL);
 	_listobject.push_back(land);
+
+	auto rope = ObjectFactory::getRope(278 * SCALE_FACTOR, (692 - 357) * SCALE_FACTOR, 3 * SCALE_FACTOR, 235 * SCALE_FACTOR, eDirection::ALL, eRopeType::rVERTICAL);
+	_listobject.push_back(rope);
+
+	auto rope2 = ObjectFactory::getRope(351 * SCALE_FACTOR, (692 - 358) * SCALE_FACTOR, 300 * SCALE_FACTOR, 3 * SCALE_FACTOR, eDirection::ALL, eRopeType::rHORIZONTAL);
+	_listobject.push_back(rope2);
 	
-	//auto land2 = ObjectFactory::getLand(919, 120, 175, 1, eDirection::TOP, eLandType::lFLAME);
-	//_listobject.push_back(land2);
+	auto land2 = ObjectFactory::getLand(919, 120, 175, 1, eDirection::TOP, eLandType::lFLAME);
+	_listobject.push_back(land2);
 
 	_map = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
-	_map->setFrameRect(0.0f, _map->getFrameWidth(), (float)_map->getFrameHeight(), 0.0f);
-	_map->setPositionX(_map->getFrameWidth());
-	_map->setPositionY(_map->getFrameHeight());
-	_map->setScale(2.0f);
+	//_map->setFrameRect(0.0f, _map->getFrameWidth(), (float)_map->getFrameHeight(), 0.0f);
+	_map->setPositionX(0);
+	_map->setPositionY(0);
+	_map->setOrigin(GVector2(0.f, 0.f));
+	_map->setScale(SCALE_FACTOR);
 
 	_updateViewport = true;
 	//SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE1);
@@ -95,7 +103,7 @@ void TestScene::update(float dt)
 	for (GameObject* obj : _active_object)
 	{
 		// một vài trạng thái không cần thiết phải check hàm va chạm
-		if (obj == nullptr  || obj->getID() == eObjectID::LAND)
+		if (obj == nullptr  || obj->getID() == eObjectID::LAND || obj->getID() == eObjectID::ROPE)
 			continue;
 
 		for (GameObject* passiveobj : _active_object)
@@ -105,7 +113,10 @@ void TestScene::update(float dt)
 			auto collisionComponent = (CollisionComponent*)obj->getPhysicsComponent()->getComponent("Collision");
 			if (collisionComponent != nullptr)
 			{
-				collisionComponent->checkCollision(passiveobj, dt);
+				if (passiveobj->getID() != eObjectID::ROPE) // aladdin can overlap rope so don't update target postion. Let aladdin behavior do it instead
+					collisionComponent->checkCollision(passiveobj, dt);
+				else
+					collisionComponent->checkCollision(passiveobj, dt, false);
 			}
 			
 		}
@@ -119,6 +130,7 @@ void TestScene::draw(LPD3DXSPRITE spriteHandle)
 	{
 		object->draw(spriteHandle, _viewport);
 	}
+
 }
 
 void TestScene::release()
@@ -165,7 +177,7 @@ void TestScene::updateViewport(GameObject * objTracker)
 	worldsize.x = _map->getTextureWidth();
 	worldsize.y = _map->getTextureHeight();
 	// Bám theo object.
-	GVector2 new_position = GVector2(max(objTracker->getPhysicsComponent()->getPositionX() - 260, 0), WINDOW_HEIGHT);		// 200 khoảng cách tối đa giữa object và map -> hardcode
+	GVector2 new_position = GVector2(max(objTracker->getPhysicsComponent()->getPositionX() - 260, 0), max(objTracker->getPhysicsComponent()->getPositionY() + 300,WINDOW_HEIGHT));		// 200 khoảng cách tối đa giữa object và map -> hardcode
 
 	// Không cho đi quá map.
 	if (new_position.x + WINDOW_WIDTH > worldsize.x)

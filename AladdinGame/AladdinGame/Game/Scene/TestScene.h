@@ -62,7 +62,7 @@ private:
 
 	// Check if need to update viewport
 	bool _updateViewport;
-
+	RECT _rect;
 	// Inherited via Scene
 	virtual void updateInput(float dt) override;
 
