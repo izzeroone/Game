@@ -44,16 +44,16 @@ bool TestScene::init()
 
 	_listobject.push_back(_Aladdin);
 
-	auto land = ObjectFactory::getLand(0, 120, 918, 1, eDirection::TOP, eLandType::lNORMAL);
+	auto land = ObjectFactory::getLand(0 * SCALE_FACTOR, 60 * SCALE_FACTOR, 459 * SCALE_FACTOR, 1 * SCALE_FACTOR, eDirection::TOP, eLandType::lNORMAL);
 	_listobject.push_back(land);
 
-	auto rope = ObjectFactory::getRope(278 * SCALE_FACTOR, (692 - 357) * SCALE_FACTOR, 3 * SCALE_FACTOR, 235 * SCALE_FACTOR, eDirection::ALL, eRopeType::rVERTICAL);
+	auto rope = ObjectFactory::getRope(280 * SCALE_FACTOR, (692 - 357) * SCALE_FACTOR, 3 * SCALE_FACTOR, 235 * SCALE_FACTOR, eDirection::ALL, eRopeType::rVERTICAL);
 	_listobject.push_back(rope);
 
 	auto rope2 = ObjectFactory::getRope(351 * SCALE_FACTOR, (692 - 358) * SCALE_FACTOR, 300 * SCALE_FACTOR, 3 * SCALE_FACTOR, eDirection::ALL, eRopeType::rHORIZONTAL);
 	_listobject.push_back(rope2);
 	
-	auto land2 = ObjectFactory::getLand(919, 120, 175, 1, eDirection::TOP, eLandType::lFLAME);
+	auto land2 = ObjectFactory::getLand(460 * SCALE_FACTOR, 60 * SCALE_FACTOR, 88 * SCALE_FACTOR, 1 * SCALE_FACTOR, eDirection::TOP, eLandType::lFLAME);
 	_listobject.push_back(land2);
 
 	_map = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);

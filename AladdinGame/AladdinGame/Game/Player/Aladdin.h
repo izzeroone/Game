@@ -90,6 +90,7 @@ private:
 	void throwApple();
 	void checkAndAddWeaponAnimation();
 	void checkAndAddWeaponAnimation(eStatus status);
+	bool checkAnimationHasWeapon();
 	void removeWeaponAnimation();
 	void checkAndRemoveWeapon();
 

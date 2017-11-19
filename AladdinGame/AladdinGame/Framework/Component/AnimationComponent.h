@@ -20,6 +20,9 @@ public:
 	virtual Animation* getCurrentAnimation();
 	virtual void setAnimation(int status);
 	virtual void setAnimationNoRestart(int status);
+	virtual void setTempAnimation(int status, int count);
+	virtual bool updateTempAnimation(float deltatime);
+	bool drawTempAnimation(LPD3DXSPRITE spriteHandle, Viewport * viewport);
 	virtual Animation* getAnimation(int status);
 	virtual int getAnimationStatus();
 	virtual void draw(LPD3DXSPRITE spriteHander, Viewport* viewport);
@@ -60,6 +63,10 @@ protected:
 	map<int, map<int, Animation*>> _transition;
 	int _index;
 	int _preindex;
+
+	int _tempIndex;
+	int _tempCount;
+
 	bool _transitionPlayed; // cờ hiệu đánh dấu chuyển cảnh
 	PhysicsComponent* _physicsComponent;
 };
