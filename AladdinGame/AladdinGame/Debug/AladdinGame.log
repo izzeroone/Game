@@ -1,15 +1,13 @@
-﻿  Aladdin.cpp
+﻿  ObjectFactory.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(192): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(307): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(323): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(515): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(586): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(611): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(201): warning C4101: 'direction': unreferenced local variable
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(833): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(864): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(872): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(89): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(90): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(91): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(92): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(133): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(134): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(135): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(136): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(57): warning C4715: 'ObjectFactory::getObjectById': not all control paths return a value
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)

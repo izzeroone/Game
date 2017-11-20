@@ -123,6 +123,7 @@ public:
 private:
 	bool					_isAll;
 	int						_startFrame;
+	int						_startLoopFrame;						//Vị trí loop bắt đầu, vị trị loop kết thúc là _endFrame luôn
 	int						_endFrame;
 	int						_index;									// số thứ tự frame
 	int						_totalFrames;

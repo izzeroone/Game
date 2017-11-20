@@ -11,18 +11,6 @@ public:
 	CollisionComponent();
 	CollisionComponent(GameObject* target);
 
-	/*
-	khởi tạo body với collision RECT (chưa xài được :v)
-	@target: đối tượng sử dụng
-	@bodyRect: hcn của đối tượng dùng để xét va chạm, tính theo gốc top-left của đối tượng đó.
-	@ví dụ: width, height là size của object
-	bodyRect.top = 0;
-	bodyRect.left = 0;
-	bodyRect.right = width;
-	bodyRect.bottom = height;
-	*/
-	CollisionComponent(GameObject* target, RECT bodyRect);
-
 	~CollisionComponent();
 
 	void setTargerGameObject(GameObject * gameObject);
@@ -35,7 +23,7 @@ public:
 	void checkCollision(GameObject* otherObject, float dt, bool updatePosition = true);
 
 	/*
-	kiểm tra va chạm với object khác lấy được hướng va chạm, KO  gọi event Begin, End.
+	kiểm tra va chạm với object khác lấy được hướng va chạm
 	@otherObject: object cần kt va chạm
 	@direction: lấy hướng va chạm của otherObject
 	@dt: delta time của mỗi frame
@@ -44,7 +32,7 @@ public:
 	bool checkCollision(GameObject* otherObject, eDirection& direction, float dt, bool updatePosition = true);
 
 	bool isColliding(GameObject* otherObject);
-	GameObject * isColliding(eObjectID eid);
+		GameObject * isColliding(eObjectID eid);
 	eDirection getCollidingDirection(GameObject * otherObject);
 
 	void update(float dt);
@@ -81,8 +69,7 @@ private:
 	map<GameObject*, bool> _listColliding;
 	map<GameObject*, eDirection> _listDirection; // direction colliding
 
-
-	// Inherited via Component
+	// Do nothing 
 	virtual void init() override;
 
 };

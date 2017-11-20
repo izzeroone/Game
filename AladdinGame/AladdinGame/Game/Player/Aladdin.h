@@ -51,6 +51,7 @@ class AladdinAnimationComponent : public AnimationComponent
 {
 public:
 	void init();
+	void update(float deltatime) override;
 };
 
 class AladdinBehaviorComponent : public BehaviorComponent

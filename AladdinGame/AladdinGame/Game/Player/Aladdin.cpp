@@ -2,7 +2,7 @@
 #include "../../Framework/Singleton/gametime.h"
 #include <ctime>;
 //TODO: Add animation queue with count number : replace with temp animation
-//		Fix falling animation : done
+//		Fix falling animation :not done yet
 //		Update animation start animation and start loop is diffirent : ....
 void AladdinPhysicsComponent::init()
 {
@@ -41,7 +41,7 @@ void AladdinAnimationComponent::init()
 	_animations[eStatus::JUMPING] = new Animation(_sprite, 0.168f);
 	_animations[eStatus::JUMPING]->addFrameRect(eObjectID::ALADDIN, "jump_stand_01", "jump_stand_02", "jump_stand_03", "jump_stand_04", "jump_stand_05", "jump_stand_06", "jump_stand_07", "jump_stand_08", "jump_stand_09", "jump_stand_10", NULL);
 
-	_animations[eStatus::FALLING] = new Animation(_sprite, 0.07f);
+	_animations[eStatus::FALLING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::FALLING]->addFrameRect(eObjectID::ALADDIN, "jump_stand_06", "jump_stand_07", "jump_stand_08", "jump_stand_09", "jump_stand_10", NULL);
 	_animations[eStatus::FALLING]->animateFromTo(3, 4, true);
 
@@ -159,6 +159,15 @@ void AladdinAnimationComponent::init()
 	for (auto animate : _animations)
 	{
 		animate.second->setColorFlash(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+	}
+}
+
+void AladdinAnimationComponent::update(float deltatime)
+{
+	AnimationComponent::update(deltatime);
+	if (_index == eStatus::RUNNING)
+	{
+		__debugoutput(_animations[_index]->getIndex());
 	}
 }
 

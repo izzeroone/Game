@@ -211,6 +211,9 @@
     <ClInclude Include="Game\Scene\TestScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\pugixml\scripts\pugixml_vs2015.vcxproj">
+      <Project>{07cf01c0-b887-499d-ad9c-799cb6a9fe64}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\sigcxx\sigcxx.vcxproj">
       <Project>{30cfe0ee-0a55-4e3b-8ead-ef62a5ca243a}</Project>
     </ProjectReference>

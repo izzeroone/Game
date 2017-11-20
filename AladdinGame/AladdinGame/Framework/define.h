@@ -30,7 +30,7 @@ enum eObjectID
 	ALADDIN = 0, // main character
 	LAND = 1,
 	ROPE = 2,
-	MAP1 = 3
+	MAP1 = 30
 };
 
 enum eStatus

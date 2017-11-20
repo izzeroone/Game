@@ -16,6 +16,7 @@ Animation::Animation(Sprite * spriteSheet, float timeAnimate, bool loop)
 	_count = 0;
 
 	_startFrame = 0;
+	_startLoopFrame = 0;
 	_endFrame = _totalFrames - 1;
 
 	this->setIndex(0);
@@ -39,6 +40,7 @@ Animation::Animation(Sprite * spriteSheet, int totalFrames, int cols, float time
 	_count = 0;
 
 	_startFrame = 0;
+	_startLoopFrame = 0;
 	_endFrame = _totalFrames - 1;
 
 	int frameW = spriteSheet->getTextureWidth() / cols;
@@ -64,7 +66,7 @@ Animation::~Animation()
 
 void Animation::nextFrame()
 {
-	this->setIndex(_index + 1);
+	setIndex(_index + 1);
 }
 void Animation::prevFrame()
 {
@@ -92,14 +94,21 @@ void Animation::setIndex(int index)
 	if (_index > _endFrame)
 	{
 		_count++;
-		_index = _startFrame;
+		//_index = _startFrame;
+		_index = _startLoopFrame;
 	}
 
-	if (_index < _startFrame)
-	{
-		_count++;
-		_index = _endFrame;
-	}
+	//if (_index < _startFrame)
+	//{
+	//	_count++;
+	//	_index = _endFrame;
+	//}
+
+	//if (_index < _startLoopFrame)
+	//{
+	//	_count++;
+	//	_index = _endFrame;
+	//}
 
 	_currentRect = _frameRectList[_index];
 
@@ -310,16 +319,16 @@ void Animation::animateFromTo(int from, int to, bool loop)
 {
 	if (from <= to)
 	{
-		_startFrame = from;
+		_startLoopFrame = from;
 		_endFrame = to;
 	}
 	else
 	{
-		_startFrame = to;
+		_startLoopFrame = to;
 		_endFrame = from;
 	}
 
-	this->setIndex(from);
+	this->setIndex(0);
 	_isLoop = loop;
 	_timer = 0.0f;
 
@@ -341,11 +350,4 @@ void Animation::draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 {
 	_spriteSheet->setFrameRect(_currentRect);
 	_spriteSheet->render(spriteHandle, viewport, _frameTransition[_index]);
-	if (_frameTransition[_index] != VECTOR2ZERO)
-	{
-		OutputDebugStringW(L"Transition : ");
-		__debugoutput(_index);
-		__debugoutput(_frameTransition[_index].x);
-		__debugoutput(_frameTransition[_index].y);
-	}
 }

@@ -44,17 +44,14 @@ bool TestScene::init()
 
 	_listobject.push_back(_Aladdin);
 
-	auto land = ObjectFactory::getLand(0 * SCALE_FACTOR, 60 * SCALE_FACTOR, 459 * SCALE_FACTOR, 1 * SCALE_FACTOR, eDirection::TOP, eLandType::lNORMAL);
-	_listobject.push_back(land);
+	map<string, GameObject*>* maptemp = ObjectFactory::getMapObjectFromFile("Resources//Maps//stage1.xml");
+	_mapobject.insert(maptemp->begin(), maptemp->end());
 
-	auto rope = ObjectFactory::getRope(280 * SCALE_FACTOR, (692 - 357) * SCALE_FACTOR, 3 * SCALE_FACTOR, 235 * SCALE_FACTOR, eDirection::ALL, eRopeType::rVERTICAL);
-	_listobject.push_back(rope);
+	for (auto it = _mapobject.begin(); it != _mapobject.end(); it++)
+	{
+		_listobject.push_back(it->second);
+	}
 
-	auto rope2 = ObjectFactory::getRope(351 * SCALE_FACTOR, (692 - 358) * SCALE_FACTOR, 300 * SCALE_FACTOR, 3 * SCALE_FACTOR, eDirection::ALL, eRopeType::rHORIZONTAL);
-	_listobject.push_back(rope2);
-	
-	auto land2 = ObjectFactory::getLand(460 * SCALE_FACTOR, 60 * SCALE_FACTOR, 88 * SCALE_FACTOR, 1 * SCALE_FACTOR, eDirection::TOP, eLandType::lFLAME);
-	_listobject.push_back(land2);
 
 	_map = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
 	//_map->setFrameRect(0.0f, _map->getFrameWidth(), (float)_map->getFrameHeight(), 0.0f);

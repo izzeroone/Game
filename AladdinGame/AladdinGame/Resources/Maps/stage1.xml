@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+  <Objects>
+    <Item Id="1" Name="land1" X="0" Y="60" Width="459" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	<Item Id="1" Name="land2" X="460" Y="60" Width="88" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="type" Value="1" />
+      </Params>
+    </Item>
+	<Item Id="2" Name="rope1" X="351" Y="335" Width="300" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="15" />
+        <Elem Key="type" Value="1" />
+      </Params>
+    </Item>
+	<Item Id="2" Name="rope2" X="280" Y="335" Width="5" Height="235">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="15" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+  </Objects>

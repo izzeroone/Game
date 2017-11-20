@@ -14,11 +14,6 @@ CollisionComponent::CollisionComponent(GameObject * target)
 	_collisionComponentRect.bottom = abs(_target->getPhysicsComponent()->getBounding().top - _target->getPhysicsComponent()->getBounding().bottom);
 }
 
-CollisionComponent::CollisionComponent(GameObject * target, RECT bodyRect)
-{
-	_target = target;
-	_collisionComponentRect = bodyRect;
-}
 
 CollisionComponent::~CollisionComponent()
 {
@@ -34,38 +29,14 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 {
 	//check if other game object has physiscs component
 	if (otherObject->getPhysicsComponent() == nullptr)
-	{
 		return;
-	}
+
 	eDirection direction;
 	float time = isCollide(otherObject, direction, dt);
 	if (time < 1.0f)
 	{
-		RECT rect = _target->getPhysicsComponent()->getBounding();
-		OutputDebugStringW(L"Targer bounding : ");
-		OutputDebugStringW(L"Top : ");
-		__debugoutput(rect.top);
-		OutputDebugStringW(L" Bottom : ");
-		__debugoutput(rect.bottom);
-		OutputDebugStringW(L" Left : ");
-		__debugoutput(rect.left);
-		OutputDebugStringW(L" Right : ");
-		__debugoutput(rect.right);
-		OutputDebugStringW(L" \n ");
 
-		rect = otherObject->getPhysicsComponent()->getBounding();
-		OutputDebugStringW(L"other bounding : ");
-		OutputDebugStringW(L"Top : ");
-		__debugoutput(rect.top);
-		OutputDebugStringW(L" Bottom : ");
-		__debugoutput(rect.bottom);
-		OutputDebugStringW(L" Left : ");
-		__debugoutput(rect.left);
-		OutputDebugStringW(L" Right : ");
-		__debugoutput(rect.right);
-		OutputDebugStringW(L" \n ");
-		
-		if (otherObject->getPhysicsComponent()->getPhysicsBodySide()!= eDirection::NONE && (direction & otherObject->getPhysicsComponent()->getPhysicsBodySide()) == direction)
+		if (otherObject->getPhysicsComponent()->getPhysicsBodySide() != eDirection::NONE && (direction & otherObject->getPhysicsComponent()->getPhysicsBodySide()) == direction)
 		{
 			// cập nhật tọa độ
 			updateTargetPosition(otherObject, direction, true);
@@ -77,29 +48,6 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 	{
 		if (isColliding(_target->getPhysicsComponent()->getBounding(), otherObject->getPhysicsComponent()->getBounding()))
 		{
-			RECT rect = _target->getPhysicsComponent()->getBounding();
-			OutputDebugStringW(L"Targer bounding : ");
-			OutputDebugStringW(L"Top : ");
-			__debugoutput(rect.top);
-			OutputDebugStringW(L" Bottom : ");
-			__debugoutput(rect.bottom);
-			OutputDebugStringW(L" Left : ");
-			__debugoutput(rect.left);
-			OutputDebugStringW(L" Right : ");
-			__debugoutput(rect.right);
-			OutputDebugStringW(L" \n ");
-
-			rect = otherObject->getPhysicsComponent()->getBounding();
-			OutputDebugStringW(L"other bounding : ");
-			OutputDebugStringW(L"Top : ");
-			__debugoutput(rect.top);
-			OutputDebugStringW(L" Bottom : ");
-			__debugoutput(rect.bottom);
-			OutputDebugStringW(L" Left : ");
-			__debugoutput(rect.left);
-			OutputDebugStringW(L" Right : ");
-			__debugoutput(rect.right);
-			OutputDebugStringW(L" \n ");
 			_listColliding[otherObject] = true;
 			_listDirection[otherObject] = direction;
 		}
@@ -111,7 +59,7 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 		{
 			auto side = this->getSide(otherObject);
 
-			if (otherObject->getPhysicsComponent()->getPhysicsBodySide()== eDirection::NONE || (side & otherObject->getPhysicsComponent()->getPhysicsBodySide()) != side)
+			if (otherObject->getPhysicsComponent()->getPhysicsBodySide() == eDirection::NONE || (side & otherObject->getPhysicsComponent()->getPhysicsBodySide()) != side)
 				return;
 
 			// cập nhật tọa độ
@@ -133,7 +81,7 @@ bool CollisionComponent::checkCollision(GameObject * otherObject, eDirection & d
 
 	if (time < 1.0f)
 	{
-		if (otherObject->getPhysicsComponent()->getPhysicsBodySide()!= eDirection::NONE && (direction & otherObject->getPhysicsComponent()->getPhysicsBodySide()) == direction)
+		if (otherObject->getPhysicsComponent()->getPhysicsBodySide() != eDirection::NONE && (direction & otherObject->getPhysicsComponent()->getPhysicsBodySide()) == direction)
 		{
 			// cập nhật tọa độ
 			updateTargetPosition(otherObject, direction, true);
@@ -149,7 +97,7 @@ bool CollisionComponent::checkCollision(GameObject * otherObject, eDirection & d
 			auto side = this->getSide(otherObject);
 			direction = side;
 
-			if (otherObject->getPhysicsComponent()->getPhysicsBodySide()== eDirection::NONE || (side & otherObject->getPhysicsComponent()->getPhysicsBodySide()) != side)
+			if (otherObject->getPhysicsComponent()->getPhysicsBodySide() == eDirection::NONE || (side & otherObject->getPhysicsComponent()->getPhysicsBodySide()) != side)
 				return true;
 
 			// cập nhật tọa độ
@@ -324,7 +272,7 @@ void CollisionComponent::updateTargetPosition(GameObject* otherObject, eDirectio
 {
 	if (withVelocity == true)
 	{
-		if (otherObject->getPhysicsComponent()->getPhysicsBodySide()!= eDirection::NONE || (direction & otherObject->getPhysicsComponent()->getPhysicsBodySide()) == direction)
+		if (otherObject->getPhysicsComponent()->getPhysicsBodySide() != eDirection::NONE || (direction & otherObject->getPhysicsComponent()->getPhysicsBodySide()) == direction)
 		{
 			auto v = _target->getPhysicsComponent()->getVelocity();
 			auto pos = _target->getPhysicsComponent()->getPosition();
