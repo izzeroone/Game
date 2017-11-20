@@ -78,9 +78,18 @@ void AnimationComponent::setAnimationNoRestart(int status)
 
 void AnimationComponent::setTempAnimation(int status, int count)
 {
+
+	if (_tempIndex != -1)
+		return;
+
 	_tempIndex = status;
 	_tempCount = count;
 	_animations[_tempIndex]->restart();
+}
+
+bool AnimationComponent::isTempAnimationEmpty()
+{
+	return _tempIndex == -1 || _animations[_tempIndex]->getCount() >= _tempCount;
 }
 
 bool AnimationComponent::updateTempAnimation(float deltatime)
@@ -104,7 +113,10 @@ bool AnimationComponent::drawTempAnimation(LPD3DXSPRITE spriteHandle, Viewport *
 		return false;
 
 	if (_animations[_tempIndex]->getCount() >= _tempCount)
+	{
+		_tempIndex = -1;
 		return false;
+	}
 	
 	_animations[_tempIndex]->draw(spriteHandle, viewport);
 	return true;

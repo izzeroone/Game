@@ -1,9 +1,9 @@
 ﻿#include "Aladdin.h"
 #include "../../Framework/Singleton/gametime.h"
 #include <ctime>;
-//TODO: Add animation queue with count number 
-//		Fix falling animation
-//		Update animation start animation and start loop is diffirent
+//TODO: Add animation queue with count number : replace with temp animation
+//		Fix falling animation : done
+//		Update animation start animation and start loop is diffirent : ....
 void AladdinPhysicsComponent::init()
 {
 	_movingSpeed = ALADDIN_MOVE_SPEED;
@@ -226,7 +226,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		OutputDebugStringW(L" Pre Object : ");
 		__debugoutput(_preObject->getID());
 		OutputDebugStringW(L" \n ");
-		_animationComponent->setTempAnimation(eStatus::NORMAL | eStatus::SLASH, 2);
+		_animationComponent->setTempAnimation(eStatus::NORMAL | eStatus::SLASH, 1);
 	}
 	if (_physicsComponent->getPositionY() + ALADDIN_HEIGHT < 0)
 	{
@@ -247,47 +247,40 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (_animationComponent->getCurrentAnimation()->getTotalTimeAnimation() >= ALADDIN_BORING_TIME)
 		{
-			_isBoring = true;
 			_animationComponent->setAnimation(eStatus::BORING1);
 			setBoringAnimation();
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
-			_isBoring = false;
 			setStatus(eStatus::RUNNING);
 			moveLeft();
 			break;
 		}
 		if (_input->isKeyDown(BT_RIGHT))
 		{
-			_isBoring = false;
 			setStatus(eStatus::RUNNING);
 			moveRight();
 			break;
 		}
 		if (_input->isKeyPressed(BT_JUMP))
 		{
-			_isBoring = false;
 			setStatus(eStatus::JUMPING);
 			jump();
 			break;
 		}
 		if (_input->isKeyDown(BT_UP))
 		{
-			_isBoring = false;
 			setStatus(eStatus::LOOKING_UP);
 			move_viewport.Emit(VIEWPORT_MOVEUP_OFFSET, true);
 			break;
 		}
 		if (_input->isKeyDown(BT_DOWN))
 		{
-			_isBoring = false;
 			setStatus(eStatus::LAYING_DOWN);
 			break;
 		}
 		if (_input->isKeyPressed(BT_SLASH))
 		{
-			_isBoring = false;
 			if (getWeapon() == eStatus::NORMAL)
 			{
 				slash();
@@ -296,7 +289,6 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (_input->isKeyPressed(BT_THROW))
 		{
-			_isBoring = false;
 			if (getWeapon() == eStatus::NORMAL)
 			{
 				throwApple();
@@ -432,7 +424,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			if (getWeapon() == eStatus::NORMAL)
 			{
-				setWeapon(eStatus::SLASH);
+				slash();
 				break;
 			}
 		}
@@ -440,7 +432,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			if (getWeapon() == eStatus::NORMAL)
 			{
-				setWeapon(eStatus::THROW);
+				throwApple();
 				break;
 			}
 		}
@@ -486,7 +478,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			if (getWeapon() == eStatus::NORMAL)
 			{
-				setWeapon(eStatus::SLASH);
+				slash();
 				break;
 			}
 		}
@@ -510,7 +502,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			if (getWeapon() == eStatus::NORMAL)
 			{
-				setWeapon(eStatus::SLASH);
+				slash();
 				break;
 			}
 		}
@@ -531,16 +523,21 @@ void AladdinBehaviorComponent::update(float detatime)
 			{
 				if (ropeObject->getPhysicsComponent()->getPositionY() >= _physicsComponent->getPositionY() + ALADDIN_HEIGHT)
 				{
+					_animationComponent->getCurrentAnimation()->setReserve(false);
+					_animationComponent->getCurrentAnimation()->canAnimate(true);
 					moveUp();
 				}
 				else
 				{
+					_animationComponent->getCurrentAnimation()->canAnimate(false);
 					standing();
 				}
 			}
 		}
 		if (_input->isKeyDown(BT_DOWN))
 		{
+			_animationComponent->getCurrentAnimation()->setReserve(true);
+			_animationComponent->getCurrentAnimation()->canAnimate(true);
 			moveDown();
 		}
 		if (_input->isKeyDown(BT_LEFT))
@@ -553,6 +550,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (!_input->isKeyDown(BT_UP) && !_input->isKeyDown(BT_DOWN))
 		{
+			_animationComponent->getCurrentAnimation()->canAnimate(false);
 			standing();
 		}
 		if (_input->isKeyPressed(BT_JUMP))
@@ -592,16 +590,19 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
+			_animationComponent->getCurrentAnimation()->canAnimate(true);
 			moveLeft();
 			faceLeft();
 		}
 		if (_input->isKeyDown(BT_RIGHT))
 		{
+			_animationComponent->getCurrentAnimation()->canAnimate(true);
 			moveRight();
 			faceRight();
 		}
 		if (!_input->isKeyDown(BT_LEFT) && !_input->isKeyDown(BT_RIGHT))
 		{
+			_animationComponent->getCurrentAnimation()->canAnimate(false);
 			standing();
 		}
 		if (_input->isKeyDown(BT_DOWN) && _input->isKeyDown(BT_JUMP))
@@ -621,7 +622,6 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (_input->isKeyPressed(BT_SLASH))
 		{
-			_isBoring = false;
 			if (getWeapon() == eStatus::NORMAL)
 			{
 				slash();
@@ -630,7 +630,6 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (_input->isKeyPressed(BT_THROW))
 		{
-			_isBoring = false;
 			if (getWeapon() == eStatus::NORMAL)
 			{
 				throwApple();
@@ -717,13 +716,18 @@ void AladdinBehaviorComponent::update(float detatime)
 			break;
 		}
 	}
-	updateAnimation();
+
+	if (_animationComponent->isTempAnimationEmpty() == true)
+	{
+		setWeapon(eStatus::NORMAL);
+	}
 }
 
 void AladdinBehaviorComponent::setStatus(eStatus status)
 {
 	BehaviorComponent::setStatus(status);
 	setWeapon(eStatus::NORMAL);
+	updateAnimation();
 }
 
 void AladdinBehaviorComponent::updateTimeOut(float deltaTime)
@@ -732,21 +736,16 @@ void AladdinBehaviorComponent::updateTimeOut(float deltaTime)
 
 void AladdinBehaviorComponent::updateAnimation()
 {
+
 	switch (_status)
 	{
 	case NORMAL:
 		if (_isBoring == false)
 		{
-			checkAndAddWeaponAnimation();
+			_animationComponent->setAnimation(eStatus::NORMAL);
 		}
 		break;
 	case JUMPING:
-		if (getWeapon() != eStatus::NORMAL)
-		{
-			_animationComponent->setAnimation(eStatus::JUMPING | getWeapon());
-		}
-		else
-		{
 			if (_preStatus == eStatus::RUNNING)
 			{
 				_animationComponent->setAnimation(eStatus::MOVING_JUMPING);
@@ -763,87 +762,33 @@ void AladdinBehaviorComponent::updateAnimation()
 			{
 				_animationComponent->setAnimation(eStatus::JUMPING);
 			}
-		}
 		break;
 	case LAYING_DOWN:
-		checkAndAddWeaponAnimation();
+		_animationComponent->setAnimation(eStatus::LAYING_DOWN);
 		break;
 	case RUNNING:
-		checkAndAddWeaponAnimation();
+		_animationComponent->setAnimation(eStatus::RUNNING);
 		break;
 	case LOOKING_UP:
-		checkAndAddWeaponAnimation();
+		_animationComponent->setAnimation(eStatus::LOOKING_UP);
 		break;
 	case FALLING:
 		if (_preObject->getID() == eObjectID::LAND)// Nhảy từ mặt đất thì giữ hiệu wungs như cũ
 		{
-			if (getWeapon() != eStatus::NORMAL)
-			{
-				int status = _animationComponent->getAnimationStatus();
-				status = status | getWeapon();
-				_animationComponent->setAnimation(status);
+			//if (getWeapon() != eStatus::NORMAL)
+			//{
+			//	_animationComponent->setTempAnimation(eStatus::FALLING| _weapon, 1);
 
-			}
-			else
-			{
-				if (checkAnimationHasWeapon() == true && _animationComponent->getCurrentAnimation()->getCount() >= 1)
-				{
-					int status = _animationComponent->getAnimationStatus();
-					status = (status & ~eStatus::SLASH); // remove slash
-					status = (status & ~eStatus::THROW); // remove throw
-					_animationComponent->setAnimation(status);
-				}
-			}
-			return;
-		}
-		if (getWeapon() != eStatus::NORMAL && _animationComponent->getCurrentAnimation()->getCount() >= 1)
-		{
-			checkAndAddWeaponAnimation();
+			//}
 			break;
-			//_animationComponent->setAnimation(eStatus::FALLING);
 		}
-		if (getWeapon() == eStatus::NORMAL)
-		{
-			checkAndAddWeaponAnimation();
-			break;
-			//_animationComponent->setAnimation(eStatus::FALLING);
-		}
+		_animationComponent->setAnimation(eStatus::FALLING);
 		break;
 	case CLIMB_VERTICAL:
-		checkAndAddWeaponAnimation();
-		if (getWeapon() == eStatus::NORMAL)
-		{
-			if (_physicsComponent->getVelocity().y != 0)
-			{
-				_animationComponent->getCurrentAnimation()->canAnimate(true);
-				if (_physicsComponent->getVelocity().y > 0)
-				{
-					_animationComponent->getCurrentAnimation()->setReserve(false);
-				}
-				else
-				{
-					_animationComponent->getCurrentAnimation()->setReserve(true);
-				}
-			}
-			else
-			{
-				_animationComponent->getCurrentAnimation()->canAnimate(false);
-			}
-		}
+		_animationComponent->setAnimation(eStatus::CLIMB_VERTICAL);
 		break;
 	case CLIMB_HORIZON:
-		if (getWeapon() == eStatus::NORMAL)
-		{
-			if (_physicsComponent->getVelocity().x != 0)
-			{
-				_animationComponent->getCurrentAnimation()->canAnimate(true);
-			}
-			else
-			{
-				_animationComponent->getCurrentAnimation()->canAnimate(false);
-			}
-		}
-		checkAndAddWeaponAnimation();
+		_animationComponent->setAnimation(eStatus::CLIMB_HORIZON);
 		break;
 	case BURNED:
 		_animationComponent->setAnimation(eStatus::BURNED);
@@ -853,7 +798,6 @@ void AladdinBehaviorComponent::updateAnimation()
 	default:
 		break;
 	}
-	checkAndRemoveWeapon();
 }
 
 void AladdinBehaviorComponent::setBoringAnimation()
@@ -954,62 +898,39 @@ void AladdinBehaviorComponent::jump()
 void AladdinBehaviorComponent::slash()
 {
 	setWeapon(eStatus::SLASH);
+	updateWeaponAnimation(_status);
 }
 
 void AladdinBehaviorComponent::throwApple()
 {
 	setWeapon(eStatus::THROW);
+	updateWeaponAnimation(_status);
 }
 
-void AladdinBehaviorComponent::checkAndAddWeaponAnimation()
+void AladdinBehaviorComponent::updateWeaponAnimation(eStatus status)
 {
-	if (getWeapon() != eStatus::NORMAL)
+	if (_weapon != eStatus::NORMAL)
 	{
-		_animationComponent->setAnimation(_status | getWeapon());
-	}
-	else
-	{
-		_animationComponent->setAnimation(_status);
-	}
-}
-
-void AladdinBehaviorComponent::checkAndAddWeaponAnimation(eStatus status)
-{
-	if (getWeapon() != eStatus::NORMAL)
-	{
-		_animationComponent->setAnimationNoRestart(status | getWeapon());
-
+		_animationComponent->setTempAnimation(status | _weapon, 1);
 	}
 	else
 	{
 		_animationComponent->setAnimation(status);
 	}
-}
 
-bool AladdinBehaviorComponent::checkAnimationHasWeapon()
-{
-	int status = _animationComponent->getAnimationStatus();
-	if (status & eStatus::SLASH !=  0 || status & eStatus::THROW != 0)
-		return true;
-	return false;
-}
-
-void AladdinBehaviorComponent::removeWeaponAnimation()
-{
-	int status = _animationComponent->getAnimationStatus();
-	status = (status & ~eStatus::SLASH); // remove slash
-	status = (status & ~eStatus::THROW); // remove throw
-	_animationComponent->setAnimation(status);
-}
-
-void AladdinBehaviorComponent::checkAndRemoveWeapon()
-{
-	if (getWeapon() != eStatus::NORMAL && _animationComponent->getCurrentAnimation()->getCount() >= 1 )
+	if (_animationComponent->isTempAnimationEmpty() == true)
 	{
-		removeWeaponAnimation();
-		setWeapon(eStatus::NORMAL);
+		_weapon = eStatus::NORMAL;
 	}
 }
+
+
+
+
+
+
+
+
 
 void AladdinBehaviorComponent::removeGravity()
 {

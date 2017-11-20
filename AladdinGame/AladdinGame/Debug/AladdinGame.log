@@ -2,15 +2,14 @@
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(192): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(315): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(331): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(523): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(588): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(610): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(307): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(323): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(515): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(586): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(611): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(201): warning C4101: 'direction': unreferenced local variable
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(889): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(920): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(928): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(992): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(833): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(864): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(872): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)

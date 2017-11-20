@@ -88,11 +88,7 @@ private:
 	//weapon action
 	void slash();
 	void throwApple();
-	void checkAndAddWeaponAnimation();
-	void checkAndAddWeaponAnimation(eStatus status);
-	bool checkAnimationHasWeapon();
-	void removeWeaponAnimation();
-	void checkAndRemoveWeapon();
+	void updateWeaponAnimation(eStatus status);
 
 	//movement helper
 	void removeGravity();
