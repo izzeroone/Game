@@ -147,6 +147,9 @@
     <ClCompile Include="Framework\Component\CollisionComponent.cpp">
       <Filter>Source Files\Framework\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Object\Apple.cpp">
+      <Filter>Source Files\Game\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
@@ -244,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="Framework\Component\CollisionComponent.h">
       <Filter>Header Files\Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Apple.h">
+      <Filter>Header Files\Game\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

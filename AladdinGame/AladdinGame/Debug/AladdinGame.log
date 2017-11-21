@@ -1,13 +1,8 @@
-﻿  ObjectFactory.cpp
+﻿  TestScene.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(89): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(90): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(91): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(92): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(133): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(134): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(135): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(136): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(57): warning C4715: 'ObjectFactory::getObjectById': not all control paths return a value
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(95): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(96): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(184): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(185): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)

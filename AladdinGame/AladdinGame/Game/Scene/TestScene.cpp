@@ -53,12 +53,22 @@ bool TestScene::init()
 	}
 
 
-	_map = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
-	//_map->setFrameRect(0.0f, _map->getFrameWidth(), (float)_map->getFrameHeight(), 0.0f);
-	_map->setPositionX(0);
-	_map->setPositionY(0);
-	_map->setOrigin(GVector2(0.f, 0.f));
-	_map->setScale(SCALE_FACTOR);
+	_mapBack = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
+	_mapBack->setFrameRect(SpriteResource::getInstance()->getSourceRect(eObjectID::MAP1, "back"));
+	_mapBack->setPositionX(0);
+	_mapBack->setPositionY(0);
+	_mapBack->setOrigin(GVector2(0.f, 0.f));
+	_mapBack->setScale(SCALE_FACTOR);
+	_mapBack->setZIndex(0.f);
+
+	_mapFront = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
+	_mapFront->setFrameRect(SpriteResource::getInstance()->getSourceRect(eObjectID::MAP1, "front"));
+	_mapFront->setPositionX(0);
+	_mapFront->setPositionY(0);
+	_mapFront->setOrigin(GVector2(0.f, 0.f));
+	_mapFront->setScale(SCALE_FACTOR);
+	_mapFront->setZIndex(0.f);
+
 
 	_updateViewport = true;
 	//SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE1);
@@ -82,7 +92,7 @@ void TestScene::update(float dt)
 	// left right không đổi dù hệ top-left hay hệ bot-left
 	screen.left = viewport_in_transform.left;
 	screen.right = viewport_in_transform.right;
-	screen.top = this->_map->getTextureHeight() - viewport_position.y;
+	screen.top = this->_mapFront->getTextureHeight() - viewport_position.y;
 	screen.bottom = screen.top + _viewport->getHeight();
 	// getlistobject
 
@@ -122,12 +132,12 @@ void TestScene::update(float dt)
 
 void TestScene::draw(LPD3DXSPRITE spriteHandle)
 {
-	_map->render(spriteHandle, _viewport);
+	_mapBack->render(spriteHandle, _viewport);
 	for (GameObject* object : _active_object)
 	{
 		object->draw(spriteHandle, _viewport);
 	}
-
+	_mapFront->render(spriteHandle, _viewport);
 }
 
 void TestScene::release()
@@ -171,8 +181,8 @@ void TestScene::updateViewport(GameObject * objTracker)
 	// Vị trí hiện tại của viewport. 
 	GVector2 current_position = _viewport->getPositionWorld();
 	GVector2 worldsize;
-	worldsize.x = _map->getTextureWidth();
-	worldsize.y = _map->getTextureHeight();
+	worldsize.x = _mapFront->getTextureWidth();
+	worldsize.y = _mapFront->getTextureHeight();
 	// Bám theo object.
 	GVector2 new_position = GVector2(max(objTracker->getPhysicsComponent()->getPositionX() - 260, 0), max(objTracker->getPhysicsComponent()->getPositionY() + 300,WINDOW_HEIGHT));		// 200 khoảng cách tối đa giữa object và map -> hardcode
 

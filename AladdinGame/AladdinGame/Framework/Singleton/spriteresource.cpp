@@ -30,6 +30,7 @@ void SpriteResource::loadResource(LPD3DXSPRITE spriteHandle)
 
 	Sprite* map = new Sprite(spriteHandle, L"Resources//Images//map1.png");
 	this->_listSprite[eObjectID::MAP1] = map;
+	this->loadSpriteInfo(eObjectID::MAP1, "Resources//Images//map1.txt");
 
 
 	// Đọc file xml để tạo đối tượng sprite

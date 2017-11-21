@@ -57,7 +57,9 @@ private:
 	// Trỏ đến bill, một số đối tượng cần truyền bill vào để xử lý, lấy ở đây.
 	GameObject* _Aladdin;
 	//Map background
-	Sprite* _map;
+	Sprite* _mapBack;
+	Sprite* _mapFront;
+
 	void updateViewport(GameObject* objTracker);
 
 	// Check if need to update viewport
