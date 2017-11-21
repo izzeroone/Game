@@ -21,11 +21,10 @@ using namespace std;
 #define WINDOW_WIDTH 640	
 #define WINDOW_HEIGHT 448
 #define SCALE_FACTOR 2.0f
+#define VIEWPORT_VELOCITY 300
 
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắng
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt mau hong
-#define COLOR_BLUE D3DXCOLOR(63.0 / 255, 72 / 255, 204 / 255, 1.0F)
-//const D3DXCOLOR    COLOR_BLUE (D3DCOLOR_XRGB(63, 72, 204));
 
 enum eObjectID
 {

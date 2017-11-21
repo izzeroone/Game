@@ -60,7 +60,7 @@ private:
 	Sprite* _mapBack;
 	Sprite* _mapFront;
 
-	void updateViewport(GameObject* objTracker);
+	void updateViewport(GameObject* objTracker, float deltatime);
 
 	// Check if need to update viewport
 	bool _updateViewport;

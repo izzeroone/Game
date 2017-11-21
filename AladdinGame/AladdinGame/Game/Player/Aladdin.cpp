@@ -243,6 +243,16 @@ void AladdinBehaviorComponent::update(float detatime)
 		return;
 	}
 
+	if (_protectTime > 0)
+	{
+		_protectTime -= detatime;
+		_animationComponent->getCurrentAnimation()->enableFlashes(true);
+	}
+	else
+	{
+		_animationComponent->getCurrentAnimation()->enableFlashes(false);
+	}
+
 	switch (_status)
 	{
 	case NORMAL:
@@ -717,9 +727,10 @@ void AladdinBehaviorComponent::update(float detatime)
 		landObject = (Land*)collisionComponent->isColliding(eObjectID::LAND);
 		if (landObject != nullptr)
 		{
-			if (landObject->getLandType() == eLandType::lFLAME)
+			if (landObject->getLandType() == eLandType::lFLAME && _protectTime <= 0)
 			{
-				setStatus(eStatus::BURNED);
+				_animationComponent->setTempAnimation(eStatus::BURNED, 1);
+				_protectTime = ALADDIN_PROTECT_TIME;
 			}
 			_preObject = landObject;
 			break;

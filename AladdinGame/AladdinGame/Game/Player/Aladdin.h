@@ -15,7 +15,7 @@
 #define ALADDIN_CLIMB_SPEED 100
 #define ALADDIN_JUMP_VEL 450
 #define GRAVITY 800
-#define PROTECT_TIME 3000
+#define ALADDIN_PROTECT_TIME 3000
 #define ALADDIN_BORING_TIME 3.0f
 #define ALADDIN_WIDTH 37 * SCALE_FACTOR
 #define ALADDIN_HEIGHT 56 * SCALE_FACTOR
@@ -97,6 +97,7 @@ private:
 	// Inherited via BehaviorComponent
 	virtual void executeCommand(eCommand command) override;
 
+	float _protectTime;
 	bool _isBoring; // flag set not to update animation when boring
 	GVector2 _respawnPostion;
 };

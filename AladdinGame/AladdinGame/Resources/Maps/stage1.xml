@@ -78,7 +78,37 @@
         <Elem Key="type" Value="0" />
       </Params>
     </Item>
-		<Item Id="1" Name="land14" X="1388" Y="123" Width="111" Height="5">
+	<Item Id="1" Name="land14" X="1388" Y="123" Width="111" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	<Item Id="1" Name="land15" X="1499" Y="33" Width="662" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	<Item Id="1" Name="land16" X="1748" Y="247" Width="296" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	<Item Id="1" Name="land17" X="1476" Y="249" Width="104" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	<Item Id="1" Name="land18" X="1476" Y="297" Width="40" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	<Item Id="1" Name="land19" X="1588" Y="409" Width="688" Height="5">
       <Params>
         <Elem Key="physicBodyDirection" Value="1" />
         <Elem Key="type" Value="0" />
@@ -88,13 +118,14 @@
 	
 	
 	
-	<Item Id="2" Name="rope1" X="351" Y="335" Width="300" Height="5">
+	<Item Id="2" Name="rope1" X="2090" Y="366" Width="4" Height="301">
       <Params>
         <Elem Key="physicBodyDirection" Value="15" />
-        <Elem Key="type" Value="1" />
+        <Elem Key="type" Value="0" />
       </Params>
     </Item>
-	<Item Id="2" Name="rope2" X="280" Y="335" Width="5" Height="235">
+		
+	<Item Id="2" Name="rope2" X="1546" Y="542" Width="4" Height="237">
       <Params>
         <Elem Key="physicBodyDirection" Value="15" />
         <Elem Key="type" Value="0" />

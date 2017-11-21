@@ -98,11 +98,11 @@ void Animation::setIndex(int index)
 		_index = _startLoopFrame;
 	}
 
-	//if (_index < _startFrame)
-	//{
-	//	_count++;
-	//	_index = _endFrame;
-	//}
+	if (_index < _startFrame)
+	{
+		_count++;
+		_index = _endFrame;
+	}
 
 	//if (_index < _startLoopFrame)
 	//{

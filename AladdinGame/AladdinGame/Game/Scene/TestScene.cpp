@@ -78,7 +78,7 @@ bool TestScene::init()
 
 void TestScene::update(float dt)
 {
-	updateViewport(_Aladdin);
+	updateViewport(_Aladdin, dt);
 	_active_object.clear();
 	_active_object.push_back(_Aladdin);
 	for (GameObject* obj : _active_object)
@@ -172,7 +172,7 @@ void TestScene::destroyobject()
 {
 }
 
-void TestScene::updateViewport(GameObject * objTracker)
+void TestScene::updateViewport(GameObject * objTracker, float deltatime)
 {
 	if (_updateViewport == false)
 	{
@@ -181,10 +181,40 @@ void TestScene::updateViewport(GameObject * objTracker)
 	// Vị trí hiện tại của viewport. 
 	GVector2 current_position = _viewport->getPositionWorld();
 	GVector2 worldsize;
-	worldsize.x = _mapFront->getTextureWidth();
-	worldsize.y = _mapFront->getTextureHeight();
+	worldsize.x = _mapBack->getTextureWidth();
+	worldsize.y = _mapBack->getTextureHeight();
 	// Bám theo object.
-	GVector2 new_position = GVector2(max(objTracker->getPhysicsComponent()->getPositionX() - 260, 0), max(objTracker->getPhysicsComponent()->getPositionY() + 300,WINDOW_HEIGHT));		// 200 khoảng cách tối đa giữa object và map -> hardcode
+	GVector2 new_position;
+	float trackerX = max(objTracker->getPhysicsComponent()->getPositionX() - 260, 0);
+	float trackerY = max(objTracker->getPhysicsComponent()->getPositionY() + 300, WINDOW_HEIGHT);
+	new_position.x = trackerX;
+	new_position.y = trackerY;
+	//if (trackerX > current_position.x + deltatime / 1000 * VIEWPORT_VELOCITY)
+	//{
+	//	new_position.x = current_position.x + deltatime / 1000 * VIEWPORT_VELOCITY;
+	//}
+	//else if (trackerX < current_position.x - deltatime / 1000 * VIEWPORT_VELOCITY)
+	//{
+	//	new_position.x = current_position.x - deltatime / 1000 * VIEWPORT_VELOCITY;
+	//}
+	//else
+	//{
+	//	new_position.x = current_position.x;
+	//}
+
+	//if (trackerY > current_position.y + deltatime / 1000 * VIEWPORT_VELOCITY)
+	//{
+	//	new_position.y = current_position.y + deltatime / 1000 * VIEWPORT_VELOCITY;
+	//}
+	//else if (trackerY < current_position.y - deltatime / 1000 * VIEWPORT_VELOCITY)
+	//{
+	//	new_position.y = current_position.y - deltatime / 1000 * VIEWPORT_VELOCITY;
+	//}
+	//else
+	//{
+	//	new_position.y = current_position.y;
+	//}
+
 
 	// Không cho đi quá map.
 	if (new_position.x + WINDOW_WIDTH > worldsize.x)

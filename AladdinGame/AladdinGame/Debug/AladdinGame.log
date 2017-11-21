@@ -1,8 +1,13 @@
-﻿  TestScene.cpp
+﻿  animation.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(95): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(96): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(184): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(185): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(238): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(239): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(240): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(241): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(249): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(250): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(251): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(252): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)
