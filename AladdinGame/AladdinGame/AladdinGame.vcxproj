@@ -125,6 +125,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <StackReserveSize>8 000 000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -154,6 +155,8 @@
     <ClCompile Include="Framework\Component\NullComponent.cpp" />
     <ClCompile Include="Framework\Component\PhysicsComponent.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
+    <ClCompile Include="Framework\QuadTree.cpp" />
+    <ClCompile Include="Framework\rectutils.cpp" />
     <ClCompile Include="Framework\Singleton\dxdevice.cpp" />
     <ClCompile Include="Framework\Singleton\gamecontroller.cpp" />
     <ClCompile Include="Framework\Singleton\gametime.cpp" />
@@ -190,6 +193,8 @@
     <ClInclude Include="Framework\Component\MovingComponent.h" />
     <ClInclude Include="Framework\define.h" />
     <ClInclude Include="Framework\GameObject.h" />
+    <ClInclude Include="Framework\QuadTree.h" />
+    <ClInclude Include="Framework\rectutils.h" />
     <ClInclude Include="Framework\Singleton\dxdevice.h" />
     <ClInclude Include="Framework\Singleton\gamecontroller.h" />
     <ClInclude Include="Framework\Singleton\gametime.h" />

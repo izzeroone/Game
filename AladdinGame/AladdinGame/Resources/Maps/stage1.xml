@@ -131,4 +131,11 @@
         <Elem Key="type" Value="0" />
       </Params>
     </Item>
+	
+	<Item Id="2" Name="rope3" X="1584" Y="569" Width="563" Height="4">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="15" />
+        <Elem Key="type" Value="1" />
+      </Params>
+    </Item>
   </Objects>

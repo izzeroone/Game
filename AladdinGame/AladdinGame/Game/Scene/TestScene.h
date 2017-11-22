@@ -9,6 +9,7 @@
 #include "../../Framework/Singleton/spriteresource.h"
 #include "../../Framework/Singleton/SoundManager.h"
 #include "../../Framework/animation.h"
+#include "../../Framework/QuadTree.h"
 #include "../ObjectFactory.h"
 #include "../../debug.h"
 #include "../Player/Aladdin.h"
@@ -31,6 +32,8 @@ public:
 
 	void setViewport(Viewport* viewport);
 	void moveViewport(float offset, bool moveup, sigcxx::SLOT slot = nullptr);
+
+	void writeXMLQuadTree();
 
 	// Trả về một đối tượng theo id.
 	// id: kiểu enum eID, định danh một đối tượng.
@@ -65,6 +68,10 @@ private:
 	// Check if need to update viewport
 	bool _updateViewport;
 	RECT _rect;
+
+	//root of the node tree
+	QuadTreeNode * _root;
+	RECT rootRect;
 	// Inherited via Scene
 	virtual void updateInput(float dt) override;
 

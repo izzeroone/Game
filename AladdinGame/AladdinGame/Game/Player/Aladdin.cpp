@@ -165,10 +165,6 @@ void AladdinAnimationComponent::init()
 void AladdinAnimationComponent::update(float deltatime)
 {
 	AnimationComponent::update(deltatime);
-	if (_index == eStatus::RUNNING)
-	{
-		__debugoutput(_animations[_index]->getIndex());
-	}
 }
 
 
@@ -339,7 +335,7 @@ void AladdinBehaviorComponent::update(float detatime)
 			if (ropeObject->getRopeType() == eRopeType::rHORIZONTAL)
 			{
 				RECT ropeBound = ropeObject->getPhysicsComponent()->getBounding();
-				float newPostionY = ropeBound.bottom + (ropeBound.top - ropeBound.bottom) / 2;
+				float newPostionY = ropeBound.top;
 				newPostionY -= ALADDIN_CLIMB_HEIGHT;
 				_physicsComponent->setPositionY(newPostionY);
 				setStatus(eStatus::CLIMB_HORIZON);
@@ -353,7 +349,13 @@ void AladdinBehaviorComponent::update(float detatime)
 		//landing
 		object = collisionComponent->isColliding(eObjectID::LAND);
 		if (object != nullptr)
+			//&& collisionComponent->getCollidingDirection(object) & eDirection::TOP == eDirection::TOP)
 		{
+			float moveX, moveY;
+			if (collisionComponent->isColliding(object, moveX, moveY, detatime))
+			{
+				collisionComponent->updateTargetPosition(object, eDirection::TOP, false, GVector2(moveX, moveY));
+			}
 			setStatus(eStatus::NORMAL);
 			standing();
 			_preObject = object;
@@ -483,7 +485,8 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			if (_animationComponent->getCurrentAnimation()->getTotalTimeAnimation() >= RUNNING_BRAKE_TIME)
 			{
-				setStatus(eStatus::BRAKING);
+				_animationComponent->setTempAnimation(eStatus::BRAKING, 1);
+				_animationComponent->getCurrentAnimation()->restart();
 			}
 			else
 			{
@@ -656,61 +659,6 @@ void AladdinBehaviorComponent::update(float detatime)
 			}
 		}
 		break;
-		break;
-	case BURNED:
-		if (!_input->isKeyDown(BT_LEFT) && !_input->isKeyDown(BT_RIGHT))
-		{
-			standing();
-			setStatus(eStatus::BURNED);
-			break;
-		}
-		if (_input->isKeyDown(BT_LEFT))
-		{
-			moveLeft();
-		}
-		if (_input->isKeyDown(BT_RIGHT))
-		{
-			moveRight();
-		}
-		if (_input->isKeyPressed(BT_JUMP))
-		{
-			setStatus(eStatus::JUMPING);
-			jump();
-			break;
-		}
-		if (_input->isKeyDown(BT_UP))
-		{
-			setStatus(eStatus::LOOKING_UP);
-			break;
-		}
-		if (_input->isKeyDown(BT_DOWN))
-		{
-			setStatus(eStatus::LAYING_DOWN);
-			break;
-		}
-		if (_input->isKeyPressed(BT_SLASH))
-		{
-			if (getWeapon() == eStatus::NORMAL)
-			{
-				setStatus(eStatus::NORMAL);
-				slash();
-				break;
-			}
-		}
-		if (_input->isKeyPressed(BT_THROW))
-		{
-			if (getWeapon() == eStatus::NORMAL)
-			{
-				setStatus(eStatus::NORMAL);
-				throwApple();
-				break;
-			}
-		}
-	case BRAKING:
-		if (_animationComponent->getCurrentAnimation()->getCount() >= 1)
-		{
-			setStatus(eStatus::NORMAL);
-		}
 		break;
 	default:
 		break;

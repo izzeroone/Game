@@ -391,6 +391,12 @@ eDirection CollisionComponent::getSide(GameObject* otherObject)
 	}
 }
 
+void CollisionComponent::reset()
+{
+	_listColliding.clear();
+	_listDirection.clear();
+}
+
 void CollisionComponent::init()
 {
 

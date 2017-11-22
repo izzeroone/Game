@@ -14,21 +14,9 @@ public:
 	~CollisionComponent();
 
 	void setTargerGameObject(GameObject * gameObject);
-	/*
-	kiểm tra va chạm với object khác, gọi event Begin, End.
-	@otherObject: object cần kt va chạm
-	@dt: delta time của mỗi frame
-	@updatePosition: collision body sẽ cập nhật vị trí object lại nếu object chồng lấp lên object khác khi set = true
-	*/
+
 	void checkCollision(GameObject* otherObject, float dt, bool updatePosition = true);
 
-	/*
-	kiểm tra va chạm với object khác lấy được hướng va chạm
-	@otherObject: object cần kt va chạm
-	@direction: lấy hướng va chạm của otherObject
-	@dt: delta time của mỗi frame
-	@updatePosition: collision body sẽ cập nhật vị trí object lại nếu object chồng lấp lên object khác khi set = true
-	*/
 	bool checkCollision(GameObject* otherObject, eDirection& direction, float dt, bool updatePosition = true);
 
 	bool isColliding(GameObject* otherObject);
@@ -38,18 +26,8 @@ public:
 	void update(float dt);
 
 
-	/*
-	lấy collision rect trong world, tính theo gốc tọa độ bottom-left
-	*/
 	RECT getCollisionRect();
 
-	/*
-	Cập nhật target position khi va chạm
-	@otherObject: đối tượng va chạm
-	@direction: hướng bị va chạm của otherObject
-	@withVelocity: TRUE khi kt va chạm với vận tốc, tham số move ko cần. FALSE khi va chạm bằng kt RECT
-	@move: khoảng chồng lấp của 2 object.
-	*/
 	void updateTargetPosition(GameObject* otherObject, eDirection direction, bool withVelocity, GVector2 move = GVector2(0, 0));
 
 	float isCollide(GameObject* otherObject, eDirection& direction, float dt);
@@ -58,6 +36,8 @@ public:
 
 	RECT getSweptBroadphaseRect(GameObject* object, float dt);
 	eDirection getSide(GameObject* otherObject);
+
+	void reset();
 
 private:
 	GameObject* _target;

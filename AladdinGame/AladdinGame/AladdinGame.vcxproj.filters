@@ -150,6 +150,12 @@
     <ClCompile Include="Game\Object\Apple.cpp">
       <Filter>Source Files\Game\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\QuadTree.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\rectutils.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
@@ -250,6 +256,12 @@
     </ClInclude>
     <ClInclude Include="Game\Object\Apple.h">
       <Filter>Header Files\Game\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\QuadTree.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\rectutils.h">
+      <Filter>Header Files\Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -33,6 +33,13 @@ void TestScene::moveViewport(float offset, bool moveup, sigcxx::SLOT slot)
 	_viewport->setPositionWorld(position);
 }
 
+void TestScene::writeXMLQuadTree()
+{
+	_root->writeXML("Resources//Maps//stage1_quadtree.xml");
+	OutputDebugStringW(L"Root count : ");
+	__debugoutput(_root->getCount());
+}
+
 bool TestScene::init()
 {
 
@@ -43,14 +50,6 @@ bool TestScene::init()
 	aladdinBehavior->move_viewport.Connect(this, &TestScene::moveViewport);
 
 	_listobject.push_back(_Aladdin);
-
-	map<string, GameObject*>* maptemp = ObjectFactory::getMapObjectFromFile("Resources//Maps//stage1.xml");
-	_mapobject.insert(maptemp->begin(), maptemp->end());
-
-	for (auto it = _mapobject.begin(); it != _mapobject.end(); it++)
-	{
-		_listobject.push_back(it->second);
-	}
 
 
 	_mapBack = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
@@ -69,6 +68,25 @@ bool TestScene::init()
 	_mapFront->setScale(SCALE_FACTOR);
 	_mapFront->setZIndex(0.f);
 
+	RECT mapRECT = SpriteResource::getInstance()->getSourceRect(eObjectID::MAP1, "back");
+	rootRect;
+	rootRect.left = 0;
+	rootRect.bottom = 0;
+	rootRect.right = mapRECT.right * SCALE_FACTOR;
+	rootRect.top = mapRECT.bottom * SCALE_FACTOR;
+	_root = new QuadTreeNode(rootRect, 0);
+
+
+	map<string, GameObject*>* maptemp = ObjectFactory::getMapObjectFromFile("Resources//Maps//stage1.xml");
+	_mapobject.insert(maptemp->begin(), maptemp->end());
+
+	for (auto it = _mapobject.begin(); it != _mapobject.end(); it++)
+	{
+		//_listobject.push_back(it->second);
+		_root->insert(it->first, it->second->getPhysicsComponent()->getBounding());
+	}
+
+	//writeXMLQuadTree();
 
 	_updateViewport = true;
 	//SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE1);
@@ -89,11 +107,12 @@ void TestScene::update(float dt)
 	RECT viewport_in_transform = _viewport->getBounding();
 
 	RECT screen;
-	// left right không đổi dù hệ top-left hay hệ bot-left
-	screen.left = viewport_in_transform.left;
-	screen.right = viewport_in_transform.right;
-	screen.top = this->_mapFront->getTextureHeight() - viewport_position.y;
-	screen.bottom = screen.top + _viewport->getHeight();
+	//hệ bot-left
+	screen.left = viewport_in_transform.left - 200;
+	screen.right = viewport_in_transform.right + 200;
+	screen.top = viewport_position.y + 200;
+	screen.bottom = screen.top - _viewport->getHeight() - 200;
+
 	// getlistobject
 
 	// [Bước 1]
@@ -102,6 +121,20 @@ void TestScene::update(float dt)
 	// [Bước 2]
 	_active_object.clear();
 
+	// [Bước 3]
+	auto listobjectname = _root->getActiveObject(rootRect);
+
+	// [Bước 4]
+	OutputDebugStringW(L"Object in screen : ");
+	for (auto name : listobjectname)
+	{
+		auto obj = _mapobject.find(name);
+		if (obj == _mapobject.end() || obj._Ptr == nullptr)
+			continue;
+		OutputDebugStringA(obj->first.c_str());
+		_active_object.push_back(obj->second);
+	}
+	OutputDebugStringW(L"\n ");
 
 	// [Bước 5]
 	_active_object.insert(_active_object.end(), _listobject.begin(), _listobject.end());
@@ -110,14 +143,13 @@ void TestScene::update(float dt)
 	for (GameObject* obj : _active_object)
 	{
 		// một vài trạng thái không cần thiết phải check hàm va chạm
-		if (obj == nullptr  || obj->getID() == eObjectID::LAND || obj->getID() == eObjectID::ROPE)
+		if (obj == nullptr || obj->getID() == eObjectID::LAND || obj->getID() == eObjectID::ROPE)
 			continue;
-
+		auto collisionComponent = (CollisionComponent*)obj->getPhysicsComponent()->getComponent("Collision");
 		for (GameObject* passiveobj : _active_object)
 		{
 			if (passiveobj == nullptr || passiveobj == obj)
 				continue;
-			auto collisionComponent = (CollisionComponent*)obj->getPhysicsComponent()->getComponent("Collision");
 			if (collisionComponent != nullptr)
 			{
 				if (passiveobj->getID() != eObjectID::ROPE) // aladdin can overlap rope so don't update target postion. Let aladdin behavior do it instead
