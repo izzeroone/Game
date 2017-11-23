@@ -349,7 +349,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		//landing
 		object = collisionComponent->isColliding(eObjectID::LAND);
 		if (object != nullptr)
-			//&& collisionComponent->getCollidingDirection(object) & eDirection::TOP == eDirection::TOP)
+			// && collisionComponent->getCollidingDirection(object) & eDirection::TOP == eDirection::TOP)
 		{
 			float moveX, moveY;
 			if (collisionComponent->isColliding(object, moveX, moveY, detatime))

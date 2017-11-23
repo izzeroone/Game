@@ -34,7 +34,7 @@ public:
 	bool isColliding(RECT myRect, RECT otherRect);
 	bool isColliding(GameObject* otherObject, float& moveX, float& moveY, float dt);
 
-	RECT getSweptBroadphaseRect(GameObject* object, float dt);
+	RECT getBroadphaseRect(GameObject* object, float dt);
 	eDirection getSide(GameObject* otherObject);
 
 	void reset();

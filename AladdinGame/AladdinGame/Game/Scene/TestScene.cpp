@@ -210,6 +210,7 @@ void TestScene::updateViewport(GameObject * objTracker, float deltatime)
 	{
 		return;
 	}
+	float lerp = 2.0f;
 	// Vị trí hiện tại của viewport. 
 	GVector2 current_position = _viewport->getPositionWorld();
 	GVector2 worldsize;
@@ -219,42 +220,17 @@ void TestScene::updateViewport(GameObject * objTracker, float deltatime)
 	GVector2 new_position;
 	float trackerX = max(objTracker->getPhysicsComponent()->getPositionX() - 260, 0);
 	float trackerY = max(objTracker->getPhysicsComponent()->getPositionY() + 300, WINDOW_HEIGHT);
-	new_position.x = trackerX;
-	new_position.y = trackerY;
-	//if (trackerX > current_position.x + deltatime / 1000 * VIEWPORT_VELOCITY)
-	//{
-	//	new_position.x = current_position.x + deltatime / 1000 * VIEWPORT_VELOCITY;
-	//}
-	//else if (trackerX < current_position.x - deltatime / 1000 * VIEWPORT_VELOCITY)
-	//{
-	//	new_position.x = current_position.x - deltatime / 1000 * VIEWPORT_VELOCITY;
-	//}
-	//else
-	//{
-	//	new_position.x = current_position.x;
-	//}
-
-	//if (trackerY > current_position.y + deltatime / 1000 * VIEWPORT_VELOCITY)
-	//{
-	//	new_position.y = current_position.y + deltatime / 1000 * VIEWPORT_VELOCITY;
-	//}
-	//else if (trackerY < current_position.y - deltatime / 1000 * VIEWPORT_VELOCITY)
-	//{
-	//	new_position.y = current_position.y - deltatime / 1000 * VIEWPORT_VELOCITY;
-	//}
-	//else
-	//{
-	//	new_position.y = current_position.y;
-	//}
+	current_position.x += (trackerX - current_position.x) * lerp * deltatime / 1000;
+	current_position.y += (trackerY - current_position.y) * lerp * deltatime / 1000;
 
 
 	// Không cho đi quá map.
-	if (new_position.x + WINDOW_WIDTH > worldsize.x)
-	{
-		new_position.x = worldsize.x - WINDOW_WIDTH;
-	}
+	//if (current_position.x + WINDOW_WIDTH > current_position.x)
+	//{
+	//	current_position.x = worldsize.x - WINDOW_WIDTH;
+	//}
 
-	_viewport->setPositionWorld(new_position);
+	_viewport->setPositionWorld(current_position);
 }
 
 void TestScene::updateInput(float dt)

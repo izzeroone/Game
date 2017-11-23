@@ -119,7 +119,7 @@ float CollisionComponent::isCollide(GameObject * otherSprite, eDirection & direc
 	RECT otherRect = otherSprite->getPhysicsComponent()->getBounding();
 
 	// sử dụng Broadphase rect để kt vùng tiếp theo có va chạm ko
-	RECT broadphaseRect = getSweptBroadphaseRect(_target, dt);	// là bound của object được mở rộng ra thêm một phần bằng với vận tốc (dự đoán trước bound)
+	RECT broadphaseRect = getBroadphaseRect(_target, dt);	// là bound của object được mở rộng ra thêm một phần bằng với vận tốc (dự đoán trước bound)
 	if (!isColliding(broadphaseRect, otherRect))				// kiểm tra tính chồng lắp của 2 hcn
 	{
 		direction = eDirection::NONE;
@@ -127,7 +127,7 @@ float CollisionComponent::isCollide(GameObject * otherSprite, eDirection & direc
 	}
 
 	//SweptAABB
-	// vận tốc mỗi frame
+	// TWO MOVING, make one static, in this case, that is otherVeloc
 	GVector2 otherVeloc = GVector2(otherSprite->getPhysicsComponent()->getVelocity().x * dt / 1000, otherSprite->getPhysicsComponent()->getVelocity().y * dt / 1000);
 	GVector2 myVelocity = GVector2(_target->getPhysicsComponent()->getVelocity().x * dt / 1000, _target->getPhysicsComponent()->getVelocity().y * dt / 1000);
 	GVector2 velocity = myVelocity;
@@ -193,10 +193,7 @@ float CollisionComponent::isCollide(GameObject * otherSprite, eDirection & direc
 	// hết va chạm là 1 trong 2 x, y hết va chạm => thời gian sớm nhất để kết thúc va chạm
 	float exitTime = min(_txExit, _tyExit);
 
-	// object không va chạm khi:
-	// nếu thời gian bắt đầu va chạm hơn thời gian kết thúc va chạm
-	// thời gian va chạm x, y nhỏ hơn 0 (chạy qua luôn, 2 thằng đang đi xa ra nhau)
-	// thời gian va chạm x, y lớn hơn 1 (còn xa quá chưa thể va chạm)
+
 	if (entryTime > exitTime || _txEntry < 0.0f && _tyEntry < 0.0f || _txEntry > 1.0f || _tyEntry > 1.0f)
 	{
 		// không va chạm trả về 1 đi tiếp bt
@@ -323,7 +320,7 @@ bool CollisionComponent::isColliding(RECT myRect, RECT otherRect)
 	return !(left > 0 || right < 0 || top < 0 || bottom > 0);
 }
 
-RECT CollisionComponent::getSweptBroadphaseRect(GameObject* object, float dt)
+RECT CollisionComponent::getBroadphaseRect(GameObject* object, float dt)
 {
 	// vận tốc mỗi frame
 	auto velocity = GVector2(object->getPhysicsComponent()->getVelocity().x * dt / 1000, object->getPhysicsComponent()->getVelocity().y * dt / 1000);
