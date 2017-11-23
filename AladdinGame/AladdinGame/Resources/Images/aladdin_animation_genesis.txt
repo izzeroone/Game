@@ -1,4 +1,10 @@
 frame_name	left	top	right	bottom	transitionx	transitiony
+apple_01	373	24	380	31	0	0
+apple_02	394	23	401	33	0	0
+apple_03	414	18	434	36	0	0
+apple_04	444	16	473	38	0	0
+apple_05	485	14	516	39	0	0
+apple_06	532	13	562	40	0	0
 normal_01	2	1	39	57	0	0
 normal_02	46	1	87	57	0	0
 normal_03	94	1	134	57	0	0

@@ -76,6 +76,34 @@ GameObject * ObjectFactory::getAladdin()
 	return aladdin;
 }
 
+GameObject * ObjectFactory::getApple(GVector2 pos, GVector2 velocity)
+{
+
+	auto physicsComponent = new ApplePhysicsComponent();
+	auto animationComponent = new AppleAnimationComponent();
+	auto behaviorComponent = new AppleBehaviorComponent();
+
+	animationComponent->setPhysiscComponent(physicsComponent);
+	behaviorComponent->setPhysicsComponent(physicsComponent);
+	behaviorComponent->setAnimationComponent(animationComponent);
+	behaviorComponent->setGameController(GameController::getInstance());
+	physicsComponent->setAnimationComponent(animationComponent);
+
+
+	physicsComponent->setPosition(pos);
+
+	auto apple = new GameObject(eObjectID::APPLE, animationComponent, behaviorComponent, physicsComponent);
+	apple->init();
+	auto collisionComponent = (CollisionComponent*)apple->getPhysicsComponent()->getComponent("Collision");
+	collisionComponent->setTargerGameObject(apple);
+
+
+	auto move = (Movement*)physicsComponent->getComponent("Movement");
+	move->setVelocity(velocity);
+
+	return apple;
+}
+
 GameObject * ObjectFactory::getLand(xml_node node)
 {
 	auto properties = getObjectProperties(node);

@@ -51,7 +51,6 @@ class AladdinAnimationComponent : public AnimationComponent
 {
 public:
 	void init();
-	void update(float deltatime) override;
 };
 
 class AladdinBehaviorComponent : public BehaviorComponent
@@ -62,6 +61,7 @@ public:
 	virtual void setStatus(eStatus status) override;
 	void setRespawnPosition(GVector2 respawnPosition);
 	sigcxx::Signal<float, bool> move_viewport; //float is offset, bool: true move up, false: revert back
+	sigcxx::Signal<GVector2, GVector2> throw_apple; // indicate when to throw apple with postition and velocity
 private:
 	void updateTimeOut(float deltaTime);
 
@@ -80,8 +80,8 @@ private:
 	void moveDown(); // for climbing
 	void jump();
 	void falling();
-	void climbvertical();
-	void climbhorizon();
+	void climbVertical();
+	void climbHorizon();
 
 
 	void respawn();

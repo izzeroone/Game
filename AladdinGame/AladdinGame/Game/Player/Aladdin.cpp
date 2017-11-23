@@ -162,11 +162,6 @@ void AladdinAnimationComponent::init()
 	}
 }
 
-void AladdinAnimationComponent::update(float deltatime)
-{
-	AnimationComponent::update(deltatime);
-}
-
 
 GVector2 AladdinPhysicsComponent::getVelocity()
 {
@@ -324,7 +319,7 @@ void AladdinBehaviorComponent::update(float detatime)
 				newPostionX -= ALADDIN_WIDTH / 2;
 				_physicsComponent->setPositionX(newPostionX);
 				setStatus(eStatus::CLIMB_VERTICAL);
-				climbvertical();
+				climbVertical();
 				faceRight();
 
 				_preObject = ropeObject;
@@ -339,7 +334,7 @@ void AladdinBehaviorComponent::update(float detatime)
 				newPostionY -= ALADDIN_CLIMB_HEIGHT;
 				_physicsComponent->setPositionY(newPostionY);
 				setStatus(eStatus::CLIMB_HORIZON);
-				climbhorizon();
+				climbHorizon();
 
 				_preObject = ropeObject;
 
@@ -873,6 +868,17 @@ void AladdinBehaviorComponent::throwApple()
 {
 	setWeapon(eStatus::THROW);
 	updateWeaponAnimation(_status);
+	auto pos = _physicsComponent->getPosition();
+	pos.y += _animationComponent->getSprite()->getFrameHeight() * 2 / 3;
+	GVector2 velocity(-400, 300);
+	if (_facingDirection == eStatus::RIGHTFACING)
+	{
+		pos += GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+		velocity.x = -velocity.x;
+
+	}
+	throw_apple.Emit(pos, velocity);
+
 }
 
 void AladdinBehaviorComponent::updateWeaponAnimation(eStatus status)
@@ -919,12 +925,12 @@ void AladdinBehaviorComponent::falling()
 	g->setStatus(eGravityStatus::FALLING__DOWN);
 }
 
-void AladdinBehaviorComponent::climbvertical()
+void AladdinBehaviorComponent::climbVertical()
 {
 	standing();
 }
 
-void AladdinBehaviorComponent::climbhorizon()
+void AladdinBehaviorComponent::climbHorizon()
 {
 	standing();
 }

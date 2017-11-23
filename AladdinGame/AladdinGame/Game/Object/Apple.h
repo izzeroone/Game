@@ -7,7 +7,39 @@
 #include "../../Framework/Component/BehaviorComponent.h"
 #include "../../Framework/Component/PhysicsComponent.h"
 #include "../../Framework/Component/CollisionComponent.h"
-class Apple
+
+#define GRAVITY 1600
+
+class ApplePhysicsComponent : public PhysicsComponent
+{
+public:
+	void init();
+
+	GVector2 getVelocity();
+	void setAnimationComponent(AnimationComponent * animationComponent);
+	RECT getBounding() override;
+protected:
+	AnimationComponent * _animationComponent;
+};
+
+class AppleAnimationComponent : public AnimationComponent
+{
+public:
+	void init();
+};
+
+class AppleBehaviorComponent : public BehaviorComponent
+{
+public:
+	void init();
+	void update(float detatime);
+	void setStatus(eStatus status) override;
+private:
+	void updateAnimation();
+	void standing();
+};
+
+class Apple : GameObject
 {
 public:
 	Apple();

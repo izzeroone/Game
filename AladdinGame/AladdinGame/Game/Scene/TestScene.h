@@ -72,6 +72,8 @@ private:
 	//root of the node tree
 	QuadTreeNode * _root;
 	RECT rootRect;
+
+	void throw_apple(GVector2 pos, GVector2 velocity, sigcxx::SLOT slot = nullptr);
 	// Inherited via Scene
 	virtual void updateInput(float dt) override;
 

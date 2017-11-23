@@ -31,6 +31,8 @@ enum eObjectID
 	ALADDIN = 0, // main character
 	LAND = 1,
 	ROPE = 2,
+	APPLE = 3, // for throw
+	SWORD = 4, // f0r slash
 	MAP1 = 30
 };
 
@@ -63,7 +65,8 @@ enum eStatus
 	DYING = (1 << 22),
 	CARE = (1 << 23),
 	REVIVE = (1 << 24),
-	JEALOUS = (1 << 25)
+	JEALOUS = (1 << 25),
+	DESTROY = (1 << 26)
 };
 
 

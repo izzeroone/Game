@@ -43,9 +43,11 @@ bool TestScene::init()
 
 	_Aladdin = ObjectFactory::getAladdin();
 	_Aladdin->getPhysicsComponent()->setPosition(1000, 200);
+
 	auto aladdinBehavior = (AladdinBehaviorComponent*)_Aladdin->getBehaviorComponent();
 	aladdinBehavior->setRespawnPosition(GVector2(100, 200));
 	aladdinBehavior->move_viewport.Connect(this, &TestScene::moveViewport);
+	aladdinBehavior->throw_apple.Connect(this, &TestScene::throw_apple);
 
 	_listobject.push_back(_Aladdin);
 
@@ -159,6 +161,11 @@ void TestScene::update(float dt)
 			
 		}
 	}
+	//[Bước 7]
+	for (GameObject* obj : _active_object)
+	{
+		obj->update(dt);
+	}
 }
 
 void TestScene::draw(LPD3DXSPRITE spriteHandle)
@@ -201,6 +208,40 @@ GameObject * TestScene::getAladdin()
 
 void TestScene::destroyobject()
 {
+	for (auto object : _listobject)
+	{
+		if (object->getBehaviorComponent() != nullptr && object->getBehaviorComponent()->getStatus() == eStatus::DESTROY)	// kiểm tra nếu là destroy thì loại khỏi list
+		{
+			object->release();
+			// http://www.cplusplus.com/reference/algorithm/remove/
+			auto rs1 = std::remove(_listobject.begin(), _listobject.end(), object);
+			_listobject.pop_back();			// sau khi remove thì còn một phần tử cuối cùng vôi ra. giống như dịch mảng. nên cần bỏ nó đi
+
+											//https://msdn.microsoft.com/en-us/library/cby9kycs.aspx (dynamic_cast) 
+											// loại khỏi list control
+
+			delete object;
+			break;		// sau pop_back phần tử đi thì list bị thay đồi, nên vòng for-each không còn nguyên trạng nữa. -> break (mỗi frame chỉ remove được 1 đối tượng)
+		}
+	}
+	//for (auto name : QNode::ActiveObject)
+	//{
+	//	auto object = _mapobject.find(name);
+	//	if (object == _mapobject.end() || object._Ptr == nullptr)
+	//		continue;
+	//	if (object->second->getStatus() == eStatus::DESTROY)	// kiểm tra nếu là destroy thì loại khỏi list
+	//	{
+	//		//if (dynamic_cast<BaseEnemy*> (object->second) != nullptr)
+	//		//{
+	//		//	SoundManager::getInstance()->Play(eSoundId::DESTROY_ENEMY);
+	//		//}
+	//		object->second->release();
+	//		delete object->second;
+	//		object->second = NULL;
+	//		_mapobject.erase(name);
+
+	//	}
+	//}
 }
 
 void TestScene::updateViewport(GameObject * objTracker, float deltatime)
@@ -230,6 +271,12 @@ void TestScene::updateViewport(GameObject * objTracker, float deltatime)
 	//}
 
 	_viewport->setPositionWorld(current_position);
+}
+
+void TestScene::throw_apple(GVector2 pos, GVector2 velocity, sigcxx::SLOT slot)
+{
+	auto * apple = ObjectFactory::getApple(pos, velocity);
+	_listobject.push_back(apple);
 }
 
 void TestScene::updateInput(float dt)
