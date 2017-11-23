@@ -4,7 +4,7 @@ d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(75): warn
 d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(76): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
 d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(113): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
 d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(114): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(217): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
 d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(218): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(219): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)

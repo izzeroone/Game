@@ -147,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dxaudio.cpp" />
+    <ClCompile Include="Framework\AABB.cpp" />
     <ClCompile Include="Framework\animation.cpp" />
     <ClCompile Include="Framework\Component\AnimationComponent.cpp" />
     <ClCompile Include="Framework\Component\BehaviorComponent.cpp" />
@@ -167,6 +168,7 @@
     <ClCompile Include="Framework\texture.cpp" />
     <ClCompile Include="Framework\timespan.cpp" />
     <ClCompile Include="Framework\transform.cpp" />
+    <ClCompile Include="Framework\VectorHelper.cpp" />
     <ClCompile Include="Framework\viewport.cpp" />
     <ClCompile Include="Game\AladdinGame.cpp" />
     <ClCompile Include="Game\game.cpp" />
@@ -183,6 +185,7 @@
   <ItemGroup>
     <ClInclude Include="debug.h" />
     <ClInclude Include="dxaudio.h" />
+    <ClInclude Include="Framework\AABB.h" />
     <ClInclude Include="Framework\animation.h" />
     <ClInclude Include="Framework\Component\AnimationComponent.h" />
     <ClInclude Include="Framework\Component\BehaviorComponent.h" />
@@ -205,6 +208,7 @@
     <ClInclude Include="Framework\texture.h" />
     <ClInclude Include="Framework\timespan.h" />
     <ClInclude Include="Framework\transform.h" />
+    <ClInclude Include="Framework\VectorHelper.h" />
     <ClInclude Include="Framework\viewport.h" />
     <ClInclude Include="Game\AladdinGame.h" />
     <ClInclude Include="Game\game.h" />

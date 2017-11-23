@@ -31,54 +31,97 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 	if (otherObject->getPhysicsComponent() == nullptr)
 		return;
 
-	eDirection direction;
-	float time = isCollide(otherObject, direction, dt);
-	if (time < 1.0f)
-	{
+	RECT myRect = _target->getPhysicsComponent()->getBounding();
+	RECT otherRect = otherObject->getPhysicsComponent()->getBounding();
 
-		if (otherObject->getPhysicsComponent()->getPhysicsBodySide() != eDirection::NONE && (direction & otherObject->getPhysicsComponent()->getPhysicsBodySide()) == direction)
-		{
-			// cập nhật tọa độ
-			updateTargetPosition(otherObject, direction, true);
-		}
+	// sử dụng Broadphase rect để kt vùng tiếp theo có va chạm ko
+	RECT broadphaseRect = getBroadphaseRect(_target, dt);	// là bound của object được mở rộng ra thêm một phần bằng với vận tốc (dự đoán trước bound)
+	if (!isColliding(broadphaseRect, otherRect))				// kiểm tra tính chồng lắp của 2 hcn
+	{
+		return; // doesn't have any chance to collision
+	}
+	GVector2 boxAVelo = _target->getPhysicsComponent()->getVelocity();
+	GVector2 boxBVelo = otherObject->getPhysicsComponent()->getVelocity();
+
+	//construct the aabb box
+	AABB boxA = myRect;
+	AABB boxB = otherRect;
+	// construct the relative velocity ray
+	GVector2 rvRay = (boxAVelo - boxBVelo) * dt / 1000;
+
+	// see if there is already a collision
+	GVector2 rvRayIntersection;
+	AABB md = boxB.minkowskiDifference(boxA);
+	GVector2 penetrationVector;
+	if (md.getMin().x <= 0 &&
+		md.getMax().x >= 0 &&
+		md.getMin().y <= 0 &&
+		md.getMax().y >= 0)
+	{
+		// collision is occurring!
 		_listColliding[otherObject] = true;
-		_listDirection[otherObject] = direction;
-	}
-	else if (_listColliding.find(otherObject) == _listColliding.end())	// ko có trong list đã va chạm
-	{
-		if (isColliding(_target->getPhysicsComponent()->getBounding(), otherObject->getPhysicsComponent()->getBounding()))
-		{
-			_listColliding[otherObject] = true;
-			_listDirection[otherObject] = direction;
-		}
-	}
-	else	// có trong list đã va chạm
-	{
-		float moveX, moveY;
-		if (isColliding(otherObject, moveX, moveY, dt))		// kt va trạm lấy khoảng chồng lấp của 2 object
-		{
-			auto side = this->getSide(otherObject);
 
-			if (otherObject->getPhysicsComponent()->getPhysicsBodySide() == eDirection::NONE || (side & otherObject->getPhysicsComponent()->getPhysicsBodySide()) != side)
-				return;
-
-			// cập nhật tọa độ
-			if (updatePosition)
-				updateTargetPosition(otherObject, side, false, GVector2(moveX, moveY));
-		}
-		else // nếu ko va chạm nữa là kết thúc va chạm
+		if (updatePosition)
 		{
-			_listColliding.erase(otherObject);
-			_listDirection.erase(otherObject);
+			penetrationVector = md.cloestPointOnBoundsToPoint(VECTOR2ZERO);
+			// offset the box to make sure it's not penetrating
+			boxA.center += penetrationVector;
+			_target->getPhysicsComponent()->setPosition(GVector2(boxA.center.x - boxA.extents.x, boxA.center.y - boxA.extents.y));
+			// zero out the box's velocity in the direction of the penetration
+			if (penetrationVector != VECTOR2ZERO)
+			{
+				GVector2 tangent = VectorHelper::normalized(penetrationVector);
+				tangent = VectorHelper::tangent(tangent);
+				boxAVelo = VectorHelper::dotProduct(boxAVelo, tangent) * tangent;
+				boxBVelo = VectorHelper::dotProduct(boxBVelo, tangent) * tangent;
+				auto move = (Movement*)_target->getPhysicsComponent()->getComponent("Movement");
+				if(move != nullptr)
+					move->setVelocity(boxAVelo);
+				move = (Movement*)otherObject->getPhysicsComponent()->getComponent("Movement");
+				if (move != nullptr)
+					move->setVelocity(boxBVelo);
+			}
+		}
+		else
+		{
+			// see if there WILL be a collision
+			float intersectFraction = md.getRayIntersectionFraction(VECTOR2ZERO, rvRay);
+			if (intersectFraction < std::numeric_limits<float>::infinity())
+			{
+				_listColliding[otherObject] = true;
+				if (updatePosition)
+				{
+					// yup, there WILL be a collision this frame
+					rvRayIntersection = rvRay * intersectFraction;
+
+					boxA.center += boxAVelo * dt * intersectFraction / 1000;
+					boxB.center += boxBVelo * dt * intersectFraction / 1000;
+					_target->getPhysicsComponent()->setPosition(GVector2(boxA.center.x - boxA.extents.x, boxA.center.y - boxA.extents.y));
+					otherObject->getPhysicsComponent()->setPosition(GVector2(boxB.center.x - boxB.extents.x, boxB.center.y - boxB.extents.y));
+
+
+					// zero out the normal of the collision
+					GVector2 nrvRay = VectorHelper::normalized(rvRay);
+					GVector2 tangent(-nrvRay.y, nrvRay.x);
+					boxAVelo = VectorHelper::dotProduct(boxAVelo, tangent) * tangent;
+					boxBVelo = VectorHelper::dotProduct(boxBVelo, tangent) * tangent;
+					auto move = (Movement*)_target->getPhysicsComponent()->getComponent("Movement");
+					if (move != nullptr)
+						move->setVelocity(boxAVelo);
+					move = (Movement*)otherObject->getPhysicsComponent()->getComponent("Movement");
+					if (move != nullptr)
+						move->setVelocity(boxBVelo);
+				}
+			}
 		}
 	}
+
 
 }
 
 bool CollisionComponent::checkCollision(GameObject * otherObject, eDirection & direction, float dt, bool updatePosition)
 {
 	float time = isCollide(otherObject, direction, dt);
-
 	if (time < 1.0f)
 	{
 		if (otherObject->getPhysicsComponent()->getPhysicsBodySide() != eDirection::NONE && (direction & otherObject->getPhysicsComponent()->getPhysicsBodySide()) == direction)
@@ -127,7 +170,7 @@ float CollisionComponent::isCollide(GameObject * otherSprite, eDirection & direc
 	}
 
 	//SweptAABB
-	// TWO MOVING, make one static, in this case, that is otherVeloc
+	// TWO MOVING, make one static, in this case, that is boxBVelo
 	GVector2 otherVeloc = GVector2(otherSprite->getPhysicsComponent()->getVelocity().x * dt / 1000, otherSprite->getPhysicsComponent()->getVelocity().y * dt / 1000);
 	GVector2 myVelocity = GVector2(_target->getPhysicsComponent()->getVelocity().x * dt / 1000, _target->getPhysicsComponent()->getVelocity().y * dt / 1000);
 	GVector2 velocity = myVelocity;

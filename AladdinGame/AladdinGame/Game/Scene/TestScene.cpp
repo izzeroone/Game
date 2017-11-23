@@ -146,6 +146,7 @@ void TestScene::update(float dt)
 		if (obj == nullptr || obj->getID() == eObjectID::LAND || obj->getID() == eObjectID::ROPE)
 			continue;
 		auto collisionComponent = (CollisionComponent*)obj->getPhysicsComponent()->getComponent("Collision");
+		collisionComponent->reset();
 		for (GameObject* passiveobj : _active_object)
 		{
 			if (passiveobj == nullptr || passiveobj == obj)
@@ -153,7 +154,7 @@ void TestScene::update(float dt)
 			if (collisionComponent != nullptr)
 			{
 				if (passiveobj->getID() != eObjectID::ROPE) // aladdin can overlap rope so don't update target postion. Let aladdin behavior do it instead
-					collisionComponent->checkCollision(passiveobj, dt);
+					collisionComponent->checkCollision(passiveobj, dt, false);
 				else
 					collisionComponent->checkCollision(passiveobj, dt, false);
 			}

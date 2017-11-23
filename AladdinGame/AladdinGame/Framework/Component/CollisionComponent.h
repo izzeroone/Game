@@ -2,6 +2,7 @@
 #define __COLLISION_COMPONENT__
 
 #include "../GameObject.h"
+#include "../AABB.h"
 #include "Component.h"
 #include <queue>
 
