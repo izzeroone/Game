@@ -187,7 +187,7 @@ void QuadTreeNode::query(RECT queryArea, list<string> &result)
 	}
 }
 
-void QuadTreeNode::buildNote(xml_node & root)
+void QuadTreeNode::buildWriteableNode(xml_node & root)
 {
 
 	auto node = root.append_child("Node");
@@ -214,7 +214,36 @@ void QuadTreeNode::buildNote(xml_node & root)
 
 	for (auto child : _nodes)
 	{
-		child->buildNote(node);
+		child->buildWriteableNode(node);
+	}
+
+}
+
+void QuadTreeNode::readNode(xml_node & node)
+{
+	//auto node = root.append_child("Node");
+	//node.append_attribute("left") = getBound().left;
+	//node.append_attribute("right") = getBound().right;
+	//node.append_attribute("top") = getBound().top;
+	//node.append_attribute("bottom") = getBound().bottom;
+	//node.append_attribute("level") = _level;
+	
+	_level = node.attribute("level").as_int();
+	_bound.left = node.attribute("left").as_int();
+	_bound.right = node.attribute("right").as_int();
+	_bound.top = node.attribute("top").as_int();
+	_bound.bottom = node.attribute("bottom").as_int();
+
+	if (isLeaf() == true)
+	{
+		_contents = splitString(node.attribute("object").as_string(), ' ');
+	}
+
+	for (auto child : node.children())
+	{
+		QuadTreeNode * qnode = new QuadTreeNode();
+		qnode->readNode(child);
+		_nodes.push_back(qnode);
 	}
 
 }
@@ -239,15 +268,18 @@ void QuadTreeNode::insert(const string &name, const RECT &rect)
 	// for each subnode:
 	// if the root contains the item, add the item to that root and return
 	// this recurses into the root that is just large enough to fit this item
-
+	bool _isInserdToChild = false;
 	for (auto node : _nodes)
 	{
 		if (isRectangleIntersected(node->getBound(), rect))
 		{
 			node->insert(name, rect);
-			return;
+			_isInserdToChild = true;
 		}
 	}
+
+	if (_isInserdToChild == true)
+		return;
 
 	// if we make it to here, either
 	// 1) none of the subnodes completely contained the item. or
@@ -277,10 +309,27 @@ void QuadTreeNode::writeXML(const string & path)
 	declarationNode.append_attribute("standalone") = "yes";
 
 	// A valid XML doc must contain a single root root of any name
-	auto root = doc.append_child("MyRoot");
+	//auto root = doc.append_child("Quadtree");
 	// Append some child elements below root
 
-	buildNote(root);
+	buildWriteableNode(doc);
 
 	bool saveSucceeded = doc.save_file(path.c_str(), PUGIXML_TEXT("  "));
 }
+
+void QuadTreeNode::readXML(const string & path)
+{
+	pugi::xml_document doc;
+
+	// Mở file và đọc
+	xml_parse_result result = doc.load_file(path.data(), pugi::parse_default | pugi::parse_pi);
+	if (result == false)
+	{
+		return;
+	}
+
+	pugi::xml_node rootxml = doc.first_child();
+	readNode(rootxml);
+}
+
+

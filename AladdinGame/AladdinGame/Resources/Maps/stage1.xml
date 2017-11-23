@@ -84,7 +84,7 @@
         <Elem Key="type" Value="0" />
       </Params>
     </Item>
-	<Item Id="1" Name="land15" X="1499" Y="33" Width="662" Height="5">
+	<Item Id="1" Name="land15" X="1499" Y="33" Width="705" Height="5">
       <Params>
         <Elem Key="physicBodyDirection" Value="1" />
         <Elem Key="type" Value="0" />
@@ -109,6 +109,20 @@
       </Params>
     </Item>
 	<Item Id="1" Name="land19" X="1588" Y="409" Width="688" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	
+	<Item Id="1" Name="land19" X="1588" Y="409" Width="688" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	
+	<Item Id="1" Name="wall1" X="2204" Y="399" Width="40" Height="399">
       <Params>
         <Elem Key="physicBodyDirection" Value="1" />
         <Elem Key="type" Value="0" />

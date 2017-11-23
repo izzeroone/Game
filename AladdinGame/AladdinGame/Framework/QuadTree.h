@@ -31,6 +31,7 @@ public:
 	void insert(const string &name, const RECT &rect);
 	void forEach(QTAction action);
 	void writeXML(const string &path);
+	void readXML(const string &path);
 
 	~QuadTreeNode();
 private:
@@ -44,7 +45,8 @@ private:
 	void createSubNodes();
 	void fetchSubTreeContents(list<string> &result);
 	void query(RECT rect, list<string> &result);
-	void buildNote(xml_node &node);
+	void buildWriteableNode(xml_node &node);
+	void readNode(xml_node &node);
 };
 
 DEFINE_FRAMEWORK_END

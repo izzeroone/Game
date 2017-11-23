@@ -35,24 +35,7 @@ bool isIntersectd(const RECT &rect1, const RECT &rect2)
 	return true;
 }
 
-// Cắt chuỗi.
-// inout: chuỗi cần cắt.
-// seperate: kí tự dùng để cắt chuỗi
-// return: mãng các chuỗi đã được cắt.
-std::vector<string> splitString(const string & input, char seperate)
-{
-	vector<string> output;
-	std::stringstream ss(input);
 
-	string item;
-
-	while (std::getline(ss, item, seperate))
-	{
-		output.push_back(item);
-	}
-
-	return output;
-}
 
 bool isContains(const RECT &rect1, const RECT &rect2)
 {
@@ -101,3 +84,17 @@ double CalculateCoefficient(int n, int k)
 	return coefficient;
 }
 
+std::list<string> splitString(const string & input, char seperate)
+{
+	list<string> output;
+	std::stringstream ss(input);
+
+	string item;
+
+	while (std::getline(ss, item, seperate))
+	{
+		output.push_back(item);
+	}
+
+	return output;
+}

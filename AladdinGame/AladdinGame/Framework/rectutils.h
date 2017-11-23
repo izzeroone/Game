@@ -34,8 +34,6 @@ bool isContains(const RECT &rect1, const RECT &rect2);
 */
 float getdistance(const D3DXVECTOR2 &p1, const D3DXVECTOR2 &p2);
 
-std::vector<std::string> splitString(const std::string & input, char seperate);
-
 /*
 Kiểm tra điểm có nằm trong hcn hay ko
 @rect: hcn tính theo bottom-left
@@ -45,16 +43,10 @@ bool isContain(const RECT &rect, const D3DXVECTOR2 &point);
 
 double CalculateCoefficient(int n, int k);
 
-//string concat(list<string> contents)
-//{
-//	string result;
-//
-//	for (auto content : contents)
-//	{
-//		result += content + string(" ");
-//	}
-//
-//	return result;
-//}
+// Cắt chuỗi.
+// inout: chuỗi cần cắt.
+// seperate: kí tự dùng để cắt chuỗi
+// return: mãng các chuỗi đã được cắt.
+std::list<string> splitString(const string & input, char seperate);
 
 #endif // !__UTILS_H__

@@ -36,15 +36,13 @@ void TestScene::moveViewport(float offset, bool moveup, sigcxx::SLOT slot)
 void TestScene::writeXMLQuadTree()
 {
 	_root->writeXML("Resources//Maps//stage1_quadtree.xml");
-	OutputDebugStringW(L"Root count : ");
-	__debugoutput(_root->getCount());
 }
 
 bool TestScene::init()
 {
 
 	_Aladdin = ObjectFactory::getAladdin();
-	_Aladdin->getPhysicsComponent()->setPosition(100, 200);
+	_Aladdin->getPhysicsComponent()->setPosition(1000, 200);
 	auto aladdinBehavior = (AladdinBehaviorComponent*)_Aladdin->getBehaviorComponent();
 	aladdinBehavior->setRespawnPosition(GVector2(100, 200));
 	aladdinBehavior->move_viewport.Connect(this, &TestScene::moveViewport);
@@ -82,11 +80,10 @@ bool TestScene::init()
 
 	for (auto it = _mapobject.begin(); it != _mapobject.end(); it++)
 	{
-		//_listobject.push_back(it->second);
 		_root->insert(it->first, it->second->getPhysicsComponent()->getBounding());
 	}
 
-	//writeXMLQuadTree();
+	writeXMLQuadTree();
 
 	_updateViewport = true;
 	//SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE1);
@@ -122,19 +119,20 @@ void TestScene::update(float dt)
 	_active_object.clear();
 
 	// [Bước 3]
-	auto listobjectname = _root->getActiveObject(rootRect);
+	auto listobjectname = _root->getActiveObject(screen);
 
 	// [Bước 4]
-	OutputDebugStringW(L"Object in screen : ");
+	//OutputDebugStringW(L"Object in screen : ");
 	for (auto name : listobjectname)
 	{
 		auto obj = _mapobject.find(name);
 		if (obj == _mapobject.end() || obj._Ptr == nullptr)
 			continue;
-		OutputDebugStringA(obj->first.c_str());
+		//OutputDebugStringA(obj->first.c_str());
+		//OutputDebugStringW(L" ");
 		_active_object.push_back(obj->second);
 	}
-	OutputDebugStringW(L"\n ");
+//	OutputDebugStringW(L"\n ");
 
 	// [Bước 5]
 	_active_object.insert(_active_object.end(), _listobject.begin(), _listobject.end());
@@ -211,7 +209,7 @@ void TestScene::updateViewport(GameObject * objTracker, float deltatime)
 	{
 		return;
 	}
-	float lerp = 2.0f;
+	float lerp = 5.0f;
 	// Vị trí hiện tại của viewport. 
 	GVector2 current_position = _viewport->getPositionWorld();
 	GVector2 worldsize;
