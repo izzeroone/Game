@@ -281,7 +281,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		if (_input->isKeyDown(BT_UP))
 		{
 			setStatus(eStatus::LOOKING_UP);
-			move_viewport.Emit(VIEWPORT_MOVEUP_OFFSET, true);
+			moveViewport.Emit(VIEWPORT_MOVEUP_OFFSET, true);
 			break;
 		}
 		if (_input->isKeyDown(BT_DOWN))
@@ -511,7 +511,7 @@ void AladdinBehaviorComponent::update(float detatime)
 	case LOOKING_UP:
 		if (_input->isKeyRelease(BT_UP))
 		{
-			move_viewport.Emit(VIEWPORT_MOVEUP_OFFSET, false);
+			moveViewport.Emit(VIEWPORT_MOVEUP_OFFSET, false);
 			setStatus(eStatus::NORMAL);
 			break;
 		}
@@ -877,7 +877,8 @@ void AladdinBehaviorComponent::throwApple()
 		velocity.x = -velocity.x;
 
 	}
-	throw_apple.Emit(pos, velocity);
+	auto apple = ObjectFactory::getApple(pos, velocity);
+	addToScene.Emit(apple);
 
 }
 

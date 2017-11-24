@@ -73,6 +73,16 @@ void AppleBehaviorComponent::update(float detatime)
 		standing();
 	}
 
+	object = collisionComponent->isColliding(eObjectID::HAKIM);
+
+	if (object != nullptr)
+	{
+		setStatus(eStatus::LANDING);
+		standing();
+		EnemyBehaviorComponent * encom = (EnemyBehaviorComponent *)object->getBehaviorComponent();
+		encom->dropHitpoint(20);
+	}
+
 	//done animation, get destroyed
 	if (_animationComponent->getCurrentAnimation()->getCount() >= 1)
 	{

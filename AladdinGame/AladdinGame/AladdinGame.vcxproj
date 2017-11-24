@@ -152,6 +152,7 @@
     <ClCompile Include="Framework\Component\AnimationComponent.cpp" />
     <ClCompile Include="Framework\Component\BehaviorComponent.cpp" />
     <ClCompile Include="Framework\Component\CollisionComponent.cpp" />
+    <ClCompile Include="Framework\Component\EnemyComponent.cpp" />
     <ClCompile Include="Framework\Component\MovingComponent.cpp" />
     <ClCompile Include="Framework\Component\NullComponent.cpp" />
     <ClCompile Include="Framework\Component\PhysicsComponent.cpp" />
@@ -171,11 +172,13 @@
     <ClCompile Include="Framework\VectorHelper.cpp" />
     <ClCompile Include="Framework\viewport.cpp" />
     <ClCompile Include="Game\AladdinGame.cpp" />
+    <ClCompile Include="Game\Enemy\Hakim.cpp" />
     <ClCompile Include="Game\game.cpp" />
     <ClCompile Include="Game\ObjectFactory.cpp" />
     <ClCompile Include="Game\Object\Apple.cpp" />
     <ClCompile Include="Game\Object\Land.cpp" />
     <ClCompile Include="Game\Object\Rope.cpp" />
+    <ClCompile Include="Game\Object\Sword.cpp" />
     <ClCompile Include="Game\Player\Aladdin.cpp" />
     <ClCompile Include="Game\Scene\Scene.cpp" />
     <ClCompile Include="Game\Scene\SceneManager.cpp" />
@@ -191,6 +194,7 @@
     <ClInclude Include="Framework\Component\BehaviorComponent.h" />
     <ClInclude Include="Framework\Component\CollisionComponent.h" />
     <ClInclude Include="Framework\Component\Component.h" />
+    <ClInclude Include="Framework\Component\EnemyComponent.h" />
     <ClInclude Include="Framework\Component\NullComponent.h" />
     <ClInclude Include="Framework\Component\PhysicsComponent.h" />
     <ClInclude Include="Framework\Component\MovingComponent.h" />
@@ -211,11 +215,13 @@
     <ClInclude Include="Framework\VectorHelper.h" />
     <ClInclude Include="Framework\viewport.h" />
     <ClInclude Include="Game\AladdinGame.h" />
+    <ClInclude Include="Game\Enemy\Hakim.h" />
     <ClInclude Include="Game\game.h" />
     <ClInclude Include="Game\ObjectFactory.h" />
     <ClInclude Include="Game\Object\Apple.h" />
     <ClInclude Include="Game\Object\Land.h" />
     <ClInclude Include="Game\Object\Rope.h" />
+    <ClInclude Include="Game\Object\Sword.h" />
     <ClInclude Include="Game\Player\Aladdin.h" />
     <ClInclude Include="Game\Scene\Scene.h" />
     <ClInclude Include="Game\Scene\SceneManager.h" />

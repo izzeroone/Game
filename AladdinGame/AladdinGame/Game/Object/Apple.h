@@ -7,6 +7,7 @@
 #include "../../Framework/Component/BehaviorComponent.h"
 #include "../../Framework/Component/PhysicsComponent.h"
 #include "../../Framework/Component/CollisionComponent.h"
+#include "../../Framework/Component/EnemyComponent.h"
 
 #define GRAVITY 1600
 

@@ -1,0 +1,44 @@
+﻿#include "Sword.h"
+
+void SwordPhysicsComponent::init()
+{
+	_componentList["Collision"] = new CollisionComponent();
+}
+
+void SwordBehaviorComponent::init()
+{
+	_livingTime = 0;
+}
+
+void SwordBehaviorComponent::update(float detatime)
+{
+	_livingTime += detatime;
+	if (detatime >= LIVING_TIME)
+		setStatus(eStatus::DESTROY);
+
+	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
+	GameObject * obj = collisionComponent->isColliding(eObjectID::HAKIM);
+	if (obj != nullptr)
+	{
+		auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
+		if (it == _slashObject.end() || it._Ptr == nullptr)
+		{
+			//do some damage here
+			_slashObject.push_back(obj);
+		}
+	}
+}
+
+
+void Sword::init(int x, int y, int width, int height, eDirection side)
+{
+
+}
+
+Sword::Sword()
+{
+}
+
+Sword::~Sword()
+{
+}

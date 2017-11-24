@@ -4,7 +4,8 @@
 #include "../define.h"
 #include "Component.h"
 #include "../Singleton/gamecontroller.h"
-
+#include "../../../pugixml/src/pugixml.hpp"
+using namespace pugi;
 LINK_FRAMEWORK
 //forward declarations
 class AnimationComponent;
@@ -38,7 +39,6 @@ public:
 	virtual void setPhysicsComponent(PhysicsComponent * physicsComponent);
 
 	wstring getStatusString(eStatus status);
-
 protected:
 	eStatus _status;
 	eStatus _preStatus;

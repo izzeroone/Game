@@ -55,6 +55,12 @@
     <Filter Include="Source Files\Game\Object">
       <UniqueIdentifier>{8388da7a-5b7f-470d-b313-46853e52e687}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\Enemy">
+      <UniqueIdentifier>{f3fd1123-9cfc-4f64-9c43-f5c90e3861a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Enemy">
+      <UniqueIdentifier>{3c18bb54-5bf2-4105-b6ea-b2d030f123a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Singleton\windowGUI.cpp">
@@ -161,6 +167,15 @@
     </ClCompile>
     <ClCompile Include="Framework\VectorHelper.cpp">
       <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Sword.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Component\EnemyComponent.cpp">
+      <Filter>Source Files\Framework\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Hakim.cpp">
+      <Filter>Source Files\Game\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +289,15 @@
     </ClInclude>
     <ClInclude Include="Framework\VectorHelper.h">
       <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Sword.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\EnemyComponent.h">
+      <Filter>Header Files\Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Hakim.h">
+      <Filter>Header Files\Game\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

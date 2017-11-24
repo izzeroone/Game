@@ -192,6 +192,28 @@ GameObject * ObjectFactory::getRope(xml_node node)
 	return rope;
 }
 
+GameObject * ObjectFactory::getHakim(GVector2 pos)
+{
+	auto physicsComponent = new HakimPhysicsComponent();
+	auto animationComponent = new HakimAnimationComponent();
+	auto behaviorComponent = new HakimBehaviorComponent();
+
+	animationComponent->setPhysiscComponent(physicsComponent);
+	behaviorComponent->setPhysicsComponent(physicsComponent);
+	behaviorComponent->setAnimationComponent(animationComponent);
+	behaviorComponent->setGameController(GameController::getInstance());
+	physicsComponent->setAnimationComponent(animationComponent);
+
+	physicsComponent->setPosition(pos);
+
+	auto hakim = new GameObject(eObjectID::HAKIM, animationComponent, behaviorComponent, physicsComponent);
+	hakim->init();
+	auto collisionComponent = (CollisionComponent*)hakim->getPhysicsComponent()->getComponent("Collision");
+	collisionComponent->setTargerGameObject(hakim);
+
+	return hakim;
+}
+
 map<string, string> ObjectFactory::getObjectProperties(xml_node node)
 {
 	map<string, string> properties;

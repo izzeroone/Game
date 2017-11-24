@@ -6,6 +6,7 @@
 #include "Object\Apple.h"
 #include "Object\Land.h"
 #include "Object\Rope.h"
+#include "Enemy\Hakim.h"
 #include "../../pugixml/src/pugixml.hpp"
 
 using namespace pugi;
@@ -21,6 +22,7 @@ public:
 	static GameObject* getApple(GVector2 pos, GVector2 velocity);
 	static GameObject* getLand(xml_node node);
 	static GameObject* getRope(xml_node node);
+	static GameObject* getHakim(GVector2 pos);
 private:
 	static map<string, string> ObjectFactory::getObjectProperties(xml_node node);
 };

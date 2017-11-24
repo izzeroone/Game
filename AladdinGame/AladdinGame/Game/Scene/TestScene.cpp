@@ -42,14 +42,18 @@ bool TestScene::init()
 {
 
 	_Aladdin = ObjectFactory::getAladdin();
-	_Aladdin->getPhysicsComponent()->setPosition(1000, 200);
+	_Aladdin->getPhysicsComponent()->setPosition(200, 200);
 
 	auto aladdinBehavior = (AladdinBehaviorComponent*)_Aladdin->getBehaviorComponent();
 	aladdinBehavior->setRespawnPosition(GVector2(100, 200));
-	aladdinBehavior->move_viewport.Connect(this, &TestScene::moveViewport);
-	aladdinBehavior->throw_apple.Connect(this, &TestScene::throw_apple);
-
+	aladdinBehavior->moveViewport.Connect(this, &TestScene::moveViewport);
+	aladdinBehavior->addToScene.Connect(this, &TestScene::addToScene);
 	_listobject.push_back(_Aladdin);
+
+	auto hakim = ObjectFactory::getHakim(GVector2(400, 200));
+	hakim->getPhysicsComponent()->setPosition(400, 200);
+	_listobject.push_back(hakim);
+
 
 
 	_mapBack = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
@@ -96,21 +100,15 @@ bool TestScene::init()
 void TestScene::update(float dt)
 {
 	updateViewport(_Aladdin, dt);
-	_active_object.clear();
-	_active_object.push_back(_Aladdin);
-	for (GameObject* obj : _active_object)
-	{
-		obj->update(dt);
-	}
 	GVector2 viewport_position = _viewport->getPositionWorld();
 	RECT viewport_in_transform = _viewport->getBounding();
 
 	RECT screen;
 	//hệ bot-left
-	screen.left = viewport_in_transform.left - 200;
-	screen.right = viewport_in_transform.right + 200;
-	screen.top = viewport_position.y + 200;
-	screen.bottom = screen.top - _viewport->getHeight() - 200;
+	screen.left = viewport_in_transform.left;
+	screen.right = viewport_in_transform.right ;
+	screen.top = viewport_position.y;
+	screen.bottom = screen.top - _viewport->getHeight();
 
 	// getlistobject
 
@@ -273,10 +271,10 @@ void TestScene::updateViewport(GameObject * objTracker, float deltatime)
 	_viewport->setPositionWorld(current_position);
 }
 
-void TestScene::throw_apple(GVector2 pos, GVector2 velocity, sigcxx::SLOT slot)
+
+void TestScene::addToScene(GameObject * obj, sigcxx::SLOT slot)
 {
-	auto * apple = ObjectFactory::getApple(pos, velocity);
-	_listobject.push_back(apple);
+	_listobject.push_back(obj);
 }
 
 void TestScene::updateInput(float dt)

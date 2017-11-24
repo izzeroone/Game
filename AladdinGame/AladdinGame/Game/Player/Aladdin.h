@@ -10,6 +10,7 @@
 #include "../../Game/Object/Land.h"
 #include "../../Game/Object/Rope.h"
 #include "../../../sigcxx/include/sigcxx/sigcxx.hpp"
+#include "../ObjectFactory.h"
 
 #define ALADDIN_MOVE_SPEED 300
 #define ALADDIN_CLIMB_SPEED 100
@@ -60,8 +61,8 @@ public:
 	void update(float detatime);
 	virtual void setStatus(eStatus status) override;
 	void setRespawnPosition(GVector2 respawnPosition);
-	sigcxx::Signal<float, bool> move_viewport; //float is offset, bool: true move up, false: revert back
-	sigcxx::Signal<GVector2, GVector2> throw_apple; // indicate when to throw apple with postition and velocity
+	sigcxx::Signal<float, bool> moveViewport; //float is offset, bool: true move up, false: revert back
+	sigcxx::Signal<GameObject*> addToScene; // add some thing to scene
 private:
 	void updateTimeOut(float deltaTime);
 

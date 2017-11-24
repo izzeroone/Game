@@ -1,25 +1,43 @@
-﻿  AladdinGame.cpp
+﻿  Apple.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(11): warning C4005: 'GRAVITY': macro redefinition
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(17): note: see previous definition of 'GRAVITY'
+  Hakim.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\hakim.cpp(70): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\hakim.cpp(126): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\hakim.cpp(153): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\hakim.cpp(161): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
   Generating Code...
   Compiling...
   TestScene.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(11): warning C4005: 'GRAVITY': macro redefinition
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(17): note: see previous definition of 'GRAVITY'
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(75): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(76): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(112): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(113): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(257): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(258): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-  Apple.cpp
+d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(12): warning C4005: 'GRAVITY': macro redefinition
+  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(18): note: see previous definition of 'GRAVITY'
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(79): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(80): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(110): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(111): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(255): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(256): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+  Aladdin.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(18): warning C4005: 'GRAVITY': macro redefinition
+  d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(12): note: see previous definition of 'GRAVITY'
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(192): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(317): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(333): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(532): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(603): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(628): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(201): warning C4101: 'direction': unreferenced local variable
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(796): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(827): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(835): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(876): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
   ObjectFactory.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(11): warning C4005: 'GRAVITY': macro redefinition
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(17): note: see previous definition of 'GRAVITY'
+d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(12): warning C4005: 'GRAVITY': macro redefinition
+  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(18): note: see previous definition of 'GRAVITY'
 d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(117): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(118): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(119): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
@@ -28,6 +46,10 @@ d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(161): warni
 d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(162): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(163): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(164): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  AladdinGame.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(12): warning C4005: 'GRAVITY': macro redefinition
+  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(18): note: see previous definition of 'GRAVITY'
   Generating Code...
 d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(57): warning C4715: 'ObjectFactory::getObjectById': not all control paths return a value
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe

@@ -14,6 +14,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include "../../pugixml/src/pugixml.hpp"
 
 
 using namespace std;
@@ -33,12 +34,14 @@ enum eObjectID
 	ROPE = 2,
 	APPLE = 3, // for throw
 	SWORD = 4, // f0r slash
+	GUARD = 5,
+	HAKIM = 6,
 	MAP1 = 30
 };
 
 enum eStatus
 {
-
+	//Aladdin status
 	NORMAL = 0,					// 00000 = 0	
 	LEFTFACING = (1 << 0),				// 00001 = 2^0
 	RIGHTFACING = (1 << 1),				// 00010 = 2^1
@@ -59,13 +62,17 @@ enum eStatus
 	BORING3 = (1 << 16),
 	LANDING = (1 << 17),
 	BRAKING = (1 << 18),
-	SOMESTATUS = (1 << 19),
+	BEATEN = (1 << 19),
 	PUSH = (1 << 20),
 	BURNED = (1 << 21),
 	DYING = (1 << 22),
 	CARE = (1 << 23),
 	REVIVE = (1 << 24),
 	JEALOUS = (1 << 25),
+
+	//Enemy status
+
+	//share status
 	DESTROY = (1 << 26)
 };
 
