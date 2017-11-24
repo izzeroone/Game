@@ -1,4 +1,4 @@
-
+﻿
 #ifndef __HAKIM_H__
 #define __HAKIM_H__
 #include "../../Framework/define.h"
@@ -46,6 +46,8 @@ private:
 	void moveLeft();
 	void moveRight();
 	void slash();
+
+
 };
 
 

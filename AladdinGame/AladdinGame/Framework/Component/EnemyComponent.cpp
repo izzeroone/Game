@@ -48,6 +48,20 @@ void EnemyBehaviorComponent::setStatus(eStatus status)
 	BehaviorComponent::setStatus(status);
 }
 
+void EnemyBehaviorComponent::setRange(float rangeXStart, float rangeXEnd)
+{
+	if (rangeXStart <= rangeXEnd)
+	{
+		_rangeXStart = rangeXStart;
+		_rangeXEnd = rangeXEnd;
+	}
+	else
+	{
+		_rangeXStart = rangeXEnd;
+		_rangeXEnd = rangeXStart;
+	}
+}
+
 void EnemyBehaviorComponent::gainScore()
 {
 	//add score

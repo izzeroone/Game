@@ -62,6 +62,7 @@ void AppleBehaviorComponent::init()
 
 void AppleBehaviorComponent::update(float detatime)
 {
+
 	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 	GameObject * object;
 	
@@ -75,7 +76,7 @@ void AppleBehaviorComponent::update(float detatime)
 
 	object = collisionComponent->isColliding(eObjectID::HAKIM);
 
-	if (object != nullptr)
+	if (object != nullptr && _status != eStatus::LANDING)
 	{
 		setStatus(eStatus::LANDING);
 		standing();

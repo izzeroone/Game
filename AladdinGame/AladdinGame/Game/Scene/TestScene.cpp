@@ -50,8 +50,7 @@ bool TestScene::init()
 	aladdinBehavior->addToScene.Connect(this, &TestScene::addToScene);
 	_listobject.push_back(_Aladdin);
 
-	auto hakim = ObjectFactory::getHakim(GVector2(400, 200));
-	hakim->getPhysicsComponent()->setPosition(400, 200);
+	auto hakim = ObjectFactory::getHakim(GVector2(400, 100),200, 600);
 	_listobject.push_back(hakim);
 
 

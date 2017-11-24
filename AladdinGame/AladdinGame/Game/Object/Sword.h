@@ -8,6 +8,7 @@
 #include "../../Framework/Component/PhysicsComponent.h"
 #include "../../Framework/Component/CollisionComponent.h"
 #include "../../Framework/Component/NullComponent.h"
+#include "../../Framework/Component/EnemyComponent.h"
 #include <vector>
 #define LIVING_TIME 1000 // kiếm tồn tại 1 s
 
@@ -29,7 +30,7 @@ private:
 	float _livingTime;
 };
 
-class Sword : GameObject
+class Sword : public GameObject
 {
 public:
 	void init(int x, int y, int width, int height, eDirection side);

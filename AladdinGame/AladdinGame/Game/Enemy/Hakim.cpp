@@ -60,7 +60,10 @@ void HakimBehaviorComponent::init()
 void HakimBehaviorComponent::update(float detatime)
 {
 	if (_hitpoint <= 0)
+	{
 		setStatus(eStatus::DESTROY);
+		return;
+	}
 
 	auto aladdin = SceneManager::getInstance()->getCurrentScene()->getObject(eObjectID::ALADDIN);
 	auto aladdinPos = aladdin->getPhysicsComponent()->getPosition();
@@ -69,15 +72,24 @@ void HakimBehaviorComponent::update(float detatime)
 	RECT bound = _physicsComponent->getBounding();
 	float width = bound.right - bound.left;
 
-	if (diffirent > width) // aladdin ở bến trái
+	if (_physicsComponent->getPositionX() >= _rangeXStart && _physicsComponent->getPositionX() <= _rangeXEnd)
 	{
-		setStatus(eStatus::RUNNING);
-		moveLeft();
-	} 
-	else if (diffirent < -width)
-	{
-		setStatus(eStatus::RUNNING);
-		moveRight();
+		if (diffirent > width) // aladdin ở bến trái
+		{
+			setStatus(eStatus::RUNNING);
+			moveLeft();
+		}
+		else if (diffirent < -width)
+		{
+			setStatus(eStatus::RUNNING);
+			moveRight();
+		}
+		else
+		{
+			standing();
+			setStatus(eStatus::NORMAL);
+			slash();
+		}
 	}
 	else
 	{

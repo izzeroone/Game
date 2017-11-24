@@ -11,16 +11,20 @@ class EnemyBehaviorComponent : public BehaviorComponent
 {
 public:
 	virtual void init() override;
-	int getHitpoint();
-	void setHitpoint(int);
-    int getScore();
-	void setScore(int);
+	virtual int getHitpoint();
+	virtual void setHitpoint(int);
+    virtual int getScore();
+	virtual void setScore(int);
 	virtual void dropHitpoint();
 	virtual void dropHitpoint(int damage);
-	void setStatus(eStatus status) override;
+	virtual void setStatus(eStatus status) override;
+	virtual void setRange(float rangeXStart, float rangeXEnd);
 protected:
 	void gainScore();
 	int _hitpoint;
 	int _score;
+	//Tầm hoạt động chỉ trong khoản này ko được vượt quá
+	float _rangeXStart;
+	float _rangeXEnd;
 };
 #endif // !__ENEMYCOMPONENT_H__

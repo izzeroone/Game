@@ -14,7 +14,10 @@ void SwordBehaviorComponent::update(float detatime)
 {
 	_livingTime += detatime;
 	if (detatime >= LIVING_TIME)
+	{
 		setStatus(eStatus::DESTROY);
+		return;
+	}
 
 	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 	GameObject * obj = collisionComponent->isColliding(eObjectID::HAKIM);
@@ -23,7 +26,7 @@ void SwordBehaviorComponent::update(float detatime)
 		auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
 		if (it == _slashObject.end() || it._Ptr == nullptr)
 		{
-			//do some damage here
+			((EnemyBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(20);
 			_slashObject.push_back(obj);
 		}
 	}
@@ -32,7 +35,16 @@ void SwordBehaviorComponent::update(float detatime)
 
 void Sword::init(int x, int y, int width, int height, eDirection side)
 {
-
+	GameObject::init();
+	_id = eObjectID::SWORD;
+	// X là left. Y là top
+	RECT bounding;
+	bounding.top = y;
+	bounding.left = x;
+	bounding.bottom = y - height;
+	bounding.right = x + width;
+	_physicsComponent->setBounding(bounding);
+	_physicsComponent->setPhysicsBodySide(side);
 }
 
 Sword::Sword()

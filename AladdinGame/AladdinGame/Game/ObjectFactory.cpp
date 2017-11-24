@@ -104,6 +104,27 @@ GameObject * ObjectFactory::getApple(GVector2 pos, GVector2 velocity)
 	return apple;
 }
 
+GameObject * ObjectFactory::getSword(GVector2 pos, float width, float height)
+{
+	auto physicsComponent = new SwordPhysicsComponent();
+	auto behaviorComponent = new SwordBehaviorComponent();
+
+	behaviorComponent->setPhysicsComponent(physicsComponent);
+
+
+	auto sword = new Sword();
+	sword->setID(eObjectID::SWORD);
+	sword->setPhysicsComponent(physicsComponent);
+	sword->setBehaviorComponent(behaviorComponent);
+	sword->setAnimationComponent(nullptr);
+	sword->init(pos.x, pos.y, width, height, eDirection::ALL);
+
+	auto collisionComponent = (CollisionComponent*)sword->getPhysicsComponent()->getComponent("Collision");
+	collisionComponent->setTargerGameObject(sword);
+
+	return sword;
+}
+
 GameObject * ObjectFactory::getLand(xml_node node)
 {
 	auto properties = getObjectProperties(node);
@@ -192,11 +213,11 @@ GameObject * ObjectFactory::getRope(xml_node node)
 	return rope;
 }
 
-GameObject * ObjectFactory::getHakim(GVector2 pos)
+GameObject * ObjectFactory::getHakim(GVector2 pos, float rangeXStart, float rangeXEnd)
 {
 	auto physicsComponent = new HakimPhysicsComponent();
 	auto animationComponent = new HakimAnimationComponent();
-	auto behaviorComponent = new HakimBehaviorComponent();
+	EnemyBehaviorComponent* behaviorComponent = new HakimBehaviorComponent();
 
 	animationComponent->setPhysiscComponent(physicsComponent);
 	behaviorComponent->setPhysicsComponent(physicsComponent);
@@ -205,6 +226,8 @@ GameObject * ObjectFactory::getHakim(GVector2 pos)
 	physicsComponent->setAnimationComponent(animationComponent);
 
 	physicsComponent->setPosition(pos);
+
+	behaviorComponent->setRange(rangeXStart, rangeXEnd);
 
 	auto hakim = new GameObject(eObjectID::HAKIM, animationComponent, behaviorComponent, physicsComponent);
 	hakim->init();

@@ -862,6 +862,20 @@ void AladdinBehaviorComponent::slash()
 {
 	setWeapon(eStatus::SLASH);
 	updateWeaponAnimation(_status);
+	auto pos = _physicsComponent->getPosition();
+	pos.y += _animationComponent->getSprite()->getFrameHeight();
+	float width = _animationComponent->getSprite()->getFrameWidth();
+	float height = _animationComponent->getSprite()->getFrameHeight();
+	if (_facingDirection == eStatus::RIGHTFACING)
+	{
+		pos += GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+	}
+	else
+	{
+		pos -= GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+	}
+	auto sword = ObjectFactory::getSword(pos, width, height);
+	addToScene.Emit(sword);
 }
 
 void AladdinBehaviorComponent::throwApple()
