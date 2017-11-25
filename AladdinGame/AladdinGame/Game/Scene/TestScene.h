@@ -13,6 +13,7 @@
 #include "../ObjectFactory.h"
 #include "../../debug.h"
 #include "../Player/Aladdin.h"
+#include "../../Framework/Component/EnemyComponent.h"
 
 using namespace std;
 LINK_FRAMEWORK

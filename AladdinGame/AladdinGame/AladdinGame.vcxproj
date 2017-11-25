@@ -156,6 +156,7 @@
     <ClCompile Include="Framework\Component\MovingComponent.cpp" />
     <ClCompile Include="Framework\Component\NullComponent.cpp" />
     <ClCompile Include="Framework\Component\PhysicsComponent.cpp" />
+    <ClCompile Include="Framework\Component\PlayerComponent.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\QuadTree.cpp" />
     <ClCompile Include="Framework\rectutils.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Framework\Component\NullComponent.h" />
     <ClInclude Include="Framework\Component\PhysicsComponent.h" />
     <ClInclude Include="Framework\Component\MovingComponent.h" />
+    <ClInclude Include="Framework\Component\PlayerComponent.h" />
     <ClInclude Include="Framework\define.h" />
     <ClInclude Include="Framework\GameObject.h" />
     <ClInclude Include="Framework\QuadTree.h" />

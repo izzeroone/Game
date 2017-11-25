@@ -52,6 +52,7 @@ bool TestScene::init()
 
 	auto hakim = ObjectFactory::getHakim(GVector2(400, 100),200, 600);
 	_listobject.push_back(hakim);
+	EnemyBehaviorComponent::addToScene.Connect(this, &TestScene::addToScene);
 
 
 

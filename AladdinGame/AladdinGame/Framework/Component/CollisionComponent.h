@@ -4,6 +4,7 @@
 #include "../GameObject.h"
 #include "../AABB.h"
 #include "Component.h"
+#include <functional>
 #include <queue>
 
 class CollisionComponent : public Component
@@ -21,7 +22,8 @@ public:
 	bool checkCollision(GameObject* otherObject, eDirection& direction, float dt, bool updatePosition = true);
 
 	bool isColliding(GameObject* otherObject);
-		GameObject * isColliding(eObjectID eid);
+	GameObject * isColliding(eObjectID eid);
+	GameObject * isColliding(std::function<bool(GameObject*)> predicate);
 	eDirection getCollidingDirection(GameObject * otherObject);
 
 	void update(float dt);

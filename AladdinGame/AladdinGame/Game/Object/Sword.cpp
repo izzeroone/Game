@@ -20,13 +20,28 @@ void SwordBehaviorComponent::update(float detatime)
 	}
 
 	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
-	GameObject * obj = collisionComponent->isColliding(eObjectID::HAKIM);
+	auto isEnemyFunc = [](GameObject* obj) {
+		auto id = obj->getID();
+		return id == eObjectID::HAKIM;
+	};
+	GameObject * obj = collisionComponent->isColliding(isEnemyFunc);
 	if (obj != nullptr)
 	{
 		auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
 		if (it == _slashObject.end() || it._Ptr == nullptr)
 		{
 			((EnemyBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(20);
+			_slashObject.push_back(obj);
+		}
+	}
+
+	obj = collisionComponent->isColliding(eObjectID::ALADDIN);
+	if (obj != nullptr)
+	{
+		auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
+		if (it == _slashObject.end() || it._Ptr == nullptr)
+		{
+			((PlayerBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(20);
 			_slashObject.push_back(obj);
 		}
 	}

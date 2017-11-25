@@ -177,6 +177,9 @@
     <ClCompile Include="Game\Enemy\Hakim.cpp">
       <Filter>Source Files\Game\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Component\PlayerComponent.cpp">
+      <Filter>Source Files\Framework\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
@@ -275,9 +278,6 @@
     <ClInclude Include="Framework\Component\CollisionComponent.h">
       <Filter>Header Files\Framework\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Object\Apple.h">
-      <Filter>Header Files\Game\Player</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\QuadTree.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
@@ -298,6 +298,12 @@
     </ClInclude>
     <ClInclude Include="Game\Enemy\Hakim.h">
       <Filter>Header Files\Game\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\PlayerComponent.h">
+      <Filter>Header Files\Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Apple.h">
+      <Filter>Header Files\Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

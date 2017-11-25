@@ -97,6 +97,7 @@ void AppleBehaviorComponent::setStatus(eStatus status)
 	updateAnimation();
 }
 
+
 void AppleBehaviorComponent::updateAnimation()
 {
 	switch (_status)

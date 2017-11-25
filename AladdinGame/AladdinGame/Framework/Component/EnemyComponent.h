@@ -5,6 +5,7 @@
 #include "PhysicsComponent.h"
 #include "AnimationComponent.h"
 #include "BehaviorComponent.h"
+#include "../../../sigcxx/include/sigcxx/sigcxx.hpp"
 
 
 class EnemyBehaviorComponent : public BehaviorComponent
@@ -19,6 +20,7 @@ public:
 	virtual void dropHitpoint(int damage);
 	virtual void setStatus(eStatus status) override;
 	virtual void setRange(float rangeXStart, float rangeXEnd);
+	static sigcxx::Signal<GameObject * > addToScene;
 protected:
 	void gainScore();
 	int _hitpoint;
@@ -26,5 +28,6 @@ protected:
 	//Tầm hoạt động chỉ trong khoản này ko được vượt quá
 	float _rangeXStart;
 	float _rangeXEnd;
+
 };
 #endif // !__ENEMYCOMPONENT_H__

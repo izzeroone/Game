@@ -1,5 +1,7 @@
 ﻿#include "CollisionComponent.h"
 
+
+
 CollisionComponent::CollisionComponent()
 {
 }
@@ -468,6 +470,18 @@ GameObject * CollisionComponent::isColliding(eObjectID eid)
 	for (auto it = _listColliding.begin(); it != _listColliding.end(); it++)
 	{
 		if (it->first->getID() == eid)
+		{
+			return it->first;
+		}
+	}
+	return nullptr;
+}
+
+GameObject * CollisionComponent::isColliding(std::function<bool(GameObject*)> predicate)
+{
+	for (auto it = _listColliding.begin(); it != _listColliding.end(); it++)
+	{
+		if (predicate(it->first))
 		{
 			return it->first;
 		}

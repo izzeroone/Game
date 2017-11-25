@@ -9,6 +9,7 @@
 #include "../../Framework/Component/CollisionComponent.h"
 #include "../../Framework/Component/NullComponent.h"
 #include "../../Framework/Component/EnemyComponent.h"
+#include "../../Framework/Component/PlayerComponent.h"
 #include <vector>
 #define LIVING_TIME 1000 // kiếm tồn tại 1 s
 

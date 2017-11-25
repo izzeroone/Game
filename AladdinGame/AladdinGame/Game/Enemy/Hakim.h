@@ -8,6 +8,7 @@
 #include "../../Framework/Component/PhysicsComponent.h"
 #include "../../Framework/Component/CollisionComponent.h"
 #include "../../Framework/Component/EnemyComponent.h"
+#include "../ObjectFactory.h"
 #include "../Scene/SceneManager.h"
 
 

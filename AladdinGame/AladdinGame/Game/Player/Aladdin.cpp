@@ -109,8 +109,8 @@ void AladdinAnimationComponent::init()
 	_animations[eStatus::PUSH] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::PUSH]->addFrameRect(eObjectID::ALADDIN, "push_01", "push_02", "push_03", "push_04", "push_05", "push_06", "push_07", "push_08", "push_09", NULL);
 
-	_animations[eStatus::BURNED] = new Animation(_sprite, 0.07f);
-	_animations[eStatus::BURNED]->addFrameRect(eObjectID::ALADDIN, "burned_01", "burned_02", "burned_03", "burned_04", "burned_05", "burned_06", NULL);
+	_animations[eStatus::BEATEN] = new Animation(_sprite, 0.07f);
+	_animations[eStatus::BEATEN]->addFrameRect(eObjectID::ALADDIN, "burned_01", "burned_02", "burned_03", "burned_04", "burned_05", "burned_06", NULL);
 
 	_animations[eStatus::DYING] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::DYING]->addFrameRect(eObjectID::ALADDIN, "die_01", "die_02", "die_03", "die_04", "die_05", "die_06", "die_07", "die_08", "die_09", "die_10", "die_11", "die_12", "die_13", NULL);
@@ -182,6 +182,7 @@ RECT AladdinPhysicsComponent::getBounding()
 
 void AladdinBehaviorComponent::init()
 {
+	_hitpoint = 1000;
 	_isBoring = false;
 	_preStatus = eStatus::NORMAL;
 	_preObject = new GameObject();
@@ -672,8 +673,8 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			if (landObject->getLandType() == eLandType::lFLAME && _protectTime <= 0)
 			{
-				_animationComponent->setTempAnimation(eStatus::BURNED, 1);
-				_protectTime = ALADDIN_PROTECT_TIME;
+				dropHitpoint(20);
+
 			}
 			_preObject = landObject;
 			break;
@@ -864,7 +865,7 @@ void AladdinBehaviorComponent::slash()
 	updateWeaponAnimation(_status);
 	auto pos = _physicsComponent->getPosition();
 	pos.y += _animationComponent->getSprite()->getFrameHeight();
-	float width = _animationComponent->getSprite()->getFrameWidth();
+	float width = _animationComponent->getSprite()->getFrameWidth() * 4/3;
 	float height = _animationComponent->getSprite()->getFrameHeight();
 	if (_facingDirection == eStatus::RIGHTFACING)
 	{
@@ -953,6 +954,17 @@ void AladdinBehaviorComponent::climbHorizon()
 void AladdinBehaviorComponent::setRespawnPosition(GVector2 respawnPosition)
 {
 	_respawnPostion = respawnPosition;
+}
+
+void AladdinBehaviorComponent::dropHitpoint(int damage)
+{
+	//Đang được bảo vệ, không làm gì cả
+	if (_protectTime > 0)
+		return;
+
+	PlayerBehaviorComponent::dropHitpoint(damage);
+	_animationComponent->setTempAnimation(eStatus::BEATEN, 1);
+	_protectTime = ALADDIN_PROTECT_TIME;
 }
 
 void AladdinBehaviorComponent::respawn()

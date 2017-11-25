@@ -7,6 +7,7 @@
 #include "../../Framework/Component/BehaviorComponent.h"
 #include "../../Framework/Component/PhysicsComponent.h"
 #include "../../Framework/Component/CollisionComponent.h"
+#include "../../Framework/Component/PlayerComponent.h"
 #include "../../Game/Object/Land.h"
 #include "../../Game/Object/Rope.h"
 #include "../../../sigcxx/include/sigcxx/sigcxx.hpp"
@@ -54,13 +55,14 @@ public:
 	void init();
 };
 
-class AladdinBehaviorComponent : public BehaviorComponent
+class AladdinBehaviorComponent : public PlayerBehaviorComponent
 {
 public:
 	void init();
 	void update(float detatime);
-	virtual void setStatus(eStatus status) override;
+	void setStatus(eStatus status) override;
 	void setRespawnPosition(GVector2 respawnPosition);
+	void dropHitpoint(int damage);
 	sigcxx::Signal<float, bool> moveViewport; //float is offset, bool: true move up, false: revert back
 	sigcxx::Signal<GameObject*> addToScene; // add some thing to scene
 private:
