@@ -7,6 +7,7 @@ void SwordPhysicsComponent::init()
 
 void SwordBehaviorComponent::init()
 {
+	_canSlashEnemy = false;
 	_livingTime = 0;
 }
 
@@ -24,31 +25,43 @@ void SwordBehaviorComponent::update(float detatime)
 		auto id = obj->getID();
 		return id == eObjectID::HAKIM;
 	};
-	GameObject * obj = collisionComponent->isColliding(isEnemyFunc);
-	if (obj != nullptr)
+	GameObject * obj;
+	
+	if (_canSlashEnemy)
 	{
-		auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
-		if (it == _slashObject.end() || it._Ptr == nullptr)
+		obj = collisionComponent->isColliding(isEnemyFunc);
+		if (obj != nullptr)
 		{
-			((EnemyBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(20);
-			_slashObject.push_back(obj);
+			auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
+			if (it == _slashObject.end() || it._Ptr == nullptr)
+			{
+				((EnemyBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(10);
+				_slashObject.push_back(obj);
+			}
 		}
 	}
-
-	obj = collisionComponent->isColliding(eObjectID::ALADDIN);
-	if (obj != nullptr)
+	else
 	{
-		auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
-		if (it == _slashObject.end() || it._Ptr == nullptr)
+		obj = collisionComponent->isColliding(eObjectID::ALADDIN);
+		if (obj != nullptr)
 		{
-			((PlayerBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(20);
-			_slashObject.push_back(obj);
+			auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
+			if (it == _slashObject.end() || it._Ptr == nullptr)
+			{
+				((PlayerBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(10);
+				_slashObject.push_back(obj);
+			}
 		}
 	}
 }
 
+void SwordBehaviorComponent::canSlashEnemy(bool result)
+{
+	_canSlashEnemy = result;
+}
 
-void Sword::init(int x, int y, int width, int height, eDirection side)
+
+void Sword::init(int x, int y, int width, int height, eDirection side, bool canSlashEnemy)
 {
 	GameObject::init();
 	_id = eObjectID::SWORD;
@@ -60,6 +73,7 @@ void Sword::init(int x, int y, int width, int height, eDirection side)
 	bounding.right = x + width;
 	_physicsComponent->setBounding(bounding);
 	_physicsComponent->setPhysicsBodySide(side);
+	((SwordBehaviorComponent*)(_behaviorComponent))->canSlashEnemy(canSlashEnemy);
 }
 
 Sword::Sword()

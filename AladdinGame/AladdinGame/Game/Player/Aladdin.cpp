@@ -227,7 +227,10 @@ void AladdinBehaviorComponent::update(float detatime)
 		OutputDebugStringW(L" Pre Object : ");
 		__debugoutput(_preObject->getID());
 		OutputDebugStringW(L" \n ");
-		_animationComponent->setTempAnimation(eStatus::NORMAL | eStatus::SLASH, 1);
+
+		OutputDebugStringW(L" Hit point : ");
+		__debugoutput(_hitpoint);
+		OutputDebugStringW(L" \n ");
 	}
 	if (_physicsComponent->getPositionY() + ALADDIN_HEIGHT < 0)
 	{
@@ -875,7 +878,7 @@ void AladdinBehaviorComponent::slash()
 	{
 		pos -= GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
 	}
-	auto sword = ObjectFactory::getSword(pos, width, height);
+	auto sword = ObjectFactory::getSword(pos, width, height, true);
 	addToScene.Emit(sword);
 }
 

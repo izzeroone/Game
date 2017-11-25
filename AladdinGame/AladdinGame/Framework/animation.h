@@ -120,6 +120,7 @@ public:
 	D3DXCOLOR getColorFlash();
 	bool isLastAnimation();
 	RECT getCurrentBounding();
+	RECT getCurrentBoundingNoWeapon();
 private:
 	bool					_isAll;
 	int						_startFrame;

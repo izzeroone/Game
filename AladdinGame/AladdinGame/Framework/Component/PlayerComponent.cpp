@@ -33,6 +33,6 @@ void PlayerBehaviorComponent::dropHitpoint()
 
 void PlayerBehaviorComponent::dropHitpoint(int damage)
 {
-	_hitpoint += damage;
+	_hitpoint -= damage;
 }
 

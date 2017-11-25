@@ -21,7 +21,7 @@ public:
 	static GameObject* getObjectById(xml_node node, eObjectID id);
 	static GameObject* getAladdin();
 	static GameObject* getApple(GVector2 pos, GVector2 velocity);
-	static GameObject* getSword(GVector2 pos, float width, float height);
+	static GameObject* getSword(GVector2 pos, float width, float height, bool canSlashEnemy);
 	static GameObject* getLand(xml_node node);
 	static GameObject* getRope(xml_node node);
 	static GameObject* getHakim(GVector2 pos, float rangeXStart, float rangeXEnd);

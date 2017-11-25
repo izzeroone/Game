@@ -217,6 +217,7 @@ RECT Sprite::getBounding()
 	return _bound;
 }
 
+
 void Sprite::setFrameRect(RECT rect)
 {
 	_frameRect = rect;

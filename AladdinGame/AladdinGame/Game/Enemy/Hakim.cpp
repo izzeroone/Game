@@ -56,6 +56,7 @@ void HakimBehaviorComponent::init()
 {
 	setStatus(eStatus::NORMAL);
 	_hitpoint = 100;
+	_standTime = 0;
 }
 
 void HakimBehaviorComponent::update(float detatime)
@@ -66,6 +67,14 @@ void HakimBehaviorComponent::update(float detatime)
 		return;
 	}
 
+	_standTime -= detatime;
+	if (_standTime > 0)
+	{
+		setStatus(eStatus::NORMAL);
+		standing();
+		return;
+	}
+
 	auto aladdin = SceneManager::getInstance()->getCurrentScene()->getObject(eObjectID::ALADDIN);
 	auto aladdinPos = aladdin->getPhysicsComponent()->getPosition();
 	
@@ -73,30 +82,27 @@ void HakimBehaviorComponent::update(float detatime)
 	RECT bound = _physicsComponent->getBounding();
 	float width = bound.right - bound.left;
 
-	if (_physicsComponent->getPositionX() >= _rangeXStart && _physicsComponent->getPositionX() <= _rangeXEnd)
+	if (diffirent > width && _physicsComponent->getPositionX() >= _rangeXStart) // aladdin ở bến trái
 	{
-		if (diffirent > width) // aladdin ở bến trái
-		{
-			setStatus(eStatus::RUNNING);
-			moveLeft();
-		}
-		else if (diffirent < -width)
-		{
-			setStatus(eStatus::RUNNING);
-			moveRight();
-		}
-		else
-		{
-			standing();
-			setStatus(eStatus::NORMAL);
-			slash();
-		}
+		setStatus(eStatus::RUNNING);
+		moveLeft();
+	}
+	else if (diffirent < -width && _physicsComponent->getPositionX() <= _rangeXEnd)
+	{
+		setStatus(eStatus::RUNNING);
+		moveRight();
 	}
 	else
 	{
 		standing();
 		setStatus(eStatus::NORMAL);
 		slash();
+	}
+
+
+	if (_animationComponent->isTempAnimationEmpty() == true)
+	{
+		setWeapon(eStatus::NORMAL);
 	}
 
 }
@@ -111,6 +117,7 @@ void HakimBehaviorComponent::dropHitpoint(int damage)
 {
 	EnemyBehaviorComponent::dropHitpoint(damage);
 	_animationComponent->setTempAnimation(eStatus::BEATEN, 1);
+	_standTime = STAND_TIME;
 }
 
 void HakimBehaviorComponent::updateAnimation()
@@ -177,6 +184,9 @@ void HakimBehaviorComponent::moveRight()
 
 void HakimBehaviorComponent::slash()
 {
+	if (_weapon == eStatus::SLASH)
+		return;
+
 	setWeapon(eStatus::SLASH);
 	_animationComponent->setTempAnimation(eStatus::SLASH, 1);
 	auto pos = _physicsComponent->getPosition();
@@ -191,7 +201,7 @@ void HakimBehaviorComponent::slash()
 	{
 		pos -= GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
 	}
-	auto sword = ObjectFactory::getSword(pos, width, height);
+	auto sword = ObjectFactory::getSword(pos, width, height, false);
 	addToScene.Emit(sword);
 
 }

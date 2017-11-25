@@ -123,12 +123,6 @@ wstring BehaviorComponent::getStatusString(eStatus status)
 	case CLIMB_HORIZON:
 		return L"climb horizon";
 		break;
-	case MOVE_UP:
-		return L"move up";
-		break;
-	case MOVE_DOWN:
-		return L"move down";
-		break;
 	case BORING1:
 		return L"boring1";
 		break;

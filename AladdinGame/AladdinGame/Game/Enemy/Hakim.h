@@ -11,6 +11,7 @@
 #include "../ObjectFactory.h"
 #include "../Scene/SceneManager.h"
 
+#define STAND_TIME 500
 
 class HakimPhysicsComponent : public PhysicsComponent
 {
@@ -47,6 +48,8 @@ private:
 	void moveLeft();
 	void moveRight();
 	void slash();
+
+	float _standTime; // sau khi bị đánh phải đứng lại một khoảng thời gian
 
 
 };

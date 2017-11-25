@@ -38,6 +38,8 @@ void EnemyBehaviorComponent::dropHitpoint()
 void EnemyBehaviorComponent::dropHitpoint(int damage)
 {
 	_hitpoint -= damage;
+	OutputDebugStringW(L"Enemy hit point : ");
+	__debugoutput(_hitpoint);
 	if (_hitpoint <= 0)
 		gainScore();
 }

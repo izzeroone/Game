@@ -104,7 +104,7 @@ GameObject * ObjectFactory::getApple(GVector2 pos, GVector2 velocity)
 	return apple;
 }
 
-GameObject * ObjectFactory::getSword(GVector2 pos, float width, float height)
+GameObject * ObjectFactory::getSword(GVector2 pos, float width, float height, bool canSlashEnemy)
 {
 	auto physicsComponent = new SwordPhysicsComponent();
 	auto behaviorComponent = new SwordBehaviorComponent();
@@ -117,7 +117,7 @@ GameObject * ObjectFactory::getSword(GVector2 pos, float width, float height)
 	sword->setPhysicsComponent(physicsComponent);
 	sword->setBehaviorComponent(behaviorComponent);
 	sword->setAnimationComponent(nullptr);
-	sword->init(pos.x, pos.y, width, height, eDirection::ALL);
+	sword->init(pos.x, pos.y, width, height, eDirection::ALL, canSlashEnemy);
 
 	auto collisionComponent = (CollisionComponent*)sword->getPhysicsComponent()->getComponent("Collision");
 	collisionComponent->setTargerGameObject(sword);

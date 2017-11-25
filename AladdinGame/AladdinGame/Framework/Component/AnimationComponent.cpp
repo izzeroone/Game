@@ -79,7 +79,10 @@ void AnimationComponent::setAnimationNoRestart(int status)
 void AnimationComponent::setTempAnimation(int status, int count)
 {
 
-	if (_tempIndex != -1)
+	//if (_tempIndex != -1)
+	//	return;
+
+	if (_tempIndex == status)
 		return;
 
 	_tempIndex = status;
