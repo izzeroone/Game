@@ -1,7 +1,9 @@
-﻿  Land.cpp
+﻿  AladdinGame.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): warning C4005: 'GRAVITY': macro redefinition
   d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): note: see previous definition of 'GRAVITY'
-d:\githubproject\game\aladdingame\aladdingame\game\object\land.cpp(65): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  TestScene.cpp
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)

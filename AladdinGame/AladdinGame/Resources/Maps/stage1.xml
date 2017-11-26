@@ -122,6 +122,13 @@
       </Params>
     </Item>
 	
+	<Item Id="1" Name="fallland1" X="1631" Y="231" Width="34" Height="16">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="type" Value="2" />
+      </Params>
+    </Item>
+	
 	<Item Id="1" Name="wall1" X="2204" Y="399" Width="40" Height="399">
       <Params>
         <Elem Key="physicBodyDirection" Value="1" />

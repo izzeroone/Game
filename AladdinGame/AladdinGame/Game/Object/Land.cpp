@@ -11,6 +11,7 @@ void Land::init(int x, int y, int width, int height, eDirection physicBodyDirect
 	bounding.bottom = y - height;
 	bounding.right = x + width;
 	_physicsComponent->setBounding(bounding);
+	_physicsComponent->setPosition(GVector2(x, y));
 	setLandType(type);
 	_physicsComponent->setPhysicsBodySide(physicBodyDirection);
 }
@@ -81,6 +82,25 @@ void LandBehaviorComponent::updateFlameLand(float deltatime)
 
 void LandBehaviorComponent::updateFallingLand(float deltatime)
 {
+	_animationComponent->setAnimation(eStatus::NORMAL);
+	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
+
+	if (getStatus() == eStatus::FALLING)
+	{
+		_timer += deltatime;
+		if (_timer >= FALLING_DESTROYED_TIME)
+			setStatus(eStatus::DESTROY);
+	}
+
+	GameObject * aladdin = collisionComponent->isColliding(eObjectID::ALADDIN);
+	if (aladdin == nullptr)
+	{
+		return;
+	}
+
+	auto g = (Gravity*)this->_physicsComponent->getComponent("Gravity");
+	g->setStatus(eGravityStatus::FALLING__DOWN);
+
 }
 
 void LandBehaviorComponent::setIndex(int index)
@@ -96,6 +116,7 @@ void LandBehaviorComponent::setIndex(int index)
 void LandBehaviorComponent::init()
 {
 	_index = 0;
+	_timer = 0;
 }
 
 void LandBehaviorComponent::update(float deltatime)
@@ -108,8 +129,50 @@ void LandBehaviorComponent::update(float deltatime)
 		updateFlameLand(deltatime);
 		break;
 	case lFALLING:
+		updateFallingLand(deltatime);
 		break;
 	default:
 		break;
 	}
+}
+
+void FallingLandPhysiscsComponent::init()
+{
+	LandPhysiscsComponent::init();
+	auto movement = new Movement(GVector2(0, 0), GVector2(0, 0), this);
+	_componentList["Movement"] = movement;
+	auto gravity = new Gravity(GVector2(0, -GRAVITY), movement);
+	gravity->setStatus(eGravityStatus::LANDED);
+	_componentList["Gravity"] = gravity;
+
+}
+
+void FallingLandAnimationComponent::init()
+{
+	_sprite = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
+	_sprite->setFrameRect(SpriteResource::getInstance()->getSourceRect(eObjectID::MAP1, "falling_land"));
+	_sprite->setZIndex(0.0f);
+
+	setOrigin(GVector2(0.0f, 0.0f));
+	setScale(SCALE_FACTOR);
+
+	_animations[eStatus::NORMAL] = new Animation(_sprite, 100.f);
+	_animations[eStatus::NORMAL]->addFrameRect(eObjectID::MAP1, "falling_land", NULL);
+
+	_index = eStatus::NORMAL;
+
+	for (auto animate : _animations)
+	{
+		animate.second->setColorFlash(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+	}
+
+
+}
+
+void FallingLandAnimationComponent::draw(LPD3DXSPRITE spriteHander, Viewport * viewport)
+{
+	OutputDebugStringW(L"Position");
+	__debugoutput(_physicsComponent->getPositionX());
+	__debugoutput(_physicsComponent->getPositionY());
+	AnimationComponent::draw(spriteHander, viewport);
 }

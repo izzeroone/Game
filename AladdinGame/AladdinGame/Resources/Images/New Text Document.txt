@@ -1,9 +1,0 @@
-frame_name	x	y	width	height
-flame_01	44	79	16	32
-flame_02	65	71	20	40
-flame_03	90	63	28	48
-flame_04	123	47	32	64
-flame_05	160	31	32	80
-flame_06	197	15	28	96
-flame_07	230	23	22	88
-flame_08	261	31	31	80

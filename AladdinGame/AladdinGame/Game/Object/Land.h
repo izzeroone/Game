@@ -7,13 +7,28 @@
 #include "../Scene/SceneManager.h"
 #include "../ObjectFactory.h"
 
-#define FLAME_INTEVAL 300 // 1s sẽ có 1 ngọn lửa từ flameland
-#define FLAME_PER_LAND 5 // chia flameland ra thành 3 phần
+#define FLAME_INTEVAL 300 // 0,3s sẽ có 1 ngọn lửa từ flameland
+#define FLAME_PER_LAND 3 // chia flameland ra thành 3 phần
+#define FALLING_DESTROYED_TIME 2000 // thời gian tính từ lúc rơi xuống tới lúc bể
 LINK_FRAMEWORK
 
 class LandPhysiscsComponent : public NullPhysicsComponent
 {
+public:
 	void init() override;
+};
+
+class FallingLandPhysiscsComponent : public LandPhysiscsComponent
+{
+public:
+	void init() override;
+};
+
+class FallingLandAnimationComponent : public AnimationComponent
+{
+public:
+	void init() override;
+	void draw(LPD3DXSPRITE spriteHander, Viewport* viewport) override;
 };
 
 class LandBehaviorComponent : public BehaviorComponent

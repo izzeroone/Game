@@ -46,7 +46,7 @@ public:
 private:
 	void destroyobject();				// kiển tra nếu object hết hạn sử dụng thì phá huỷ đối tượng
 
-	// Danh sách đối tượng dùng để tạo spatical hashing.
+	// Danh sách đối tượng dùng để tạo quad tree.
 	map <string, GameObject*> _mapobject;
 
 	// Danh sách các đối tượng hoạt động rộng không thể đưa vào quadtree.

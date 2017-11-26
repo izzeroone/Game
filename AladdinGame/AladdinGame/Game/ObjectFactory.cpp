@@ -158,13 +158,27 @@ GameObject * ObjectFactory::getLand(xml_node node)
 		dir = eDirection::TOP;
 	}
 
-	auto physicsComponent = new LandPhysiscsComponent();
 	auto behaviorComponent = new LandBehaviorComponent();
+	PhysicsComponent * physicsComponent;
+	AnimationComponent * animationComponent = nullptr;
+	if (type == eLandType::lFALLING)
+	{
+		physicsComponent = new FallingLandPhysiscsComponent();
+		animationComponent = new FallingLandAnimationComponent();
+		animationComponent->setPhysiscComponent(physicsComponent);
+		physicsComponent->setPosition(GVector2(x, y));
+	}
+	else
+	{
+		physicsComponent = new LandPhysiscsComponent();
+	}
 	behaviorComponent->setPhysicsComponent(physicsComponent);
+	behaviorComponent->setAnimationComponent(animationComponent);
 
 	auto land = new Land();
 	land->setPhysicsComponent(physicsComponent);
 	land->setBehaviorComponent(behaviorComponent);
+	land->setAnimationComponent(animationComponent);
 	land->init(x, y, width, height, dir, type);
 
 	auto collisionComponent = (CollisionComponent*)land->getPhysicsComponent()->getComponent("Collision");

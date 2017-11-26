@@ -108,9 +108,9 @@ enum eCommand
 
 enum eLandType
 {
-	lNORMAL,
-	lFLAME,
-	lFALLING
+	lNORMAL = 0,
+	lFLAME = 1,
+	lFALLING = 2
 };
 
 enum eSoundId
