@@ -159,9 +159,12 @@ GameObject * ObjectFactory::getLand(xml_node node)
 	}
 
 	auto physicsComponent = new LandPhysiscsComponent();
+	auto behaviorComponent = new LandBehaviorComponent();
+	behaviorComponent->setPhysicsComponent(physicsComponent);
 
 	auto land = new Land();
 	land->setPhysicsComponent(physicsComponent);
+	land->setBehaviorComponent(behaviorComponent);
 	land->init(x, y, width, height, dir, type);
 
 	auto collisionComponent = (CollisionComponent*)land->getPhysicsComponent()->getComponent("Collision");
@@ -235,6 +238,29 @@ GameObject * ObjectFactory::getHakim(GVector2 pos, float rangeXStart, float rang
 	collisionComponent->setTargerGameObject(hakim);
 
 	return hakim;
+}
+
+GameObject * ObjectFactory::getFlame(GVector2 pos)
+{
+	FlamePhysicsComponent * physicsComponent = new FlamePhysicsComponent();
+	auto animationComponent = new FlameAnimationComponent();
+	auto behaviorComponent = new FlameBehaviorComponent();
+
+	animationComponent->setPhysiscComponent(physicsComponent);
+	behaviorComponent->setPhysicsComponent(physicsComponent);
+	behaviorComponent->setAnimationComponent(animationComponent);
+	behaviorComponent->setGameController(GameController::getInstance());
+	physicsComponent->setAnimationComponent(animationComponent);
+
+	physicsComponent->setPosition(pos);
+
+
+	auto Flame = new GameObject(eObjectID::FLAME, animationComponent, behaviorComponent, physicsComponent);
+	Flame->init();
+	auto collisionComponent = (CollisionComponent*)Flame->getPhysicsComponent()->getComponent("Collision");
+	collisionComponent->setTargerGameObject(Flame);
+
+	return Flame;
 }
 
 map<string, string> ObjectFactory::getObjectProperties(xml_node node)

@@ -36,6 +36,7 @@ enum eObjectID
 	SWORD = 4, // f0r slash
 	GUARD = 5,
 	HAKIM = 6,
+	FLAME = 10,
 	MAP1 = 30
 };
 
@@ -108,7 +109,8 @@ enum eCommand
 enum eLandType
 {
 	lNORMAL,
-	lFLAME
+	lFLAME,
+	lFALLING
 };
 
 enum eSoundId

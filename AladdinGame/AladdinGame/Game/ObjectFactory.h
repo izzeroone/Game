@@ -8,6 +8,7 @@
 #include "Object\Rope.h"
 #include "Enemy\Hakim.h"
 #include "Object\Sword.h"
+#include "Object\Flame.h"
 #include "../../pugixml/src/pugixml.hpp"
 
 using namespace pugi;
@@ -25,6 +26,7 @@ public:
 	static GameObject* getLand(xml_node node);
 	static GameObject* getRope(xml_node node);
 	static GameObject* getHakim(GVector2 pos, float rangeXStart, float rangeXEnd);
+	static GameObject* getFlame(GVector2 pos);
 private:
 	static map<string, string> ObjectFactory::getObjectProperties(xml_node node);
 };

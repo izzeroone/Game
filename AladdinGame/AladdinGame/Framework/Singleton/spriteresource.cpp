@@ -36,6 +36,10 @@ void SpriteResource::loadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite[eObjectID::GUARD] = guard;
 	this->loadSpriteInfo(eObjectID::GUARD, "Resources//Images//guard.txt");
 
+	Sprite* flame = new Sprite(spriteHandle, L"Resources//Images//flame.png");
+	this->_listSprite[eObjectID::FLAME] = flame;
+	this->loadSpriteInfo(eObjectID::FLAME, "Resources//Images//flame.txt");
+
 
 }
 

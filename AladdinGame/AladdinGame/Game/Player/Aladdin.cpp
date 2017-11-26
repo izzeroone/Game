@@ -662,27 +662,27 @@ void AladdinBehaviorComponent::update(float detatime)
 	default:
 		break;
 	}
-	//check running or burning land
-	switch (_status)
-	{
-	case NORMAL:
-	case JUMPING:
-	case LAYING_DOWN:
-	case RUNNING:
-	case LOOKING_UP:
-	case PUSH:
-		landObject = (Land*)collisionComponent->isColliding(eObjectID::LAND);
-		if (landObject != nullptr)
-		{
-			if (landObject->getLandType() == eLandType::lFLAME && _protectTime <= 0)
-			{
-				dropHitpoint(20);
+	////check running or burning land
+	//switch (_status)
+	//{
+	//case NORMAL:
+	//case JUMPING:
+	//case LAYING_DOWN:
+	//case RUNNING:
+	//case LOOKING_UP:
+	//case PUSH:
+	//	landObject = (Land*)collisionComponent->isColliding(eObjectID::LAND);
+	//	if (landObject != nullptr)
+	//	{
+	//		if (landObject->getLandType() == eLandType::lFLAME && _protectTime <= 0)
+	//		{
+	//			dropHitpoint(20);
 
-			}
-			_preObject = landObject;
-			break;
-		}
-	}
+	//		}
+	//		_preObject = landObject;
+	//		break;
+	//	}
+	//}
 
 	if (_animationComponent->isTempAnimationEmpty() == true)
 	{

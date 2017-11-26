@@ -14,7 +14,7 @@ void SwordBehaviorComponent::init()
 void SwordBehaviorComponent::update(float detatime)
 {
 	_livingTime += detatime;
-	if (detatime >= LIVING_TIME)
+	if (_livingTime >= LIVING_TIME)
 	{
 		setStatus(eStatus::DESTROY);
 		return;

@@ -269,6 +269,13 @@ Sprite * AnimationComponent::getSprite()
 
 RECT AnimationComponent::getBounding()
 {
-	return _sprite->getBounding();
+	RECT newRect = _animations[_index]->getCurrentBounding();
+	RECT oldRect = _sprite->getFrameRect();
+	_sprite->setFrameRect(newRect);
+	RECT bound = _sprite->getBounding();
+	_sprite->setFrameRect(oldRect);
+
+	return bound;
+
 }
 

@@ -4,12 +4,35 @@
 #include "../../Framework/GameObject.h"
 #include "../../Framework/Component/NullComponent.h"
 #include "../../Framework/Component/CollisionComponent.h"
+#include "../Scene/SceneManager.h"
+#include "../ObjectFactory.h"
 
+#define FLAME_INTEVAL 300 // 1s sẽ có 1 ngọn lửa từ flameland
+#define FLAME_PER_LAND 5 // chia flameland ra thành 3 phần
 LINK_FRAMEWORK
 
 class LandPhysiscsComponent : public NullPhysicsComponent
 {
 	void init() override;
+};
+
+class LandBehaviorComponent : public BehaviorComponent
+{
+public:
+	void init();
+	void update(float deltatime);
+	void setLandType(eLandType type);
+	eLandType getLandType();
+protected:
+	void updateFlameLand(float deltatime);
+	void updateFallingLand(float deltatime);
+	void setIndex(int index);
+	int _index; // the position the flame
+	eLandType _landType;
+	float _width;
+	float _timer;
+
+	
 };
 
 class Land : public GameObject
@@ -20,7 +43,6 @@ public:
 	void setLandType(eLandType landType);
 	eLandType getLandType();
 protected:
-	eLandType _landType;
 };
 
 #endif

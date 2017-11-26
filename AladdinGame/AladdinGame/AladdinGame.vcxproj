@@ -177,6 +177,7 @@
     <ClCompile Include="Game\game.cpp" />
     <ClCompile Include="Game\ObjectFactory.cpp" />
     <ClCompile Include="Game\Object\Apple.cpp" />
+    <ClCompile Include="Game\Object\Flame.cpp" />
     <ClCompile Include="Game\Object\Land.cpp" />
     <ClCompile Include="Game\Object\Rope.cpp" />
     <ClCompile Include="Game\Object\Sword.cpp" />
@@ -221,6 +222,7 @@
     <ClInclude Include="Game\game.h" />
     <ClInclude Include="Game\ObjectFactory.h" />
     <ClInclude Include="Game\Object\Apple.h" />
+    <ClInclude Include="Game\Object\Flame.h" />
     <ClInclude Include="Game\Object\Land.h" />
     <ClInclude Include="Game\Object\Rope.h" />
     <ClInclude Include="Game\Object\Sword.h" />

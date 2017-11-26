@@ -52,7 +52,7 @@ bool TestScene::init()
 
 	auto hakim = ObjectFactory::getHakim(GVector2(400, 100),200, 600);
 	_listobject.push_back(hakim);
-	EnemyBehaviorComponent::addToScene.Connect(this, &TestScene::addToScene);
+	BehaviorComponent::addToScene.Connect(this, &TestScene::addToScene);
 
 
 
@@ -115,6 +115,9 @@ void TestScene::update(float dt)
 	// [Bước 1]
 	this->destroyobject();
 
+	//OutputDebugStringW(L"Object list count : ");
+	//__debugoutput(_listobject.size());
+
 	// [Bước 2]
 	_active_object.clear();
 
@@ -141,7 +144,7 @@ void TestScene::update(float dt)
 	for (GameObject* obj : _active_object)
 	{
 		// một vài trạng thái không cần thiết phải check hàm va chạm
-		if (obj == nullptr || obj->getID() == eObjectID::LAND || obj->getID() == eObjectID::ROPE)
+		if (obj == nullptr || obj->getID() == eObjectID::ROPE)
 			continue;
 		auto collisionComponent = (CollisionComponent*)obj->getPhysicsComponent()->getComponent("Collision");
 		collisionComponent->reset();

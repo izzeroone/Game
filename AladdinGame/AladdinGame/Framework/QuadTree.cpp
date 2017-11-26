@@ -143,47 +143,6 @@ void QuadTreeNode::query(RECT queryArea, list<string> &result)
 		{
 			node->query(queryArea, result);
 		}
-		//if (node->isLeaf())
-		//	continue;
-
-		//// Case 1: search area completely contained by sub-quad
-		//// if a root completely contains the query area, go down that branch
-		//// and skip the remaining nodes (break this loop)
-		//if (isContains(node->getBound(), queryArea))
-		//{
-		//	node->query(queryArea, result);
-		//	break;
-		//}
-		//// Case 2: Sub-quad completely contained by search area 
-		//// if the query area completely contains a sub-quad,
-		//// just add all the contents of that quad and it's children 
-		//// to the result set. You need to continue the loop to test 
-		//// the other quads
-		//if (isContains(queryArea, node->getBound()))
-		//{
-		//	//Method 1
-		//	//list<string> subTreeContents = root->getSubTreeContents();
-		//	//for (string obj : subTreeContents)
-		//	//{
-		//	//	auto it = std::find(result.begin(), result.end(), obj);
-		//	//	if (it == result.end() || it._Ptr == nullptr)
-		//	//	{
-		//	//		result.push_back(obj);
-		//	//	}
-		//	//}
-		//	//Method 2
-		//	node->fetchSubTreeContents(result);
-		//	continue;
-		//}
-		//// Case 3: search area intersects with sub-quad
-		//// traverse into this quad, continue the loop to search other
-		//// quads
-		//if (isIntersectd(node->getBound(), queryArea))
-		//{
-		//	//Method 2
-		//	node->query(queryArea, result);
-		//}
-
 	}
 }
 
@@ -220,14 +179,7 @@ void QuadTreeNode::buildWriteableNode(xml_node & root)
 }
 
 void QuadTreeNode::readNode(xml_node & node)
-{
-	//auto node = root.append_child("Node");
-	//node.append_attribute("left") = getBound().left;
-	//node.append_attribute("right") = getBound().right;
-	//node.append_attribute("top") = getBound().top;
-	//node.append_attribute("bottom") = getBound().bottom;
-	//node.append_attribute("level") = _level;
-	
+{	
 	_level = node.attribute("level").as_int();
 	_bound.left = node.attribute("left").as_int();
 	_bound.right = node.attribute("right").as_int();

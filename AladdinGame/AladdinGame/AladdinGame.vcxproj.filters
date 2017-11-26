@@ -180,6 +180,9 @@
     <ClCompile Include="Game\Object\Apple.cpp">
       <Filter>Source Files\Game\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Object\Flame.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
@@ -272,9 +275,6 @@
     <ClInclude Include="Framework\Component\NullComponent.h">
       <Filter>Header Files\Framework\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Object\Rope.h">
-      <Filter>Header Files\Game\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Component\CollisionComponent.h">
       <Filter>Header Files\Framework\Component</Filter>
     </ClInclude>
@@ -302,8 +302,14 @@
     <ClInclude Include="Framework\Component\PlayerComponent.h">
       <Filter>Header Files\Framework\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Object\Rope.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
     <ClInclude Include="Game\Object\Apple.h">
-      <Filter>Header Files\Game\Player</Filter>
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Flame.h">
+      <Filter>Header Files\Game\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

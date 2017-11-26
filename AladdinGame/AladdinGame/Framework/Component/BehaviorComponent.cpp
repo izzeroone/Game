@@ -1,8 +1,12 @@
-#include "BehaviorComponent.h"
+﻿#include "BehaviorComponent.h"
 #include "AnimationComponent.h"
 #include "PhysicsComponent.h"
 #include "../GameObject.h"
 #include "../Singleton/gamecontroller.h"
+
+
+//static phải khởi tạo ở file c++
+sigcxx::Signal<GameObject * > BehaviorComponent::addToScene;
 
 BehaviorComponent::BehaviorComponent()
 {

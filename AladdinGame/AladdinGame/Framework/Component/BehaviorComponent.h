@@ -5,6 +5,7 @@
 #include "Component.h"
 #include "../Singleton/gamecontroller.h"
 #include "../../../pugixml/src/pugixml.hpp"
+#include "../../../sigcxx/include/sigcxx/sigcxx.hpp"
 using namespace pugi;
 LINK_FRAMEWORK
 //forward declarations
@@ -39,6 +40,8 @@ public:
 	virtual void setPhysicsComponent(PhysicsComponent * physicsComponent);
 
 	wstring getStatusString(eStatus status);
+
+	static sigcxx::Signal<GameObject * > addToScene;
 protected:
 	eStatus _status;
 	eStatus _preStatus;

@@ -1,8 +1,6 @@
 ﻿
 #include "EnemyComponent.h"
 
-//static phải khởi tạo ở file c++
-sigcxx::Signal<GameObject * > EnemyBehaviorComponent::addToScene;
 
 void EnemyBehaviorComponent::init()
 {
