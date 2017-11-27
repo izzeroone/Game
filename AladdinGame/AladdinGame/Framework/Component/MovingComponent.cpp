@@ -1,5 +1,6 @@
 ﻿#include "MovingComponent.h"
 #include "PhysicsComponent.h"
+#include "../../debug.h"
 
 #pragma region Movement
 Movement::Movement(GVector2 accel, GVector2 veloc, PhysicsComponent* physicsComponent )
@@ -7,22 +8,39 @@ Movement::Movement(GVector2 accel, GVector2 veloc, PhysicsComponent* physicsComp
 	this->_accelerate = accel;
 	this->_velocity = veloc;
 	this->_physicsComponent = physicsComponent;
-	_notMove = false;
+	_addPos = VECTOR2ZERO;
+	_doNotMove = false;
 
 }
 void Movement::update(float deltatime)
 {
 	if (_physicsComponent == NULL)
 		return;
-	if (_notMove == true)
-	{
-		_notMove = false;
-		return;
-	}
+
 	auto position = _physicsComponent->getPosition();
 	this->_velocity += this->_accelerate * deltatime / 1000;
-	position += this->_velocity * deltatime / 1000;
+	if (_addPos != VECTOR2ZERO)
+	{
+		OutputDebugStringW(L"pos");
+		__debugoutput(position.x);
+		__debugoutput(position.y);
+		position += _addPos;
+		OutputDebugStringW(L"Add pos");
+		__debugoutput(_addPos.x);
+		__debugoutput(_addPos.y);
+		OutputDebugStringW(L"pos after");
+		__debugoutput(position.x);
+		__debugoutput(position.y);
+		_addPos = VECTOR2ZERO;
+	}
+	if (_doNotMove == true)
+		_doNotMove = false;
+	else
+		position += this->_velocity * deltatime / 1000;
+	
 	this->_physicsComponent->setPosition(position);
+
+	
 }
 void Movement::setAccelerate(GVector2 accel)
 {
@@ -41,10 +59,17 @@ GVector2 Movement::getVelocity()
 {
 	return this->_velocity;
 }
-void Movement::setNotToMove(bool result)
+
+void Movement::setAddPos(GVector2 addPos)
 {
-	_notMove = result;
+	_addPos += addPos;
 }
+
+void Movement::setDoNotMove(bool result)
+{
+	_doNotMove = result;
+}
+
 void Movement::init()
 {
 }

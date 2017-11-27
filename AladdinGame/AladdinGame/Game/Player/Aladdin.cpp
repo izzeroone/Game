@@ -7,10 +7,10 @@
 void AladdinPhysicsComponent::init()
 {
 	_movingSpeed = ALADDIN_MOVE_SPEED;
-	_componentList["Collision"] = new CollisionComponent();
 	auto movement = new Movement(GVector2(0, 0), GVector2(0, 0), this);
-	_componentList["Movement"] = movement;	
+	_componentList["Movement"] = movement;
 	_componentList["Gravity"] = new Gravity(GVector2(0, -GRAVITY), movement);
+	_componentList["Collision"] = new CollisionComponent();
 	setPhysicsBodySide(eDirection::ALL);
 }
 
@@ -204,34 +204,34 @@ void AladdinBehaviorComponent::update(float detatime)
 	if (_input->isKeyPressed(BT_BOUND))
 	{
 #pragma region MyRegion
-		/*	RECT rect = _physicsComponent->getBounding();
+		//rect rect = _physicscomponent->getbounding();
 
-		OutputDebugStringW(L"Aladdin bounding : ");
-		OutputDebugStringW(L"Top : ");
-		__debugoutput(rect.top);
-		OutputDebugStringW(L" Bottom : ");
-		__debugoutput(rect.bottom);
-		OutputDebugStringW(L" Left : ");
-		__debugoutput(rect.left);
-		OutputDebugStringW(L" Right : ");
-		__debugoutput(rect.right);
-		OutputDebugStringW(L" \n ");
+		//outputdebugstringw(l"aladdin bounding : ");
+		//outputdebugstringw(l"top : ");
+		//__debugoutput(rect.top);
+		//outputdebugstringw(l" bottom : ");
+		//__debugoutput(rect.bottom);
+		//outputdebugstringw(l" left : ");
+		//__debugoutput(rect.left);
+		//outputdebugstringw(l" right : ");
+		//__debugoutput(rect.right);
+		//outputdebugstringw(l" \n ");
 
-		OutputDebugStringW(L" Status : ");
-		OutputDebugStringW(getStatusString(_status).c_str());
-		OutputDebugStringW(L" \n ");
+		//OutputDebugStringW(L" Status : ");
+		//OutputDebugStringW(getStatusString(_status).c_str());
+		//OutputDebugStringW(L" \n ");
 
-		OutputDebugStringW(L" Prestatus : ");
-		OutputDebugStringW(getStatusString(_preStatus).c_str());
-		OutputDebugStringW(L" \n ");
+		//OutputDebugStringW(L" Prestatus : ");
+		//OutputDebugStringW(getStatusString(_preStatus).c_str());
+		//OutputDebugStringW(L" \n ");
 
-		OutputDebugStringW(L" Pre Object : ");
-		__debugoutput(_preObject->getID());
-		OutputDebugStringW(L" \n ");
+		//OutputDebugStringW(L" Pre Object : ");
+		//__debugoutput(_preObject->getID());
+		//OutputDebugStringW(L" \n ");
 
-		OutputDebugStringW(L" Hit point : ");
-		__debugoutput(_hitpoint);
-		OutputDebugStringW(L" \n ");*/
+		//OutputDebugStringW(L" Hit point : ");
+		//__debugoutput(_hitpoint);
+		//OutputDebugStringW(L" \n ");
 #pragma endregion
 		GVector2 velocity = _physicsComponent->getVelocity();
 		OutputDebugStringW(L"Aladdin Velocity : ");

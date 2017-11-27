@@ -7,6 +7,7 @@
 #include "../../Game/Scene/SceneManager.h"
 #include <functional>
 #include <queue>
+#include <cmath>
 
 class CollisionComponent : public Component
 {
@@ -17,8 +18,7 @@ public:
 
 	void setTargerGameObject(GameObject * gameObject);
 
-	void checkCollision(GameObject* otherObject, float dt, bool updatePosition = true);
-
+	void checkCollision(GameObject* otherObject, float dt, bool updatePosition = false);
 
 	bool isColliding(GameObject* otherObject);
 	GameObject * isColliding(eObjectID eid);
