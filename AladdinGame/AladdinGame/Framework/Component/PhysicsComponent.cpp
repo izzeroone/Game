@@ -89,7 +89,11 @@ void PhysicsComponent::removeComponent(string name, Component * movingComponent)
 
 Component * PhysicsComponent::getComponent(string name)
 {
-	return _componentList[name];
+	auto it = _componentList.find(name);
+	if (it != _componentList.end())
+		return it->second;
+	else
+		return nullptr;
 }
 
 GVector2 PhysicsComponent::getVelocity()

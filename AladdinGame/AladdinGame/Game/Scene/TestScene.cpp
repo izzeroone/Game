@@ -154,7 +154,7 @@ void TestScene::update(float dt)
 				continue;
 			if (collisionComponent != nullptr)
 			{
-				if (passiveobj->getID() != eObjectID::ROPE) // aladdin can overlap rope so don't update target postion. Let aladdin behavior do it instead
+				if (passiveobj->getID() == eObjectID::LAND) // aladdin can overlap rope so don't update target postion. Let aladdin behavior do it instead
 					collisionComponent->checkCollision(passiveobj, dt, false);
 				else
 					collisionComponent->checkCollision(passiveobj, dt, false);
@@ -225,24 +225,24 @@ void TestScene::destroyobject()
 			break;		// sau pop_back phần tử đi thì list bị thay đồi, nên vòng for-each không còn nguyên trạng nữa. -> break (mỗi frame chỉ remove được 1 đối tượng)
 		}
 	}
-	//for (auto name : QNode::ActiveObject)
-	//{
-	//	auto object = _mapobject.find(name);
-	//	if (object == _mapobject.end() || object._Ptr == nullptr)
-	//		continue;
-	//	if (object->second->getStatus() == eStatus::DESTROY)	// kiểm tra nếu là destroy thì loại khỏi list
-	//	{
-	//		//if (dynamic_cast<BaseEnemy*> (object->second) != nullptr)
-	//		//{
-	//		//	SoundManager::getInstance()->Play(eSoundId::DESTROY_ENEMY);
-	//		//}
-	//		object->second->release();
-	//		delete object->second;
-	//		object->second = NULL;
-	//		_mapobject.erase(name);
+	for (auto name : QuadTreeNode::ActiveObject)
+	{
+		auto object = _mapobject.find(name);
+		if (object == _mapobject.end() || object._Ptr == nullptr)
+			continue;
+		if (object->second->getBehaviorComponent() != nullptr && object->second->getBehaviorComponent()->getStatus() == eStatus::DESTROY)	// kiểm tra nếu là destroy thì loại khỏi list
+		{
+			//if (dynamic_cast<BaseEnemy*> (object->second) != nullptr)
+			//{
+			//	SoundManager::getInstance()->Play(eSoundId::DESTROY_ENEMY);
+			//}
+			object->second->release();
+			delete object->second;
+			object->second = NULL;
+			_mapobject.erase(name);
 
-	//	}
-	//}
+		}
+	}
 }
 
 void TestScene::updateViewport(GameObject * objTracker, float deltatime)

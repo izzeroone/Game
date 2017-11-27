@@ -7,12 +7,18 @@ Movement::Movement(GVector2 accel, GVector2 veloc, PhysicsComponent* physicsComp
 	this->_accelerate = accel;
 	this->_velocity = veloc;
 	this->_physicsComponent = physicsComponent;
+	_notMove = false;
 
 }
 void Movement::update(float deltatime)
 {
 	if (_physicsComponent == NULL)
 		return;
+	if (_notMove == true)
+	{
+		_notMove = false;
+		return;
+	}
 	auto position = _physicsComponent->getPosition();
 	this->_velocity += this->_accelerate * deltatime / 1000;
 	position += this->_velocity * deltatime / 1000;
@@ -34,6 +40,10 @@ GVector2 Movement::getAccelerate()
 GVector2 Movement::getVelocity()
 {
 	return this->_velocity;
+}
+void Movement::setNotToMove(bool result)
+{
+	_notMove = result;
 }
 void Movement::init()
 {

@@ -68,6 +68,7 @@ AABB AABB::minkowskiDifference(AABB other)
 
 GVector2 AABB::cloestPointOnBoundsToPoint(GVector2 point)
 {
+	//bug here need to reserve
 	float minDist = abs(point.x - getMin().x);
 	GVector2 boundsPoint(getMin().x, point.y);
 	if (abs(getMax().x - point.x) < minDist)

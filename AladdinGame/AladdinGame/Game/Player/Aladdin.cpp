@@ -348,17 +348,14 @@ void AladdinBehaviorComponent::update(float detatime)
 		//landing
 		object = collisionComponent->isColliding(eObjectID::LAND);
 		if (object != nullptr)
-			// && collisionComponent->getCollidingDirection(object) & eDirection::TOP == eDirection::TOP)
 		{
-			float moveX, moveY;
-			if (collisionComponent->isColliding(object, moveX, moveY, detatime))
+			if (collisionComponent->getSide(object) == eDirection::TOP)
 			{
-				collisionComponent->updateTargetPosition(object, eDirection::TOP, false, GVector2(moveX, moveY));
+				setStatus(eStatus::NORMAL);
+				standing();
+				_preObject = object;
+				break;
 			}
-			setStatus(eStatus::NORMAL);
-			standing();
-			_preObject = object;
-			break;
 		}
 		//move left
 		if (_input->isKeyDown(BT_LEFT))
@@ -662,28 +659,6 @@ void AladdinBehaviorComponent::update(float detatime)
 	default:
 		break;
 	}
-	////check running or burning land
-	//switch (_status)
-	//{
-	//case NORMAL:
-	//case JUMPING:
-	//case LAYING_DOWN:
-	//case RUNNING:
-	//case LOOKING_UP:
-	//case PUSH:
-	//	landObject = (Land*)collisionComponent->isColliding(eObjectID::LAND);
-	//	if (landObject != nullptr)
-	//	{
-	//		if (landObject->getLandType() == eLandType::lFLAME && _protectTime <= 0)
-	//		{
-	//			dropHitpoint(20);
-
-	//		}
-	//		_preObject = landObject;
-	//		break;
-	//	}
-	//}
-
 	if (_animationComponent->isTempAnimationEmpty() == true)
 	{
 		setWeapon(eStatus::NORMAL);

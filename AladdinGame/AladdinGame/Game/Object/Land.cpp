@@ -89,7 +89,10 @@ void LandBehaviorComponent::updateFallingLand(float deltatime)
 	{
 		_timer += deltatime;
 		if (_timer >= FALLING_DESTROYED_TIME)
+		{
 			setStatus(eStatus::DESTROY);
+			return;
+		}
 	}
 
 	GameObject * aladdin = collisionComponent->isColliding(eObjectID::ALADDIN);
@@ -97,7 +100,7 @@ void LandBehaviorComponent::updateFallingLand(float deltatime)
 	{
 		return;
 	}
-
+	setStatus(eStatus::FALLING);
 	auto g = (Gravity*)this->_physicsComponent->getComponent("Gravity");
 	g->setStatus(eGravityStatus::FALLING__DOWN);
 
@@ -169,10 +172,3 @@ void FallingLandAnimationComponent::init()
 
 }
 
-void FallingLandAnimationComponent::draw(LPD3DXSPRITE spriteHander, Viewport * viewport)
-{
-	OutputDebugStringW(L"Position");
-	__debugoutput(_physicsComponent->getPositionX());
-	__debugoutput(_physicsComponent->getPositionY());
-	AnimationComponent::draw(spriteHander, viewport);
-}

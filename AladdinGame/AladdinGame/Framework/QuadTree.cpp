@@ -2,6 +2,8 @@
 #include "../debug.h"
 LINK_FRAMEWORK
 
+list<string> QuadTreeNode::ActiveObject;
+
 QuadTreeNode::QuadTreeNode()
 {
 	
@@ -98,9 +100,9 @@ list<string> QuadTreeNode::getSubTreeContents()
 
 list<string> QuadTreeNode::getActiveObject(const RECT &queryArea)
 {
-	_activeObject.clear();
-	query(queryArea, _activeObject);
-	return _activeObject;
+	ActiveObject.clear();
+	query(queryArea, ActiveObject);
+	return ActiveObject;
 	
 }
 

@@ -9,7 +9,7 @@
 
 #define FLAME_INTEVAL 300 // 0,3s sẽ có 1 ngọn lửa từ flameland
 #define FLAME_PER_LAND 3 // chia flameland ra thành 3 phần
-#define FALLING_DESTROYED_TIME 2000 // thời gian tính từ lúc rơi xuống tới lúc bể
+#define FALLING_DESTROYED_TIME 500 // thời gian tính từ lúc rơi xuống tới lúc bể
 LINK_FRAMEWORK
 
 class LandPhysiscsComponent : public NullPhysicsComponent
@@ -28,7 +28,6 @@ class FallingLandAnimationComponent : public AnimationComponent
 {
 public:
 	void init() override;
-	void draw(LPD3DXSPRITE spriteHander, Viewport* viewport) override;
 };
 
 class LandBehaviorComponent : public BehaviorComponent

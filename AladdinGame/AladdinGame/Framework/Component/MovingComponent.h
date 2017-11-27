@@ -25,11 +25,13 @@ public:
 	void setVelocity(GVector2 veloc);
 	GVector2 getAccelerate();
 	GVector2 getVelocity();
+	void setNotToMove(bool result);
 
 private:
 	GVector2 _accelerate;
 	GVector2 _velocity;
 	PhysicsComponent* _physicsComponent;
+	bool _notMove; // set by coliision component
 
 	// Inherited via Component
 	virtual void init() override;

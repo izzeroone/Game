@@ -33,13 +33,14 @@ public:
 	void writeXML(const string &path);
 	void readXML(const string &path);
 
+	static list<string> ActiveObject;
+
 	~QuadTreeNode();
 private:
 	RECT _bound;
 	list<string> _contents;
 	list<RECT> _contendBound;
 	list<QuadTreeNode*> _nodes;
-	list<string> _activeObject;
 	list<string> _subTreeContent;
 	int _level;
 	void createSubNodes();

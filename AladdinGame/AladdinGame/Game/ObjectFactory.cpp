@@ -43,6 +43,40 @@ map<string, GameObject*>* ObjectFactory::getMapObjectFromFile(const string path)
 	return listobject;
 }
 
+map<string, std::function<GameObject*()>>* ObjectFactory::getMapObjectFunctionFromFile(const string path)
+{
+	pugi::xml_document doc;
+	map<string, std::function<GameObject*()>>* listobject = new map<string, std::function<GameObject*()>>();
+
+	// Mở file và đọc
+	xml_parse_result result = doc.load_file(path.data(), pugi::parse_default | pugi::parse_pi);
+	if (result == false)
+	{
+		return listobject;
+	}
+
+	xml_node objects = doc.child("Objects");
+	auto list = objects.children();
+
+	// Lấy id từ file xml. so sánh với eID, tuỳ theo eID nào mà gọi đến đúng hàm load cho riêng object đó.
+	for (auto item : list)
+	{
+		int id = item.attribute("Id").as_int();
+		string name = item.attribute("Name").as_string();
+		eObjectID enumID;
+		try {
+			enumID = (eObjectID)id;
+		}
+		catch (exception e) {
+			continue;
+		}
+		auto obj = getFunctionById(item, enumID);
+		if (obj != NULL)
+			(*listobject)[name] = obj;
+	}
+	return listobject;
+}
+
 GameObject* ObjectFactory::getObjectById(xml_node node, eObjectID id)
 {
 	switch (id)
@@ -51,6 +85,21 @@ GameObject* ObjectFactory::getObjectById(xml_node node, eObjectID id)
 		return getLand(node);
 	case ROPE:
 		return getRope(node);
+	default:
+		break;
+	}
+}
+
+std::function<GameObject*() > ObjectFactory::getFunctionById(xml_node node, eObjectID id)
+{
+	switch (id)
+	{
+	case LAND:
+		return bind(getLand, node);
+		break;
+	case ROPE:
+		return bind(getRope, node);
+		break;
 	default:
 		break;
 	}
