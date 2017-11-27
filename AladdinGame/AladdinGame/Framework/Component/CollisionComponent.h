@@ -4,6 +4,7 @@
 #include "../GameObject.h"
 #include "../AABB.h"
 #include "Component.h"
+#include "../../Game/Scene/SceneManager.h"
 #include <functional>
 #include <queue>
 

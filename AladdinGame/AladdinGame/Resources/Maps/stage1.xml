@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
   <Objects>
-    <Item Id="1" Name="land1" X="0" Y="66" Width="460" Height="5">
+    <Item Id="1" Name="land1" X="0" Y="66" Width="458" Height="5">
       <Params>
         <Elem Key="physicBodyDirection" Value="1" />
         <Elem Key="type" Value="0" />

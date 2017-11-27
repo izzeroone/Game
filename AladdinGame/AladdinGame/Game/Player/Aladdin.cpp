@@ -7,10 +7,10 @@
 void AladdinPhysicsComponent::init()
 {
 	_movingSpeed = ALADDIN_MOVE_SPEED;
-	auto movement = new Movement(GVector2(0, 0), GVector2(0, 0), this);
-	_componentList["Movement"] = movement;
-	_componentList["Gravity"] = new Gravity(GVector2(0, -GRAVITY), movement);
 	_componentList["Collision"] = new CollisionComponent();
+	auto movement = new Movement(GVector2(0, 0), GVector2(0, 0), this);
+	_componentList["Movement"] = movement;	
+	_componentList["Gravity"] = new Gravity(GVector2(0, -GRAVITY), movement);
 	setPhysicsBodySide(eDirection::ALL);
 }
 
@@ -203,7 +203,8 @@ void AladdinBehaviorComponent::update(float detatime)
 
 	if (_input->isKeyPressed(BT_BOUND))
 	{
-		RECT rect = _physicsComponent->getBounding();
+#pragma region MyRegion
+		/*	RECT rect = _physicsComponent->getBounding();
 
 		OutputDebugStringW(L"Aladdin bounding : ");
 		OutputDebugStringW(L"Top : ");
@@ -230,7 +231,14 @@ void AladdinBehaviorComponent::update(float detatime)
 
 		OutputDebugStringW(L" Hit point : ");
 		__debugoutput(_hitpoint);
-		OutputDebugStringW(L" \n ");
+		OutputDebugStringW(L" \n ");*/
+#pragma endregion
+		GVector2 velocity = _physicsComponent->getVelocity();
+		OutputDebugStringW(L"Aladdin Velocity : ");
+		__debugoutput(velocity.x);
+		__debugoutput(velocity.y);
+
+	
 	}
 	if (_physicsComponent->getPositionY() + ALADDIN_HEIGHT < 0)
 	{
@@ -255,7 +263,6 @@ void AladdinBehaviorComponent::update(float detatime)
 		if (object == nullptr)
 		{
 			setStatus(eStatus::FALLING);
-			standing(); // to remove velocity
 			falling();
 			break;
 		}
@@ -459,7 +466,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		if (object == nullptr)
 		{
 			setStatus(eStatus::FALLING);
-			standing(); // to remove velocity
+			standing();
 			falling();
 			break;
 		}

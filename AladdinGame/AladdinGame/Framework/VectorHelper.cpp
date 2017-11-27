@@ -18,7 +18,7 @@ float VectorHelper::crossProduct(const GVector2 & a, const GVector2 & b)
 
 float VectorHelper::dotProduct(const GVector2 & a, const GVector2 & b)
 {
-	return a.x * b.x + a.y * b.y;
+	return 1.0f * a.x * b.x + a.y * b.y;
 }
 
 

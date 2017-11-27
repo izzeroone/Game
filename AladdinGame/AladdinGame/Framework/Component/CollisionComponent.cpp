@@ -26,6 +26,8 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 	RECT myRect = _target->getPhysicsComponent()->getBounding();
 	RECT otherRect = otherObject->getPhysicsComponent()->getBounding();
 
+
+
 	// sử dụng Broadphase rect để kt vùng tiếp theo có va chạm ko
 	RECT broadphaseRect = getBroadphaseRect(_target, dt);	// là bound của object được mở rộng ra thêm một phần bằng với vận tốc (dự đoán trước bound)
 	if (!isColliding(broadphaseRect, otherRect))				// kiểm tra tính chồng lắp của 2 hcn
@@ -54,20 +56,15 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 		_listColliding[otherObject] = true;
 		penetrationVector = md.cloestPointOnBoundsToPoint(VECTOR2ZERO);
 		
-		if (otherObject->getID() == eObjectID::LAND && _target->getID() == eObjectID::LAND && penetrationVector != VECTOR2ZERO)
-		{
-			OutputDebugStringW(L"Penetration Vector : ");
-			__debugoutput(penetrationVector.x);
-			__debugoutput(penetrationVector.y);
-		}
+
 		_listPenetrationVector[otherObject] = penetrationVector;
 		if (updatePosition)
 		{
 
-			// offset the box to make sure it's not penetrating
+			 //offset the box to make sure it's not penetrating
 			boxA.move(penetrationVector);
 			_target->getPhysicsComponent()->setPosition(GVector2(boxA.rect.left, boxA.rect.bottom));
-			// zero out the box's velocity in the direction of the penetration
+			 //zero out the box's velocity in the direction of the penetration
 			if (penetrationVector != VECTOR2ZERO)
 			{
 				GVector2 tangent = VectorHelper::normalized(penetrationVector);
@@ -77,13 +74,11 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 				auto move = (Movement*)_target->getPhysicsComponent()->getComponent("Movement");
 				if (move != nullptr)
 				{
-					move->setNotToMove(true);
 					move->setVelocity(boxAVelo);
 				}
 				move = (Movement*)otherObject->getPhysicsComponent()->getComponent("Movement");
 				if (move != nullptr)
 				{
-					move->setNotToMove(true);
 					move->setVelocity(boxBVelo);
 				}
 			}
@@ -97,40 +92,34 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 			if (intersectFraction < std::numeric_limits<float>::infinity())
 			{
 				_listColliding[otherObject] = true;
-				if (updatePosition)
-				{
-					// yup, there WILL be a collision this frame
-					rvRayIntersection = rvRay * intersectFraction;
+				//if (updatePosition)
+				//{
+				//	// yup, there WILL be a collision this frame
+				//	rvRayIntersection = rvRay * intersectFraction;
 
-					boxA.move(boxAVelo * dt * intersectFraction / 1000);
-					boxB.move(boxBVelo * dt * intersectFraction / 1000);
-					_target->getPhysicsComponent()->setPosition(GVector2(boxA.rect.left, boxA.rect.bottom));
-					otherObject->getPhysicsComponent()->setPosition(GVector2(boxB.rect.left, boxB.rect.bottom));
+				//	boxA.move(boxAVelo * dt * intersectFraction / 1000);
+				//	boxB.move(boxBVelo * dt * intersectFraction / 1000);
+				//	_target->getPhysicsComponent()->setPosition(GVector2(boxA.rect.left, boxA.rect.bottom));
+				//	otherObject->getPhysicsComponent()->setPosition(GVector2(boxB.rect.left, boxB.rect.bottom));
 
-					if (otherObject->getID() == eObjectID::LAND && _target->getID() == eObjectID::LAND)
-					{
-						OutputDebugStringW(L"nrvRay : ");
-						__debugoutput(rvRay.x);
-						__debugoutput(rvRay.y);
-					}
-					// zero out the normal of the collision
-					GVector2 nrvRay = VectorHelper::normalized(rvRay);
-					GVector2 tangent(-nrvRay.y, nrvRay.x);
-					boxAVelo = VectorHelper::dotProduct(boxAVelo, tangent) * tangent;
-					boxBVelo = VectorHelper::dotProduct(boxBVelo, tangent) * tangent;
-					auto move = (Movement*)_target->getPhysicsComponent()->getComponent("Movement");
-					if (move != nullptr)
-					{
-						move->setNotToMove(true);
-						move->setVelocity(boxAVelo);
-					}
-					move = (Movement*)otherObject->getPhysicsComponent()->getComponent("Movement");
-					if (move != nullptr)
-					{
-						move->setNotToMove(true);
-						move->setVelocity(boxBVelo);
-					}
-				}
+				//	// zero out the normal of the collision
+				//	GVector2 nrvRay = VectorHelper::normalized(rvRay);
+				//	GVector2 tangent(-nrvRay.y, nrvRay.x);
+				//	boxAVelo = VectorHelper::dotProduct(boxAVelo, tangent) * tangent;
+				//	boxBVelo = VectorHelper::dotProduct(boxBVelo, tangent) * tangent;
+				//	auto move = (Movement*)_target->getPhysicsComponent()->getComponent("Movement");
+				//	if (move != nullptr)
+				//	{
+				//		move->setNotToMove(true);
+				//		move->setVelocity(boxAVelo);
+				//	}
+				//	move = (Movement*)otherObject->getPhysicsComponent()->getComponent("Movement");
+				//	if (move != nullptr)
+				//	{
+				//		move->setNotToMove(true);
+				//		move->setVelocity(boxBVelo);
+				//	}
+				//}
 			}
 		}
 	}
