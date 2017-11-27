@@ -12,17 +12,16 @@ public:
 	~AABB();
 	AABB& operator= (const RECT& rect);
 	operator RECT();
-	GVector2 center;
-	GVector2 extents;
+	RECT rect;
 	GVector2 getMin();
 	GVector2 getMax();
 	GVector2 getSize();
+	void move(GVector2 moveVector);
 	AABB minkowskiDifference(AABB other);
 	GVector2 cloestPointOnBoundsToPoint(GVector2 point);
 	float getRayIntersectionFractionOffFirstRay(GVector2 originA, GVector2 endA, GVector2 originB, GVector2 endB);
 	float getRayIntersectionFraction(GVector2 origin, GVector2 direction);
 private:
-	bool _topLeft;
 
 };
 

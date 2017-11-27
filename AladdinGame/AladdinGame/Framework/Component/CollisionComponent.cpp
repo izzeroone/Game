@@ -65,8 +65,8 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 		{
 
 			// offset the box to make sure it's not penetrating
-			boxA.center += penetrationVector;
-			_target->getPhysicsComponent()->setPosition(GVector2(boxA.center.x - boxA.extents.x, boxA.center.y - boxA.extents.y));
+			boxA.move(penetrationVector);
+			_target->getPhysicsComponent()->setPosition(GVector2(boxA.rect.left, boxA.rect.bottom));
 			// zero out the box's velocity in the direction of the penetration
 			if (penetrationVector != VECTOR2ZERO)
 			{
@@ -102,10 +102,10 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 					// yup, there WILL be a collision this frame
 					rvRayIntersection = rvRay * intersectFraction;
 
-					boxA.center += boxAVelo * dt * intersectFraction / 1000;
-					boxB.center += boxBVelo * dt * intersectFraction / 1000;
-					_target->getPhysicsComponent()->setPosition(GVector2(boxA.center.x - boxA.extents.x, boxA.center.y - boxA.extents.y));
-					otherObject->getPhysicsComponent()->setPosition(GVector2(boxB.center.x - boxB.extents.x, boxB.center.y - boxB.extents.y));
+					boxA.move(boxAVelo * dt * intersectFraction / 1000);
+					boxB.move(boxBVelo * dt * intersectFraction / 1000);
+					_target->getPhysicsComponent()->setPosition(GVector2(boxA.rect.left, boxA.rect.bottom));
+					otherObject->getPhysicsComponent()->setPosition(GVector2(boxB.rect.left, boxB.rect.bottom));
 
 					if (otherObject->getID() == eObjectID::LAND && _target->getID() == eObjectID::LAND)
 					{
