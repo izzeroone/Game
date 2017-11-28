@@ -54,7 +54,8 @@ bool TestScene::init()
 	_listobject.push_back(hakim);
 	BehaviorComponent::addToScene.Connect(this, &TestScene::addToScene);
 
-
+	_background = new TestSceneBackground();
+	_background->init();
 
 	_mapBack = SpriteResource::getInstance()->getSprite(eObjectID::MAP1);
 	_mapBack->setFrameRect(SpriteResource::getInstance()->getSourceRect(eObjectID::MAP1, "back"));
@@ -100,6 +101,7 @@ bool TestScene::init()
 void TestScene::update(float dt)
 {
 	updateViewport(_Aladdin, dt);
+	_background->update(dt, _viewport);
 	GVector2 viewport_position = _viewport->getPositionWorld();
 	RECT viewport_in_transform = _viewport->getBounding();
 
@@ -171,6 +173,7 @@ void TestScene::update(float dt)
 
 void TestScene::draw(LPD3DXSPRITE spriteHandle)
 {
+	_background->draw(spriteHandle);
 	_mapBack->render(spriteHandle, _viewport);
 	for (GameObject* object : _active_object)
 	{
@@ -258,18 +261,13 @@ void TestScene::updateViewport(GameObject * objTracker, float deltatime)
 	worldsize.x = _mapBack->getTextureWidth();
 	worldsize.y = _mapBack->getTextureHeight();
 	// Bám theo object.
-	GVector2 new_position;
+
 	float trackerX = max(objTracker->getPhysicsComponent()->getPositionX() - 260, 0);
 	float trackerY = max(objTracker->getPhysicsComponent()->getPositionY() + 300, WINDOW_HEIGHT);
+
 	current_position.x += (trackerX - current_position.x) * lerp * deltatime / 1000;
 	current_position.y += (trackerY - current_position.y) * lerp * deltatime / 1000;
 
-
-	// Không cho đi quá map.
-	//if (current_position.x + WINDOW_WIDTH > current_position.x)
-	//{
-	//	current_position.x = worldsize.x - WINDOW_WIDTH;
-	//}
 
 	_viewport->setPositionWorld(current_position);
 }

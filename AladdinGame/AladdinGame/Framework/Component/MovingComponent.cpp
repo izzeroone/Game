@@ -21,16 +21,7 @@ void Movement::update(float deltatime)
 	this->_velocity += this->_accelerate * deltatime / 1000;
 	if (_addPos != VECTOR2ZERO)
 	{
-		OutputDebugStringW(L"pos");
-		__debugoutput(position.x);
-		__debugoutput(position.y);
 		position += _addPos;
-		OutputDebugStringW(L"Add pos");
-		__debugoutput(_addPos.x);
-		__debugoutput(_addPos.y);
-		OutputDebugStringW(L"pos after");
-		__debugoutput(position.x);
-		__debugoutput(position.y);
 		_addPos = VECTOR2ZERO;
 	}
 	if (_doNotMove == true)

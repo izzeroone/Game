@@ -14,6 +14,9 @@
 #include "../../debug.h"
 #include "../Player/Aladdin.h"
 #include "../../Framework/Component/EnemyComponent.h"
+#include "SceneBackground.h"
+#include "TestSceneBackground.h"
+
 
 using namespace std;
 LINK_FRAMEWORK
@@ -63,6 +66,7 @@ private:
 	//Map background
 	Sprite* _mapBack;
 	Sprite* _mapFront;
+	SceneBackground* _background;
 
 	void updateViewport(GameObject* objTracker, float deltatime);
 

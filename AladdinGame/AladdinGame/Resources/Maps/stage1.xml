@@ -44,43 +44,79 @@
     </Item>
 	<Item Id="1" Name="land8" X="1148" Y="73" Width="40" Height="5">
       <Params>
-        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="physicBodyDirection" Value="5" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+		<Item Id="1" Name="land8_9" X="1180" Y="77" Width="8" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="5" />
         <Elem Key="type" Value="0" />
       </Params>
     </Item>
 	<Item Id="1" Name="land9" X="1188" Y="81" Width="41" Height="5">
       <Params>
-        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="physicBodyDirection" Value="5" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	<Item Id="1" Name="land9_10" X="1223" Y="85" Width="6" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="5" />
         <Elem Key="type" Value="0" />
       </Params>
     </Item>
 	<Item Id="1" Name="land10" X="1229" Y="88" Width="39" Height="5">
       <Params>
-        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="physicBodyDirection" Value="5" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	<Item Id="1" Name="land10_11" X="1261" Y="93" Width="7" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="5" />
         <Elem Key="type" Value="0" />
       </Params>
     </Item>
 	<Item Id="1" Name="land11" X="1268" Y="97" Width="40" Height="5">
       <Params>
-        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="physicBodyDirection" Value="5" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	<Item Id="1" Name="land11_12" X="1302" Y="101" Width="6" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="5" />
         <Elem Key="type" Value="0" />
       </Params>
     </Item>
 	<Item Id="1" Name="land12" X="1308" Y="105" Width="40" Height="5">
       <Params>
-        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="physicBodyDirection" Value="5" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	<Item Id="1" Name="land12_13" X="1343" Y="108" Width="5" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="5" />
         <Elem Key="type" Value="0" />
       </Params>
     </Item>
 	<Item Id="1" Name="land13" X="1348" Y="112" Width="40" Height="5">
       <Params>
-        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="physicBodyDirection" Value="5" />
+        <Elem Key="type" Value="0" />
+      </Params>
+    </Item>
+	<Item Id="1" Name="land13_14" X="1381" Y="116" Width="7" Height="5">
+      <Params>
+        <Elem Key="physicBodyDirection" Value="5" />
         <Elem Key="type" Value="0" />
       </Params>
     </Item>
 	<Item Id="1" Name="land14" X="1388" Y="123" Width="111" Height="5">
       <Params>
-        <Elem Key="physicBodyDirection" Value="1" />
+        <Elem Key="physicBodyDirection" Value="5" />
         <Elem Key="type" Value="0" />
       </Params>
     </Item>

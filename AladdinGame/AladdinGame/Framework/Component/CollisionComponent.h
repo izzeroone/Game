@@ -12,7 +12,7 @@
 class CollisionComponent : public Component
 {
 public:
-	CollisionComponent();
+	CollisionComponent(eDirection side = eDirection::NONE);
 
 	~CollisionComponent();
 
@@ -34,14 +34,19 @@ public:
 	RECT getBroadphaseRect(GameObject* object, float dt);
 	eDirection getSide(GameObject* otherObject);
 
+	void setPhysicsSide(eDirection side);
+	eDirection getPhysicsSide();
+
 	void reset();
 
 private:
 	GameObject* _target;
 	RECT _collisionComponentRect;
+	eDirection _physicsSide; //which side should be check for update position
 
 	map<GameObject*, bool> _listColliding;
 	map<GameObject*, GVector2> _listPenetrationVector; // direction colliding
+
 
 	// Do nothing 
 	virtual void init() override;

@@ -106,6 +106,44 @@ GVector2 AABB::cloestPointOnBoundsToPoint(GVector2 point)
 	}
 	return boundsPoint;
 }
+GVector2 AABB::cloestPointOnBoundsToPoint(GVector2 point, eDirection side, eDirection &colliSide)
+{
+	colliSide = eDirection::NONE;
+	float minDist = std::numeric_limits<float>::infinity();
+	GVector2 boundsPoint(std::numeric_limits<float>::infinity(), std::numeric_limits<float>::infinity());
+	//test on left border
+	if (side & eDirection::LEFT == eDirection::LEFT)
+	{
+		minDist = abs(point.x - rect.left);
+		boundsPoint = GVector2(rect.left, point.y);
+		colliSide = eDirection::LEFT;
+	}
+	//test on right border
+	if (side & eDirection::RIGHT == eDirection::RIGHT && abs(rect.right - point.x) < minDist)
+	{
+		minDist = abs(rect.right - point.x);
+		boundsPoint.x = rect.right;
+		boundsPoint.y = point.y;
+		colliSide = eDirection::RIGHT;
+	}
+	//test on top border
+	if (side & eDirection::TOP == eDirection::TOP && abs(rect.top - point.y) < minDist)
+	{
+		minDist = abs(rect.top - point.y);
+		boundsPoint.x = point.x;
+		boundsPoint.y = rect.top;
+		colliSide = eDirection::TOP;
+	}
+	//test on bottom border
+	if (side & eDirection::BOTTOM == eDirection::BOTTOM && abs(rect.bottom - point.y) < minDist)
+	{
+		minDist = abs(rect.bottom - point.y);
+		boundsPoint.x = point.x;
+		boundsPoint.y = rect.bottom;
+		colliSide = eDirection::BOTTOM;
+	}
+	return boundsPoint;
+}
 //tìm giao điển của 2 đoạn thẳng A và B (origin : điểm xuất phát, end : điểm kết thúc)
 //ref https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect
 float AABB::getRayIntersectionFractionOffFirstRay(GVector2 originA, GVector2 endA, GVector2 originB, GVector2 endB)
@@ -141,6 +179,7 @@ float AABB::getRayIntersectionFractionOffFirstRay(GVector2 originA, GVector2 end
 float AABB::getRayIntersectionFraction(GVector2 origin, GVector2 direction)
 {
 	GVector2 end = origin + direction;
+
 	//test on left line
 	float minT = getRayIntersectionFractionOffFirstRay(origin, end, getMin(), GVector2(getMin().x, getMax().y));
 
@@ -158,6 +197,56 @@ float AABB::getRayIntersectionFraction(GVector2 origin, GVector2 direction)
 	x = getRayIntersectionFractionOffFirstRay(origin, end, GVector2(getMax().x, getMin().y), GVector2(getMin().x, getMin().y));
 	if (x < minT)
 		minT = x;
+
+	// ok, now we should have found the fractional component along the ray where we collided
+	return minT;
+}
+
+float AABB::getRayIntersectionFraction(GVector2 origin, GVector2 direction, eDirection side, eDirection &colliSide)
+{
+	colliSide = eDirection::NONE;
+	GVector2 end = origin + direction;
+	float minT = std::numeric_limits<float>::infinity();
+	float x;
+	//test on left line
+	if (side & eDirection::LEFT == eDirection::LEFT)
+	{
+		colliSide = eDirection::LEFT;
+		minT = getRayIntersectionFractionOffFirstRay(origin, end, getMin(), GVector2(getMin().x, getMax().y));
+	}
+
+	//test on top line
+	if (side & eDirection::TOP == eDirection::TOP)
+	{
+		x = getRayIntersectionFractionOffFirstRay(origin, end, GVector2(getMin().x, getMax().y), GVector2(getMax().x, getMax().y));
+		if (x < minT)
+		{
+			minT = x;
+			colliSide = eDirection::TOP;
+		}
+	}
+
+	//test on right line
+	if (side & eDirection::RIGHT == eDirection::RIGHT)
+	{
+		x = getRayIntersectionFractionOffFirstRay(origin, end, GVector2(getMax().x, getMax().y), GVector2(getMax().x, getMin().y));
+		if (x < minT)
+		{
+			minT = x;
+			colliSide = eDirection::RIGHT;
+		}
+	}
+
+	//test bottom line
+	if (side & eDirection::BOTTOM == eDirection::BOTTOM)
+	{
+		x = getRayIntersectionFractionOffFirstRay(origin, end, GVector2(getMax().x, getMin().y), GVector2(getMin().x, getMin().y));
+		if (x < minT)
+		{
+			minT = x;
+			colliSide = eDirection::BOTTOM;
+		}
+	}
 
 	// ok, now we should have found the fractional component along the ray where we collided
 	return minT;

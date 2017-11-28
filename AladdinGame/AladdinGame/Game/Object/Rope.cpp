@@ -12,7 +12,6 @@ void Rope::init(int x, int y, int width, int height, eDirection physicBodyDirect
 	bounding.right = x + width;
 	_physicsComponent->setBounding(bounding);
 	_ropeType = type;
-	_physicsComponent->setPhysicsBodySide(physicBodyDirection);
 }
 
 void Rope::init()

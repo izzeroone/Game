@@ -183,8 +183,10 @@
     <ClCompile Include="Game\Object\Sword.cpp" />
     <ClCompile Include="Game\Player\Aladdin.cpp" />
     <ClCompile Include="Game\Scene\Scene.cpp" />
+    <ClCompile Include="Game\Scene\SceneBackground.cpp" />
     <ClCompile Include="Game\Scene\SceneManager.cpp" />
     <ClCompile Include="Game\Scene\TestScene.cpp" />
+    <ClCompile Include="Game\Scene\TestSceneBackground.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -228,8 +230,10 @@
     <ClInclude Include="Game\Object\Sword.h" />
     <ClInclude Include="Game\Player\Aladdin.h" />
     <ClInclude Include="Game\Scene\Scene.h" />
+    <ClInclude Include="Game\Scene\SceneBackground.h" />
     <ClInclude Include="Game\Scene\SceneManager.h" />
     <ClInclude Include="Game\Scene\TestScene.h" />
+    <ClInclude Include="Game\Scene\TestSceneBackground.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\pugixml\scripts\pugixml_vs2015.vcxproj">

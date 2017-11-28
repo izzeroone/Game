@@ -40,6 +40,11 @@ void SpriteResource::loadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite[eObjectID::FLAME] = flame;
 	this->loadSpriteInfo(eObjectID::FLAME, "Resources//Images//flame.txt");
 
+	Sprite* map1background = new Sprite(spriteHandle, L"Resources//Images//map1_background.png");
+	this->_listSprite[eObjectID::MAP1BACKGROUND] = map1background;
+	this->loadSpriteInfo(eObjectID::MAP1BACKGROUND, "Resources//Images//map1_background.txt");
+
+
 
 }
 

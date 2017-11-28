@@ -16,8 +16,7 @@ void ApplePhysicsComponent::init()
 	auto movement = new Movement(GVector2(0, 0), GVector2(0, 0), this);
 	_componentList["Movement"] = movement;
 	_componentList["Gravity"] = new Gravity(GVector2(0, -GRAVITY), movement);
-	_componentList["Collision"] = new CollisionComponent();
-	setPhysicsBodySide(eDirection::ALL);
+	_componentList["Collision"] = new CollisionComponent(eDirection::ALL);
 }
 
 GVector2 ApplePhysicsComponent::getVelocity()

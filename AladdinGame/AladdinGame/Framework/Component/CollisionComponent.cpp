@@ -2,8 +2,9 @@
 
 //set update position for y only
 
-CollisionComponent::CollisionComponent()
+CollisionComponent::CollisionComponent(eDirection side)
 {
+	_physicsSide = side;
 }
 
 
@@ -43,7 +44,10 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 	// construct the relative velocity ray
 	GVector2 rvRay = (boxAVelo - boxBVelo) * dt / 1000;
 
+	//targer physics side
+	eDirection targetSide = ((CollisionComponent*)otherObject->getPhysicsComponent()->getComponent("Collision"))->getPhysicsSide();
 	// see if there is already a collision
+	eDirection colliSide = eDirection::NONE;
 	GVector2 rvRayIntersection;
 	AABB md = boxB.minkowskiDifference(boxA);
 	GVector2 penetrationVector;
@@ -54,7 +58,7 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 	{
 		// collision is occurring!
 		_listColliding[otherObject] = true;
-		penetrationVector = md.cloestPointOnBoundsToPoint(VECTOR2ZERO);
+		penetrationVector = md.cloestPointOnBoundsToPoint(VECTOR2ZERO, targetSide, colliSide);
 	
 		_listPenetrationVector[otherObject] = penetrationVector;
 		if (updatePosition)
@@ -62,18 +66,13 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 			//zero out the box's velocity in the direction of the penetration
 			if (penetrationVector != VECTOR2ZERO)
 			{
-				penetrationVector.x = floor(penetrationVector.x);
-				penetrationVector.y = floor(penetrationVector.y);
 				GVector2 tangent = VectorHelper::normalized(penetrationVector);
 				tangent = VectorHelper::tangent(tangent);
 				boxAVelo = VectorHelper::dotProduct(boxAVelo, tangent) * tangent;
 				boxBVelo = VectorHelper::dotProduct(boxBVelo, tangent) * tangent;
 				auto move = (Movement*)_target->getPhysicsComponent()->getComponent("Movement");
-				if (_target->getID() == eObjectID::ALADDIN && otherObject->getID() == eObjectID::LAND && move != nullptr)
+				if (move != nullptr)
 				{
-					OutputDebugStringW(L"Penetration vector : ");
-					__debugoutput(penetrationVector.x);
-					__debugoutput(penetrationVector.y);
 					move->setVelocity(boxAVelo);
 					move->setAddPos(penetrationVector);
 				}
@@ -88,7 +87,7 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 		else
 		{
 			// see if there WILL be a collision
-			float intersectFraction = md.getRayIntersectionFraction(VECTOR2ZERO, rvRay);
+			float intersectFraction = md.getRayIntersectionFraction(VECTOR2ZERO, rvRay, targetSide, colliSide);
 			_listPenetrationVector[otherObject] = penetrationVector;
 			if (intersectFraction < std::numeric_limits<float>::infinity())
 			{
@@ -98,18 +97,17 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 					// yup, there WILL be a collision this frame
 					rvRayIntersection = rvRay * intersectFraction;
 
-
-
 					// zero out the normal of the collision
 					GVector2 nrvRay = VectorHelper::normalized(rvRay);
 					GVector2 tangent = GVector2(-nrvRay.y, nrvRay.x);
 					boxAVelo = VectorHelper::dotProduct(boxAVelo, tangent) * tangent;
 					boxBVelo = VectorHelper::dotProduct(boxBVelo, tangent) * tangent;
 					auto move = (Movement*)_target->getPhysicsComponent()->getComponent("Movement");
-					if (_target->getID() == eObjectID::ALADDIN && move != nullptr)
+					if (move != nullptr)
 					{
-						//move->setAddPos(boxAVelo * dt * intersectFraction / 1000);
+						move->setAddPos(boxAVelo * dt * intersectFraction / 1000);
 						move->setVelocity(boxAVelo);
+						__debugoutput(colliSide);
 
 					}
 					move = (Movement*)otherObject->getPhysicsComponent()->getComponent("Movement");
@@ -192,10 +190,21 @@ eDirection CollisionComponent::getSide(GameObject* otherObject)
 	}
 }
 
+void CollisionComponent::setPhysicsSide(eDirection side)
+{
+	_physicsSide = side;
+}
+
+eDirection CollisionComponent::getPhysicsSide()
+{
+	return _physicsSide;
+}
+
 void CollisionComponent::reset()
 {
 	_listColliding.clear();
 }
+
 
 void CollisionComponent::init()
 {

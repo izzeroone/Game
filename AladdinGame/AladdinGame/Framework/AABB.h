@@ -19,8 +19,10 @@ public:
 	void move(GVector2 moveVector);
 	AABB minkowskiDifference(AABB other);
 	GVector2 cloestPointOnBoundsToPoint(GVector2 point);
+	GVector2 cloestPointOnBoundsToPoint(GVector2 point, eDirection side, eDirection &colliSide);
 	float getRayIntersectionFractionOffFirstRay(GVector2 originA, GVector2 endA, GVector2 originB, GVector2 endB);
 	float getRayIntersectionFraction(GVector2 origin, GVector2 direction);
+	float getRayIntersectionFraction(GVector2 origin, GVector2 direction, eDirection side, eDirection &colliSide);
 private:
 
 };

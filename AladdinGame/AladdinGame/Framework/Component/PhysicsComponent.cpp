@@ -111,16 +111,28 @@ void PhysicsComponent::setMovingSpeed(int movingSpeed)
 	_movingSpeed = movingSpeed;
 }
 
-void PhysicsComponent::setPhysicsBodySide(eDirection side)
-{
-	_physicsSide = side;
-}
+//void PhysicsComponent::setPhysicsBodySide(eDirection side)
+//{
+//	//auto collisionComponent = (CollisionComponent*) _componentList["Collision"];
+//	//if (collisionComponent != nullptr)
+//	//{
+//	//	collisionComponent->setPhysicsSide(side);
+//	//}
+//
+//}
 
-eDirection PhysicsComponent::getPhysicsBodySide()
-{
-	return _physicsSide;
-}
-
+//eDirection PhysicsComponent::getPhysicsBodySide()
+//{
+//	//not done yet
+//	//auto collisionComponent = (CollisionComponent*)_componentList["Collision"];
+//	//if (collisionComponent != nullptr)
+//	//{
+//	//	return collisionComponent->getPhysicsSide();
+//	//}
+//
+//	return eDirection::NONE;
+//}
+//
 RECT PhysicsComponent::getBounding()
 {
 	return _bounding;

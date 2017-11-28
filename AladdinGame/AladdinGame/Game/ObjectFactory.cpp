@@ -170,6 +170,7 @@ GameObject * ObjectFactory::getSword(GVector2 pos, float width, float height, bo
 
 	auto collisionComponent = (CollisionComponent*)sword->getPhysicsComponent()->getComponent("Collision");
 	collisionComponent->setTargerGameObject(sword);
+	collisionComponent->setPhysicsSide(eDirection::ALL);
 
 	return sword;
 }
@@ -232,6 +233,7 @@ GameObject * ObjectFactory::getLand(xml_node node)
 
 	auto collisionComponent = (CollisionComponent*)land->getPhysicsComponent()->getComponent("Collision");
 	collisionComponent->setTargerGameObject(land);
+	collisionComponent->setPhysicsSide(dir);
 	return land;
 }
 
@@ -276,6 +278,7 @@ GameObject * ObjectFactory::getRope(xml_node node)
 
 	auto collisionComponent = (CollisionComponent*)rope->getPhysicsComponent()->getComponent("Collision");
 	collisionComponent->setTargerGameObject(rope);
+	collisionComponent->setPhysicsSide(dir);
 	return rope;
 }
 
@@ -299,6 +302,7 @@ GameObject * ObjectFactory::getHakim(GVector2 pos, float rangeXStart, float rang
 	hakim->init();
 	auto collisionComponent = (CollisionComponent*)hakim->getPhysicsComponent()->getComponent("Collision");
 	collisionComponent->setTargerGameObject(hakim);
+	collisionComponent->setPhysicsSide(eDirection::ALL);
 
 	return hakim;
 }
@@ -322,6 +326,7 @@ GameObject * ObjectFactory::getFlame(GVector2 pos)
 	Flame->init();
 	auto collisionComponent = (CollisionComponent*)Flame->getPhysicsComponent()->getComponent("Collision");
 	collisionComponent->setTargerGameObject(Flame);
+	collisionComponent->setPhysicsSide(eDirection::ALL);
 
 	return Flame;
 }

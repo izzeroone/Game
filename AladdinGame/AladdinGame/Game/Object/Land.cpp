@@ -13,7 +13,6 @@ void Land::init(int x, int y, int width, int height, eDirection physicBodyDirect
 	_physicsComponent->setBounding(bounding);
 	_physicsComponent->setPosition(GVector2(x, y));
 	setLandType(type);
-	_physicsComponent->setPhysicsBodySide(physicBodyDirection);
 }
 
 void Land::init()

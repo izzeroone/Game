@@ -72,7 +72,6 @@ void Sword::init(int x, int y, int width, int height, eDirection side, bool canS
 	bounding.bottom = y - height;
 	bounding.right = x + width;
 	_physicsComponent->setBounding(bounding);
-	_physicsComponent->setPhysicsBodySide(side);
 	((SwordBehaviorComponent*)(_behaviorComponent))->canSlashEnemy(canSlashEnemy);
 }
 

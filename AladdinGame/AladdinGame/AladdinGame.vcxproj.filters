@@ -183,6 +183,12 @@
     <ClCompile Include="Game\Object\Flame.cpp">
       <Filter>Source Files\Game\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Scene\SceneBackground.cpp">
+      <Filter>Source Files\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\TestSceneBackground.cpp">
+      <Filter>Source Files\Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
@@ -310,6 +316,12 @@
     </ClInclude>
     <ClInclude Include="Game\Object\Flame.h">
       <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\SceneBackground.h">
+      <Filter>Header Files\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\TestSceneBackground.h">
+      <Filter>Header Files\Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

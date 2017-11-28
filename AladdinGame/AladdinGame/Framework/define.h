@@ -37,7 +37,8 @@ enum eObjectID
 	GUARD = 5,
 	HAKIM = 6,
 	FLAME = 10,
-	MAP1 = 30
+	MAP1 = 30,
+	MAP1BACKGROUND = 31
 };
 
 enum eStatus
