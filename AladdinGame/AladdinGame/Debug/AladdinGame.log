@@ -1,12 +1,23 @@
-﻿  TestScene.cpp
+﻿  Aladdin.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): warning C4005: 'GRAVITY': macro redefinition
-  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): note: see previous definition of 'GRAVITY'
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(80): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(81): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(112): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(113): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(261): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(262): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): warning C4005: 'GRAVITY': macro redefinition
+  d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): note: see previous definition of 'GRAVITY'
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(192): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(327): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(343): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(540): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(611): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(636): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(199): warning C4101: 'landObject': unreferenced local variable
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(201): warning C4101: 'direction': unreferenced local variable
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(782): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(813): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(821): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(853): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(854): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(857): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(861): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(876): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)

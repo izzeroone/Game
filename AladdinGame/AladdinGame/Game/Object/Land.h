@@ -7,9 +7,9 @@
 #include "../Scene/SceneManager.h"
 #include "../ObjectFactory.h"
 
-#define FLAME_INTEVAL 300 // 0,3s sẽ có 1 ngọn lửa từ flameland
-#define FLAME_PER_LAND 3 // chia flameland ra thành 3 phần
+#define FLAME_INTEVAL 300 // 0,3s sau khi chạm flameland
 #define FALLING_DESTROYED_TIME 500 // thời gian tính từ lúc rơi xuống tới lúc bể
+#define FALLING_LAND_HOLD_TIME 1000 // thời gian từ khi chạm tới bắt đầu rớt
 LINK_FRAMEWORK
 
 class LandPhysiscsComponent : public NullPhysicsComponent
@@ -40,11 +40,12 @@ public:
 protected:
 	void updateFlameLand(float deltatime);
 	void updateFallingLand(float deltatime);
-	void setIndex(int index);
-	int _index; // the position the flame
+
+	GVector2 _flamePos;
 	eLandType _landType;
 	float _width;
 	float _timer;
+	float _holdTimer;
 
 	
 };

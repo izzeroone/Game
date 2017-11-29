@@ -355,7 +355,8 @@ void AladdinBehaviorComponent::update(float detatime)
 		object = collisionComponent->isColliding(eObjectID::LAND);
 		if (object != nullptr)
 		{
-			if (collisionComponent->getSide(object) == eDirection::TOP)
+			bool canPassThrough = ((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType() == eLandType::lFALLTHROUGHT && _physicsComponent->getVelocity().y <= -1000;
+			if(collisionComponent->getSide(object) == eDirection::TOP && !canPassThrough)
 			{
 				setStatus(eStatus::NORMAL);
 				standing();

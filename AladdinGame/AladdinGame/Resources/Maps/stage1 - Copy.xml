@@ -174,6 +174,7 @@
 	
 	
 	
+	
 	<Item Id="2" Name="rope1" X="2090" Y="366" Width="4" Height="301">
       <Params>
         <Elem Key="physicBodyDirection" Value="15" />
