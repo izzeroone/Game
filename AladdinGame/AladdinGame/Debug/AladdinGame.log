@@ -1,23 +1,276 @@
-﻿  Aladdin.cpp
+﻿  ExplosionPot.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): warning C4005: 'GRAVITY': macro redefinition
+  d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): note: see previous definition of 'GRAVITY'
+  ObjectFactory.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): warning C4005: 'GRAVITY': macro redefinition
+  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): note: see previous definition of 'GRAVITY'
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(169): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(169): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(188): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(189): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(190): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(191): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(219): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(250): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(251): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(252): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(253): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Thrower.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): warning C4005: 'GRAVITY': macro redefinition
+  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): note: see previous definition of 'GRAVITY'
+  spriteresource.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\framework\singleton\spriteresource.cpp(74): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
+d:\githubproject\game\aladdingame\aladdingame\framework\singleton\spriteresource.cpp(85): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+  Generating Code...
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(91): warning C4715: 'ObjectFactory::getObjectById': not all control paths return a value
+d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(106): warning C4715: 'ObjectFactory::getFunctionById': not all control paths return a value
+  Compiling...
+  main.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  TestSceneBackground.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscenebackground.cpp(45): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscenebackground.cpp(55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscenebackground.cpp(56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscenebackground.cpp(57): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscenebackground.cpp(58): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  TestScene.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): warning C4005: 'GRAVITY': macro redefinition
+  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): note: see previous definition of 'GRAVITY'
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(80): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(81): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(112): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(113): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(257): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(258): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+  SceneManager.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  SceneBackground.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Scene.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Aladdin.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): warning C4005: 'GRAVITY': macro redefinition
   d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): note: see previous definition of 'GRAVITY'
 d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(192): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(327): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(343): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(540): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(611): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(636): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(296): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(312): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(523): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(594): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(619): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(199): warning C4101: 'landObject': unreferenced local variable
 d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(201): warning C4101: 'direction': unreferenced local variable
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(782): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(813): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(821): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(853): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(854): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(857): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(861): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(876): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(765): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(796): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(804): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(836): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(837): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(840): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(844): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.cpp(859): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+  Sword.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Rope.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Land.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): warning C4005: 'GRAVITY': macro redefinition
+  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): note: see previous definition of 'GRAVITY'
+d:\githubproject\game\aladdingame\aladdingame\game\object\land.cpp(14): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\object\land.cpp(70): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\object\land.cpp(74): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+  Flame.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Apple.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  game.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\game\game.cpp(83): warning C4244: 'argument': conversion from 'float' to 'DWORD', possible loss of data
+  Hakim.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): warning C4005: 'GRAVITY': macro redefinition
+  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): note: see previous definition of 'GRAVITY'
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\hakim.cpp(83): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\hakim.cpp(146): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\hakim.cpp(173): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\hakim.cpp(181): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\hakim.cpp(194): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\hakim.cpp(195): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\hakim.cpp(198): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\hakim.cpp(202): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+  AladdinGame.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): warning C4005: 'GRAVITY': macro redefinition
+  d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): note: see previous definition of 'GRAVITY'
+  viewport.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\framework\viewport.cpp(68): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\viewport.cpp(69): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\viewport.cpp(70): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\viewport.cpp(71): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  VectorHelper.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  transform.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  timespan.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  texture.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\framework\texture.cpp(119): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+  Generating Code...
+  Compiling...
+  sprite.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(59): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(233): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(234): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(235): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(236): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(246): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(247): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(248): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(249): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(292): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(297): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(302): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(307): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(354): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(355): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(365): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(366): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(367): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(368): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(371): warning C4244: 'argument': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(372): warning C4244: 'argument': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(373): warning C4244: 'argument': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(374): warning C4244: 'argument': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(383): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(384): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(385): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(386): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\sprite.cpp(402): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  windowGUI.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  SoundManager.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\framework\singleton\soundmanager.cpp(32): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+  gametime.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\framework\singleton\gametime.cpp(62): warning C4244: 'argument': conversion from 'float' to 'UINT64', possible loss of data
+  gamecontroller.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  dxdevice.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  QuadTree.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(21): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(22): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(34): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(35): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(41): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(42): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(43): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(48): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(50): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(51): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(56): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(57): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(58): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\quadtree.cpp(59): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  GameObject.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  PlayerComponent.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  PhysicsComponent.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  NullComponent.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(8): warning C4244: 'argument': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(13): warning C4244: 'return': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(18): warning C4244: 'return': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(23): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(24): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(29): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(30): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(35): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(36): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(41): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(42): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(47): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\nullcomponent.cpp(52): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  MovingComponent.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  EnemyComponent.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  CollisionComponent.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(133): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(134): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(135): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(136): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(146): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(147): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(148): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(149): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(230): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(231): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(232): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(233): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\component\collisioncomponent.cpp(284): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+  BehaviorComponent.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  AnimationComponent.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  animation.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(238): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(239): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(240): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(241): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(249): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(250): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(251): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\animation.cpp(252): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  AABB.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(16): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(17): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(18): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(19): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(40): warning C4244: 'argument': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(45): warning C4244: 'argument': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(50): warning C4244: 'argument': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(55): warning C4244: '+=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(56): warning C4244: '+=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(57): warning C4244: '+=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(58): warning C4244: '+=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(82): warning C4244: 'argument': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(88): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(97): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(105): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(115): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(118): warning C4244: 'argument': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(122): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(125): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(130): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(134): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(138): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(142): warning C4244: '=': conversion from 'LONG' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(212): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(219): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(230): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+d:\githubproject\game\aladdingame\aladdingame\framework\aabb.cpp(241): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+  Generating Code...
+d:\githubproject\game\aladdingame\aladdingame\framework\singleton\windowgui.cpp(88): warning C4715: 'Framework::WindowGUI::winProc': not all control paths return a value
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)

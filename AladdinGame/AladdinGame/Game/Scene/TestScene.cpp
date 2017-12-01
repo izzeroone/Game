@@ -42,10 +42,10 @@ bool TestScene::init()
 {
 
 	_Aladdin = ObjectFactory::getAladdin();
-	_Aladdin->getPhysicsComponent()->setPosition(200, 200);
+	_Aladdin->getPhysicsComponent()->setPosition(4000, 1000);
 
 	auto aladdinBehavior = (AladdinBehaviorComponent*)_Aladdin->getBehaviorComponent();
-	aladdinBehavior->setRespawnPosition(GVector2(100, 200));
+	aladdinBehavior->setRespawnPosition(GVector2(4000, 1000));
 	aladdinBehavior->moveViewport.Connect(this, &TestScene::moveViewport);
 	aladdinBehavior->addToScene.Connect(this, &TestScene::addToScene);
 	_listobject.push_back(_Aladdin);
@@ -157,7 +157,7 @@ void TestScene::update(float dt)
 			if (collisionComponent != nullptr)
 			{
 				if (passiveobj->getID() == eObjectID::LAND) // aladdin can overlap rope so don't update target postion. Let aladdin behavior do it instead
-					collisionComponent->checkCollision(passiveobj, dt, true);
+					collisionComponent->checkCollision(passiveobj, dt, false);
 				else
 					collisionComponent->checkCollision(passiveobj, dt, false);
 			}
@@ -235,10 +235,6 @@ void TestScene::destroyobject()
 			continue;
 		if (object->second->getBehaviorComponent() != nullptr && object->second->getBehaviorComponent()->getStatus() == eStatus::DESTROY)	// kiểm tra nếu là destroy thì loại khỏi list
 		{
-			//if (dynamic_cast<BaseEnemy*> (object->second) != nullptr)
-			//{
-			//	SoundManager::getInstance()->Play(eSoundId::DESTROY_ENEMY);
-			//}
 			object->second->release();
 			delete object->second;
 			object->second = NULL;
@@ -258,12 +254,24 @@ void TestScene::updateViewport(GameObject * objTracker, float deltatime)
 	// Vị trí hiện tại của viewport. 
 	GVector2 current_position = _viewport->getPositionWorld();
 	GVector2 worldsize;
-	worldsize.x = _mapBack->getTextureWidth();
-	worldsize.y = _mapBack->getTextureHeight();
+	worldsize.x = _mapBack->getFrameWidth();
+	worldsize.y = _mapBack->getFrameHeight();
 	// Bám theo object.
 
 	float trackerX = max(objTracker->getPhysicsComponent()->getPositionX() - 260, 0);
 	float trackerY = max(objTracker->getPhysicsComponent()->getPositionY() + 300, WINDOW_HEIGHT);
+
+	//Không cho vượt quá bên trái
+	if (trackerX + _viewport->getWidth() > worldsize.x)
+	{
+		trackerX = worldsize.x - _viewport->getWidth();
+	}
+
+	//Không vượt quá trên
+	if (trackerY > worldsize.y)
+	{
+		trackerY = worldsize.y;
+	}
 
 	current_position.x += (trackerX - current_position.x) * lerp * deltatime / 1000;
 	current_position.y += (trackerY - current_position.y) * lerp * deltatime / 1000;

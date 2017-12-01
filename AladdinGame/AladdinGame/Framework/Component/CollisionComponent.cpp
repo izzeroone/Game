@@ -59,7 +59,7 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 		// collision is occurring!
 		_listColliding[otherObject] = true;
 		penetrationVector = md.cloestPointOnBoundsToPoint(VECTOR2ZERO, targetSide, colliSide);
-	
+		_listColliside[otherObject] = colliSide;
 		_listPenetrationVector[otherObject] = penetrationVector;
 		if (updatePosition)
 		{
@@ -88,10 +88,12 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 		{
 			// see if there WILL be a collision
 			float intersectFraction = md.getRayIntersectionFraction(VECTOR2ZERO, rvRay, targetSide, colliSide);
-			_listPenetrationVector[otherObject] = penetrationVector;
+			
 			if (intersectFraction < std::numeric_limits<float>::infinity())
 			{
 				_listColliding[otherObject] = true;
+				_listColliside[otherObject] = colliSide;
+				_listPenetrationVector[otherObject] = rvRay * intersectFraction;
 				if (updatePosition)
 				{
 					// yup, there WILL be a collision this frame
@@ -107,7 +109,6 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 					{
 						move->setAddPos(boxAVelo * dt * intersectFraction / 1000);
 						move->setVelocity(boxAVelo);
-						__debugoutput(colliSide);
 
 					}
 					move = (Movement*)otherObject->getPhysicsComponent()->getComponent("Movement");
@@ -234,6 +235,28 @@ bool CollisionComponent::isColliding(RECT myRect, RECT otherRect)
 	return !(left > 0 || right < 0 || top < 0 || bottom > 0);
 }
 
+void CollisionComponent::updatePosition(GameObject * otherObject)
+{
+	GVector2 boxAVelo = _target->getPhysicsComponent()->getVelocity();
+	GVector2 boxBVelo = otherObject->getPhysicsComponent()->getVelocity();
+
+	GVector2 tangent = VectorHelper::normalized(_listPenetrationVector[otherObject]);
+	tangent = VectorHelper::tangent(tangent);
+	boxAVelo = VectorHelper::dotProduct(boxAVelo, tangent) * tangent;
+	boxBVelo = VectorHelper::dotProduct(boxBVelo, tangent) * tangent;
+	auto move = (Movement*)_target->getPhysicsComponent()->getComponent("Movement");
+	if (move != nullptr)
+	{
+		move->setVelocity(boxAVelo);
+		move->setAddPos(_listPenetrationVector[otherObject]);
+	}
+	move = (Movement*)otherObject->getPhysicsComponent()->getComponent("Movement");
+	if (move != nullptr)
+	{
+		move->setVelocity(boxBVelo);
+	}
+}
+
 bool CollisionComponent::isColliding(GameObject* otherObject)
 {
 	if (_listColliding.find(otherObject) != _listColliding.end())
@@ -247,6 +270,18 @@ GameObject * CollisionComponent::isColliding(eObjectID eid)
 	for (auto it = _listColliding.begin(); it != _listColliding.end(); it++)
 	{
 		if (it->first->getID() == eid)
+		{
+			return it->first;
+		}
+	}
+	return nullptr;
+}
+
+GameObject * CollisionComponent::isColliding(eObjectID eid, eDirection side)
+{
+	for (auto it = _listColliding.begin(); it != _listColliding.end(); it++)
+	{
+		if (it->first->getID() == eid && _listColliside[it->first] & side == side)
 		{
 			return it->first;
 		}
@@ -268,7 +303,7 @@ GameObject * CollisionComponent::isColliding(std::function<bool(GameObject*)> pr
 
 eDirection CollisionComponent::getCollidingDirection(GameObject * otherObject)
 {
-	return eDirection::TOP;
+	return _listColliside[otherObject];
 }
 
 void CollisionComponent::update(float dt)

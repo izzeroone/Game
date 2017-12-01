@@ -174,9 +174,11 @@
     <ClCompile Include="Framework\viewport.cpp" />
     <ClCompile Include="Game\AladdinGame.cpp" />
     <ClCompile Include="Game\Enemy\Hakim.cpp" />
+    <ClCompile Include="Game\Enemy\Thrower.cpp" />
     <ClCompile Include="Game\game.cpp" />
     <ClCompile Include="Game\ObjectFactory.cpp" />
     <ClCompile Include="Game\Object\Apple.cpp" />
+    <ClCompile Include="Game\Object\ExplosionPot.cpp" />
     <ClCompile Include="Game\Object\Flame.cpp" />
     <ClCompile Include="Game\Object\Land.cpp" />
     <ClCompile Include="Game\Object\Rope.cpp" />
@@ -221,9 +223,11 @@
     <ClInclude Include="Framework\viewport.h" />
     <ClInclude Include="Game\AladdinGame.h" />
     <ClInclude Include="Game\Enemy\Hakim.h" />
+    <ClInclude Include="Game\Enemy\Thrower.h" />
     <ClInclude Include="Game\game.h" />
     <ClInclude Include="Game\ObjectFactory.h" />
     <ClInclude Include="Game\Object\Apple.h" />
+    <ClInclude Include="Game\Object\ExplosionPot.h" />
     <ClInclude Include="Game\Object\Flame.h" />
     <ClInclude Include="Game\Object\Land.h" />
     <ClInclude Include="Game\Object\Rope.h" />

@@ -189,6 +189,12 @@
     <ClCompile Include="Game\Scene\TestSceneBackground.cpp">
       <Filter>Source Files\Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Object\ExplosionPot.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Thrower.cpp">
+      <Filter>Source Files\Game\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
@@ -322,6 +328,12 @@
     </ClInclude>
     <ClInclude Include="Game\Scene\TestSceneBackground.h">
       <Filter>Header Files\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\ExplosionPot.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Thrower.h">
+      <Filter>Header Files\Game\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

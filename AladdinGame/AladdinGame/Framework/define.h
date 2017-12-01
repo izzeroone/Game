@@ -36,9 +36,12 @@ enum eObjectID
 	SWORD = 4, // f0r slash
 	GUARD = 5,
 	HAKIM = 6,
+	THROWER = 9, // thằng ném bình
 	FLAME = 10,
+	EXPLOSIONPOT = 11,
 	MAP1 = 30,
-	MAP1BACKGROUND = 31
+	MAP1BACKGROUND = 31,
+	CIVILIAN = 32, // civilian sprite object
 };
 
 enum eStatus

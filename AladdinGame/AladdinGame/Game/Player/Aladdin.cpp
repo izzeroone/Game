@@ -202,43 +202,12 @@ void AladdinBehaviorComponent::update(float detatime)
 
 	if (_input->isKeyPressed(BT_BOUND))
 	{
-#pragma region MyRegion
-		//rect rect = _physicscomponent->getbounding();
-
-		//outputdebugstringw(l"aladdin bounding : ");
-		//outputdebugstringw(l"top : ");
-		//__debugoutput(rect.top);
-		//outputdebugstringw(l" bottom : ");
-		//__debugoutput(rect.bottom);
-		//outputdebugstringw(l" left : ");
-		//__debugoutput(rect.left);
-		//outputdebugstringw(l" right : ");
-		//__debugoutput(rect.right);
-		//outputdebugstringw(l" \n ");
-
-		//OutputDebugStringW(L" Status : ");
-		//OutputDebugStringW(getStatusString(_status).c_str());
-		//OutputDebugStringW(L" \n ");
-
-		//OutputDebugStringW(L" Prestatus : ");
-		//OutputDebugStringW(getStatusString(_preStatus).c_str());
-		//OutputDebugStringW(L" \n ");
-
-		//OutputDebugStringW(L" Pre Object : ");
-		//__debugoutput(_preObject->getID());
-		//OutputDebugStringW(L" \n ");
-
-		//OutputDebugStringW(L" Hit point : ");
-		//__debugoutput(_hitpoint);
-		//OutputDebugStringW(L" \n ");
-#pragma endregion
 		GVector2 velocity = _physicsComponent->getVelocity();
 		OutputDebugStringW(L"Aladdin Velocity : ");
 		__debugoutput(velocity.x);
 		__debugoutput(velocity.y);
-
-	
 	}
+
 	if (_physicsComponent->getPositionY() + ALADDIN_HEIGHT < 0)
 	{
 		respawn();
@@ -355,10 +324,12 @@ void AladdinBehaviorComponent::update(float detatime)
 		object = collisionComponent->isColliding(eObjectID::LAND);
 		if (object != nullptr)
 		{
-			bool canPassThrough = ((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType() == eLandType::lFALLTHROUGHT && _physicsComponent->getVelocity().y <= -1000;
-			if(collisionComponent->getSide(object) == eDirection::TOP && !canPassThrough)
+			bool canPassThrough = ((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType() == eLandType::lFALLTHROUGHT && _physicsComponent->getVelocity().y <= -900;
+			if(collisionComponent->getSide(object) != eDirection::BOTTOM && !canPassThrough)
 			{
+				__debugoutput(((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType());
 				setStatus(eStatus::NORMAL);
+				collisionComponent->updatePosition(object);
 				standing();
 				_preObject = object;
 				break;
@@ -462,6 +433,14 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		break;
 	case RUNNING:
+		//climbing ladder
+		object = collisionComponent->isColliding(eObjectID::LAND, eDirection::LEFT);
+		if (object != nullptr)
+		{
+			auto move = (Movement*)_physicsComponent->getComponent("Movement");
+			move->setAddPos(GVector2(0, object->getPhysicsComponent()->getPositionY() - _physicsComponent->getPositionY()));
+		}
+
 		object = collisionComponent->isColliding(eObjectID::LAND);
 		if (object == nullptr)
 		{
@@ -469,6 +448,10 @@ void AladdinBehaviorComponent::update(float detatime)
 			standing();
 			falling();
 			break;
+		}
+		else
+		{
+			collisionComponent->updatePosition(object);
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{

@@ -331,6 +331,26 @@ GameObject * ObjectFactory::getFlame(GVector2 pos)
 	return Flame;
 }
 
+GameObject * ObjectFactory::getThrower(GVector2 pos)
+{
+	auto physicsComponent = new ThrowerPhysicsComponent();
+	auto animationComponent = new ThrowerAnimationComponent();
+	auto behaviorComponent = new ThrowerBehaviorComponent();
+
+	animationComponent->setPhysiscComponent(physicsComponent);
+	behaviorComponent->setPhysicsComponent(physicsComponent);
+	behaviorComponent->setAnimationComponent(animationComponent);
+	behaviorComponent->setGameController(GameController::getInstance());
+
+
+	physicsComponent->setPosition(pos);
+
+	auto thrower = new GameObject(eObjectID::THROWER, animationComponent, behaviorComponent, physicsComponent);
+	thrower->init();
+
+	return thrower;
+}
+
 map<string, string> ObjectFactory::getObjectProperties(xml_node node)
 {
 	map<string, string> properties;
