@@ -10,6 +10,7 @@
 #include "Enemy\Thrower.h"
 #include "Object\Sword.h"
 #include "Object\Flame.h"
+#include "Object\ExplosionPot.h"
 #include "../../pugixml/src/pugixml.hpp"
 #include <functional>
 using namespace pugi;
@@ -28,7 +29,10 @@ public:
 	static GameObject* getRope(xml_node node);
 	static GameObject* getHakim(GVector2 pos, float rangeXStart, float rangeXEnd);
 	static GameObject* getFlame(GVector2 pos);
+	static GameObject* getExlplosionPot(GVector2 pos);
+	static GameObject* getExlplosionPot(xml_node node);
 	static GameObject* getThrower(GVector2 pos);
+	static GameObject* getThrower(xml_node node);
 private:
 	static map<string, string> ObjectFactory::getObjectProperties(xml_node node);
 	static GameObject* getObjectById(xml_node node, eObjectID id);

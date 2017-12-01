@@ -15,7 +15,7 @@ void ThrowerAnimationComponent::init()
 	setScale(SCALE_FACTOR);
 
 	_animations[eStatus::NORMAL] = new Animation(_sprite, 0.07f);
-	_animations[eStatus::NORMAL]->addFrameRect(eObjectID::CIVILIAN, "pot_1", "pot_2", "pot_3", "pot_4", "pot_5", "pot_6", "pot_7", NULL);
+	_animations[eStatus::NORMAL]->addFrameRect(eObjectID::CIVILIAN, "thrower_1", "thrower_2", "thrower_3", "thrower_4", "thrower_5", "thrower_6", "thrower_7", "thrower_8", "thrower_9", "thrower_10", NULL);
 
 	_index = eStatus::NORMAL;
 }
@@ -23,6 +23,7 @@ void ThrowerAnimationComponent::init()
 void ThrowerBehaviorComponent::init()
 {
 	_timer = 0;
+	_toThrow = false;
 }
 
 void ThrowerBehaviorComponent::update(float detatime)
@@ -32,8 +33,18 @@ void ThrowerBehaviorComponent::update(float detatime)
 	auto aladdin = SceneManager::getInstance()->getCurrentScene()->getObject(eObjectID::ALADDIN);
 	auto aladdinPos = aladdin->getPhysicsComponent()->getPosition();
 
+	if (_toThrow == true)
+	{
+		if (_animationComponent->getCurrentAnimation()->getCount() >= 1)
+		{
+			throwPot();
+			_animationComponent->getCurrentAnimation()->restart();
+			_animationComponent->getCurrentAnimation()->canAnimate(false);
+			_toThrow = false;
+		}
+	}
 	//aladdin ở gần
-	if (abs(aladdinPos.y - _physicsComponent->getPositionY()) <= 50 * SCALE_FACTOR)
+	if (abs(aladdinPos.x - _physicsComponent->getPositionX()) <= 50 * SCALE_FACTOR)
 	{
 		_timer += detatime;
 		if (_timer >= THROW_INTERVAL)
@@ -42,11 +53,17 @@ void ThrowerBehaviorComponent::update(float detatime)
 		}
 		else
 			return;
-		throwPot();
+		_toThrow = true;
+		_animationComponent->setAnimation(eStatus::NORMAL);
+		_animationComponent->getCurrentAnimation()->canAnimate(true);
 	}
 	else
 	{
-		_timer = 0;
+		if (_toThrow == false)
+		{
+			_timer = 0;
+			_animationComponent->getCurrentAnimation()->canAnimate(false);
+		}
 	}
 }
 
@@ -56,6 +73,6 @@ void ThrowerBehaviorComponent::throwPot()
 	GVector2 pos = _physicsComponent->getPosition();
 	pos.x += 10 * SCALE_FACTOR; // code cứng
 	pos.y -= 5 * SCALE_FACTOR;
-	auto explosionPot = ObjectFactory::getApple(pos, GVector2(0, 0));
+	auto explosionPot = ObjectFactory::getExlplosionPot(pos);
 	addToScene.Emit(explosionPot);
 }

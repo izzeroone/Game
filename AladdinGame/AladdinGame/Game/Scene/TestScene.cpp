@@ -42,16 +42,20 @@ bool TestScene::init()
 {
 
 	_Aladdin = ObjectFactory::getAladdin();
-	_Aladdin->getPhysicsComponent()->setPosition(4000, 1000);
+	_Aladdin->getPhysicsComponent()->setPosition(200, 1000);
 
 	auto aladdinBehavior = (AladdinBehaviorComponent*)_Aladdin->getBehaviorComponent();
-	aladdinBehavior->setRespawnPosition(GVector2(4000, 1000));
+	aladdinBehavior->setRespawnPosition(GVector2(200, 1000));
 	aladdinBehavior->moveViewport.Connect(this, &TestScene::moveViewport);
 	aladdinBehavior->addToScene.Connect(this, &TestScene::addToScene);
 	_listobject.push_back(_Aladdin);
 
 	auto hakim = ObjectFactory::getHakim(GVector2(400, 100),200, 600);
 	_listobject.push_back(hakim);
+
+	auto thrower = ObjectFactory::getThrower(GVector2(400, 400));
+	_listobject.push_back(thrower);
+
 	BehaviorComponent::addToScene.Connect(this, &TestScene::addToScene);
 
 	_background = new TestSceneBackground();
@@ -146,7 +150,7 @@ void TestScene::update(float dt)
 	for (GameObject* obj : _active_object)
 	{
 		// một vài trạng thái không cần thiết phải check hàm va chạm
-		if (obj == nullptr || obj->getID() == eObjectID::ROPE)
+		if (obj == nullptr || obj->getID() == eObjectID::ROPE || obj->getID() == eObjectID::THROWER)
 			continue;
 		auto collisionComponent = (CollisionComponent*)obj->getPhysicsComponent()->getComponent("Collision");
 		collisionComponent->reset();

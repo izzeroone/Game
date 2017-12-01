@@ -11,7 +11,7 @@
 #include "../ObjectFactory.h"
 #include "../Scene/SceneManager.h"
 
-#define THROW_INTERVAL 3000
+#define THROW_INTERVAL 1500
 
 class ThrowerPhysicsComponent : public NullPhysicsComponent
 {
@@ -35,6 +35,7 @@ public:
 	void init();
 	void update(float detatime);
 protected:
+	bool _toThrow;
 	float _timer;
 	void throwPot();
 };

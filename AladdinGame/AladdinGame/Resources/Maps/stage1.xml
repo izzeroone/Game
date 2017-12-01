@@ -729,5 +729,15 @@
     <Elem Key="type" Value="1" />
   </Params>
 </Item>
-
+<Item Id="9" Name="thrower_1" X="1781" Y="197" />
+<Item Id="9" Name="thrower_2" X="1829" Y="165" />
+<Item Id="9" Name="thrower_3" X="1941" Y="342" />
+<Item Id="9" Name="thrower_4" X="1829" Y="342" />
+<Item Id="9" Name="thrower_5" X="1733" Y="519" />
+<Item Id="9" Name="thrower_6" X="1941" Y="519" />
+<Item Id="9" Name="thrower_7" X="2101" Y="519" />
+<Item Id="9" Name="thrower_8" X="3765" Y="135" />
+<Item Id="9" Name="thrower_9" X="3941" Y="135" />
+<Item Id="9" Name="thrower_10" X="4005" Y="167" />
+<Item Id="9" Name="thrower_11" X="3301" Y="311" />
   </Objects>

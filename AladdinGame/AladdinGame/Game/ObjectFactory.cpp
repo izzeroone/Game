@@ -85,6 +85,8 @@ GameObject* ObjectFactory::getObjectById(xml_node node, eObjectID id)
 		return getLand(node);
 	case ROPE:
 		return getRope(node);
+	case THROWER:
+		return getThrower(node);
 	default:
 		break;
 	}
@@ -331,6 +333,38 @@ GameObject * ObjectFactory::getFlame(GVector2 pos)
 	return Flame;
 }
 
+GameObject * ObjectFactory::getExlplosionPot(GVector2 pos)
+{
+	auto physicsComponent = new ExplosionPotPhysicsComponent();
+	auto animationComponent = new ExplosionPotAnimationComponent();
+	auto behaviorComponent = new ExplosionPotBehaviorComponent();
+
+	animationComponent->setPhysiscComponent(physicsComponent);
+	behaviorComponent->setPhysicsComponent(physicsComponent);
+	behaviorComponent->setAnimationComponent(animationComponent);
+	behaviorComponent->setGameController(GameController::getInstance());
+	physicsComponent->setAnimationComponent(animationComponent);
+
+
+	physicsComponent->setPosition(pos);
+
+	auto ExplosionPot = new GameObject(eObjectID::EXPLOSIONPOT, animationComponent, behaviorComponent, physicsComponent);
+	ExplosionPot->init();
+	auto collisionComponent = (CollisionComponent*)ExplosionPot->getPhysicsComponent()->getComponent("Collision");
+	collisionComponent->setTargerGameObject(ExplosionPot);
+
+	return ExplosionPot;
+}
+
+GameObject * ObjectFactory::getExlplosionPot(xml_node node)
+{
+	GVector2 pos;
+	pos.x = node.attribute("X").as_float();
+	pos.y = node.attribute("Y").as_float();
+
+	return getExlplosionPot(pos);
+}
+
 GameObject * ObjectFactory::getThrower(GVector2 pos)
 {
 	auto physicsComponent = new ThrowerPhysicsComponent();
@@ -349,6 +383,15 @@ GameObject * ObjectFactory::getThrower(GVector2 pos)
 	thrower->init();
 
 	return thrower;
+}
+
+GameObject * ObjectFactory::getThrower(xml_node node)
+{
+	GVector2 pos;
+	pos.x = node.attribute("X").as_float() * SCALE_FACTOR;
+	pos.y = node.attribute("Y").as_float() * SCALE_FACTOR;
+
+	return getThrower(pos);
 }
 
 map<string, string> ObjectFactory::getObjectProperties(xml_node node)

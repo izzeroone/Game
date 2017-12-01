@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
-<Node left="0" right="9546" top="1378" bottom="0" level="0">
-  <Node left="0" right="4773" top="1378" bottom="689" level="1">
+<Node left="0" right="9546" top="1378" bottom="0" level="0" object="thrower_10 thrower_11 thrower_8 thrower_9 ">
+  <Node left="0" right="4773" top="1378" bottom="689" level="1" object="thrower_5 thrower_6 thrower_7 ">
     <Node left="0" right="2386" top="1378" bottom="1033" level="2" />
     <Node left="0" right="2386" top="1033" bottom="688" level="2" />
     <Node left="2386" right="4772" top="1378" bottom="1033" level="2" />
@@ -61,7 +61,7 @@
       </Node>
     </Node>
   </Node>
-  <Node left="0" right="4773" top="689" bottom="0" level="1">
+  <Node left="0" right="4773" top="689" bottom="0" level="1" object="thrower_1 thrower_2 thrower_3 thrower_4 thrower_5 thrower_6 thrower_7 ">
     <Node left="0" right="2386" top="689" bottom="344" level="2" />
     <Node left="0" right="2386" top="344" bottom="0" level="2">
       <Node left="0" right="1193" top="344" bottom="172" level="3" />

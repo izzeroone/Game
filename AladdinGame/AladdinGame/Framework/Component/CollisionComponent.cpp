@@ -24,6 +24,10 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 	if (otherObject->getPhysicsComponent() == nullptr)
 		return;
 
+	//other object doesn't have collision component
+	if (otherObject->getPhysicsComponent()->getComponent("Collision") == nullptr)
+		return;
+
 	RECT myRect = _target->getPhysicsComponent()->getBounding();
 	RECT otherRect = otherObject->getPhysicsComponent()->getBounding();
 
