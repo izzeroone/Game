@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AladdinGame" Collapsed="true">
+    <Position X="2.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAEAAAAAQAAAAAAAAMAAQAAAAACAAIAAAAQAAAEAAA=</HashCode>
+      <FileName>Game\AladdinGame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Component" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAEAAA=</HashCode>
+      <FileName>Framework\Component\Component.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimationComponent" Collapsed="true">
+    <Position X="2" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAQQAAgAkQAQABIgAAwFUAMoIAACAQGQkAAsAIA=</HashCode>
+      <FileName>Framework\Component\AnimationComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BehaviorComponent" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEAAAAiBABIQAAAAAZIAAAIAAAAABEAEAAkAIACGAAI=</HashCode>
+      <FileName>Framework\Component\BehaviorComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollisionComponent" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ByAAAGQAAIAAAAAQAAAAAQAIQIAAACIIAAEAQAAEAAA=</HashCode>
+      <FileName>Framework\Component\CollisionComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AladdinAnimationComponent" Collapsed="true">
+    <Position X="2" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Game\Player\Aladdin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AladdinBehaviorComponent" Collapsed="true">
+    <Position X="4.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACADJAgBQAIAEABAAAAAAAAABAAAAmYOIAACiECEgAA=</HashCode>
+      <FileName>Game\Player\Aladdin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhysicsComponent" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAINgAAAAAAAQCUCAiBAAACAAAAAAAAgABokAAEAIA=</HashCode>
+      <FileName>Framework\Component\PhysicsComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AladdinPhysicsComponent" Collapsed="true">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAIAAAhAEAAAAAA=</HashCode>
+      <FileName>Game\Player\Aladdin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game" Collapsed="true">
+    <Position X="2.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIABAoAAgQIAAAAAAAIAAAAAAAiAAAIAAKAQAGAUAEQ=</HashCode>
+      <FileName>Game\game.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Animation" Collapsed="true">
+    <Position X="9.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQFABAAAIwgAAoggAIiHABHBAEhCAIBECCAASLsUgU=</HashCode>
+      <FileName>Framework\animation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameController" Collapsed="true">
+    <Position X="4.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAEAAAAABIAAIAAAAEAAAAEAAAAYAZAAAAEAAIEACA=</HashCode>
+      <FileName>Framework\Singleton\gamecontroller.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObject" Collapsed="true">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EBAAAAAAAFAAAASAABJAAAAAAAAAAAIBAAmBAAIECAA=</HashCode>
+      <FileName>Framework\GameObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Movement" Collapsed="true">
+    <Position X="13.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAIABAAABAAAAAAAAAAAAAIAAANgAAAEAAA=</HashCode>
+      <FileName>Framework\Component\MovingComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Scene" Collapsed="true">
+    <Position X="6.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAQAAAgAIAAAAAQAAAAAIAAAAQAAQEAAA=</HashCode>
+      <FileName>Game\Scene\Scene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameTime" Collapsed="true">
+    <Position X="8.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAMAABAQAAIgAAAAAAIUAAoAIAABAYAAAAAAGAAAAI=</HashCode>
+      <FileName>Framework\Singleton\gametime.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpriteResource" Collapsed="true">
+    <Position X="10.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAGAAAAAQAAAAAAgBCAgAAAAAAARAQIAAgAAAACAAA=</HashCode>
+      <FileName>Framework\Singleton\spriteresource.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundManager" Collapsed="true">
+    <Position X="8.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAAAAIAIAAQAgAAAAAAAQAAAQAoAAAAAASAAA=</HashCode>
+      <FileName>Framework\Singleton\SoundManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Texture" Collapsed="true">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAAAAAAAAQAIhAAAAAAAAAAAAAAAQAAAAAIQgAAYAAA=</HashCode>
+      <FileName>Framework\texture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sprite" Collapsed="true">
+    <Position X="10.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAASAQARiIEEAQEgAhoIADBAAICEASCRgYkRQYEAo=</HashCode>
+      <FileName>Framework\sprite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectFactory" Collapsed="true">
+    <Position X="4.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAQAAAAABAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Game\ObjectFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneManager" Collapsed="true">
+    <Position X="6.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAEAAAAACAAAEACAAoAABAAAAAAAAYAAAAQEAAEAEQ=</HashCode>
+      <FileName>Game\Scene\SceneManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Viewport" Collapsed="true">
+    <Position X="10.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QACAAAIAAACEAAAAAEAAAAAACBAAQABAAAAAEAAAAAA=</HashCode>
+      <FileName>Framework\viewport.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

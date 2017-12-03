@@ -1,8 +1,12 @@
-#include "BehaviorComponent.h"
+﻿#include "BehaviorComponent.h"
 #include "AnimationComponent.h"
 #include "PhysicsComponent.h"
 #include "../GameObject.h"
 #include "../Singleton/gamecontroller.h"
+
+
+//static phải khởi tạo ở file c++
+sigcxx::Signal<GameObject * > BehaviorComponent::addToScene;
 
 BehaviorComponent::BehaviorComponent()
 {
@@ -122,12 +126,6 @@ wstring BehaviorComponent::getStatusString(eStatus status)
 		break;
 	case CLIMB_HORIZON:
 		return L"climb horizon";
-		break;
-	case MOVE_UP:
-		return L"move up";
-		break;
-	case MOVE_DOWN:
-		return L"move down";
 		break;
 	case BORING1:
 		return L"boring1";

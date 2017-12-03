@@ -1,0 +1,112 @@
+frame_name      left   top   right  bottom transitionx	transition y
+nakim_running_1    99     11    135     76	0	0
+nakim_running_2    140    9     190     76	0	0
+nakim_running_3    196    9     239     76	0	0
+nakim_running_4    247    10    284     76	0	0
+nakim_running_5    289    11    334     76	0	0
+nakim_running_6    343    11    389     76	0	0
+nakim_running_7    400    10    445     76	0	0
+nakim_running_8    451    9     496     76	0	0
+
+nakim_slash_1    75     96    116     156	0	0 
+nakim_slash_2    129    96    206     156	0	0
+nakim_slash_3    209    97    295     156	0	0
+nakim_slash_4    297    98    389     156	0	0
+nakim_slash_5    396    96    445     156	0	0
+nakim_slash_6    452    82    489     156	0	0
+
+nakim_beaten_1    20     166    65     233	0	0
+nakim_beaten_2    80     185    120    233	0	0
+nakim_beaten_3    133    184    180    233	0	0
+nakim_beaten_4    188    162    230    233	0	0
+nakim_beaten_5    242    171    288    233	0	0
+nakim_beaten_6    296    165    337    233	0	0
+nakim_beaten_7    345    160    384    233	0	0
+nakim_beaten_8    399    185    439    233	0	0
+nakim_beaten_9    446    175    490    233	0	0
+
+nahbi_running_1    69     253    116    307	0	0
+nahbi_running_2    120    251    164    307	0	0
+nahbi_running_3    172    254    214    307	0	0
+nahbi_running_4    219    255    268    307	0	0
+nahbi_running_5    274    253    325    307	0	0
+nahbi_running_6    331    252    387    307	0	0
+nahbi_running_7    391    253    443    307	0	0
+nahbi_running_8    449    255    496    307	0	0
+
+nahbi_taught_1    176    317    220    370	0	0
+nahbi_taught_2    228    317    277    370	0	0
+nahbi_taught_3    283    317    341    370	0	0
+nahbi_taught_4    346    317    400    370	0	0
+nahbi_taught_5    405    316    442    370	0	0
+nahbi_taught_6    449    317    493    370	0	0
+
+nahbi_slash1_1    8      384    103    430	0	0
+nahbi_slash1_2    113    385    201    430	0	0
+nahbi_slash1_3    207    387    282    430	0	0
+nahbi_slash1_4    288    388    358    430	0	0
+nahbi_slash1_5    366    386    433    430	0	0
+nahbi_slash1_6    437    378    492    430	0	0
+
+nahbi_slash2_1    107    434    198    507	0	0
+nahbi_slash2_2    206    451    320    507	0	0
+nahbi_slash2_3    330    441    382    507	0	0
+nahbi_slash2_4    394    434    437    507	0	0
+nahbi_slash2_5    449    447    492    507	0	0
+
+nahbi_beaten_1    50     530    116    586	0	0
+nahbi_beaten_2    134    522    208    586	0	0
+nahbi_beaten_3    217    520    288    586	0	0
+nahbi_beaten_4    295    529    360    586	0	0
+nahbi_beaten_5    364    515    427    586	0	0
+nahbi_beaten_6    438    538    492    586	0	0
+
+nahbi_burned_1    60     601    105    652	0	0
+nahbi_burned_2    110    594    153    652	0	0
+nahbi_burned_3    157    594    199    652	0	0
+nahbi_burned_4    202    593    245    652	0	0
+nahbi_burned_5    259    599    300    652	0	0
+nahbi_burned_6    306    594    364    652	0	0
+nahbi_burned_7    351    593    392    652	0	0
+nahbi_burned_8    396    592    439    652	0	0
+nahbi_burned_9    447    598    488    652	0	0
+
+Guard_Line10_1   224    678    237    713	0	0
+Guard_Line10_2   248    675    273    713	0	0
+Guard_Line10_3   281    677    308    713	0	0
+Guard_Line10_4   319    682    346    713	0	0
+Guard_Line10_5   355    675    368    713	0	0
+Guard_Line10_6   375    680    401    713	0	0
+Guard_Line10_7   414    678    425    713	0	0
+Guard_Line10_8   446    663    489    713	0	0
+
+falza_boring_1   150    722    190    771	0	0
+falza_boring_2   199    719    251    771	0	0
+falza_boring_3   257    725    311    771	0	0
+falza_boring_4   317    727    355    771	0	0
+falza_boring_5   370    725    404    771	0	0
+falza_boring_6   416    721    453    771	0	0
+falza_boring_7   459    727    496    771	0	0
+
+falza_running_1   141    785    175    836	0	0
+falza_running_2   180    788    217    836	0	0
+falza_running_3   226    781    265    836	0	0
+falza_running_4   277    776    320    836	0	0
+falza_running_5   326    781    365    836	0	0
+falza_running_6   368    789    405    836	0	0
+falza_running_7   411    786    446    836	0	0
+falza_running_8   454    784    491    836	0	0
+
+falza_throw_1   229    848    262    900	0	0
+falza_throw_2   270    856    316    900	0	0
+falza_throw_3   322    850    383    900	0	0
+falza_throw_4   394    844    430    900	0	0
+falza_throw_5   441    842    496    900	0	0
+
+falza_beaten_1   31     910    99     971	0	0
+falza_beaten_2   107    906    176    971	0	0
+falza_beaten_3   187    923    252    971	0	0
+falza_beaten_4   258    921    313    971	0	0
+falza_beaten_5   319    921    374    971	0	0
+falza_beaten_6   380    920    435    971	0	0
+falza_beaten_7   439    919    494    971	0	0

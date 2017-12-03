@@ -1,15 +1,16 @@
 ﻿#include "Aladdin.h"
 #include "../../Framework/Singleton/gametime.h"
 #include <ctime>;
-
+//TODO: Add animation queue with count number : replace with temp animation
+//		Fix falling animation :not done yet
+//		Update animation start animation and start loop is diffirent : ....
 void AladdinPhysicsComponent::init()
 {
 	_movingSpeed = ALADDIN_MOVE_SPEED;
 	auto movement = new Movement(GVector2(0, 0), GVector2(0, 0), this);
 	_componentList["Movement"] = movement;
 	_componentList["Gravity"] = new Gravity(GVector2(0, -GRAVITY), movement);
-	_componentList["Collision"] = new CollisionComponent();
-	setPhysicsBodySide(eDirection::ALL);
+	_componentList["Collision"] = new CollisionComponent(eDirection::ALL);
 }
 
 void AladdinAnimationComponent::init()
@@ -34,11 +35,12 @@ void AladdinAnimationComponent::init()
 	_animations[eStatus::RUNNING]->addFrameRect(eObjectID::ALADDIN, "run_01", "run_02", "run_03", "run_04", "run_05", "run_06", "run_07", "run_08", "run_09", "run_10", "run_11", "run_12", "run_13", NULL);
 
 	_animations[eStatus::RUNNING | eStatus::SLASH] = _animations[eStatus::NORMAL | eStatus::SLASH];
+	_animations[eStatus::RUNNING | eStatus::THROW] = _animations[eStatus::NORMAL | eStatus::THROW];
 
 	_animations[eStatus::JUMPING] = new Animation(_sprite, 0.168f);
 	_animations[eStatus::JUMPING]->addFrameRect(eObjectID::ALADDIN, "jump_stand_01", "jump_stand_02", "jump_stand_03", "jump_stand_04", "jump_stand_05", "jump_stand_06", "jump_stand_07", "jump_stand_08", "jump_stand_09", "jump_stand_10", NULL);
 
-	_animations[eStatus::FALLING] = new Animation(_sprite, 0.07f);
+	_animations[eStatus::FALLING] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::FALLING]->addFrameRect(eObjectID::ALADDIN, "jump_stand_06", "jump_stand_07", "jump_stand_08", "jump_stand_09", "jump_stand_10", NULL);
 	_animations[eStatus::FALLING]->animateFromTo(3, 4, true);
 
@@ -69,7 +71,7 @@ void AladdinAnimationComponent::init()
 	_animations[eStatus::LAYING_DOWN | eStatus::SLASH]->addFrameRect(eObjectID::ALADDIN, "slash_laydown_01", "slash_laydown_02", "slash_laydown_03", "slash_laydown_04", "slash_laydown_05", "slash_laydown_06", "slash_laydown_07", NULL);
 
 	_animations[eStatus::LAYING_DOWN | eStatus::THROW] = new Animation(_sprite, 0.07f);
-	_animations[eStatus::LAYING_DOWN | eStatus::THROW]->addFrameRect(eObjectID::ALADDIN, "throw_laydown_01", "throw_laydown_02", "throw_laydown_03", "throw_laydown_04", "throw_laydown_05", "throw_laydown_06", "throw_laydown_07", NULL);
+	_animations[eStatus::LAYING_DOWN | eStatus::THROW]->addFrameRect(eObjectID::ALADDIN, "throw_laydown_01", "throw_laydown_02", "throw_laydown_03", "throw_laydown_04", "throw_laydown_05", NULL);
 
 	_animations[eStatus::LOOKING_UP] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::LOOKING_UP]->addFrameRect(eObjectID::ALADDIN, "lookup_01", "lookup_02", "lookup_03", NULL);
@@ -106,8 +108,8 @@ void AladdinAnimationComponent::init()
 	_animations[eStatus::PUSH] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::PUSH]->addFrameRect(eObjectID::ALADDIN, "push_01", "push_02", "push_03", "push_04", "push_05", "push_06", "push_07", "push_08", "push_09", NULL);
 
-	_animations[eStatus::BURNED] = new Animation(_sprite, 0.07f);
-	_animations[eStatus::BURNED]->addFrameRect(eObjectID::ALADDIN, "burned_01", "burned_02", "burned_03", "burned_04", "burned_05", "burned_06", NULL);
+	_animations[eStatus::BEATEN] = new Animation(_sprite, 0.07f);
+	_animations[eStatus::BEATEN]->addFrameRect(eObjectID::ALADDIN, "burned_01", "burned_02", "burned_03", "burned_04", "burned_05", "burned_06", NULL);
 
 	_animations[eStatus::DYING] = new Animation(_sprite, 0.07f);
 	_animations[eStatus::DYING]->addFrameRect(eObjectID::ALADDIN, "die_01", "die_02", "die_03", "die_04", "die_05", "die_06", "die_07", "die_08", "die_09", "die_10", "die_11", "die_12", "die_13", NULL);
@@ -149,7 +151,7 @@ void AladdinAnimationComponent::init()
 	_animations[eStatus::BORING3]->setLoop(true);
 
 	_transition[eStatus::JUMPING][eStatus::NORMAL] = new Animation(_sprite, 0.1f);
-	_transition[eStatus::JUMPING][eStatus::NORMAL]->addFrameRect(eObjectID::ALADDIN, "jump_stand_01", NULL);
+	_transition[eStatus::JUMPING][eStatus::NORMAL]->addFrameRect(eObjectID::ALADDIN, "jump_moving_08","jump_moving_09", NULL);
 	_transition[eStatus::FALLING][eStatus::NORMAL] = _transition[eStatus::JUMPING][eStatus::NORMAL];
 
 
@@ -179,10 +181,11 @@ RECT AladdinPhysicsComponent::getBounding()
 
 void AladdinBehaviorComponent::init()
 {
+	_hitpoint = 1000;
 	_isBoring = false;
 	_preStatus = eStatus::NORMAL;
 	_preObject = new GameObject();
-	_preObject->setID(eObjectID::LAND);
+	_preObject->setID(eObjectID::ROPE);
 	setWeapon(eStatus::NORMAL);
 	setStatus(eStatus::FALLING);
 	falling();
@@ -199,36 +202,26 @@ void AladdinBehaviorComponent::update(float detatime)
 
 	if (_input->isKeyPressed(BT_BOUND))
 	{
-		RECT rect = _physicsComponent->getBounding();
-
-		OutputDebugStringW(L"Aladdin bounding : ");
-		OutputDebugStringW(L"Top : ");
-		__debugoutput(rect.top);
-		OutputDebugStringW(L" Bottom : ");
-		__debugoutput(rect.bottom);
-		OutputDebugStringW(L" Left : ");
-		__debugoutput(rect.left);
-		OutputDebugStringW(L" Right : ");
-		__debugoutput(rect.right);
-		OutputDebugStringW(L" \n ");
-
-		OutputDebugStringW(L" Status : ");
-		OutputDebugStringW(getStatusString(_status).c_str());
-		OutputDebugStringW(L" \n ");
-
-		OutputDebugStringW(L" Prestatus : ");
-		OutputDebugStringW(getStatusString(_preStatus).c_str());
-		OutputDebugStringW(L" \n ");
-
-		OutputDebugStringW(L" Pre Object : ");
-		__debugoutput(_preObject->getID());
-		OutputDebugStringW(L" \n ");
-
+		GVector2 velocity = _physicsComponent->getVelocity();
+		OutputDebugStringW(L"Aladdin Velocity : ");
+		__debugoutput(velocity.x);
+		__debugoutput(velocity.y);
 	}
+
 	if (_physicsComponent->getPositionY() + ALADDIN_HEIGHT < 0)
 	{
 		respawn();
 		return;
+	}
+
+	if (_protectTime > 0)
+	{
+		_protectTime -= detatime;
+		_animationComponent->getCurrentAnimation()->enableFlashes(true);
+	}
+	else
+	{
+		_animationComponent->getCurrentAnimation()->enableFlashes(false);
 	}
 
 	switch (_status)
@@ -238,53 +231,45 @@ void AladdinBehaviorComponent::update(float detatime)
 		if (object == nullptr)
 		{
 			setStatus(eStatus::FALLING);
-			standing(); // to remove velocity
 			falling();
 			break;
 		}
 		if (_animationComponent->getCurrentAnimation()->getTotalTimeAnimation() >= ALADDIN_BORING_TIME)
 		{
-			_isBoring = true;
 			_animationComponent->setAnimation(eStatus::BORING1);
 			setBoringAnimation();
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
-			_isBoring = false;
 			setStatus(eStatus::RUNNING);
 			moveLeft();
 			break;
 		}
 		if (_input->isKeyDown(BT_RIGHT))
 		{
-			_isBoring = false;
 			setStatus(eStatus::RUNNING);
 			moveRight();
 			break;
 		}
 		if (_input->isKeyPressed(BT_JUMP))
 		{
-			_isBoring = false;
 			setStatus(eStatus::JUMPING);
 			jump();
 			break;
 		}
 		if (_input->isKeyDown(BT_UP))
 		{
-			_isBoring = false;
 			setStatus(eStatus::LOOKING_UP);
-			move_viewport.Emit(VIEWPORT_MOVEUP_OFFSET, true);
+			moveViewport.Emit(VIEWPORT_MOVEUP_OFFSET, true);
 			break;
 		}
 		if (_input->isKeyDown(BT_DOWN))
 		{
-			_isBoring = false;
 			setStatus(eStatus::LAYING_DOWN);
 			break;
 		}
 		if (_input->isKeyPressed(BT_SLASH))
 		{
-			_isBoring = false;
 			if (getWeapon() == eStatus::NORMAL)
 			{
 				slash();
@@ -293,7 +278,6 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (_input->isKeyPressed(BT_THROW))
 		{
-			_isBoring = false;
 			if (getWeapon() == eStatus::NORMAL)
 			{
 				throwApple();
@@ -314,7 +298,7 @@ void AladdinBehaviorComponent::update(float detatime)
 				newPostionX -= ALADDIN_WIDTH / 2;
 				_physicsComponent->setPositionX(newPostionX);
 				setStatus(eStatus::CLIMB_VERTICAL);
-				climbvertical();
+				climbVertical();
 				faceRight();
 
 				_preObject = ropeObject;
@@ -325,11 +309,11 @@ void AladdinBehaviorComponent::update(float detatime)
 			if (ropeObject->getRopeType() == eRopeType::rHORIZONTAL)
 			{
 				RECT ropeBound = ropeObject->getPhysicsComponent()->getBounding();
-				float newPostionY = ropeBound.bottom + (ropeBound.top - ropeBound.bottom) / 2;
+				float newPostionY = ropeBound.top;
 				newPostionY -= ALADDIN_CLIMB_HEIGHT;
 				_physicsComponent->setPositionY(newPostionY);
 				setStatus(eStatus::CLIMB_HORIZON);
-				climbhorizon();
+				climbHorizon();
 
 				_preObject = ropeObject;
 
@@ -340,10 +324,16 @@ void AladdinBehaviorComponent::update(float detatime)
 		object = collisionComponent->isColliding(eObjectID::LAND);
 		if (object != nullptr)
 		{
-			setStatus(eStatus::NORMAL);
-			standing();
-			_preObject = object;
-			break;
+			bool canPassThrough = ((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType() == eLandType::lFALLTHROUGHT && _physicsComponent->getVelocity().y <= -900;
+			if(collisionComponent->getSide(object) != eDirection::BOTTOM && !canPassThrough)
+			{
+				__debugoutput(((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType());
+				setStatus(eStatus::NORMAL);
+				collisionComponent->updatePosition(object);
+				standing();
+				_preObject = object;
+				break;
+			}
 		}
 		//move left
 		if (_input->isKeyDown(BT_LEFT))
@@ -363,7 +353,6 @@ void AladdinBehaviorComponent::update(float detatime)
 		//slash
 		if (_input->isKeyPressed(BT_SLASH))
 		{
-			_isBoring = false;
 			if (getWeapon() == eStatus::NORMAL)
 			{
 				slash();
@@ -372,7 +361,6 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (_input->isKeyPressed(BT_THROW))
 		{
-			_isBoring = false;
 			if (getWeapon() == eStatus::NORMAL)
 			{
 				throwApple();
@@ -384,6 +372,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		if (_physicsComponent->getVelocity().y < 0)
 		{
 			setStatus(eStatus::FALLING);
+			break;
 		}
 		//move left
 		if (_input->isKeyDown(BT_LEFT))
@@ -430,7 +419,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			if (getWeapon() == eStatus::NORMAL)
 			{
-				setWeapon(eStatus::SLASH);
+				slash();
 				break;
 			}
 		}
@@ -438,19 +427,31 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			if (getWeapon() == eStatus::NORMAL)
 			{
-				setWeapon(eStatus::THROW);
+				throwApple();
 				break;
 			}
 		}
 		break;
 	case RUNNING:
+		//climbing ladder
+		object = collisionComponent->isColliding(eObjectID::LAND, eDirection::LEFT);
+		if (object != nullptr)
+		{
+			auto move = (Movement*)_physicsComponent->getComponent("Movement");
+			move->setAddPos(GVector2(0, object->getPhysicsComponent()->getPositionY() - _physicsComponent->getPositionY()));
+		}
+
 		object = collisionComponent->isColliding(eObjectID::LAND);
 		if (object == nullptr)
 		{
 			setStatus(eStatus::FALLING);
-			standing(); // to remove velocity
+			standing();
 			falling();
 			break;
+		}
+		else
+		{
+			collisionComponent->updatePosition(object);
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
@@ -470,7 +471,8 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			if (_animationComponent->getCurrentAnimation()->getTotalTimeAnimation() >= RUNNING_BRAKE_TIME)
 			{
-				setStatus(eStatus::BRAKING);
+				_animationComponent->setTempAnimation(eStatus::BRAKING, 1);
+				_animationComponent->getCurrentAnimation()->restart();
 			}
 			else
 			{
@@ -484,7 +486,15 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			if (getWeapon() == eStatus::NORMAL)
 			{
-				setWeapon(eStatus::SLASH);
+				slash();
+				break;
+			}
+		}
+		if (_input->isKeyPressed(BT_THROW))
+		{
+			if (getWeapon() == eStatus::NORMAL)
+			{
+				throwApple();
 				break;
 			}
 		}
@@ -492,7 +502,7 @@ void AladdinBehaviorComponent::update(float detatime)
 	case LOOKING_UP:
 		if (_input->isKeyRelease(BT_UP))
 		{
-			move_viewport.Emit(VIEWPORT_MOVEUP_OFFSET, false);
+			moveViewport.Emit(VIEWPORT_MOVEUP_OFFSET, false);
 			setStatus(eStatus::NORMAL);
 			break;
 		}
@@ -500,7 +510,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			if (getWeapon() == eStatus::NORMAL)
 			{
-				setWeapon(eStatus::SLASH);
+				slash();
 				break;
 			}
 		}
@@ -521,16 +531,21 @@ void AladdinBehaviorComponent::update(float detatime)
 			{
 				if (ropeObject->getPhysicsComponent()->getPositionY() >= _physicsComponent->getPositionY() + ALADDIN_HEIGHT)
 				{
+					_animationComponent->getCurrentAnimation()->setReserve(false);
+					_animationComponent->getCurrentAnimation()->canAnimate(true);
 					moveUp();
 				}
 				else
 				{
+					_animationComponent->getCurrentAnimation()->canAnimate(false);
 					standing();
 				}
 			}
 		}
 		if (_input->isKeyDown(BT_DOWN))
 		{
+			_animationComponent->getCurrentAnimation()->setReserve(true);
+			_animationComponent->getCurrentAnimation()->canAnimate(true);
 			moveDown();
 		}
 		if (_input->isKeyDown(BT_LEFT))
@@ -543,6 +558,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (!_input->isKeyDown(BT_UP) && !_input->isKeyDown(BT_DOWN))
 		{
+			_animationComponent->getCurrentAnimation()->canAnimate(false);
 			standing();
 		}
 		if (_input->isKeyPressed(BT_JUMP))
@@ -582,16 +598,19 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
+			_animationComponent->getCurrentAnimation()->canAnimate(true);
 			moveLeft();
 			faceLeft();
 		}
 		if (_input->isKeyDown(BT_RIGHT))
 		{
+			_animationComponent->getCurrentAnimation()->canAnimate(true);
 			moveRight();
 			faceRight();
 		}
 		if (!_input->isKeyDown(BT_LEFT) && !_input->isKeyDown(BT_RIGHT))
 		{
+			_animationComponent->getCurrentAnimation()->canAnimate(false);
 			standing();
 		}
 		if (_input->isKeyDown(BT_DOWN) && _input->isKeyDown(BT_JUMP))
@@ -611,7 +630,6 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (_input->isKeyPressed(BT_SLASH))
 		{
-			_isBoring = false;
 			if (getWeapon() == eStatus::NORMAL)
 			{
 				slash();
@@ -620,7 +638,6 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (_input->isKeyPressed(BT_THROW))
 		{
-			_isBoring = false;
 			if (getWeapon() == eStatus::NORMAL)
 			{
 				throwApple();
@@ -628,93 +645,21 @@ void AladdinBehaviorComponent::update(float detatime)
 			}
 		}
 		break;
-		break;
-	case BURNED:
-		if (!_input->isKeyDown(BT_LEFT) && !_input->isKeyDown(BT_RIGHT))
-		{
-			standing();
-			setStatus(eStatus::BURNED);
-			break;
-		}
-		if (_input->isKeyDown(BT_LEFT))
-		{
-			moveLeft();
-		}
-		if (_input->isKeyDown(BT_RIGHT))
-		{
-			moveRight();
-		}
-		if (_input->isKeyPressed(BT_JUMP))
-		{
-			setStatus(eStatus::JUMPING);
-			jump();
-			break;
-		}
-		if (_input->isKeyDown(BT_UP))
-		{
-			setStatus(eStatus::LOOKING_UP);
-			move_viewport.Emit(VIEWPORT_MOVEUP_OFFSET, true);
-			break;
-		}
-		if (_input->isKeyDown(BT_DOWN))
-		{
-			setStatus(eStatus::LAYING_DOWN);
-			break;
-		}
-		if (_input->isKeyPressed(BT_SLASH))
-		{
-			if (getWeapon() == eStatus::NORMAL)
-			{
-				setStatus(eStatus::NORMAL);
-				slash();
-				break;
-			}
-		}
-		if (_input->isKeyPressed(BT_THROW))
-		{
-			if (getWeapon() == eStatus::NORMAL)
-			{
-				setStatus(eStatus::NORMAL);
-				throwApple();
-				break;
-			}
-		}
-	case BRAKING:
-		if (_animationComponent->getCurrentAnimation()->getCount() >= 1)
-		{
-			setStatus(eStatus::NORMAL);
-		}
 		break;
 	default:
 		break;
 	}
-	//check running or burning land
-	switch (_status)
+	if (_animationComponent->isTempAnimationEmpty() == true)
 	{
-	case NORMAL:
-	case JUMPING:
-	case LAYING_DOWN:
-	case RUNNING:
-	case LOOKING_UP:
-	case PUSH:
-		landObject = (Land*)collisionComponent->isColliding(eObjectID::LAND);
-		if (landObject != nullptr)
-		{
-			if (landObject->getLandType() == eLandType::lFLAME)
-			{
-				setStatus(eStatus::BURNED);
-			}
-			_preObject = landObject;
-			break;
-		}
+		setWeapon(eStatus::NORMAL);
 	}
-	updateAnimation();
 }
 
 void AladdinBehaviorComponent::setStatus(eStatus status)
 {
 	BehaviorComponent::setStatus(status);
 	setWeapon(eStatus::NORMAL);
+	updateAnimation();
 }
 
 void AladdinBehaviorComponent::updateTimeOut(float deltaTime)
@@ -723,21 +668,16 @@ void AladdinBehaviorComponent::updateTimeOut(float deltaTime)
 
 void AladdinBehaviorComponent::updateAnimation()
 {
+
 	switch (_status)
 	{
 	case NORMAL:
 		if (_isBoring == false)
 		{
-			checkAndAddWeaponAnimation();
+			_animationComponent->setAnimation(eStatus::NORMAL);
 		}
 		break;
 	case JUMPING:
-		if (getWeapon() != eStatus::NORMAL)
-		{
-			_animationComponent->setAnimation(eStatus::JUMPING | getWeapon());
-		}
-		else
-		{
 			if (_preStatus == eStatus::RUNNING)
 			{
 				_animationComponent->setAnimation(eStatus::MOVING_JUMPING);
@@ -754,66 +694,33 @@ void AladdinBehaviorComponent::updateAnimation()
 			{
 				_animationComponent->setAnimation(eStatus::JUMPING);
 			}
-		}
 		break;
 	case LAYING_DOWN:
-		checkAndAddWeaponAnimation();
+		_animationComponent->setAnimation(eStatus::LAYING_DOWN);
 		break;
 	case RUNNING:
-		checkAndAddWeaponAnimation();
+		_animationComponent->setAnimation(eStatus::RUNNING);
 		break;
 	case LOOKING_UP:
-		checkAndAddWeaponAnimation();
+		_animationComponent->setAnimation(eStatus::LOOKING_UP);
 		break;
 	case FALLING:
-		if (_preObject->getID() != eObjectID::LAND) // Nhảy từ mặt đất thì giữ hiệu wungs như cũ
-		{	
-			if (getWeapon() != eStatus::NORMAL && _animationComponent->getCurrentAnimation()->getCount() >= 1)
-			{
-				_animationComponent->setAnimation(eStatus::FALLING);
-				checkAndAddWeaponAnimation();
-			}
-			if (getWeapon() == eStatus::NORMAL)
-			{
-				_animationComponent->setAnimation(eStatus::FALLING);
-			}
+		if (_preObject->getID() == eObjectID::LAND)// Nhảy từ mặt đất thì giữ hiệu wungs như cũ
+		{
+			//if (getWeapon() != eStatus::NORMAL)
+			//{
+			//	_animationComponent->setTempAnimation(eStatus::FALLING| _weapon, 1);
+
+			//}
+			break;
 		}
+		_animationComponent->setAnimation(eStatus::FALLING);
 		break;
 	case CLIMB_VERTICAL:
-		checkAndAddWeaponAnimation();
-		if (getWeapon() == eStatus::NORMAL)
-		{
-			if (_physicsComponent->getVelocity().y != 0)
-			{
-				_animationComponent->getCurrentAnimation()->canAnimate(true);
-				if (_physicsComponent->getVelocity().y > 0)
-				{
-					_animationComponent->getCurrentAnimation()->setReserve(false);
-				}
-				else
-				{
-					_animationComponent->getCurrentAnimation()->setReserve(true);
-				}
-			}
-			else
-			{
-				_animationComponent->getCurrentAnimation()->canAnimate(false);
-			}
-		}
+		_animationComponent->setAnimation(eStatus::CLIMB_VERTICAL);
 		break;
 	case CLIMB_HORIZON:
-		if (getWeapon() == eStatus::NORMAL)
-		{
-			if (_physicsComponent->getVelocity().x != 0)
-			{
-				_animationComponent->getCurrentAnimation()->canAnimate(true);
-			}
-			else
-			{
-				_animationComponent->getCurrentAnimation()->canAnimate(false);
-			}
-		}
-		checkAndAddWeaponAnimation();
+		_animationComponent->setAnimation(eStatus::CLIMB_HORIZON);
 		break;
 	case BURNED:
 		_animationComponent->setAnimation(eStatus::BURNED);
@@ -823,7 +730,6 @@ void AladdinBehaviorComponent::updateAnimation()
 	default:
 		break;
 	}
-	checkAndRemoveWeapon();
 }
 
 void AladdinBehaviorComponent::setBoringAnimation()
@@ -924,41 +830,65 @@ void AladdinBehaviorComponent::jump()
 void AladdinBehaviorComponent::slash()
 {
 	setWeapon(eStatus::SLASH);
+	updateWeaponAnimation(_status);
+	auto pos = _physicsComponent->getPosition();
+	pos.y += _animationComponent->getSprite()->getFrameHeight();
+	float width = _animationComponent->getSprite()->getFrameWidth() * 4/3;
+	float height = _animationComponent->getSprite()->getFrameHeight();
+	if (_facingDirection == eStatus::RIGHTFACING)
+	{
+		pos += GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+	}
+	else
+	{
+		pos -= GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+	}
+	auto sword = ObjectFactory::getSword(pos, width, height, true);
+	addToScene.Emit(sword);
 }
 
 void AladdinBehaviorComponent::throwApple()
 {
 	setWeapon(eStatus::THROW);
+	updateWeaponAnimation(_status);
+	auto pos = _physicsComponent->getPosition();
+	pos.y += _animationComponent->getSprite()->getFrameHeight() * 2 / 3;
+	GVector2 velocity(-400, 300);
+	if (_facingDirection == eStatus::RIGHTFACING)
+	{
+		pos += GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+		velocity.x = -velocity.x;
+
+	}
+	auto apple = ObjectFactory::getApple(pos, velocity);
+	addToScene.Emit(apple);
+
 }
 
-void AladdinBehaviorComponent::checkAndAddWeaponAnimation()
+void AladdinBehaviorComponent::updateWeaponAnimation(eStatus status)
 {
-	if (getWeapon() != eStatus::NORMAL)
+	if (_weapon != eStatus::NORMAL)
 	{
-		_animationComponent->setAnimation(_status | getWeapon());
+		_animationComponent->setTempAnimation(status | _weapon, 1);
 	}
 	else
 	{
-		_animationComponent->setAnimation(_status);
+		_animationComponent->setAnimation(status);
 	}
-}
 
-void AladdinBehaviorComponent::removeWeaponAnimation()
-{
-	int status = _animationComponent->getAnimationStatus();
-	status = (status & ~eStatus::SLASH); // remove slash
-	status = (status & ~eStatus::THROW); // remove throw
-	_animationComponent->setAnimation(status);
-}
-
-void AladdinBehaviorComponent::checkAndRemoveWeapon()
-{
-	if (getWeapon() != eStatus::NORMAL && _animationComponent->getCurrentAnimation()->getCount() >= 1 )
+	if (_animationComponent->isTempAnimationEmpty() == true)
 	{
-		removeWeaponAnimation();
-		setWeapon(eStatus::NORMAL);
+		_weapon = eStatus::NORMAL;
 	}
 }
+
+
+
+
+
+
+
+
 
 void AladdinBehaviorComponent::removeGravity()
 {
@@ -979,12 +909,12 @@ void AladdinBehaviorComponent::falling()
 	g->setStatus(eGravityStatus::FALLING__DOWN);
 }
 
-void AladdinBehaviorComponent::climbvertical()
+void AladdinBehaviorComponent::climbVertical()
 {
 	standing();
 }
 
-void AladdinBehaviorComponent::climbhorizon()
+void AladdinBehaviorComponent::climbHorizon()
 {
 	standing();
 }
@@ -992,6 +922,18 @@ void AladdinBehaviorComponent::climbhorizon()
 void AladdinBehaviorComponent::setRespawnPosition(GVector2 respawnPosition)
 {
 	_respawnPostion = respawnPosition;
+}
+
+bool AladdinBehaviorComponent::dropHitpoint(int damage)
+{
+	//Đang được bảo vệ, không làm gì cả
+	if (_protectTime > 0)
+		return false;
+
+	PlayerBehaviorComponent::dropHitpoint(damage);
+	_animationComponent->setTempAnimation(eStatus::BEATEN, 1);
+	_protectTime = ALADDIN_PROTECT_TIME;
+	return true;
 }
 
 void AladdinBehaviorComponent::respawn()

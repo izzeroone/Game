@@ -30,12 +30,24 @@ void SpriteResource::loadResource(LPD3DXSPRITE spriteHandle)
 
 	Sprite* map = new Sprite(spriteHandle, L"Resources//Images//map1.png");
 	this->_listSprite[eObjectID::MAP1] = map;
+	this->loadSpriteInfo(eObjectID::MAP1, "Resources//Images//map1.txt");
 
+	Sprite* guard = new Sprite(spriteHandle, L"Resources//Images//guard.png");
+	this->_listSprite[eObjectID::GUARD] = guard;
+	this->loadSpriteInfo(eObjectID::GUARD, "Resources//Images//guard.txt");
 
-	// Đọc file xml để tạo đối tượng sprite
-	//sp = loadXMLDoc(spriteHandle, L"Resources//Map//stage1.xml");
-	//sp->setOrigin(VECTOR2ZERO);
-	//this->_listSprite[eObjectID::MAPSTAGE1] = sp;
+	Sprite* flame = new Sprite(spriteHandle, L"Resources//Images//jafar.png");
+	this->_listSprite[eObjectID::JAFAR] = flame;
+	this->loadSpriteInfo(eObjectID::JAFAR, "Resources//Images//jafar.txt");
+
+	Sprite* map1background = new Sprite(spriteHandle, L"Resources//Images//map1_background.png");
+	this->_listSprite[eObjectID::MAP1BACKGROUND] = map1background;
+	this->loadSpriteInfo(eObjectID::MAP1BACKGROUND, "Resources//Images//map1_background.txt");
+
+	Sprite* civilian = new Sprite(spriteHandle, L"Resources//Images//civilian_enemies.png");
+	this->_listSprite[eObjectID::CIVILIAN] = civilian;
+	this->loadSpriteInfo(eObjectID::CIVILIAN, "Resources//Images//civilian_enemies.txt");
+
 
 }
 
@@ -47,7 +59,6 @@ Sprite* SpriteResource::getSprite(eObjectID id)
 
 RECT SpriteResource::getSourceRect(eObjectID id, string name)
 {
-	//return _sourceRectList[id].at(name);
 	return _sourceRectList[id][name];
 }
 

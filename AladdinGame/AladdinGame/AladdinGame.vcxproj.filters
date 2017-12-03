@@ -55,6 +55,12 @@
     <Filter Include="Source Files\Game\Object">
       <UniqueIdentifier>{8388da7a-5b7f-470d-b313-46853e52e687}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\Enemy">
+      <UniqueIdentifier>{f3fd1123-9cfc-4f64-9c43-f5c90e3861a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Enemy">
+      <UniqueIdentifier>{3c18bb54-5bf2-4105-b6ea-b2d030f123a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Singleton\windowGUI.cpp">
@@ -135,9 +141,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Component\CollisionComponent.cpp">
-      <Filter>Source Files\Framework\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Object\Land.cpp">
       <Filter>Source Files\Game\Object</Filter>
     </ClCompile>
@@ -146,6 +149,57 @@
     </ClCompile>
     <ClCompile Include="Game\Object\Rope.cpp">
       <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Component\CollisionComponent.cpp">
+      <Filter>Source Files\Framework\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\QuadTree.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\rectutils.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\AABB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\VectorHelper.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Sword.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Component\EnemyComponent.cpp">
+      <Filter>Source Files\Framework\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Hakim.cpp">
+      <Filter>Source Files\Game\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Component\PlayerComponent.cpp">
+      <Filter>Source Files\Framework\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Apple.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Flame.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\SceneBackground.cpp">
+      <Filter>Source Files\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\TestSceneBackground.cpp">
+      <Filter>Source Files\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\ExplosionPot.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Thrower.cpp">
+      <Filter>Source Files\Game\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Falza.cpp">
+      <Filter>Source Files\Game\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Nahbi.cpp">
+      <Filter>Source Files\Game\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,17 +287,69 @@
     <ClInclude Include="Game\Scene\SceneManager.h">
       <Filter>Header Files\Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Component\CollisionComponent.h">
-      <Filter>Header Files\Framework\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Object\Land.h">
       <Filter>Header Files\Game\Object</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Component\NullComponent.h">
       <Filter>Header Files\Framework\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Object\Rope.h">
+    <ClInclude Include="Framework\Component\CollisionComponent.h">
+      <Filter>Header Files\Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\QuadTree.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\rectutils.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\AABB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\VectorHelper.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Sword.h">
       <Filter>Header Files\Game\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Component\EnemyComponent.h">
+      <Filter>Header Files\Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Hakim.h">
+      <Filter>Header Files\Game\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\PlayerComponent.h">
+      <Filter>Header Files\Framework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Rope.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Apple.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Flame.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\SceneBackground.h">
+      <Filter>Header Files\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\TestSceneBackground.h">
+      <Filter>Header Files\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\ExplosionPot.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Thrower.h">
+      <Filter>Header Files\Game\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Falza.h">
+      <Filter>Header Files\Game\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Nahbi.h">
+      <Filter>Header Files\Game\Enemy</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

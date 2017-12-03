@@ -125,6 +125,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <StackReserveSize>8 000 000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -146,14 +147,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dxaudio.cpp" />
+    <ClCompile Include="Framework\AABB.cpp" />
     <ClCompile Include="Framework\animation.cpp" />
     <ClCompile Include="Framework\Component\AnimationComponent.cpp" />
     <ClCompile Include="Framework\Component\BehaviorComponent.cpp" />
     <ClCompile Include="Framework\Component\CollisionComponent.cpp" />
+    <ClCompile Include="Framework\Component\EnemyComponent.cpp" />
     <ClCompile Include="Framework\Component\MovingComponent.cpp" />
     <ClCompile Include="Framework\Component\NullComponent.cpp" />
     <ClCompile Include="Framework\Component\PhysicsComponent.cpp" />
+    <ClCompile Include="Framework\Component\PlayerComponent.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
+    <ClCompile Include="Framework\QuadTree.cpp" />
+    <ClCompile Include="Framework\rectutils.cpp" />
     <ClCompile Include="Framework\Singleton\dxdevice.cpp" />
     <ClCompile Include="Framework\Singleton\gamecontroller.cpp" />
     <ClCompile Include="Framework\Singleton\gametime.cpp" />
@@ -164,31 +170,47 @@
     <ClCompile Include="Framework\texture.cpp" />
     <ClCompile Include="Framework\timespan.cpp" />
     <ClCompile Include="Framework\transform.cpp" />
+    <ClCompile Include="Framework\VectorHelper.cpp" />
     <ClCompile Include="Framework\viewport.cpp" />
     <ClCompile Include="Game\AladdinGame.cpp" />
+    <ClCompile Include="Game\Enemy\Falza.cpp" />
+    <ClCompile Include="Game\Enemy\Hakim.cpp" />
+    <ClCompile Include="Game\Enemy\Nahbi.cpp" />
+    <ClCompile Include="Game\Enemy\Thrower.cpp" />
     <ClCompile Include="Game\game.cpp" />
     <ClCompile Include="Game\ObjectFactory.cpp" />
+    <ClCompile Include="Game\Object\Apple.cpp" />
+    <ClCompile Include="Game\Object\ExplosionPot.cpp" />
+    <ClCompile Include="Game\Object\Flame.cpp" />
     <ClCompile Include="Game\Object\Land.cpp" />
     <ClCompile Include="Game\Object\Rope.cpp" />
+    <ClCompile Include="Game\Object\Sword.cpp" />
     <ClCompile Include="Game\Player\Aladdin.cpp" />
     <ClCompile Include="Game\Scene\Scene.cpp" />
+    <ClCompile Include="Game\Scene\SceneBackground.cpp" />
     <ClCompile Include="Game\Scene\SceneManager.cpp" />
     <ClCompile Include="Game\Scene\TestScene.cpp" />
+    <ClCompile Include="Game\Scene\TestSceneBackground.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h" />
     <ClInclude Include="dxaudio.h" />
+    <ClInclude Include="Framework\AABB.h" />
     <ClInclude Include="Framework\animation.h" />
     <ClInclude Include="Framework\Component\AnimationComponent.h" />
     <ClInclude Include="Framework\Component\BehaviorComponent.h" />
     <ClInclude Include="Framework\Component\CollisionComponent.h" />
     <ClInclude Include="Framework\Component\Component.h" />
+    <ClInclude Include="Framework\Component\EnemyComponent.h" />
     <ClInclude Include="Framework\Component\NullComponent.h" />
     <ClInclude Include="Framework\Component\PhysicsComponent.h" />
     <ClInclude Include="Framework\Component\MovingComponent.h" />
+    <ClInclude Include="Framework\Component\PlayerComponent.h" />
     <ClInclude Include="Framework\define.h" />
     <ClInclude Include="Framework\GameObject.h" />
+    <ClInclude Include="Framework\QuadTree.h" />
+    <ClInclude Include="Framework\rectutils.h" />
     <ClInclude Include="Framework\Singleton\dxdevice.h" />
     <ClInclude Include="Framework\Singleton\gamecontroller.h" />
     <ClInclude Include="Framework\Singleton\gametime.h" />
@@ -199,21 +221,39 @@
     <ClInclude Include="Framework\texture.h" />
     <ClInclude Include="Framework\timespan.h" />
     <ClInclude Include="Framework\transform.h" />
+    <ClInclude Include="Framework\VectorHelper.h" />
     <ClInclude Include="Framework\viewport.h" />
     <ClInclude Include="Game\AladdinGame.h" />
+    <ClInclude Include="Game\Enemy\Falza.h" />
+    <ClInclude Include="Game\Enemy\Hakim.h" />
+    <ClInclude Include="Game\Enemy\Nahbi.h" />
+    <ClInclude Include="Game\Enemy\Thrower.h" />
     <ClInclude Include="Game\game.h" />
     <ClInclude Include="Game\ObjectFactory.h" />
+    <ClInclude Include="Game\Object\Apple.h" />
+    <ClInclude Include="Game\Object\ExplosionPot.h" />
+    <ClInclude Include="Game\Object\Flame.h" />
     <ClInclude Include="Game\Object\Land.h" />
     <ClInclude Include="Game\Object\Rope.h" />
+    <ClInclude Include="Game\Object\Sword.h" />
     <ClInclude Include="Game\Player\Aladdin.h" />
     <ClInclude Include="Game\Scene\Scene.h" />
+    <ClInclude Include="Game\Scene\SceneBackground.h" />
     <ClInclude Include="Game\Scene\SceneManager.h" />
     <ClInclude Include="Game\Scene\TestScene.h" />
+    <ClInclude Include="Game\Scene\TestSceneBackground.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\pugixml\scripts\pugixml_vs2015.vcxproj">
+      <Project>{07cf01c0-b887-499d-ad9c-799cb6a9fe64}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\sigcxx\sigcxx.vcxproj">
       <Project>{30cfe0ee-0a55-4e3b-8ead-ef62a5ca243a}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

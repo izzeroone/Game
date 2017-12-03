@@ -19,6 +19,11 @@ public:
 	virtual void update(float deltatime);
 	virtual Animation* getCurrentAnimation();
 	virtual void setAnimation(int status);
+	virtual void setAnimationNoRestart(int status);
+	//temp animation can be set only when current temp animation is emply
+	virtual void setTempAnimation(int status, int count);
+	virtual bool isTempAnimationEmpty();
+
 	virtual Animation* getAnimation(int status);
 	virtual int getAnimationStatus();
 	virtual void draw(LPD3DXSPRITE spriteHander, Viewport* viewport);
@@ -54,11 +59,18 @@ public:
 
 	virtual void setPhysiscComponent(PhysicsComponent * physicsComponent);
 protected:
+	virtual bool updateTempAnimation(float deltatime);
+	bool drawTempAnimation(LPD3DXSPRITE spriteHandle, Viewport * viewport);
+
 	Sprite* _sprite;
 	map<int, Animation*> _animations;
 	map<int, map<int, Animation*>> _transition;
 	int _index;
 	int _preindex;
+
+	int _tempIndex;
+	int _tempCount;
+
 	bool _transitionPlayed; // cờ hiệu đánh dấu chuyển cảnh
 	PhysicsComponent* _physicsComponent;
 };

@@ -1,0 +1,10 @@
+frame_name	left	top	right	bottom	transitionx	transitiony
+part_01	0	0	1024	16	0	0
+part_02	0	21	1024	45	0	0
+part_03	0	50	1024	82	0	0
+part_04	0	87	1024	111	0	0
+part_05	0	116	1024	132	0	0
+part_06	0	137	1024	145	0	0
+part_07	0	150	1024	166	0	0
+part_08	0	171	1024	195	0	0
+part_09	0	200	1024	264	0	0

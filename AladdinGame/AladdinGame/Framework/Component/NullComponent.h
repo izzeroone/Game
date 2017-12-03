@@ -8,6 +8,7 @@
 
 class NullPhysicsComponent: public PhysicsComponent
 {
+public:
 	// Inherited via PhysicsComponent
 	virtual void init() override;
 	GVector2 getPosition();

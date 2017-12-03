@@ -22,21 +22,9 @@ class Animation : public Component
 public:
 	~Animation();
 
-	/*
-	Tạo animation với sprite sheet
-		@spriteSheet: spritesheet của chuyển động
-		@timeAnimate: thời gian chuyển từng frame
-	Sau khi tạo bằng contructor này phải addFrameRect nó mới có frame để chuyển động.
-	*/
+
 	Animation(Sprite* spriteSheet, float timeAnimate = 0.0f, bool loop = true);
 
-	/*
-	Tạo aniation với spritesheet có frame đều nhau
-		@spriteSheet: spritesheet của chuyển động
-		@totalFrames: tổng số frame
-		@cols: số cột
-		@timeAnimate: thời gian chuyển từng frame
-	*/
 	Animation(Sprite* spriteSheet, int totalFrames, int cols, float timeAnimate = 0.0f);
 
 	/*
@@ -111,12 +99,6 @@ public:
 	void addFrameRect(float left, float top, int width, int height);
 	void addFrameRect(float left, float top, float right, float bottom);
 
-	/*
-	Tạo nhiều framerect liên tiếp nhau, không giới hạn tham số
-		@id: ID của sprite
-		@firstRectName,...: các tên của frame rect
-	Sau khi truyền xong các tên, kết thúc PHẢI bằng NULL để xác định được kết thúc.
-	*/
 	void addFrameRect(eObjectID id, char* firstRectName, ...);
 
 	void setPosition(GVector2 p)
@@ -127,39 +109,22 @@ public:
 	void setReserve(bool isReserve);
 	bool isLoop();
 
-	/*
-	Chạy lại animate
-		@from: index frame muốn bắt đầu
-	*/
 	void restart(int from = 0);
-
-	/*
-	Tạo hiệu ứng chớp cho sprite, sau khi set enable = true, phải đặt giá trị thay đổi ở hàm setValueFlashes
-	*/
 	void enableFlashes(bool enable);
 
-	/*
-	Gán giá trị chớp tắt
-		@value: giá trị thay đổi để chớp, từ 0 đến < 1 (giá trị bình thường là 1)
-	*/
 	void setValueFlashes(float value);
 
-	/*
-	Animate từ frame này đến frame khác cụ thể
-		@from: frame bắt đầu
-		@to: frame kết thúc
-		@loop: có lặp hay ko
-		Giá trị from/to là thứ tự của frame add vô, tính từ 0 (from nên to).
-	*/
 	void animateFromTo(int from, int to, bool loop = true);
 
 	void setColorFlash(D3DXCOLOR color);
 	D3DXCOLOR getColorFlash();
 	bool isLastAnimation();
 	RECT getCurrentBounding();
+	RECT getCurrentBoundingNoWeapon();
 private:
 	bool					_isAll;
 	int						_startFrame;
+	int						_startLoopFrame;						//Vị trí loop bắt đầu, vị trị loop kết thúc là _endFrame luôn
 	int						_endFrame;
 	int						_index;									// số thứ tự frame
 	int						_totalFrames;

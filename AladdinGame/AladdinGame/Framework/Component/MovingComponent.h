@@ -25,11 +25,16 @@ public:
 	void setVelocity(GVector2 veloc);
 	GVector2 getAccelerate();
 	GVector2 getVelocity();
+	//Vector thêm vào vị trí 
+	void setAddPos(GVector2 addPos);
+	void setDoNotMove(bool result);
 
 private:
 	GVector2 _accelerate;
 	GVector2 _velocity;
 	PhysicsComponent* _physicsComponent;
+	GVector2 _addPos; 
+	bool _doNotMove;
 
 	// Inherited via Component
 	virtual void init() override;

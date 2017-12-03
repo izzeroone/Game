@@ -1,0 +1,4 @@
+frame_name	left	top	right	bottom	transitionx	transitiony
+back	0	0	4773	689	0	0
+front	0	690	4773	1383	0	0
+falling_land	1475	386	1516	402	0	0

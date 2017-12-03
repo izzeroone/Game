@@ -3,12 +3,14 @@
 AnimationComponent::AnimationComponent()
 {
 	_transitionPlayed = true;
+	_tempIndex = -1;
 }
 
 AnimationComponent::AnimationComponent(PhysicsComponent * physicsComponent)
 {
 	_transitionPlayed = true;
 	_physicsComponent = physicsComponent;
+	_tempIndex = -1;
 }
 
 
@@ -19,6 +21,9 @@ AnimationComponent::~AnimationComponent()
 void AnimationComponent::update(float deltatime)
 {
 	_sprite->setPosition(_physicsComponent->getPosition());
+
+	if (updateTempAnimation(deltatime) == true)
+		return;
 	if (_transition[_preindex][_index] != nullptr)
 	{
 		if (_transition[_preindex][_index]->getCount() < 1)
@@ -57,6 +62,69 @@ void AnimationComponent::setAnimation(int status)
 	}
 }
 
+void AnimationComponent::setAnimationNoRestart(int status)
+{
+	if (_index != status)
+	{
+		_preindex = _index;
+		_index = status;
+		if (_transition[_preindex][_index] != nullptr)
+		{
+			_transition[_preindex][_index]->restart();
+		}
+		_transitionPlayed = false;
+	}
+}
+
+void AnimationComponent::setTempAnimation(int status, int count)
+{
+
+	//if (_tempIndex != -1)
+	//	return;
+
+	if (_tempIndex == status)
+		return;
+
+	_tempIndex = status;
+	_tempCount = count;
+	_animations[_tempIndex]->restart();
+}
+
+bool AnimationComponent::isTempAnimationEmpty()
+{
+	return _tempIndex == -1 || _animations[_tempIndex]->getCount() >= _tempCount;
+}
+
+bool AnimationComponent::updateTempAnimation(float deltatime)
+{
+	if (_tempIndex == -1)
+		return false;
+	
+	if (_animations[_tempIndex]->getCount() >= _tempCount)
+	{
+		_tempIndex = -1;
+		return false;
+	}
+
+	_animations[_tempIndex]->update(deltatime);
+	return true;
+}
+
+bool AnimationComponent::drawTempAnimation(LPD3DXSPRITE spriteHandle, Viewport * viewport)
+{
+	if (_tempIndex == -1)
+		return false;
+
+	if (_animations[_tempIndex]->getCount() >= _tempCount)
+	{
+		_tempIndex = -1;
+		return false;
+	}
+	
+	_animations[_tempIndex]->draw(spriteHandle, viewport);
+	return true;
+}
+
 Animation * AnimationComponent::getAnimation(int status)
 {
 	return _animations[status];
@@ -69,6 +137,9 @@ int AnimationComponent::getAnimationStatus()
 
 void AnimationComponent::draw(LPD3DXSPRITE spriteHandle, Viewport * viewport)
 {
+	if (drawTempAnimation(spriteHandle, viewport) == true)
+		return;
+
 	if (_transitionPlayed == false && _transition[_preindex][_index] != nullptr)
 	{
 		_transition[_preindex][_index]->draw(spriteHandle, viewport);
@@ -198,6 +269,14 @@ Sprite * AnimationComponent::getSprite()
 
 RECT AnimationComponent::getBounding()
 {
-	return _sprite->getBounding();
+	_sprite->setPosition(_physicsComponent->getPosition());
+	RECT newRect = _animations[_index]->getCurrentBounding();
+	RECT oldRect = _sprite->getFrameRect();
+	_sprite->setFrameRect(newRect);
+	RECT bound = _sprite->getBounding();
+	_sprite->setFrameRect(oldRect);
+
+	return bound;
+
 }
 

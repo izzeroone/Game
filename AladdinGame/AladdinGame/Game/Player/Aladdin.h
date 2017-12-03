@@ -7,19 +7,21 @@
 #include "../../Framework/Component/BehaviorComponent.h"
 #include "../../Framework/Component/PhysicsComponent.h"
 #include "../../Framework/Component/CollisionComponent.h"
+#include "../../Framework/Component/PlayerComponent.h"
 #include "../../Game/Object/Land.h"
 #include "../../Game/Object/Rope.h"
 #include "../../../sigcxx/include/sigcxx/sigcxx.hpp"
+#include "../ObjectFactory.h"
 
 #define ALADDIN_MOVE_SPEED 300
 #define ALADDIN_CLIMB_SPEED 100
-#define ALADDIN_JUMP_VEL 400
+#define ALADDIN_JUMP_VEL 500
 #define GRAVITY 800
-#define PROTECT_TIME 3000
+#define ALADDIN_PROTECT_TIME 3000
 #define ALADDIN_BORING_TIME 3.0f
 #define ALADDIN_WIDTH 37 * SCALE_FACTOR
 #define ALADDIN_HEIGHT 56 * SCALE_FACTOR
-#define ALADDIN_CLIMB_HEIGHT 78 * SCALE_FACTOR
+#define ALADDIN_CLIMB_HEIGHT 75 * SCALE_FACTOR
 #define RUNNING_BRAKE_TIME 2.0f
 #define JUMP_OFFSET 10 // trick to allow burning land to collide
 #define VIEWPORT_MOVEUP_OFFSET 30 // use when aladdin lookup
@@ -53,14 +55,16 @@ public:
 	void init();
 };
 
-class AladdinBehaviorComponent : public BehaviorComponent
+class AladdinBehaviorComponent : public PlayerBehaviorComponent
 {
 public:
 	void init();
 	void update(float detatime);
-	virtual void setStatus(eStatus status) override;
+	void setStatus(eStatus status) override;
 	void setRespawnPosition(GVector2 respawnPosition);
-	sigcxx::Signal<float, bool> move_viewport; //float is offset, bool: true move up, false: revert back
+	bool dropHitpoint(int damage);
+	sigcxx::Signal<float, bool> moveViewport; //float is offset, bool: true move up, false: revert back
+	sigcxx::Signal<GameObject*> addToScene; // add some thing to scene
 private:
 	void updateTimeOut(float deltaTime);
 
@@ -79,8 +83,8 @@ private:
 	void moveDown(); // for climbing
 	void jump();
 	void falling();
-	void climbvertical();
-	void climbhorizon();
+	void climbVertical();
+	void climbHorizon();
 
 
 	void respawn();
@@ -88,9 +92,7 @@ private:
 	//weapon action
 	void slash();
 	void throwApple();
-	void checkAndAddWeaponAnimation();
-	void removeWeaponAnimation();
-	void checkAndRemoveWeapon();
+	void updateWeaponAnimation(eStatus status);
 
 	//movement helper
 	void removeGravity();
@@ -98,6 +100,7 @@ private:
 	// Inherited via BehaviorComponent
 	virtual void executeCommand(eCommand command) override;
 
+	float _protectTime;
 	bool _isBoring; // flag set not to update animation when boring
 	GVector2 _respawnPostion;
 };

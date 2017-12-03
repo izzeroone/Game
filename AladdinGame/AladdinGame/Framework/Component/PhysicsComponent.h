@@ -3,7 +3,6 @@
 #define __PHYSICSCOMPONENT_H__
 #include "../define.h"
 #include "Component.h"
-
 //forward declarations
 class MovingComponent;
 
@@ -38,8 +37,8 @@ public:
 	virtual int getMovingSpeed();
 	virtual void setMovingSpeed(int movingSpeed);
 
-	virtual void setPhysicsBodySide(eDirection side);
-	virtual eDirection getPhysicsBodySide();
+	//virtual void setPhysicsBodySide(eDirection side);
+	//virtual eDirection getPhysicsBodySide();
 
 	virtual RECT getBounding();
 	virtual void setBounding(RECT bounding);
@@ -51,7 +50,7 @@ protected:
 	float				_zIndex;
 	RECT				_bounding;
 	map<string, Component*> _componentList;
-	eDirection _physicsSide;
+
 
 };
 #endif // !__PHYSICSCOMPONENT_H__

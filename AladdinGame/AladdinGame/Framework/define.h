@@ -14,6 +14,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include "../../pugixml/src/pugixml.hpp"
 
 
 using namespace std;
@@ -21,6 +22,7 @@ using namespace std;
 #define WINDOW_WIDTH 640	
 #define WINDOW_HEIGHT 448
 #define SCALE_FACTOR 2.0f
+#define VIEWPORT_VELOCITY 300
 
 #define C_WHITE D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f)				// màu trắng
 #define COLOR_KEY D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f)				// màu khi mà load hình nó bỏ qua > trong suốt mau hong
@@ -30,12 +32,24 @@ enum eObjectID
 	ALADDIN = 0, // main character
 	LAND = 1,
 	ROPE = 2,
-	MAP1 = 3
+	APPLE = 3, // for throw
+	SWORD = 4, // f0r slash
+	GUARD = 5,
+	HAKIM = 6,
+	FALZA = 7,
+	NAHBI = 8,
+	THROWER = 9, // thằng ném bình
+	FLAME = 10,
+	EXPLOSIONPOT = 11,
+	JAFAR = 29, // the boss
+	MAP1 = 30,
+	MAP1BACKGROUND = 31,
+	CIVILIAN = 32, // civilian sprite object
 };
 
 enum eStatus
 {
-
+	//Aladdin status
 	NORMAL = 0,					// 00000 = 0	
 	LEFTFACING = (1 << 0),				// 00001 = 2^0
 	RIGHTFACING = (1 << 1),				// 00010 = 2^1
@@ -46,23 +60,28 @@ enum eStatus
 	THROW = (1 << 6),
 	FALLING = (1 << 7),
 	MOVING_JUMPING = (1 << 8),
-	SLASH = (1 << 9),
+	SLASH = (1 << 9), SLASH1 = ( 1<< 9),
 	CLIMB_VERTICAL = (1 << 10),
 	CLIMB_HORIZON = (1 << 11),
-	MOVE_UP = (1 << 12),
-	MOVE_DOWN = (1 << 13),
+	SLASH2 = (1 << 12),
 	BORING1 = (1 << 14),
+	TAUGHT = (1 << 14),
 	BORING2 = (1 << 15),
 	BORING3 = (1 << 16),
 	LANDING = (1 << 17),
 	BRAKING = (1 << 18),
-	SOMESTATUS = (1 << 19),
+	BEATEN = (1 << 19),
 	PUSH = (1 << 20),
 	BURNED = (1 << 21),
 	DYING = (1 << 22),
 	CARE = (1 << 23),
 	REVIVE = (1 << 24),
-	JEALOUS = (1 << 25)
+	JEALOUS = (1 << 25),
+
+	//Enemy status
+
+	//share status
+	DESTROY = (1 << 26)
 };
 
 
@@ -95,8 +114,10 @@ enum eCommand
 
 enum eLandType
 {
-	lNORMAL,
-	lFLAME
+	lNORMAL = 0,
+	lFLAME = 1,
+	lFALLING = 2,
+	lFALLTHROUGHT = 3
 };
 
 enum eSoundId

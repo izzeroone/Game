@@ -1,0 +1,9 @@
+frame_name	left	top	right	bottom	transitionx	transitiony
+flame_01	44	79	60	111	0	0
+flame_02	65	71	85	111	0	0
+flame_03	90	63	118	111	0	0
+flame_04	123	47	155	111	0	0
+flame_05	160	31	192	111	0	0
+flame_06	197	15	225	111	0	0
+flame_07	230	23	252	111	0	0
+flame_08	261	31	292	111	0	0

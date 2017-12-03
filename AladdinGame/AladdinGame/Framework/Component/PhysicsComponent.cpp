@@ -89,7 +89,11 @@ void PhysicsComponent::removeComponent(string name, Component * movingComponent)
 
 Component * PhysicsComponent::getComponent(string name)
 {
-	return _componentList[name];
+	auto it = _componentList.find(name);
+	if (it != _componentList.end())
+		return it->second;
+	else
+		return nullptr;
 }
 
 GVector2 PhysicsComponent::getVelocity()
@@ -107,16 +111,28 @@ void PhysicsComponent::setMovingSpeed(int movingSpeed)
 	_movingSpeed = movingSpeed;
 }
 
-void PhysicsComponent::setPhysicsBodySide(eDirection side)
-{
-	_physicsSide = side;
-}
+//void PhysicsComponent::setPhysicsBodySide(eDirection side)
+//{
+//	//auto collisionComponent = (CollisionComponent*) _componentList["Collision"];
+//	//if (collisionComponent != nullptr)
+//	//{
+//	//	collisionComponent->setPhysicsSide(side);
+//	//}
+//
+//}
 
-eDirection PhysicsComponent::getPhysicsBodySide()
-{
-	return _physicsSide;
-}
-
+//eDirection PhysicsComponent::getPhysicsBodySide()
+//{
+//	//not done yet
+//	//auto collisionComponent = (CollisionComponent*)_componentList["Collision"];
+//	//if (collisionComponent != nullptr)
+//	//{
+//	//	return collisionComponent->getPhysicsSide();
+//	//}
+//
+//	return eDirection::NONE;
+//}
+//
 RECT PhysicsComponent::getBounding()
 {
 	return _bounding;

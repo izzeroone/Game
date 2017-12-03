@@ -1,5 +1,5 @@
 ﻿#include "Sprite.h"
-
+#include "../debug.h"
 LINK_FRAMEWORK
 
 Sprite::~Sprite()
@@ -217,6 +217,7 @@ RECT Sprite::getBounding()
 	return _bound;
 }
 
+
 void Sprite::setFrameRect(RECT rect)
 {
 	_frameRect = rect;
@@ -252,6 +253,7 @@ void Sprite::setFrameRect(float x, float y, int width, int height)
 
 	this->updateBounding();
 }
+
 
 RECT Sprite::getFrameRect()
 {

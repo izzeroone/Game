@@ -9,9 +9,14 @@
 #include "../../Framework/Singleton/spriteresource.h"
 #include "../../Framework/Singleton/SoundManager.h"
 #include "../../Framework/animation.h"
+#include "../../Framework/QuadTree.h"
 #include "../ObjectFactory.h"
 #include "../../debug.h"
 #include "../Player/Aladdin.h"
+#include "../../Framework/Component/EnemyComponent.h"
+#include "SceneBackground.h"
+#include "TestSceneBackground.h"
+
 
 using namespace std;
 LINK_FRAMEWORK
@@ -32,6 +37,8 @@ public:
 	void setViewport(Viewport* viewport);
 	void moveViewport(float offset, bool moveup, sigcxx::SLOT slot = nullptr);
 
+	void writeXMLQuadTree();
+
 	// Trả về một đối tượng theo id.
 	// id: kiểu enum eID, định danh một đối tượng.
 	// return: đối tượng cần tìm.
@@ -42,7 +49,7 @@ public:
 private:
 	void destroyobject();				// kiển tra nếu object hết hạn sử dụng thì phá huỷ đối tượng
 
-	// Danh sách đối tượng dùng để tạo spatical hashing.
+	// Danh sách đối tượng dùng để tạo quad tree.
 	map <string, GameObject*> _mapobject;
 
 	// Danh sách các đối tượng hoạt động rộng không thể đưa vào quadtree.
@@ -57,12 +64,21 @@ private:
 	// Trỏ đến bill, một số đối tượng cần truyền bill vào để xử lý, lấy ở đây.
 	GameObject* _Aladdin;
 	//Map background
-	Sprite* _map;
-	void updateViewport(GameObject* objTracker);
+	Sprite* _mapBack;
+	Sprite* _mapFront;
+	SceneBackground* _background;
+
+	void updateViewport(GameObject* objTracker, float deltatime);
 
 	// Check if need to update viewport
 	bool _updateViewport;
 	RECT _rect;
+
+	//root of the node tree
+	QuadTreeNode * _root;
+	RECT rootRect;
+
+	void addToScene(GameObject * obj, sigcxx::SLOT slot = nullptr);
 	// Inherited via Scene
 	virtual void updateInput(float dt) override;
 
