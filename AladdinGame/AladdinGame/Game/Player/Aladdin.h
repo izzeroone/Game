@@ -62,7 +62,7 @@ public:
 	void update(float detatime);
 	void setStatus(eStatus status) override;
 	void setRespawnPosition(GVector2 respawnPosition);
-	void dropHitpoint(int damage);
+	bool dropHitpoint(int damage);
 	sigcxx::Signal<float, bool> moveViewport; //float is offset, bool: true move up, false: revert back
 	sigcxx::Signal<GameObject*> addToScene; // add some thing to scene
 private:

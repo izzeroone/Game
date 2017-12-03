@@ -31,6 +31,7 @@ public:
 	void insert(const string &name, const RECT &rect);
 	void forEach(QTAction action);
 	void writeXML(const string &path);
+	static void buildXMLfromXML(const string & source, const string & result, float mapWidth, float mapHeight);
 	void readXML(const string &path);
 
 	static list<string> ActiveObject;

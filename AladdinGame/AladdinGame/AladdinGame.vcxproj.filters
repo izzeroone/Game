@@ -195,6 +195,12 @@
     <ClCompile Include="Game\Enemy\Thrower.cpp">
       <Filter>Source Files\Game\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Enemy\Falza.cpp">
+      <Filter>Source Files\Game\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Nahbi.cpp">
+      <Filter>Source Files\Game\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
@@ -333,6 +339,12 @@
       <Filter>Header Files\Game\Object</Filter>
     </ClInclude>
     <ClInclude Include="Game\Enemy\Thrower.h">
+      <Filter>Header Files\Game\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Falza.h">
+      <Filter>Header Files\Game\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Nahbi.h">
       <Filter>Header Files\Game\Enemy</Filter>
     </ClInclude>
   </ItemGroup>

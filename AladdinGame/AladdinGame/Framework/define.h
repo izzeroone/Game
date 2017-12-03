@@ -36,9 +36,12 @@ enum eObjectID
 	SWORD = 4, // f0r slash
 	GUARD = 5,
 	HAKIM = 6,
+	FALZA = 7,
+	NAHBI = 8,
 	THROWER = 9, // thằng ném bình
 	FLAME = 10,
 	EXPLOSIONPOT = 11,
+	JAFAR = 29, // the boss
 	MAP1 = 30,
 	MAP1BACKGROUND = 31,
 	CIVILIAN = 32, // civilian sprite object
@@ -57,11 +60,10 @@ enum eStatus
 	THROW = (1 << 6),
 	FALLING = (1 << 7),
 	MOVING_JUMPING = (1 << 8),
-	SLASH = (1 << 9),
+	SLASH = (1 << 9), SLASH1 = ( 1<< 9),
 	CLIMB_VERTICAL = (1 << 10),
 	CLIMB_HORIZON = (1 << 11),
-	//MOVE_UP = (1 << 12),
-	//MOVE_DOWN = (1 << 13),
+	SLASH2 = (1 << 12),
 	BORING1 = (1 << 14),
 	TAUGHT = (1 << 14),
 	BORING2 = (1 << 15),

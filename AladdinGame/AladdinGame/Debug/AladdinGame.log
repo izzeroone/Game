@@ -1,20 +1,14 @@
-﻿  ObjectFactory.cpp
+﻿  Nahbi.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): warning C4005: 'GRAVITY': macro redefinition
   d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): note: see previous definition of 'GRAVITY'
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(171): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(171): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(190): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(191): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(192): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(193): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(221): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(252): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(253): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(254): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(255): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(93): warning C4715: 'ObjectFactory::getObjectById': not all control paths return a value
-d:\githubproject\game\aladdingame\aladdingame\game\objectfactory.cpp(108): warning C4715: 'ObjectFactory::getFunctionById': not all control paths return a value
-cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(92): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(155): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(182): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(190): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(208): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(209): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(212): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(216): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)

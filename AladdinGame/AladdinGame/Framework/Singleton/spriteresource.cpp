@@ -36,9 +36,9 @@ void SpriteResource::loadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite[eObjectID::GUARD] = guard;
 	this->loadSpriteInfo(eObjectID::GUARD, "Resources//Images//guard.txt");
 
-	Sprite* flame = new Sprite(spriteHandle, L"Resources//Images//flame.png");
-	this->_listSprite[eObjectID::FLAME] = flame;
-	this->loadSpriteInfo(eObjectID::FLAME, "Resources//Images//flame.txt");
+	Sprite* flame = new Sprite(spriteHandle, L"Resources//Images//jafar.png");
+	this->_listSprite[eObjectID::JAFAR] = flame;
+	this->loadSpriteInfo(eObjectID::JAFAR, "Resources//Images//jafar.txt");
 
 	Sprite* map1background = new Sprite(spriteHandle, L"Resources//Images//map1_background.png");
 	this->_listSprite[eObjectID::MAP1BACKGROUND] = map1background;
@@ -59,7 +59,6 @@ Sprite* SpriteResource::getSprite(eObjectID id)
 
 RECT SpriteResource::getSourceRect(eObjectID id, string name)
 {
-	//return _sourceRectList[id].at(name);
 	return _sourceRectList[id][name];
 }
 

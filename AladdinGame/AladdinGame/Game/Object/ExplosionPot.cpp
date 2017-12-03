@@ -43,7 +43,7 @@ void ExplosionPotBehaviorComponent::update(float deltatime)
 
 	if (object != nullptr && _status != eStatus::LANDING)
 	{
-		setStatus(eStatus::LANDING);
+		setStatus(eStatus::DESTROY);
 		standing();
 		AladdinBehaviorComponent * encom = (AladdinBehaviorComponent *)object->getBehaviorComponent();
 		encom->dropHitpoint(20);

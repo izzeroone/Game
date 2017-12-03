@@ -15,7 +15,7 @@ void ThrowerAnimationComponent::init()
 	setScale(SCALE_FACTOR);
 
 	_animations[eStatus::NORMAL] = new Animation(_sprite, 0.07f);
-	_animations[eStatus::NORMAL]->addFrameRect(eObjectID::CIVILIAN, "thrower_1", "thrower_2", "thrower_3", "thrower_4", "thrower_5", "thrower_6", "thrower_7", "thrower_8", "thrower_9", "thrower_10", NULL);
+	_animations[eStatus::NORMAL]->addFrameRect(eObjectID::CIVILIAN,"emply", "thrower_1", "thrower_2", "thrower_3", "thrower_4", "thrower_5", "thrower_6", "thrower_7", "thrower_8", "thrower_9", "thrower_10", NULL);
 
 	_index = eStatus::NORMAL;
 }
@@ -71,7 +71,7 @@ void ThrowerBehaviorComponent::update(float detatime)
 void ThrowerBehaviorComponent::throwPot()
 {
 	GVector2 pos = _physicsComponent->getPosition();
-	pos.x += 10 * SCALE_FACTOR; // code cứng
+	pos.x += 15 * SCALE_FACTOR; // code cứng
 	pos.y -= 5 * SCALE_FACTOR;
 	auto explosionPot = ObjectFactory::getExlplosionPot(pos);
 	addToScene.Emit(explosionPot);

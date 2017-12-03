@@ -7,6 +7,8 @@
 #include "Object\Land.h"
 #include "Object\Rope.h"
 #include "Enemy\Hakim.h"
+#include "Enemy\Falza.h"
+#include "Enemy\Nahbi.h"
 #include "Enemy\Thrower.h"
 #include "Object\Sword.h"
 #include "Object\Flame.h"
@@ -28,6 +30,11 @@ public:
 	static GameObject* getLand(xml_node node);
 	static GameObject* getRope(xml_node node);
 	static GameObject* getHakim(GVector2 pos, float rangeXStart, float rangeXEnd);
+	static GameObject* getHakim(xml_node node);
+	static GameObject* getFalza(GVector2 pos, float rangeXStart, float rangeXEnd);
+	static GameObject* getFalza(xml_node node);
+	static GameObject* getNahbi(GVector2 pos, float rangeXStart, float rangeXEnd);
+	static GameObject* getNahbi(xml_node node);
 	static GameObject* getFlame(GVector2 pos);
 	static GameObject* getExlplosionPot(GVector2 pos);
 	static GameObject* getExlplosionPot(xml_node node);

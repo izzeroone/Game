@@ -173,7 +173,9 @@
     <ClCompile Include="Framework\VectorHelper.cpp" />
     <ClCompile Include="Framework\viewport.cpp" />
     <ClCompile Include="Game\AladdinGame.cpp" />
+    <ClCompile Include="Game\Enemy\Falza.cpp" />
     <ClCompile Include="Game\Enemy\Hakim.cpp" />
+    <ClCompile Include="Game\Enemy\Nahbi.cpp" />
     <ClCompile Include="Game\Enemy\Thrower.cpp" />
     <ClCompile Include="Game\game.cpp" />
     <ClCompile Include="Game\ObjectFactory.cpp" />
@@ -222,7 +224,9 @@
     <ClInclude Include="Framework\VectorHelper.h" />
     <ClInclude Include="Framework\viewport.h" />
     <ClInclude Include="Game\AladdinGame.h" />
+    <ClInclude Include="Game\Enemy\Falza.h" />
     <ClInclude Include="Game\Enemy\Hakim.h" />
+    <ClInclude Include="Game\Enemy\Nahbi.h" />
     <ClInclude Include="Game\Enemy\Thrower.h" />
     <ClInclude Include="Game\game.h" />
     <ClInclude Include="Game\ObjectFactory.h" />

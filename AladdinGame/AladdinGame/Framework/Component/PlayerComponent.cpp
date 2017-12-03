@@ -26,13 +26,15 @@ void PlayerBehaviorComponent::dropLife()
 	_life--;
 }
 
-void PlayerBehaviorComponent::dropHitpoint()
+bool PlayerBehaviorComponent::dropHitpoint()
 {
 	_hitpoint--;
+	return true;
 }
 
-void PlayerBehaviorComponent::dropHitpoint(int damage)
+bool PlayerBehaviorComponent::dropHitpoint(int damage)
 {
 	_hitpoint -= damage;
+	return true;
 }
 

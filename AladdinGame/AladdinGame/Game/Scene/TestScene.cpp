@@ -50,12 +50,6 @@ bool TestScene::init()
 	aladdinBehavior->addToScene.Connect(this, &TestScene::addToScene);
 	_listobject.push_back(_Aladdin);
 
-	auto hakim = ObjectFactory::getHakim(GVector2(400, 100),200, 600);
-	_listobject.push_back(hakim);
-
-	auto thrower = ObjectFactory::getThrower(GVector2(400, 400));
-	_listobject.push_back(thrower);
-
 	BehaviorComponent::addToScene.Connect(this, &TestScene::addToScene);
 
 	_background = new TestSceneBackground();
@@ -83,18 +77,14 @@ bool TestScene::init()
 	rootRect.bottom = 0;
 	rootRect.right = mapRECT.right * SCALE_FACTOR;
 	rootRect.top = mapRECT.bottom * SCALE_FACTOR;
+
+	QuadTreeNode::buildXMLfromXML("Resources//Maps//stage1.xml", "Resources//Maps//stage1_test.xml", mapRECT.right, mapRECT.bottom);
 	_root = new QuadTreeNode(rootRect, 0);
-
-
+	_root->readXML("Resources//Maps//stage1_test.xml");
+	
 	map<string, GameObject*>* maptemp = ObjectFactory::getMapObjectFromFile("Resources//Maps//stage1.xml");
 	_mapobject.insert(maptemp->begin(), maptemp->end());
 
-	for (auto it = _mapobject.begin(); it != _mapobject.end(); it++)
-	{
-		_root->insert(it->first, it->second->getPhysicsComponent()->getBounding());
-	}
-
-	writeXMLQuadTree();
 
 	_updateViewport = true;
 	//SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE1);
@@ -131,17 +121,17 @@ void TestScene::update(float dt)
 	auto listobjectname = _root->getActiveObject(screen);
 
 	// [Bước 4]
-	//OutputDebugStringW(L"Object in screen : ");
+	OutputDebugStringW(L"Object in screen : ");
 	for (auto name : listobjectname)
 	{
 		auto obj = _mapobject.find(name);
 		if (obj == _mapobject.end() || obj._Ptr == nullptr)
 			continue;
-		//OutputDebugStringA(obj->first.c_str());
-		//OutputDebugStringW(L" ");
+		OutputDebugStringA(obj->first.c_str());
+		OutputDebugStringW(L" ");
 		_active_object.push_back(obj->second);
 	}
-//	OutputDebugStringW(L"\n ");
+	OutputDebugStringW(L"\n ");
 
 	// [Bước 5]
 	_active_object.insert(_active_object.end(), _listobject.begin(), _listobject.end());

@@ -271,6 +271,55 @@ void QuadTreeNode::writeXML(const string & path)
 	bool saveSucceeded = doc.save_file(path.c_str(), PUGIXML_TEXT("  "));
 }
 
+void QuadTreeNode::buildXMLfromXML(const string &source, const string &result, float mapWidth, float mapHeight)
+{
+	pugi::xml_document docSource;
+	pugi::xml_document docResult;
+	string name;
+	RECT bound;
+	float width, height;
+
+	RECT rootRect;
+	rootRect.left = 0;
+	rootRect.bottom = 0;
+	rootRect.right = mapWidth * SCALE_FACTOR;
+	rootRect.top = mapHeight * SCALE_FACTOR;
+	QuadTreeNode * root = new QuadTreeNode(rootRect, 0);
+
+
+	// Mở file và đọc
+	xml_parse_result results = docSource.load_file(source.data(), pugi::parse_default | pugi::parse_pi);
+
+	xml_node objects = docSource.child("Objects");
+	auto list = objects.children();
+
+	// Lấy id từ file xml. so sánh với eID, tuỳ theo eID nào mà gọi đến đúng hàm load cho riêng object đó.
+	for (auto item : list)
+	{
+		string name = item.attribute("Name").as_string();
+		if (item.child("Bound") != NULL)
+		{
+			xml_node boundNode = item.child("Bound");
+			bound.left = boundNode.attribute("Left").as_float();
+			bound.right = boundNode.attribute("Right").as_float();
+			bound.top = boundNode.attribute("Top").as_float();
+			bound.bottom = boundNode.attribute("Bottom").as_float();
+		}
+		else
+		{
+			bound.left = item.attribute("X").as_float() * SCALE_FACTOR;
+			bound.top = item.attribute("Y").as_float() * SCALE_FACTOR;
+			bound.right = bound.left + item.attribute("Width").as_float() * SCALE_FACTOR;
+			bound.bottom = bound.top - item.attribute("Height").as_float() * SCALE_FACTOR;
+		}
+		root->insert(name, bound);
+	}
+	root->buildWriteableNode(docResult);
+	bool saveSucceeded = docResult.save_file(result.c_str(), PUGIXML_TEXT("  "));
+
+	delete root;
+}
+
 void QuadTreeNode::readXML(const string & path)
 {
 	pugi::xml_document doc;

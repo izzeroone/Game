@@ -87,6 +87,12 @@ GameObject* ObjectFactory::getObjectById(xml_node node, eObjectID id)
 		return getRope(node);
 	case THROWER:
 		return getThrower(node);
+	case HAKIM:
+		return getHakim(node);
+	case FALZA:
+		return getFalza(node);
+	case NAHBI:
+		return getNahbi(node);
 	default:
 		break;
 	}
@@ -307,6 +313,89 @@ GameObject * ObjectFactory::getHakim(GVector2 pos, float rangeXStart, float rang
 	collisionComponent->setPhysicsSide(eDirection::ALL);
 
 	return hakim;
+}
+
+GameObject * ObjectFactory::getHakim(xml_node node)
+{
+	GVector2 pos;
+	pos.x = node.attribute("X").as_float();
+	pos.y = node.attribute("Y").as_float();
+	auto bound = node.child("Bound");
+	float rangeXStart = bound.attribute("Left").as_float();
+	float rangeXEnd = bound.attribute("Right").as_float();
+	return getHakim(pos, rangeXStart, rangeXEnd);
+}
+
+GameObject * ObjectFactory::getFalza(GVector2 pos, float rangeXStart, float rangeXEnd)
+{
+	auto physicsComponent = new FalzaPhysicsComponent();
+	auto animationComponent = new FalzaAnimationComponent();
+	EnemyBehaviorComponent* behaviorComponent = new FalzaBehaviorComponent();
+
+	animationComponent->setPhysiscComponent(physicsComponent);
+	behaviorComponent->setPhysicsComponent(physicsComponent);
+	behaviorComponent->setAnimationComponent(animationComponent);
+	behaviorComponent->setGameController(GameController::getInstance());
+	physicsComponent->setAnimationComponent(animationComponent);
+
+	physicsComponent->setPosition(pos);
+
+	behaviorComponent->setRange(rangeXStart, rangeXEnd);
+
+	auto Falza = new GameObject(eObjectID::FALZA, animationComponent, behaviorComponent, physicsComponent);
+	Falza->init();
+	auto collisionComponent = (CollisionComponent*)Falza->getPhysicsComponent()->getComponent("Collision");
+	collisionComponent->setTargerGameObject(Falza);
+	collisionComponent->setPhysicsSide(eDirection::ALL);
+
+	return Falza;
+}
+
+GameObject * ObjectFactory::getFalza(xml_node node)
+{
+	GVector2 pos;
+	pos.x = node.attribute("X").as_float();
+	pos.y = node.attribute("Y").as_float();
+	auto bound = node.child("Bound");
+	float rangeXStart = bound.attribute("Left").as_float();
+	float rangeXEnd = bound.attribute("Right").as_float();
+	return getFalza(pos, rangeXStart, rangeXEnd);
+}
+
+GameObject * ObjectFactory::getNahbi(GVector2 pos, float rangeXStart, float rangeXEnd)
+{
+	auto physicsComponent = new NahbiPhysicsComponent();
+	auto animationComponent = new NahbiAnimationComponent();
+	EnemyBehaviorComponent* behaviorComponent = new NahbiBehaviorComponent();
+
+	animationComponent->setPhysiscComponent(physicsComponent);
+	behaviorComponent->setPhysicsComponent(physicsComponent);
+	behaviorComponent->setAnimationComponent(animationComponent);
+	behaviorComponent->setGameController(GameController::getInstance());
+	physicsComponent->setAnimationComponent(animationComponent);
+
+	physicsComponent->setPosition(pos);
+
+	behaviorComponent->setRange(rangeXStart, rangeXEnd);
+
+	auto Nahbi = new GameObject(eObjectID::NAHBI, animationComponent, behaviorComponent, physicsComponent);
+	Nahbi->init();
+	auto collisionComponent = (CollisionComponent*)Nahbi->getPhysicsComponent()->getComponent("Collision");
+	collisionComponent->setTargerGameObject(Nahbi);
+	collisionComponent->setPhysicsSide(eDirection::ALL);
+
+	return Nahbi;
+}
+
+GameObject * ObjectFactory::getNahbi(xml_node node)
+{
+	GVector2 pos;
+	pos.x = node.attribute("X").as_float();
+	pos.y = node.attribute("Y").as_float();
+	auto bound = node.child("Bound");
+	float rangeXStart = bound.attribute("Left").as_float();
+	float rangeXEnd = bound.attribute("Right").as_float();
+	return getNahbi(pos, rangeXStart, rangeXEnd);
 }
 
 GameObject * ObjectFactory::getFlame(GVector2 pos)

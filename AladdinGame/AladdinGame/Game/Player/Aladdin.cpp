@@ -924,15 +924,16 @@ void AladdinBehaviorComponent::setRespawnPosition(GVector2 respawnPosition)
 	_respawnPostion = respawnPosition;
 }
 
-void AladdinBehaviorComponent::dropHitpoint(int damage)
+bool AladdinBehaviorComponent::dropHitpoint(int damage)
 {
 	//Đang được bảo vệ, không làm gì cả
 	if (_protectTime > 0)
-		return;
+		return false;
 
 	PlayerBehaviorComponent::dropHitpoint(damage);
 	_animationComponent->setTempAnimation(eStatus::BEATEN, 1);
 	_protectTime = ALADDIN_PROTECT_TIME;
+	return true;
 }
 
 void AladdinBehaviorComponent::respawn()
