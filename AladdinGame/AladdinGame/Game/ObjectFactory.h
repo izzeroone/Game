@@ -13,6 +13,7 @@
 #include "Object\Sword.h"
 #include "Object\Flame.h"
 #include "Object\ExplosionPot.h"
+#include "Object\Dagger.h"
 #include "../../pugixml/src/pugixml.hpp"
 #include <functional>
 using namespace pugi;
@@ -26,6 +27,7 @@ public:
 	static map<string, std::function<GameObject * () >>* getMapObjectFunctionFromFile(const string path);
 	static GameObject* getAladdin();
 	static GameObject* getApple(GVector2 pos, GVector2 velocity);
+	static GameObject* getDagger(GVector2 pos, GVector2 velocity);
 	static GameObject* getSword(GVector2 pos, float width, float height, bool canSlashEnemy);
 	static GameObject* getLand(xml_node node);
 	static GameObject* getRope(xml_node node);

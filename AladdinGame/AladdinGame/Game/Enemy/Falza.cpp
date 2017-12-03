@@ -191,14 +191,14 @@ void FalzaBehaviorComponent::throwApple()
 	_animationComponent->setTempAnimation(eStatus::THROW, 1);
 	auto pos = _physicsComponent->getPosition();
 	pos.y += _animationComponent->getSprite()->getFrameHeight() * 2 / 3;
-	GVector2 velocity(-400, 300);
+	GVector2 velocity(-800, 100);
 	if (_facingDirection == eStatus::RIGHTFACING)
 	{
 		pos += GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
 		velocity.x = -velocity.x;
 
 	}
-	auto apple = ObjectFactory::getApple(pos, velocity);
+	auto apple = ObjectFactory::getDagger(pos, velocity);
 	addToScene.Emit(apple);
 
 }

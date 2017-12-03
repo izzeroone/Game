@@ -135,7 +135,6 @@ GameObject * ObjectFactory::getAladdin()
 
 GameObject * ObjectFactory::getApple(GVector2 pos, GVector2 velocity)
 {
-
 	auto physicsComponent = new ApplePhysicsComponent();
 	auto animationComponent = new AppleAnimationComponent();
 	auto behaviorComponent = new AppleBehaviorComponent();
@@ -159,6 +158,33 @@ GameObject * ObjectFactory::getApple(GVector2 pos, GVector2 velocity)
 	move->setVelocity(velocity);
 
 	return apple;
+}
+
+GameObject * ObjectFactory::getDagger(GVector2 pos, GVector2 velocity)
+{
+	auto physicsComponent = new DaggerPhysicsComponent();
+	auto animationComponent = new DaggerAnimationComponent();
+	auto behaviorComponent = new DaggerBehaviorComponent();
+
+	animationComponent->setPhysiscComponent(physicsComponent);
+	behaviorComponent->setPhysicsComponent(physicsComponent);
+	behaviorComponent->setAnimationComponent(animationComponent);
+	behaviorComponent->setGameController(GameController::getInstance());
+	physicsComponent->setAnimationComponent(animationComponent);
+
+
+	physicsComponent->setPosition(pos);
+
+	auto Dagger = new GameObject(eObjectID::DAGGER, animationComponent, behaviorComponent, physicsComponent);
+	Dagger->init();
+	auto collisionComponent = (CollisionComponent*)Dagger->getPhysicsComponent()->getComponent("Collision");
+	collisionComponent->setTargerGameObject(Dagger);
+
+
+	auto move = (Movement*)physicsComponent->getComponent("Movement");
+	move->setVelocity(velocity);
+
+	return Dagger;
 }
 
 GameObject * ObjectFactory::getSword(GVector2 pos, float width, float height, bool canSlashEnemy)

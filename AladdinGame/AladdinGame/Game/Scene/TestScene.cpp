@@ -212,6 +212,7 @@ GameObject * TestScene::getAladdin()
 
 void TestScene::destroyobject()
 {
+	//Destroy các phần tử ngoài màn hình
 	for (auto object : _listobject)
 	{
 		if (object->getBehaviorComponent() != nullptr && object->getBehaviorComponent()->getStatus() == eStatus::DESTROY)	// kiểm tra nếu là destroy thì loại khỏi list

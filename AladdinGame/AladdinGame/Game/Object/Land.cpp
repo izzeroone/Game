@@ -72,7 +72,7 @@ void LandBehaviorComponent::updateFlameLand(float deltatime)
 		RECT aladdinBound = aladdin->getPhysicsComponent()->getBounding();
 		float aladdinPosX = aladdin->getPhysicsComponent()->getPositionX();
 		float width = (aladdinBound.right - aladdinBound.left);
-		if (aladdinPosX + width / 2 > landX && aladdinPosX + width < landX + _width)
+		if (aladdinPosX + width / 2 > landX && aladdinPosX  < landX + _width)
 		{
 			_timer += deltatime;
 			_flamePos = GVector2(aladdinPosX + width / 2, _physicsComponent->getPositionY());

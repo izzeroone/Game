@@ -71,14 +71,14 @@ nahbi_burned_7    351    593    392    652	0	0
 nahbi_burned_8    396    592    439    652	0	0
 nahbi_burned_9    447    598    488    652	0	0
 
-Guard_Line10_1   224    678    237    713	0	0
-Guard_Line10_2   248    675    273    713	0	0
-Guard_Line10_3   281    677    308    713	0	0
-Guard_Line10_4   319    682    346    713	0	0
-Guard_Line10_5   355    675    368    713	0	0
-Guard_Line10_6   375    680    401    713	0	0
-Guard_Line10_7   414    678    425    713	0	0
-Guard_Line10_8   446    663    489    713	0	0
+dagger_7   224    678    237    713	0	0
+dagger_6   248    675    273    713	0	0
+dagger_5   281    677    308    713	0	0
+dagger_4   319    682    346    713	0	0
+dagger_3   355    675    368    713	0	0
+dagger_2   375    680    401    713	0	0
+dagger_1   414    678    425    713	0	0
+falza_normal_1   446    663    489    713	0	0
 
 falza_boring_1   150    722    190    771	0	0
 falza_boring_2   199    719    251    771	0	0

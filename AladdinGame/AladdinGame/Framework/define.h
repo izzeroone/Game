@@ -14,6 +14,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <functional>
 #include "../../pugixml/src/pugixml.hpp"
 
 
@@ -41,11 +42,13 @@ enum eObjectID
 	THROWER = 9, // thằng ném bình
 	FLAME = 10,
 	EXPLOSIONPOT = 11,
+	DAGGER = 12, //throw by enemy
 	JAFAR = 29, // the boss
 	MAP1 = 30,
 	MAP1BACKGROUND = 31,
 	CIVILIAN = 32, // civilian sprite object
 };
+
 
 enum eStatus
 {

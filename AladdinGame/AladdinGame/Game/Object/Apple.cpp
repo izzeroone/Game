@@ -72,8 +72,11 @@ void AppleBehaviorComponent::update(float detatime)
 		setStatus(eStatus::LANDING);
 		standing();
 	}
-
-	object = collisionComponent->isColliding(eObjectID::HAKIM);
+	auto isEnemyFunc = [](GameObject* obj) {
+		auto id = obj->getID();
+		return id == eObjectID::HAKIM || id == eObjectID::NAHBI || id == eObjectID::FALZA;
+	};
+	object = collisionComponent->isColliding(isEnemyFunc);
 
 	if (object != nullptr && _status != eStatus::LANDING)
 	{

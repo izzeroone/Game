@@ -201,6 +201,9 @@
     <ClCompile Include="Game\Enemy\Nahbi.cpp">
       <Filter>Source Files\Game\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Object\Dagger.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
@@ -346,6 +349,9 @@
     </ClInclude>
     <ClInclude Include="Game\Enemy\Nahbi.h">
       <Filter>Header Files\Game\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Dagger.h">
+      <Filter>Header Files\Game\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

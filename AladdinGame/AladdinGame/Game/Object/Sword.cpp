@@ -23,10 +23,10 @@ void SwordBehaviorComponent::update(float detatime)
 	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 	auto isEnemyFunc = [](GameObject* obj) {
 		auto id = obj->getID();
-		return id == eObjectID::HAKIM;
+		return id == eObjectID::HAKIM || id == eObjectID::NAHBI || id == eObjectID::FALZA;
 	};
+
 	GameObject * obj;
-	
 	if (_canSlashEnemy)
 	{
 		obj = collisionComponent->isColliding(isEnemyFunc);

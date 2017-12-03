@@ -741,13 +741,12 @@
 <Item Id="9" Name="thrower_9" X="3941" Y="135" Width="20" Height="5" />
 <Item Id="9" Name="thrower_10" X="4005" Y="167" Width="20" Height="5" />
 <Item Id="9" Name="thrower_11" X="3301" Y="311" Width="20" Height="5" />
-<Item Id="6" Name="nakim_1" X="704" Y="72" Width="45" Height="10">
+<Item Id="6" Name="nakim_1" X="704" Y="62" Width="45" Height="10">
   <Bound Left="587" Bottom="62" Right="749" Top="67" />
 </Item>
-<Item Id="6" Name="nakim_2" X="2676" Y="295" Width="45" Height="10">
+<Item Id="6" Name="nakim_2" X="2676" Y="285" Width="45" Height="10">
   <Bound Left="2662" Bottom="285" Right="2798" Top="290" />
 </Item>
-
 <Item Id="7" Name="falza_1" X="918" Y="63" Width="45" Height="10">
   <Bound Left="729" Bottom="63" Right="1227" Top="68" />
 </Item>
