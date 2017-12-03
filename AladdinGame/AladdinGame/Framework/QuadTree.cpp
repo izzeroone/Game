@@ -300,10 +300,10 @@ void QuadTreeNode::buildXMLfromXML(const string &source, const string &result, f
 		if (item.child("Bound") != NULL)
 		{
 			xml_node boundNode = item.child("Bound");
-			bound.left = boundNode.attribute("Left").as_float();
-			bound.right = boundNode.attribute("Right").as_float();
-			bound.top = boundNode.attribute("Top").as_float();
-			bound.bottom = boundNode.attribute("Bottom").as_float();
+			bound.left = boundNode.attribute("Left").as_float() * SCALE_FACTOR;
+			bound.right = boundNode.attribute("Right").as_float() * SCALE_FACTOR;
+			bound.top = boundNode.attribute("Top").as_float() * SCALE_FACTOR;
+			bound.bottom = boundNode.attribute("Bottom").as_float() * SCALE_FACTOR;
 		}
 		else
 		{

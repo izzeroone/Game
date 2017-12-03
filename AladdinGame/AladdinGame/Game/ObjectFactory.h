@@ -37,7 +37,6 @@ public:
 	static GameObject* getNahbi(xml_node node);
 	static GameObject* getFlame(GVector2 pos);
 	static GameObject* getExlplosionPot(GVector2 pos);
-	static GameObject* getExlplosionPot(xml_node node);
 	static GameObject* getThrower(GVector2 pos);
 	static GameObject* getThrower(xml_node node);
 private:

@@ -1,14 +1,13 @@
-﻿  Nahbi.cpp
+﻿  TestScene.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 d:\githubproject\game\aladdingame\aladdingame\game\object\apple.h(13): warning C4005: 'GRAVITY': macro redefinition
   d:\githubproject\game\aladdingame\aladdingame\game\player\aladdin.h(19): note: see previous definition of 'GRAVITY'
-d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(92): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(155): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(182): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(190): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(208): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(209): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(212): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\githubproject\game\aladdingame\aladdingame\game\enemy\nahbi.cpp(216): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(78): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(79): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(81): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(106): warning C4244: '=': conversion from 'FLOAT' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(107): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(257): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+d:\githubproject\game\aladdingame\aladdingame\game\scene\testscene.cpp(258): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.exe
   AladdinGame.vcxproj -> D:\GithubProject\Game\AladdinGame\Debug\AladdinGame.pdb (Full PDB)

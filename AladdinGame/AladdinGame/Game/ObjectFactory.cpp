@@ -318,11 +318,11 @@ GameObject * ObjectFactory::getHakim(GVector2 pos, float rangeXStart, float rang
 GameObject * ObjectFactory::getHakim(xml_node node)
 {
 	GVector2 pos;
-	pos.x = node.attribute("X").as_float();
-	pos.y = node.attribute("Y").as_float();
+	pos.x = node.attribute("X").as_float() * SCALE_FACTOR;
+	pos.y = node.attribute("Y").as_float() * SCALE_FACTOR;
 	auto bound = node.child("Bound");
-	float rangeXStart = bound.attribute("Left").as_float();
-	float rangeXEnd = bound.attribute("Right").as_float();
+	float rangeXStart = bound.attribute("Left").as_float() * SCALE_FACTOR;
+	float rangeXEnd = bound.attribute("Right").as_float() * SCALE_FACTOR;
 	return getHakim(pos, rangeXStart, rangeXEnd);
 }
 
@@ -354,11 +354,11 @@ GameObject * ObjectFactory::getFalza(GVector2 pos, float rangeXStart, float rang
 GameObject * ObjectFactory::getFalza(xml_node node)
 {
 	GVector2 pos;
-	pos.x = node.attribute("X").as_float();
-	pos.y = node.attribute("Y").as_float();
+	pos.x = node.attribute("X").as_float() * SCALE_FACTOR;
+	pos.y = node.attribute("Y").as_float() * SCALE_FACTOR;
 	auto bound = node.child("Bound");
-	float rangeXStart = bound.attribute("Left").as_float();
-	float rangeXEnd = bound.attribute("Right").as_float();
+	float rangeXStart = bound.attribute("Left").as_float() * SCALE_FACTOR;
+	float rangeXEnd = bound.attribute("Right").as_float() * SCALE_FACTOR;
 	return getFalza(pos, rangeXStart, rangeXEnd);
 }
 
@@ -390,11 +390,11 @@ GameObject * ObjectFactory::getNahbi(GVector2 pos, float rangeXStart, float rang
 GameObject * ObjectFactory::getNahbi(xml_node node)
 {
 	GVector2 pos;
-	pos.x = node.attribute("X").as_float();
-	pos.y = node.attribute("Y").as_float();
+	pos.x = node.attribute("X").as_float() * SCALE_FACTOR;
+	pos.y = node.attribute("Y").as_float() * SCALE_FACTOR;
 	auto bound = node.child("Bound");
-	float rangeXStart = bound.attribute("Left").as_float();
-	float rangeXEnd = bound.attribute("Right").as_float();
+	float rangeXStart = bound.attribute("Left").as_float() * SCALE_FACTOR;
+	float rangeXEnd = bound.attribute("Right").as_float() * SCALE_FACTOR;
 	return getNahbi(pos, rangeXStart, rangeXEnd);
 }
 
@@ -445,14 +445,6 @@ GameObject * ObjectFactory::getExlplosionPot(GVector2 pos)
 	return ExplosionPot;
 }
 
-GameObject * ObjectFactory::getExlplosionPot(xml_node node)
-{
-	GVector2 pos;
-	pos.x = node.attribute("X").as_float();
-	pos.y = node.attribute("Y").as_float();
-
-	return getExlplosionPot(pos);
-}
 
 GameObject * ObjectFactory::getThrower(GVector2 pos)
 {

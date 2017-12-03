@@ -142,6 +142,12 @@ void TestScene::update(float dt)
 		// một vài trạng thái không cần thiết phải check hàm va chạm
 		if (obj == nullptr || obj->getID() == eObjectID::ROPE || obj->getID() == eObjectID::THROWER)
 			continue;
+		// don't check Land except flame land
+		if (obj->getID() == eObjectID::LAND)
+		{
+			if (((LandBehaviorComponent *)obj->getBehaviorComponent())->getLandType() != eLandType::lFLAME)
+				continue;
+		}
 		auto collisionComponent = (CollisionComponent*)obj->getPhysicsComponent()->getComponent("Collision");
 		collisionComponent->reset();
 		for (GameObject* passiveobj : _active_object)
