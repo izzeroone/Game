@@ -111,7 +111,7 @@ void NahbiBehaviorComponent::update(float detatime)
 
 	if (_animationComponent->isTempAnimationEmpty() == true)
 	{
-		setWeapon(eStatus::NORMAL);
+		setWeapon(eStatus::TAUGHT);
 	}
 
 }
@@ -193,13 +193,20 @@ void NahbiBehaviorComponent::moveRight()
 
 void NahbiBehaviorComponent::slash()
 {
+	if (_weapon == eStatus::SLASH1)
+		return;
+	if (_weapon == eStatus::SLASH2)
+		return;
+
 	int random = rand() % 3;
 	switch (random)
 		{
 		case 1:
+			setWeapon(eStatus::SLASH1);
 			_animationComponent->setTempAnimation(eStatus::SLASH1, 1);
 			break;
 		case 2:
+			setWeapon(eStatus::SLASH2);
 			_animationComponent->setTempAnimation(eStatus::SLASH2, 1);
 			break;
 		}
