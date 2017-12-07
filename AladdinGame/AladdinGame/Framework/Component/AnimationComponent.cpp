@@ -52,7 +52,8 @@ void AnimationComponent::setAnimation(int status)
 	if (_index != status)
 	{
 		_preindex = _index;
-		_animations[_index]->restart();
+		if(_animations[_index] != nullptr)
+			_animations[_index]->restart();
 		_index = status;
 		if (_transition[_preindex][_index] != nullptr)
 		{

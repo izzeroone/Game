@@ -126,7 +126,11 @@ enum eLandType
 enum eSoundId
 {
 	// Nhạc nền map 1
-	BACKGROUND_STAGE1
+	BACKGROUND_STAGE1,
+	// Nhac chem
+	sALADDIN_SLASH,
+	sALADDIN_HURT,
+	sOBJECT_THROW,
 };
 
 typedef D3DXVECTOR3 GVector3;

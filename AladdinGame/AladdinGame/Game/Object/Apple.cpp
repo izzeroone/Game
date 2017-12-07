@@ -125,3 +125,15 @@ void AppleBehaviorComponent::standing()
 	gravity->setStatus(eGravityStatus::LANDED);
 
 }
+//Kiểm tra xem va chạm vs aladdin ko
+//object = collisionComponent->isColliding(isEnemyFunc);
+//
+//if (object != nullptr)
+//{
+//	switch(item_type)
+//{
+//	case LifeUP:
+// tăng aladdin lên 1
+// setStatus(destroy)
+//}
+//}

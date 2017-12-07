@@ -195,10 +195,14 @@ void AladdinBehaviorComponent::init()
 void AladdinBehaviorComponent::update(float detatime)
 {
 	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
+	vector<GameObject *> objs;
 	GameObject * object;
 	Land *	landObject;
 	Rope * ropeObject;
 	eDirection direction;
+	auto movement = (Movement *)_physicsComponent->getComponent("Movement");
+	float posY;
+	float posX;
 
 	if (_input->isKeyPressed(BT_BOUND))
 	{
@@ -321,10 +325,23 @@ void AladdinBehaviorComponent::update(float detatime)
 			}
 		}
 		//landing
-		object = collisionComponent->isColliding(eObjectID::LAND);
-		if (object != nullptr)
+		objs = collisionComponent->areColliding(eObjectID::LAND);
+		if (objs.size() != 0)
 		{
-			bool canPassThrough = ((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType() == eLandType::lFALLTHROUGHT && _physicsComponent->getVelocity().y <= -900;
+			bool canPassThrough;
+			for (auto obj : objs)
+			{
+				if (((LandBehaviorComponent*)obj->getBehaviorComponent())->getLandType() == eLandType::lFALLTHROUGHT && _physicsComponent->getVelocity().y <= -900)
+				{
+					canPassThrough = true;
+				}
+				else
+				{
+					canPassThrough = false;
+					break;
+				}
+			}
+			object = objs[0];
 			if(collisionComponent->getSide(object) != eDirection::BOTTOM && !canPassThrough)
 			{
 				__debugoutput(((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType());
@@ -434,24 +451,48 @@ void AladdinBehaviorComponent::update(float detatime)
 		break;
 	case RUNNING:
 		//climbing ladder
-		object = collisionComponent->isColliding(eObjectID::LAND, eDirection::LEFT);
-		if (object != nullptr)
-		{
-			auto move = (Movement*)_physicsComponent->getComponent("Movement");
-			move->setAddPos(GVector2(0, object->getPhysicsComponent()->getPositionY() - _physicsComponent->getPositionY()));
-		}
+		//object = collisionComponent->isColliding(eObjectID::LAND, eDirection::LEFT);
+		//if (object != nullptr)
+		//{
+		//	auto move = (Movement*)_physicsComponent->getComponent("Movement");
+		//	move->setAddPos(GVector2(0, object->getPhysicsComponent()->getPositionY() - _physicsComponent->getPositionY()));
+		//}
 
-		object = collisionComponent->isColliding(eObjectID::LAND);
-		if (object == nullptr)
+		//object = collisionComponent->isColliding(eObjectID::LAND);
+		//if (object == nullptr)
+		//{
+		//	setStatus(eStatus::FALLING);
+		//	standing();
+		//	falling();
+		//	break;
+		//}
+		//else
+		//{
+		//	collisionComponent->updatePosition(object);
+		//}
+
+		objs = collisionComponent->areColliding(eObjectID::LAND);
+		posY = 0;
+		if (objs.size() != 0)
+		{
+			for (auto obj : objs)
+			{
+				//tìm tọa độ y lớn nhất
+				if (obj->getPhysicsComponent()->getPositionY() > posY)
+				{
+					posY = obj->getPhysicsComponent()->getPositionY();
+				}
+				collisionComponent->updatePosition(obj);				
+			}
+			//movement->setAddPos(GVector2(0, posY - _physicsComponent->getPositionY()));
+			_physicsComponent->setPositionY(posY);
+		}
+		else
 		{
 			setStatus(eStatus::FALLING);
 			standing();
 			falling();
 			break;
-		}
-		else
-		{
-			collisionComponent->updatePosition(object);
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
@@ -845,6 +886,7 @@ void AladdinBehaviorComponent::slash()
 	}
 	auto sword = ObjectFactory::getSword(pos, width, height, true);
 	addToScene.Emit(sword);
+	SoundManager::getInstance()->Play(eSoundId::sALADDIN_SLASH);
 }
 
 void AladdinBehaviorComponent::throwApple()
@@ -862,6 +904,7 @@ void AladdinBehaviorComponent::throwApple()
 	}
 	auto apple = ObjectFactory::getApple(pos, velocity);
 	addToScene.Emit(apple);
+	SoundManager::getInstance()->Play(eSoundId::sOBJECT_THROW);
 
 }
 
@@ -881,6 +924,8 @@ void AladdinBehaviorComponent::updateWeaponAnimation(eStatus status)
 		_weapon = eStatus::NORMAL;
 	}
 }
+
+
 
 
 
@@ -933,6 +978,7 @@ bool AladdinBehaviorComponent::dropHitpoint(int damage)
 	PlayerBehaviorComponent::dropHitpoint(damage);
 	_animationComponent->setTempAnimation(eStatus::BEATEN, 1);
 	_protectTime = ALADDIN_PROTECT_TIME;
+	SoundManager::getInstance()->Play(eSoundId::sALADDIN_HURT);
 	return true;
 }
 

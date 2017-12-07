@@ -20,8 +20,17 @@ void SoundManager::loadSound(HWND hWnd)
 
 	CSound* sound = nullptr;
 
-	sound = LoadSound("Resources//sound//BG_Map1.wav");
+	sound = LoadSound("Resources//Sounds//map1.wav");
 	_listSound[eSoundId::BACKGROUND_STAGE1] = sound;
+
+	sound = LoadSound("Resources//Sounds//HighSword.wav");
+	_listSound[eSoundId::sALADDIN_SLASH] = sound;
+
+	sound = LoadSound("Resources//Sounds//AladdinHurt.wav");
+	_listSound[eSoundId::sALADDIN_HURT] = sound;
+
+	sound = LoadSound("Resources//Sounds//ObjectThrow.wav");
+	_listSound[eSoundId::sOBJECT_THROW] = sound;
 }
 
 bool SoundManager::IsPlaying(eSoundId soundid)

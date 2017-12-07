@@ -25,6 +25,7 @@ public:
 	GameObject * isColliding(eObjectID eid);
 	GameObject * isColliding(eObjectID eid, eDirection side);
 	GameObject * isColliding(std::function<bool(GameObject*)> predicate);
+	vector<GameObject *> areColliding(eObjectID eid);
 	eDirection getCollidingDirection(GameObject * otherObject);
 
 	void update(float dt);

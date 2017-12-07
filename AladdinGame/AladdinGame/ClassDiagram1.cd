@@ -17,21 +17,21 @@
   <Class Name="AnimationComponent" Collapsed="true">
     <Position X="2" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAQQAAgAkQAQABIgAAwFUAMoIAACAQGQkAAsAIA=</HashCode>
+      <HashCode>ACAAAAQQAAgAkQAQABIgAAwFUAMoIAAGAQGRkAAsIIk=</HashCode>
       <FileName>Framework\Component\AnimationComponent.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BehaviorComponent" Collapsed="true">
     <Position X="4.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QEAAAAiBABIQAAAAAZIAAAIAAAAABEAEAAkAIACGAAI=</HashCode>
+      <HashCode>QEAAAAiBABIQAAgAAZIAAAIAAAAABEAEAAkAIACGAAI=</HashCode>
       <FileName>Framework\Component\BehaviorComponent.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CollisionComponent" Collapsed="true">
     <Position X="6.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ByAAAGQAAIAAAAAQAAAAAQAIQIAAACIIAAEAQAAEAAA=</HashCode>
+      <HashCode>BiAAAEQEAIAAQCAQAAIAAAAAQIAAACIIAAAAYCAEABA=</HashCode>
       <FileName>Framework\Component\CollisionComponent.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,14 +45,14 @@
   <Class Name="AladdinBehaviorComponent" Collapsed="true">
     <Position X="4.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACADJAgBQAIAEABAAAAAAAAABAAAAmYOIAACiECEgAA=</HashCode>
+      <HashCode>ECADIAiBQAIAEAhAAAAAAAAABAAAAkYEAAJCiECEgAA=</HashCode>
       <FileName>Game\Player\Aladdin.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PhysicsComponent" Collapsed="true">
     <Position X="8" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAINgAAAAAAAQCUCAiBAAACAAAAAAAAgABokAAEAIA=</HashCode>
+      <HashCode>AAAINgAAAAAAAQCUCACBAAACAAAAAAAAgABokAAEAAA=</HashCode>
       <FileName>Framework\Component\PhysicsComponent.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -73,7 +73,7 @@
   <Class Name="Animation" Collapsed="true">
     <Position X="9.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQFABAAAIwgAAoggAIiHABHBAEhCAIBECCAASLsUgU=</HashCode>
+      <HashCode>AAQFABAAAIwgAAoggAIiHABHBAEhCAIDECCAASLsUgU=</HashCode>
       <FileName>Framework\animation.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -94,14 +94,14 @@
   <Class Name="Movement" Collapsed="true">
     <Position X="13.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAIABAAABAAAAAAAAAAAAAIAAANgAAAEAAA=</HashCode>
+      <HashCode>AAQAAAAACAIABAAABAAAQAAAAAAAgAIAAgNgAAAEAAA=</HashCode>
       <FileName>Framework\Component\MovingComponent.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Scene" Collapsed="true">
     <Position X="6.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAAAAAAAAAQAAAgAIAAAAAQAAAAAIAAAAQAAQEAAA=</HashCode>
+      <HashCode>EAAAAAAAAAAAQAAAgCIAAAAAQAAAAAIAAAAQAAQEAAA=</HashCode>
       <FileName>Game\Scene\Scene.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -143,7 +143,7 @@
   <Class Name="ObjectFactory" Collapsed="true">
     <Position X="4.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQCAQAAAAABAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <HashCode>AAQiQQSBAIABAAAAAAIAAAAEAABAAECAAIAAAEAIAAA=</HashCode>
       <FileName>Game\ObjectFactory.h</FileName>
     </TypeIdentifier>
   </Class>

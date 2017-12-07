@@ -87,7 +87,7 @@ bool TestScene::init()
 
 
 	_updateViewport = true;
-	//SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE1);
+	SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE1);
 	return true;
 }
 
@@ -212,7 +212,7 @@ GameObject * TestScene::getAladdin()
 
 void TestScene::destroyobject()
 {
-	//Destroy các phần tử ngoài màn hình
+	//TODO : Destroy các phần tử ngoài màn hình
 	for (auto object : _listobject)
 	{
 		if (object->getBehaviorComponent() != nullptr && object->getBehaviorComponent()->getStatus() == eStatus::DESTROY)	// kiểm tra nếu là destroy thì loại khỏi list
@@ -220,13 +220,9 @@ void TestScene::destroyobject()
 			object->release();
 			// http://www.cplusplus.com/reference/algorithm/remove/
 			auto rs1 = std::remove(_listobject.begin(), _listobject.end(), object);
-			_listobject.pop_back();			// sau khi remove thì còn một phần tử cuối cùng vôi ra. giống như dịch mảng. nên cần bỏ nó đi
-
-											//https://msdn.microsoft.com/en-us/library/cby9kycs.aspx (dynamic_cast) 
-											// loại khỏi list control
-
+			_listobject.pop_back();	
 			delete object;
-			break;		// sau pop_back phần tử đi thì list bị thay đồi, nên vòng for-each không còn nguyên trạng nữa. -> break (mỗi frame chỉ remove được 1 đối tượng)
+			break;		
 		}
 	}
 	for (auto name : QuadTreeNode::ActiveObject)

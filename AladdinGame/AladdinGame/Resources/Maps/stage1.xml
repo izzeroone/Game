@@ -747,62 +747,62 @@
 <Item Id="6" Name="nakim_2" X="2676" Y="285" Width="45" Height="10">
   <Bound Left="2662" Bottom="285" Right="2798" Top="290" />
 </Item>
-<Item Id="7" Name="falza_1" X="918" Y="63" Width="45" Height="10">
+<Item Id="8" Name="falza_1" X="918" Y="63" Width="45" Height="10">
   <Bound Left="729" Bottom="63" Right="1227" Top="68" />
 </Item>
-<Item Id="7" Name="falza_2" X="1679" Y="413" Width="45" Height="10">
+<Item Id="8" Name="falza_2" X="1679" Y="413" Width="45" Height="10">
   <Bound Left="1679" Bottom="413" Right="1724" Top="418" />
 </Item>
-<Item Id="7" Name="falza_3" X="3188" Y="32" Width="45" Height="10">
+<Item Id="8" Name="falza_3" X="3188" Y="32" Width="45" Height="10">
   <Bound Left="3003" Bottom="32" Right="3357" Top="37" />
 </Item>
-<Item Id="7" Name="falza_4" X="3599" Y="32" Width="45" Height="10">
+<Item Id="8" Name="falza_4" X="3599" Y="32" Width="45" Height="10">
   <Bound Left="3555" Bottom="32" Right="3922" Top="37" />
 </Item>
-<Item Id="7" Name="falza_5" X="4197" Y="32" Width="45" Height="10">
+<Item Id="8" Name="falza_5" X="4197" Y="32" Width="45" Height="10">
   <Bound Left="3912" Bottom="32" Right="4340" Top="37" />
 </Item>
-<Item Id="7" Name="falza_6" X="3743" Y="205" Width="45" Height="10">
+<Item Id="8" Name="falza_6" X="3743" Y="205" Width="45" Height="10">
   <Bound Left="3560" Bottom="205" Right="3810" Top="210" />
 </Item>
-<Item Id="7" Name="falza_7" X="3062" Y="398" Width="45" Height="10">
+<Item Id="8" Name="falza_7" X="3062" Y="398" Width="45" Height="10">
   <Bound Left="2922" Bottom="398" Right="3186" Top="403" />
 </Item>
-<Item Id="7" Name="falza_8" X="4470" Y="478" Width="45" Height="10">
+<Item Id="8" Name="falza_8" X="4470" Y="478" Width="45" Height="10">
   <Bound Left="4451" Bottom="478" Right="4627" Top="483" />
 </Item>
 
-<!-- <Item Id="8" Name="nahbi_1" X="1692" Y="32" Width="45" Height="10"> -->
-  <!-- <Bound Left="1533" Bottom="32" Right="1996" Top="37" /> -->
-<!-- </Item> -->
-<!-- <Item Id="8" Name="nahbi_2" X="1829" Y="253" Width="45" Height="10"> -->
-  <!-- <Bound Left="1788" Bottom="253" Right="1917" Top="258" /> -->
-<!-- </Item> -->
-<!-- <Item Id="8" Name="nahbi_3" X="2190" Y="413" Width="45" Height="10"> -->
-  <!-- <Bound Left="1949" Bottom="413" Right="2234" Top="418" /> -->
-<!-- </Item> -->
-<!-- <Item Id="8" Name="nahbi_4" X="2779" Y="125" Width="45" Height="10"> -->
-  <!-- <Bound Left="2774" Bottom="125" Right="2824" Top="130" /> -->
-<!-- </Item> -->
-<!-- <Item Id="8" Name="nahbi_5" X="3424" Y="32" Width="45" Height="10"> -->
-  <!-- <Bound Left="3327" Bottom="32" Right="3603" Top="37" /> -->
-<!-- </Item> -->
-<!-- <Item Id="8" Name="nahbi_6" X="4670" Y="70" Width="45" Height="10"> -->
-  <!-- <Bound Left="4480" Bottom="70" Right="4715" Top="75" /> -->
-<!-- </Item> -->
-<!-- <Item Id="8" Name="nahbi_7" X="3891" Y="233" Width="45" Height="10"> -->
-  <!-- <Bound Left="3839" Bottom="218" Right="3967" Top="223" /> -->
-<!-- </Item> -->
-<!-- <Item Id="8" Name="nahbi_8" X="3152" Y="205" Width="45" Height="10"> -->
-  <!-- <Bound Left="3151" Bottom="205" Right="3198" Top="210" /> -->
-<!-- </Item> -->
-<!-- <Item Id="8" Name="nahbi_9" X="2838" Y="270" Width="45" Height="10"> -->
-  <!-- <Bound Left="2914" Bottom="270" Right="3054" Top="275" /> -->
-<!-- </Item> -->
-<!-- <Item Id="8" Name="nahbi_10" X="3261" Y="366" Width="45" Height="10"> -->
-  <!-- <Bound Left="3205" Bottom="366" Right="3306" Top="371" /> -->
-<!-- </Item> -->
-<!-- <Item Id="8" Name="nahbi_11" X="4646" Y="478" Width="45" Height="10"> -->
-  <!-- <Bound Left="4645" Bottom="478" Right="4692" Top="483" /> -->
-<!-- </Item> -->
+<Item Id="7" Name="nahbi_1" X="1692" Y="32" Width="45" Height="10">
+  <Bound Left="1533" Bottom="32" Right="1996" Top="37" />
+</Item>
+<Item Id="7" Name="nahbi_2" X="1829" Y="253" Width="45" Height="10">
+  <Bound Left="1788" Bottom="253" Right="1917" Top="258" />
+</Item>
+<Item Id="7" Name="nahbi_3" X="2190" Y="413" Width="45" Height="10">
+  <Bound Left="1949" Bottom="413" Right="2234" Top="418" />
+</Item>
+<Item Id="7" Name="nahbi_4" X="2779" Y="125" Width="45" Height="10">
+  <Bound Left="2774" Bottom="125" Right="2824" Top="130" />
+</Item>
+<Item Id="7" Name="nahbi_5" X="3424" Y="32" Width="45" Height="10">
+  <Bound Left="3327" Bottom="32" Right="3603" Top="37" />
+</Item>
+<Item Id="7" Name="nahbi_6" X="4670" Y="70" Width="45" Height="10">
+  <Bound Left="4480" Bottom="70" Right="4715" Top="75" />
+</Item>
+<Item Id="7" Name="nahbi_7" X="3891" Y="233" Width="45" Height="10">
+  <Bound Left="3839" Bottom="218" Right="3967" Top="223" />
+</Item>
+<Item Id="7" Name="nahbi_8" X="3152" Y="205" Width="45" Height="10">
+  <Bound Left="3151" Bottom="205" Right="3198" Top="210" />
+</Item>
+<Item Id="7" Name="nahbi_9" X="2838" Y="270" Width="45" Height="10">
+  <Bound Left="2914" Bottom="270" Right="3054" Top="275" />
+</Item>
+<Item Id="7" Name="nahbi_10" X="3261" Y="366" Width="45" Height="10">
+  <Bound Left="3205" Bottom="366" Right="3306" Top="371" />
+</Item>
+<Item Id="7" Name="nahbi_11" X="4646" Y="478" Width="45" Height="10">
+  <Bound Left="4645" Bottom="478" Right="4692" Top="483" />
+</Item>
   </Objects>

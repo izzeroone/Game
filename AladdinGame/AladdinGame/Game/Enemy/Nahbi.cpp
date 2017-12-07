@@ -84,6 +84,15 @@ void NahbiBehaviorComponent::update(float detatime)
 		return;
 	}
 
+	//check collision with flame_land
+	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
+	GameObject * object;
+	object = collisionComponent->isColliding(eObjectID::LAND);
+	if (object != nullptr && ((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType() == eLandType::lFLAME) {
+		_animationComponent->setTempAnimation(eStatus::BURNED, 1);
+	}
+
+
 	auto aladdin = SceneManager::getInstance()->getCurrentScene()->getObject(eObjectID::ALADDIN);
 	auto aladdinPos = aladdin->getPhysicsComponent()->getPosition();
 

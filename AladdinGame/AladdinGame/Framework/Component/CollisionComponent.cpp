@@ -305,6 +305,19 @@ GameObject * CollisionComponent::isColliding(std::function<bool(GameObject*)> pr
 	return nullptr;
 }
 
+vector<GameObject*> CollisionComponent::areColliding(eObjectID eid)
+{
+	vector<GameObject*> result;
+	for (auto it = _listColliding.begin(); it != _listColliding.end(); it++)
+	{
+		if (it->first->getID() == eid)
+		{
+			result.push_back(it->first);
+		}
+	}
+	return result;	
+}
+
 eDirection CollisionComponent::getCollidingDirection(GameObject * otherObject)
 {
 	return _listColliside[otherObject];

@@ -8,6 +8,7 @@
 #include "../../Framework/Component/PhysicsComponent.h"
 #include "../../Framework/Component/CollisionComponent.h"
 #include "../../Framework/Component/PlayerComponent.h"
+#include "../../Framework/Singleton/SoundManager.h"
 #include "../../Game/Object/Land.h"
 #include "../../Game/Object/Rope.h"
 #include "../../../sigcxx/include/sigcxx/sigcxx.hpp"
@@ -93,6 +94,8 @@ private:
 	void slash();
 	void throwApple();
 	void updateWeaponAnimation(eStatus status);
+	//hp
+	
 
 	//movement helper
 	void removeGravity();

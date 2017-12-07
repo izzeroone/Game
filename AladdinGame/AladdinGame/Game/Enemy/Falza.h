@@ -13,6 +13,7 @@
   
 
 #define STAND_TIME 500
+#define THROW_INTERVAL 3000
 
 class FalzaPhysicsComponent : public PhysicsComponent
 {
@@ -51,6 +52,7 @@ private:
 	void throwApple();
 
 	float _standTime; // sau khi bị đánh phải đứng lại một khoảng thời gian
+	float _throwTime;
 
 
 };
