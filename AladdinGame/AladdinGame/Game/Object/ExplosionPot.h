@@ -24,6 +24,7 @@ class ExplosionPotBehaviorComponent : public AppleBehaviorComponent
 public:
 	void update(float deltatime);
 private:
+	void checkCollision(float deltatime);
 	void updateAnimation();
 };
 

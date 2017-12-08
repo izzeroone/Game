@@ -38,6 +38,7 @@ public:
 	void setLandType(eLandType type);
 	eLandType getLandType();
 protected:
+	void checkCollision(float deltatime);
 	void updateFlameLand(float deltatime);
 	void updateFallingLand(float deltatime);
 

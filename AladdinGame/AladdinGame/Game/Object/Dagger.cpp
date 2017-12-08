@@ -58,29 +58,43 @@ void DaggerBehaviorComponent::init()
 
 void DaggerBehaviorComponent::update(float detatime)
 {
-	GameObject * object;
-	
-	object = _collisionComponent->isColliding(eObjectID::LAND);
-	
-	if (object != nullptr)
-	{
-		setStatus(eStatus::DESTROY);
-	}
-
-	object = _collisionComponent->isColliding(eObjectID::ALADDIN);
-
-	if (object != nullptr && _status != eStatus::LANDING)
-	{
-		PlayerBehaviorComponent * encom = (PlayerBehaviorComponent *)object->getBehaviorComponent();
-		encom->dropHitpoint(20);
-		setStatus(eStatus::DESTROY);
-	}
+	checkCollision(detatime);
 }
 
 void DaggerBehaviorComponent::setStatus(eStatus status)
 {
 	BehaviorComponent::setStatus(status);
 	updateAnimation();
+}
+
+void DaggerBehaviorComponent::checkCollision(float deltatime)
+{
+	auto active_object = SceneManager::getInstance()->getCurrentScene()->getActiveObject();
+	_collisionComponent->reset();
+	for (auto obj : active_object)
+	{
+		eObjectID id = obj->getID();
+		switch (id)
+		{
+		case LAND:
+			if (_collisionComponent->checkCollision(obj, deltatime, true))
+			{
+				setStatus(eStatus::DESTROY);
+			}
+			break;
+		case ALADDIN:
+			if (_collisionComponent->checkCollision(obj, deltatime, false))
+			{
+				PlayerBehaviorComponent * encom = (PlayerBehaviorComponent *)obj->getBehaviorComponent();
+				encom->dropHitpoint(20);
+				setStatus(eStatus::DESTROY);
+			}
+
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 

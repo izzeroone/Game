@@ -80,14 +80,7 @@ void NahbiBehaviorComponent::update(float detatime)
 		standing();
 		return;
 	}
-
-	//check collision with flame_land
-	GameObject * object;
-	object = _collisionComponent->isColliding(eObjectID::LAND);
-	if (object != nullptr && ((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType() == eLandType::lFLAME) {
-		_obj->getAnimationComponent()->setTempAnimation(eStatus::BURNED, 1);
-	}
-
+	checkCollision(detatime);
 
 	auto aladdin = SceneManager::getInstance()->getCurrentScene()->getObject(eObjectID::ALADDIN);
 	auto aladdinPos = aladdin->getPhysicsComponent()->getPosition();
@@ -132,6 +125,28 @@ void NahbiBehaviorComponent::dropHitpoint(int damage)
 	EnemyBehaviorComponent::dropHitpoint(damage);
 	_obj->getAnimationComponent()->setTempAnimation(eStatus::BEATEN, 1);
 	_standTime = STAND_TIME;
+}
+
+void NahbiBehaviorComponent::checkCollision(float deltatime)
+{
+	auto active_object = SceneManager::getInstance()->getCurrentScene()->getActiveObject();
+	_collisionComponent->reset();
+	for (auto obj : active_object)
+	{
+		eObjectID id = obj->getID();
+		switch (id)
+		{
+		case LAND:
+			if (_collisionComponent->checkCollision(obj, deltatime, true))
+			{
+				if (((LandBehaviorComponent*)obj->getBehaviorComponent())->getLandType() == eLandType::lFLAME)
+				{
+					_obj->getAnimationComponent()->setTempAnimation(eStatus::BURNED, 1);
+				}
+			}
+			break;
+		}
+	}
 }
 
 void NahbiBehaviorComponent::updateAnimation()

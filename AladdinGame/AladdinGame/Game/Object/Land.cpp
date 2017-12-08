@@ -45,8 +45,25 @@ eLandType LandBehaviorComponent::getLandType()
 	return _landType;
 }
 
+void LandBehaviorComponent::checkCollision(float deltatime)
+{
+	auto active_object = SceneManager::getInstance()->getCurrentScene()->getActiveObject();
+	_collisionComponent->reset();
+	for (auto obj : active_object)
+	{
+		eObjectID id = obj->getID();
+		switch (id)
+		{
+		case ALADDIN:
+			_collisionComponent->checkCollision(obj, deltatime, true);
+			break;
+		}
+	}
+}
+
 void LandBehaviorComponent::updateFlameLand(float deltatime)
 {
+	checkCollision(deltatime);
 	if (_timer != 0)
 	{
 		_timer += deltatime;
@@ -81,6 +98,7 @@ void LandBehaviorComponent::updateFlameLand(float deltatime)
 
 void LandBehaviorComponent::updateFallingLand(float deltatime)
 {
+	checkCollision(deltatime);
 	_obj->getAnimationComponent()->setAnimation(eStatus::NORMAL);
 
 	if (getStatus() == eStatus::FALLING)

@@ -44,10 +44,25 @@ void FlameBehaviorComponent::update(float deltatime)
 		setStatus(eStatus::DESTROY);
 		return;
 	}
+	
+	checkCollision(deltatime);
+}
 
-	GameObject * obj = _collisionComponent->isColliding(eObjectID::ALADDIN);
-	if (obj != nullptr)
+void FlameBehaviorComponent::checkCollision(float deltatime)
+{
+	auto active_object = SceneManager::getInstance()->getCurrentScene()->getActiveObject();
+	_collisionComponent->reset();
+	for (auto obj : active_object)
 	{
-		((PlayerBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(10);
+		eObjectID id = obj->getID();
+		switch (id)
+		{
+			case ALADDIN:
+			if (_collisionComponent->checkCollision(obj, deltatime, false))
+			{
+				((PlayerBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(10);
+			}
+			break;
+		}
 	}
 }

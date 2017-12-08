@@ -28,30 +28,47 @@ ExplosionPot::~ExplosionPot()
 
 void ExplosionPotBehaviorComponent::update(float deltatime)
 {
-	GameObject * object;
-
-	object = _collisionComponent->isColliding(eObjectID::LAND);
-
-	if (object != nullptr)
-	{
-		setStatus(eStatus::LANDING);
-		standing();
-	}
-
-	object = _collisionComponent->isColliding(eObjectID::ALADDIN);
-
-	if (object != nullptr && _status != eStatus::LANDING)
-	{
-		setStatus(eStatus::DESTROY);
-		standing();
-		AladdinBehaviorComponent * encom = (AladdinBehaviorComponent *)object->getBehaviorComponent();
-		encom->dropHitpoint(20);
-	}
+	checkCollision(deltatime);
 
 	//done landing, get destroyed
 	if (_status == eStatus::LANDING && _obj->getAnimationComponent()->getCurrentAnimation()->getCount() >= 1)
 	{
 		setStatus(eStatus::DESTROY);
+	}
+}
+
+void ExplosionPotBehaviorComponent::checkCollision(float deltatime)
+{
+	auto active_object = SceneManager::getInstance()->getCurrentScene()->getActiveObject();
+	_collisionComponent->reset();
+	for (auto obj : active_object)
+	{
+		eObjectID id = obj->getID();
+		switch (id)
+		{
+		case LAND:
+			if (_collisionComponent->checkCollision(obj, deltatime, true))
+			{
+				setStatus(eStatus::LANDING);
+				standing();
+			}
+			break;
+		case ALADDIN:
+			if (_collisionComponent->checkCollision(obj, deltatime, false))
+			{
+				if (_status != eStatus::LANDING)
+				{
+					setStatus(eStatus::LANDING);
+					standing();
+					PlayerBehaviorComponent * encom = (PlayerBehaviorComponent *)obj->getBehaviorComponent();
+					encom->dropHitpoint(20);
+				}
+			}
+
+			break;
+		default:
+			break;
+		}
 	}
 }
 

@@ -35,6 +35,7 @@ public:
 	void update(float detatime);
 	void setStatus(eStatus status) override;
 protected:
+	void checkCollision(float deltatime);
 	vector<GameObject*> _hitObject;// the object get slash do don't get slash again
 	virtual void updateAnimation();
 	void standing();

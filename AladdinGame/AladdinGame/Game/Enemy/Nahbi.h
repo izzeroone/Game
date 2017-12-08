@@ -39,6 +39,7 @@ public:
 	void setStatus(eStatus status) override;
 	void dropHitpoint(int damage) override;
 private:
+	void checkCollision(float deltatime);
 	void updateAnimation();
 	void faceLeft();
 	void faceRight();

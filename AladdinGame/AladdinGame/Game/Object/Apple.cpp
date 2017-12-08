@@ -11,6 +11,7 @@ Apple::~Apple()
 {
 }
 
+
 void ApplePhysicsComponent::init()
 {
 	auto movement = new Movement(GVector2(0, 0), GVector2(0, 0), this);
@@ -60,27 +61,27 @@ void AppleBehaviorComponent::init()
 void AppleBehaviorComponent::update(float detatime)
 {
 	GameObject * object;
-	
-	object = _collisionComponent->isColliding(eObjectID::LAND);
-	
-	if (object != nullptr)
-	{
-		setStatus(eStatus::LANDING);
-		standing();
-	}
-	auto isEnemyFunc = [](GameObject* obj) {
-		auto id = obj->getID();
-		return id == eObjectID::HAKIM || id == eObjectID::NAHBI || id == eObjectID::FALZA;
-	};
-	object = _collisionComponent->isColliding(isEnemyFunc);
+	checkCollision(detatime);
+	//object = _collisionComponent->isColliding(eObjectID::LAND);
+	//
+	//if (object != nullptr)
+	//{
+	//	setStatus(eStatus::LANDING);
+	//	standing();
+	//}
+	//auto isEnemyFunc = [](GameObject* obj) {
+	//	auto id = obj->getID();
+	//	return id == eObjectID::HAKIM || id == eObjectID::NAHBI || id == eObjectID::FALZA;
+	//};
+	//object = _collisionComponent->isColliding(isEnemyFunc);
 
-	if (object != nullptr && _status != eStatus::LANDING)
-	{
-		setStatus(eStatus::LANDING);
-		standing();
-		EnemyBehaviorComponent * encom = (EnemyBehaviorComponent *)object->getBehaviorComponent();
-		encom->dropHitpoint(20);
-	}
+	//if (object != nullptr && _status != eStatus::LANDING)
+	//{
+	//	setStatus(eStatus::LANDING);
+	//	standing();
+	//	EnemyBehaviorComponent * encom = (EnemyBehaviorComponent *)object->getBehaviorComponent();
+	//	encom->dropHitpoint(20);
+	//}
 
 	//done animation, get destroyed
 	if (_obj->getAnimationComponent()->getCurrentAnimation()->getCount() >= 1)
@@ -93,6 +94,41 @@ void AppleBehaviorComponent::setStatus(eStatus status)
 {
 	BehaviorComponent::setStatus(status);
 	updateAnimation();
+}
+
+void AppleBehaviorComponent::checkCollision(float deltatime)
+{
+	auto active_object = SceneManager::getInstance()->getCurrentScene()->getActiveObject();
+	_collisionComponent->reset();
+	for (auto obj : active_object)
+	{
+		eObjectID id = obj->getID();
+		switch (id)
+		{
+		case LAND:
+			if (_collisionComponent->checkCollision(obj, deltatime, true))
+			{
+				setStatus(eStatus::LANDING);
+				standing();
+			}
+			break;
+		case HAKIM: case NAHBI: case FALZA:
+			if (_collisionComponent->checkCollision(obj, deltatime, false))
+			{
+				if (_status != eStatus::LANDING)
+				{
+					setStatus(eStatus::LANDING);
+					standing();
+					EnemyBehaviorComponent * encom = (EnemyBehaviorComponent *)obj->getBehaviorComponent();
+					encom->dropHitpoint(20);
+				}
+			}
+			
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 

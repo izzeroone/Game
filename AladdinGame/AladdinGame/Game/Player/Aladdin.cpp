@@ -227,6 +227,17 @@ void AladdinBehaviorComponent::update(float detatime)
 	switch (_status)
 	{
 	case NORMAL:
+		object = _collisionComponent->isColliding(eObjectID::LAND);
+		if (object == nullptr)
+		{
+
+			setStatus(eStatus::FALLING);
+
+			falling();
+
+			break;
+
+		}
 		if (_obj->getAnimationComponent()->getCurrentAnimation()->getTotalTimeAnimation() >= ALADDIN_BORING_TIME)
 		{
 			_obj->getAnimationComponent()->setAnimation(eStatus::BORING1);
@@ -377,6 +388,51 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		break;
 	case RUNNING:
+		objs = _collisionComponent->areColliding(eObjectID::LAND);
+
+		posY = 0;
+
+		if (objs.size() != 0)
+
+		{
+
+			for (auto obj : objs)
+
+			{
+
+				//tìm tọa độ y lớn nhất
+
+				if (obj->getPhysicsComponent()->getPositionY() > posY)
+
+				{
+
+					posY = obj->getPhysicsComponent()->getPositionY();
+
+				}
+
+				_collisionComponent->updatePosition(obj);
+
+			}
+
+			movement->setAddPos(GVector2(0, posY - _obj->getPhysicsComponent()->getPositionY()));
+
+			//_obj->getPhysicsComponent()->setPositionY(posY);
+
+		}
+
+		else
+
+		{
+
+			setStatus(eStatus::FALLING);
+
+			standing();
+
+			falling();
+
+			break;
+
+		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
 			moveLeft();
@@ -875,11 +931,12 @@ void AladdinBehaviorComponent::checkCollision(float deltatime)
 		switch (id)
 		{
 		case LAND:
-			handleCollisionLand((Land*)obj, deltatime, _collisionComponent->checkCollision(obj, deltatime, false));
+			if (_collisionComponent->checkCollision(obj, deltatime, true))
+				handleCollisionLand(obj, deltatime);
 			break;
 		case ROPE:
 			if (_collisionComponent->checkCollision(obj, deltatime, false))
-				handleCollisionRope((Rope*)obj, deltatime);
+				handleCollisionRope(obj, deltatime);
 			break;
 		default:
 			break;
@@ -887,83 +944,26 @@ void AladdinBehaviorComponent::checkCollision(float deltatime)
 	}
 }
 
-void AladdinBehaviorComponent::handleCollisionLand(Land* otherObject, float deltatime, bool isCollide)
+void AladdinBehaviorComponent::handleCollisionLand(GameObject* otherObject, float deltatime)
 {
-	vector<GameObject *> objs;
-	GameObject * object;
-	Land *	landObject;
-	Rope * ropeObject;
-	eDirection direction;
-	auto movement = (Movement *)_obj->getPhysicsComponent()->getComponent("Movement");
-	float posY;
-	float posX;
-
 	switch (_status)
 	{
-	case NORMAL:
-		if (!isCollide)
-		{
-			setStatus(eStatus::FALLING);
-			falling();
-		}
-		break;
 	case FALLING:
-		//landing
-		objs = _collisionComponent->areColliding(eObjectID::LAND);
-		if (objs.size() != 0)
-		{
-			bool canPassThrough = false;
-			for (auto obj : objs)
-			{
-				if (((LandBehaviorComponent*)obj->getBehaviorComponent())->getLandType() == eLandType::lFALLTHROUGHT && _obj->getPhysicsComponent()->getVelocity().y <= -900)
-				{
-					canPassThrough = true;
-				}
-				else
-				{
-					canPassThrough = false;
-					break;
-				}
-			}
-			auto object = objs[0];
-			if (_collisionComponent->getSide(object) != eDirection::BOTTOM && !canPassThrough)
-			{
-				__debugoutput(((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType());
-				setStatus(eStatus::NORMAL);
-				_collisionComponent->updatePosition(object);
-				standing();
-				_preObject = object;
-				break;
-			}
-		}
-	case RUNNING:
-		objs = _collisionComponent->areColliding(eObjectID::LAND);
-		posY = 0;
-		if (objs.size() != 0)
-		{
-			for (auto obj : objs)
-			{
-				//tìm tọa độ y lớn nhất
-				if (obj->getPhysicsComponent()->getPositionY() > posY)
-				{
-					posY = obj->getPhysicsComponent()->getPositionY();
-				}
-				_collisionComponent->updatePosition(obj);
-			}
-			//movement->setAddPos(GVector2(0, posY - _obj->getPhysicsComponent()->getPositionY()));
-			_obj->getPhysicsComponent()->setPositionY(posY);
-		}
+		setStatus(eStatus::NORMAL);
+		standing();
+		break;
 	}
 }
 
-void AladdinBehaviorComponent::handleCollisionRope(Rope* otherObject, float deltatime)
+void AladdinBehaviorComponent::handleCollisionRope(GameObject* otherObject, float deltatime)
 {
+	Rope* ropeObject = (Rope*)otherObject;
 	switch (_status)
 	{
 	case FALLING:
-		if (otherObject->getRopeType() == eRopeType::rVERTICAL && otherObject->getPhysicsComponent()->getPositionY() >= _obj->getPhysicsComponent()->getPositionY() + ALADDIN_CLIMB_HEIGHT)
+		if (ropeObject->getRopeType() == eRopeType::rVERTICAL && ropeObject->getPhysicsComponent()->getPositionY() >= _obj->getPhysicsComponent()->getPositionY() + ALADDIN_CLIMB_HEIGHT)
 		{
-			RECT ropeBound = otherObject->getPhysicsComponent()->getBounding();
+			RECT ropeBound = ropeObject->getPhysicsComponent()->getBounding();
 
 			float newPostionX = ropeBound.left + (ropeBound.right - ropeBound.left) / 2;// middle postion of the rope
 																						//since the origin is 0.0f 0.0f so must minus haft width of aladdin to get the right positon
@@ -973,21 +973,21 @@ void AladdinBehaviorComponent::handleCollisionRope(Rope* otherObject, float delt
 			climbVertical();
 			faceRight();
 
-			_preObject = otherObject;
+			_preObject = ropeObject;
 
 			break;
 
 		}
-		if (otherObject->getRopeType() == eRopeType::rHORIZONTAL)
+		if (ropeObject->getRopeType() == eRopeType::rHORIZONTAL)
 		{
-			RECT ropeBound = otherObject->getPhysicsComponent()->getBounding();
+			RECT ropeBound = ropeObject->getPhysicsComponent()->getBounding();
 			float newPostionY = ropeBound.top;
 			newPostionY -= ALADDIN_CLIMB_HEIGHT;
 			_obj->getPhysicsComponent()->setPositionY(newPostionY);
 			setStatus(eStatus::CLIMB_HORIZON);
 			climbHorizon();
 
-			_preObject = otherObject;
+			_preObject = ropeObject;
 
 			break;
 		}

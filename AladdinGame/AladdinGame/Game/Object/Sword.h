@@ -28,6 +28,7 @@ public:
 	void update(float detatime);
 	void canSlashEnemy(bool);
 private:
+	void checkCollision(float deltatime);
 	vector<GameObject*> _slashObject;// the object get slash do don't get slash again
 	float _livingTime;
 	bool _canSlashEnemy;

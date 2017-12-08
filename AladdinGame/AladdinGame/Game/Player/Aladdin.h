@@ -101,8 +101,8 @@ private:
 	virtual void executeCommand(eCommand command) override;
 	// Collision check 
 	void checkCollision(float deltatime);
-	void handleCollisionLand(Land* otherObject, float deltatime, bool isCollide);
-	void handleCollisionRope(Rope* otherObject, float deltatime);
+	void handleCollisionLand(GameObject* otherObject, float deltatime);
+	void handleCollisionRope(GameObject* otherObject, float deltatime);
 	float _protectTime;
 	bool _isBoring; // flag set not to update animation when boring
 	GVector2 _respawnPostion;

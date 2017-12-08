@@ -29,6 +29,7 @@ public:
 	void init();
 	void update(float deltatime) override;
 protected:
+	void checkCollision(float deltatime);
 };
 
 
