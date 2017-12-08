@@ -120,7 +120,8 @@ enum eLandType
 	lNORMAL = 0,
 	lFLAME = 1,
 	lFALLING = 2,
-	lFALLTHROUGHT = 3
+	lFALLTHROUGHT = 3,
+	lLADDER = 4
 };
 
 enum eSoundId

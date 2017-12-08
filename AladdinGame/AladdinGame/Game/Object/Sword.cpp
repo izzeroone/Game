@@ -73,13 +73,16 @@ void SwordBehaviorComponent::checkCollision(float deltatime)
 			switch (id)
 			{
 			case HAKIM: case NAHBI: case FALZA:
-				auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
-				if (it == _slashObject.end() || it._Ptr == nullptr)
+				if (_collisionComponent->checkCollision(obj, deltatime, false))
 				{
-					((EnemyBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(10);
-					_slashObject.push_back(obj);
+					auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
+					if (it == _slashObject.end() || it._Ptr == nullptr)
+					{
+						((EnemyBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(10);
+						_slashObject.push_back(obj);
+					}
+					break;
 				}
-				break;
 
 			}
 		}
@@ -88,13 +91,16 @@ void SwordBehaviorComponent::checkCollision(float deltatime)
 			switch (id)
 			{
 			case ALADDIN:
-				auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
-				if (it == _slashObject.end() || it._Ptr == nullptr)
+				if (_collisionComponent->checkCollision(obj, deltatime, false))
 				{
-					((PlayerBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(10);
-					_slashObject.push_back(obj);
+					auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
+					if (it == _slashObject.end() || it._Ptr == nullptr)
+					{
+						((PlayerBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(10);
+						_slashObject.push_back(obj);
+					}
+					break;
 				}
-				break;
 			}
 		}
 	}

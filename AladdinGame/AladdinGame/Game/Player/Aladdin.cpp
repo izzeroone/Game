@@ -178,6 +178,7 @@ void AladdinBehaviorComponent::init()
 {
 	_hitpoint = 1000;
 	_isBoring = false;
+	_climbingLadder = false;
 	_preStatus = eStatus::NORMAL;
 	_preObject = new GameObject();
 	_preObject->setID(eObjectID::ROPE);
@@ -197,15 +198,16 @@ void AladdinBehaviorComponent::update(float detatime)
 	Rope * ropeObject;
 	eDirection direction;
 	auto movement = (Movement *)_obj->getPhysicsComponent()->getComponent("Movement");
-	float posY;
-	float posX;
+	GVector2 otherPos;
+	GVector2 otherPos2;
+	GVector2 myPos;
+	float diffY;
 	checkCollision(detatime);
 	if (_input->isKeyPressed(BT_BOUND))
 	{
-		GVector2 velocity = _obj->getPhysicsComponent()->getVelocity();
-		OutputDebugStringW(L"Aladdin Velocity : ");
-		__debugoutput(velocity.x);
-		__debugoutput(velocity.y);
+		objs = _collisionComponent->areColliding(eObjectID::LAND);
+		OutputDebugStringW(L"Collising with : ");
+		__debugoutput(objs.size());
 	}
 
 	if (_obj->getPhysicsComponent()->getPositionY() + ALADDIN_HEIGHT < 0)
@@ -389,49 +391,50 @@ void AladdinBehaviorComponent::update(float detatime)
 		break;
 	case RUNNING:
 		objs = _collisionComponent->areColliding(eObjectID::LAND);
-
-		posY = 0;
-
+		otherPos.y = 0;
+		myPos = _obj->getPhysicsComponent()->getPosition();
+		myPos.x += _obj->getAnimationComponent()->getBounding().right - _obj->getAnimationComponent()->getBounding().right;
 		if (objs.size() != 0)
-
 		{
-
 			for (auto obj : objs)
-
 			{
-
+				object = obj;
 				//tìm tọa độ y lớn nhất
-
-				if (obj->getPhysicsComponent()->getPositionY() > posY)
-
+				if (obj->getPhysicsComponent()->getPositionY() > otherPos.x)
 				{
-
-					posY = obj->getPhysicsComponent()->getPositionY();
-
+					otherPos = obj->getPhysicsComponent()->getPosition();
 				}
-
-				_collisionComponent->updatePosition(obj);
-
+				//_collisionComponent->updatePosition(obj);
 			}
-
-			movement->setAddPos(GVector2(0, posY - _obj->getPhysicsComponent()->getPositionY()));
-
-			//_obj->getPhysicsComponent()->setPositionY(posY);
-
+			//if (_preObject != nullptr && _preObject->getID() == eObjectID::LAND)
+			//{
+			//	otherPos2 = _preObject->getPhysicsComponent()->getPosition();
+			//	if (otherPos2.x != otherPos.x)
+			//	{
+			//		diffY = (otherPos2.y - otherPos.y) / (otherPos2.x - otherPos.x) * (myPos.x - otherPos2.x);
+			//		movement->setAddPos(GVector2(0, diffY));
+			//	}
+			//}
+			movement->setAddPos(GVector2(0, (otherPos.y - myPos.y)));
+			if (otherPos.y > 0)
+			{
+				_climbingLadder = true;
+			}
+			else
+			{
+				_climbingLadder = false;
+			}
+			
+			//_obj->getPhysicsComponent()->setPositionY(posY)
 		}
-
 		else
-
 		{
-
-			setStatus(eStatus::FALLING);
-
-			standing();
-
-			falling();
-
-			break;
-
+			if (!_climbingLadder)
+			{
+				setStatus(eStatus::FALLING);
+				standing();
+				falling();
+			}
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
@@ -973,7 +976,6 @@ void AladdinBehaviorComponent::handleCollisionRope(GameObject* otherObject, floa
 			climbVertical();
 			faceRight();
 
-			_preObject = ropeObject;
 
 			break;
 
@@ -986,8 +988,6 @@ void AladdinBehaviorComponent::handleCollisionRope(GameObject* otherObject, floa
 			_obj->getPhysicsComponent()->setPositionY(newPostionY);
 			setStatus(eStatus::CLIMB_HORIZON);
 			climbHorizon();
-
-			_preObject = ropeObject;
 
 			break;
 		}

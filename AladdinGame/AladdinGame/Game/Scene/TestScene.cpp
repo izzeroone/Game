@@ -42,7 +42,7 @@ bool TestScene::init()
 {
 
 	_Aladdin = ObjectFactory::getAladdin();
-	_Aladdin->getPhysicsComponent()->setPosition(200, 1000);
+	_Aladdin->getPhysicsComponent()->setPosition(2000, 1000);
 
 	auto aladdinBehavior = (AladdinBehaviorComponent*)_Aladdin->getBehaviorComponent();
 	aladdinBehavior->setRespawnPosition(GVector2(200, 1000));
@@ -121,50 +121,21 @@ void TestScene::update(float dt)
 	auto listobjectname = _root->getActiveObject(screen);
 
 	// [Bước 4]
-	OutputDebugStringW(L"Object in screen : ");
+	//OutputDebugStringW(L"Object in screen : ");
 	for (auto name : listobjectname)
 	{
 		auto obj = _mapobject.find(name);
 		if (obj == _mapobject.end() || obj._Ptr == nullptr)
 			continue;
-		OutputDebugStringA(obj->first.c_str());
-		OutputDebugStringW(L" ");
+		//OutputDebugStringA(obj->first.c_str());
+		//OutputDebugStringW(L" ");
 		_active_object.push_back(obj->second);
 	}
-	OutputDebugStringW(L"\n ");
+	//OutputDebugStringW(L"\n ");
 
 	// [Bước 5]
 	_active_object.insert(_active_object.end(), _listobject.begin(), _listobject.end());
 
-	//// [Bước 6]
-	//for (GameObject* obj : _active_object)
-	//{
-	//	// một vài trạng thái không cần thiết phải check hàm va chạm
-	//	if (obj == nullptr || obj->getID() == eObjectID::ROPE || obj->getID() == eObjectID::THROWER)
-	//		continue;
-	//	// don't check Land except flame land
-	//	if (obj->getID() == eObjectID::LAND)
-	//	{
-	//		if (((LandBehaviorComponent *)obj->getBehaviorComponent())->getLandType() != eLandType::lFLAME)
-	//			continue;
-	//	}
-	//	auto collisionComponent = (CollisionComponent*)obj->getPhysicsComponent()->getComponent("Collision");
-	//	collisionComponent->reset();
-	//	for (GameObject* passiveobj : _active_object)
-	//	{
-	//		if (passiveobj == nullptr || passiveobj == obj)
-	//			continue;
-	//		if (collisionComponent != nullptr)
-	//		{
-	//			if (passiveobj->getID() == eObjectID::LAND) // aladdin can overlap rope so don't update target postion. Let aladdin behavior do it instead
-	//				collisionComponent->checkCollision(passiveobj, dt, false);
-	//			else
-	//				collisionComponent->checkCollision(passiveobj, dt, false);
-	//		}
-	//		
-	//	}
-	//}
-	//[Bước 7]
 	for (GameObject* obj : _active_object)
 	{
 		obj->update(dt);

@@ -55,10 +55,10 @@
         <Node left="2386" right="2982" top="860" bottom="773" level="4" />
         <Node left="2386" right="2982" top="773" bottom="686" level="4" />
         <Node left="2982" right="3578" top="860" bottom="773" level="4">
-          <Node left="2982" right="3280" top="860" bottom="816" level="5" object="land_25 rope_vertical_2 " />
-          <Node left="2982" right="3280" top="816" bottom="772" level="5" object="land_25 rope_vertical_2 " />
-          <Node left="3280" right="3578" top="860" bottom="816" level="5" object="land_25 falza_2 " />
-          <Node left="3280" right="3578" top="816" bottom="772" level="5" object="land_25 " />
+          <Node left="2982" right="3280" top="860" bottom="816" level="5" object="land_10 rope_vertical_2 " />
+          <Node left="2982" right="3280" top="816" bottom="772" level="5" object="land_10 rope_vertical_2 " />
+          <Node left="3280" right="3578" top="860" bottom="816" level="5" object="land_10 falza_2 " />
+          <Node left="3280" right="3578" top="816" bottom="772" level="5" object="land_10 " />
         </Node>
         <Node left="2982" right="3578" top="773" bottom="686" level="4">
           <Node left="2982" right="3280" top="773" bottom="729" level="5" object="rope_vertical_2 " />
@@ -85,17 +85,17 @@
       </Node>
       <Node left="3579" right="4772" top="860" bottom="687" level="3">
         <Node left="3579" right="4175" top="860" bottom="773" level="4">
-          <Node left="3579" right="3877" top="860" bottom="816" level="5" object="land_25 " />
-          <Node left="3579" right="3877" top="816" bottom="772" level="5" object="land_25 " />
-          <Node left="3877" right="4175" top="860" bottom="816" level="5" object="land_25 nahbi_3 " />
-          <Node left="3877" right="4175" top="816" bottom="772" level="5" object="land_25 " />
+          <Node left="3579" right="3877" top="860" bottom="816" level="5" object="land_10 " />
+          <Node left="3579" right="3877" top="816" bottom="772" level="5" object="land_10 " />
+          <Node left="3877" right="4175" top="860" bottom="816" level="5" object="land_10 nahbi_3 " />
+          <Node left="3877" right="4175" top="816" bottom="772" level="5" object="land_10 " />
         </Node>
         <Node left="3579" right="4175" top="773" bottom="686" level="4" />
         <Node left="4175" right="4771" top="860" bottom="773" level="4">
-          <Node left="4175" right="4473" top="860" bottom="816" level="5" object="land_25 nahbi_3 " />
-          <Node left="4175" right="4473" top="816" bottom="772" level="5" object="land_25 wall1 " />
-          <Node left="4473" right="4771" top="860" bottom="816" level="5" object="land_25 " />
-          <Node left="4473" right="4771" top="816" bottom="772" level="5" object="land_25 wall1 " />
+          <Node left="4175" right="4473" top="860" bottom="816" level="5" object="land_10 nahbi_3 " />
+          <Node left="4175" right="4473" top="816" bottom="772" level="5" object="land_10 wall1 " />
+          <Node left="4473" right="4771" top="860" bottom="816" level="5" object="land_10 " />
+          <Node left="4473" right="4771" top="816" bottom="772" level="5" object="land_10 wall1 " />
         </Node>
         <Node left="4175" right="4771" top="773" bottom="686" level="4">
           <Node left="4175" right="4473" top="773" bottom="729" level="5" object="wall1 " />
@@ -127,44 +127,34 @@
       <Node left="0" right="1193" top="344" bottom="172" level="3" />
       <Node left="0" right="1193" top="172" bottom="0" level="3">
         <Node left="0" right="596" top="172" bottom="86" level="4">
-          <Node left="0" right="298" top="172" bottom="129" level="5" object="land_1 " />
+          <Node left="0" right="298" top="172" bottom="129" level="5" />
           <Node left="0" right="298" top="129" bottom="86" level="5" object="land_1 " />
-          <Node left="298" right="596" top="172" bottom="129" level="5" object="land_1 " />
+          <Node left="298" right="596" top="172" bottom="129" level="5" />
           <Node left="298" right="596" top="129" bottom="86" level="5" object="land_1 " />
         </Node>
         <Node left="0" right="596" top="86" bottom="0" level="4" />
         <Node left="596" right="1192" top="172" bottom="86" level="4">
-          <Node left="596" right="894" top="172" bottom="129" level="5" object="land_1 " />
+          <Node left="596" right="894" top="172" bottom="129" level="5" />
           <Node left="596" right="894" top="129" bottom="86" level="5" object="land_1 " />
-          <Node left="894" right="1192" top="172" bottom="129" level="5" object="land_1 land_2 flame_land_1 nakim_1 " />
+          <Node left="894" right="1192" top="172" bottom="129" level="5" object="flame_land_1 nakim_1 " />
           <Node left="894" right="1192" top="129" bottom="86" level="5" object="land_1 land_2 flame_land_1 nakim_1 " />
         </Node>
         <Node left="596" right="1192" top="86" bottom="0" level="4" />
       </Node>
-      <Node left="1193" right="2386" top="344" bottom="172" level="3">
-        <Node left="1193" right="1789" top="344" bottom="258" level="4" />
-        <Node left="1193" right="1789" top="258" bottom="172" level="4" />
-        <Node left="1789" right="2385" top="344" bottom="258" level="4" />
-        <Node left="1789" right="2385" top="258" bottom="172" level="4">
-          <Node left="1789" right="2087" top="258" bottom="215" level="5" />
-          <Node left="1789" right="2087" top="215" bottom="172" level="5" />
-          <Node left="2087" right="2385" top="258" bottom="215" level="5" />
-          <Node left="2087" right="2385" top="215" bottom="172" level="5" object="land_8 " />
-        </Node>
-      </Node>
+      <Node left="1193" right="2386" top="344" bottom="172" level="3" />
       <Node left="1193" right="2386" top="172" bottom="0" level="3">
         <Node left="1193" right="1789" top="172" bottom="86" level="4">
-          <Node left="1193" right="1491" top="172" bottom="129" level="5" object="land_2 nakim_1 falza_1 " />
+          <Node left="1193" right="1491" top="172" bottom="129" level="5" object="nakim_1 falza_1 " />
           <Node left="1193" right="1491" top="129" bottom="86" level="5" object="land_2 nakim_1 falza_1 " />
-          <Node left="1491" right="1789" top="172" bottom="129" level="5" object="land_2 flame_land_2 nakim_1 falza_1 " />
+          <Node left="1491" right="1789" top="172" bottom="129" level="5" object="flame_land_2 nakim_1 falza_1 " />
           <Node left="1491" right="1789" top="129" bottom="86" level="5" object="land_2 flame_land_2 nakim_1 falza_1 " />
         </Node>
         <Node left="1193" right="1789" top="86" bottom="0" level="4" />
         <Node left="1789" right="2385" top="172" bottom="86" level="4">
-          <Node left="1789" right="2087" top="172" bottom="129" level="5" object="land_3 flame_land_2 flame_land_3 falza_1 " />
+          <Node left="1789" right="2087" top="172" bottom="129" level="5" object="flame_land_2 flame_land_3 falza_1 " />
           <Node left="1789" right="2087" top="129" bottom="86" level="5" object="land_3 flame_land_2 flame_land_3 falza_1 " />
-          <Node left="2087" right="2385" top="172" bottom="129" level="5" object="land_4 land_5 land_6 land_7 land_8 flame_land_3 falza_1 " />
-          <Node left="2087" right="2385" top="129" bottom="86" level="5" object="land_4 land_5 land_6 flame_land_3 falza_1 " />
+          <Node left="2087" right="2385" top="172" bottom="129" level="5" object="ladder_1 ladder_2 ladder_3 ladder_4 ladder_5 ladder_6 ladder_7 ladder_8 ladder_9 flame_land_3 falza_1 " />
+          <Node left="2087" right="2385" top="129" bottom="86" level="5" object="ladder_0 ladder_1 flame_land_3 falza_1 " />
         </Node>
         <Node left="1789" right="2385" top="86" bottom="0" level="4" />
       </Node>
@@ -175,22 +165,22 @@
           <Node left="2386" right="2684" top="689" bottom="645" level="5" />
           <Node left="2386" right="2684" top="645" bottom="601" level="5" />
           <Node left="2684" right="2982" top="689" bottom="645" level="5" />
-          <Node left="2684" right="2982" top="645" bottom="601" level="5" object="land_24 " />
+          <Node left="2684" right="2982" top="645" bottom="601" level="5" object="land_9 " />
         </Node>
         <Node left="2386" right="2982" top="602" bottom="515" level="4">
           <Node left="2386" right="2684" top="602" bottom="558" level="5" />
           <Node left="2386" right="2684" top="558" bottom="514" level="5" />
-          <Node left="2684" right="2982" top="602" bottom="558" level="5" object="land_24 " />
+          <Node left="2684" right="2982" top="602" bottom="558" level="5" object="land_9 " />
           <Node left="2684" right="2982" top="558" bottom="514" level="5" />
         </Node>
         <Node left="2982" right="3578" top="689" bottom="602" level="4">
           <Node left="2982" right="3280" top="689" bottom="645" level="5" object="rope_vertical_2 " />
-          <Node left="2982" right="3280" top="645" bottom="601" level="5" object="land_24 " />
+          <Node left="2982" right="3280" top="645" bottom="601" level="5" object="land_9 " />
           <Node left="3280" right="3578" top="689" bottom="645" level="5" />
           <Node left="3280" right="3578" top="645" bottom="601" level="5" />
         </Node>
         <Node left="2982" right="3578" top="602" bottom="515" level="4">
-          <Node left="2982" right="3280" top="602" bottom="558" level="5" object="land_24 " />
+          <Node left="2982" right="3280" top="602" bottom="558" level="5" object="land_9 " />
           <Node left="2982" right="3280" top="558" bottom="514" level="5" />
           <Node left="3280" right="3578" top="602" bottom="558" level="5" />
           <Node left="3280" right="3578" top="558" bottom="514" level="5" object="nahbi_2 " />
@@ -200,14 +190,14 @@
         <Node left="2386" right="2982" top="516" bottom="429" level="4">
           <Node left="2386" right="2684" top="516" bottom="472" level="5" />
           <Node left="2386" right="2684" top="472" bottom="428" level="5" />
-          <Node left="2684" right="2982" top="516" bottom="472" level="5" object="land_23 " />
+          <Node left="2684" right="2982" top="516" bottom="472" level="5" object="land_8 " />
           <Node left="2684" right="2982" top="472" bottom="428" level="5" />
         </Node>
         <Node left="2386" right="2982" top="429" bottom="342" level="4" />
         <Node left="2982" right="3578" top="516" bottom="429" level="4">
-          <Node left="2982" right="3280" top="516" bottom="472" level="5" object="land_22 land_23 " />
+          <Node left="2982" right="3280" top="516" bottom="472" level="5" object="land_7 land_8 " />
           <Node left="2982" right="3280" top="472" bottom="428" level="5" object="fallland1 " />
-          <Node left="3280" right="3578" top="516" bottom="472" level="5" object="land_21 land_22 nahbi_2 " />
+          <Node left="3280" right="3578" top="516" bottom="472" level="5" object="land_6 land_7 nahbi_2 " />
           <Node left="3280" right="3578" top="472" bottom="428" level="5" object="fallland1 " />
         </Node>
         <Node left="2982" right="3578" top="429" bottom="342" level="4">
@@ -245,9 +235,9 @@
       </Node>
       <Node left="3579" right="4772" top="516" bottom="343" level="3">
         <Node left="3579" right="4175" top="516" bottom="429" level="4">
-          <Node left="3579" right="3877" top="516" bottom="472" level="5" object="land_21 nahbi_2 " />
+          <Node left="3579" right="3877" top="516" bottom="472" level="5" object="land_6 nahbi_2 " />
           <Node left="3579" right="3877" top="472" bottom="428" level="5" />
-          <Node left="3877" right="4175" top="516" bottom="472" level="5" object="land_21 rope_vertical_1 " />
+          <Node left="3877" right="4175" top="516" bottom="472" level="5" object="land_6 rope_vertical_1 " />
           <Node left="3877" right="4175" top="472" bottom="428" level="5" object="rope_vertical_1 " />
         </Node>
         <Node left="3579" right="4175" top="429" bottom="342" level="4">
@@ -274,22 +264,17 @@
       <Node left="2386" right="3579" top="344" bottom="172" level="3">
         <Node left="2386" right="2982" top="344" bottom="258" level="4" />
         <Node left="2386" right="2982" top="258" bottom="172" level="4">
-          <Node left="2386" right="2684" top="258" bottom="215" level="5" object="land_14 land_15 " />
-          <Node left="2386" right="2684" top="215" bottom="172" level="5" object="land_8 land_9 land_10 land_11 land_12 land_13 land_14 land_15 " />
-          <Node left="2684" right="2982" top="258" bottom="215" level="5" object="land_15 land_16 land_17 land_18 " />
-          <Node left="2684" right="2982" top="215" bottom="172" level="5" object="land_15 land_16 " />
+          <Node left="2386" right="2684" top="258" bottom="215" level="5" object="ladder_22 ladder_23 ladder_24 ladder_25 " />
+          <Node left="2386" right="2684" top="215" bottom="172" level="5" object="ladder_11 ladder_12 ladder_13 ladder_14 ladder_15 ladder_16 ladder_17 ladder_18 ladder_19 ladder_20 ladder_21 ladder_22 " />
+          <Node left="2684" right="2982" top="258" bottom="215" level="5" object="ladder_25 ladder_26 ladder_27 ladder_28 ladder_29 ladder_30 " />
+          <Node left="2684" right="2982" top="215" bottom="172" level="5" />
         </Node>
         <Node left="2982" right="3578" top="344" bottom="258" level="4" />
-        <Node left="2982" right="3578" top="258" bottom="172" level="4">
-          <Node left="2982" right="3280" top="258" bottom="215" level="5" object="land_18 " />
-          <Node left="2982" right="3280" top="215" bottom="172" level="5" />
-          <Node left="3280" right="3578" top="258" bottom="215" level="5" />
-          <Node left="3280" right="3578" top="215" bottom="172" level="5" />
-        </Node>
+        <Node left="2982" right="3578" top="258" bottom="172" level="4" />
       </Node>
       <Node left="2386" right="3579" top="172" bottom="0" level="3">
         <Node left="2386" right="2982" top="172" bottom="86" level="4">
-          <Node left="2386" right="2684" top="172" bottom="129" level="5" object="land_7 land_8 land_9 land_10 land_11 falza_1 " />
+          <Node left="2386" right="2684" top="172" bottom="129" level="5" object="ladder_9 ladder_10 ladder_11 ladder_12 falza_1 " />
           <Node left="2386" right="2684" top="129" bottom="86" level="5" object="falza_1 " />
           <Node left="2684" right="2982" top="172" bottom="129" level="5" />
           <Node left="2684" right="2982" top="129" bottom="86" level="5" />
@@ -297,15 +282,15 @@
         <Node left="2386" right="2982" top="86" bottom="0" level="4">
           <Node left="2386" right="2684" top="86" bottom="43" level="5" />
           <Node left="2386" right="2684" top="43" bottom="0" level="5" />
-          <Node left="2684" right="2982" top="86" bottom="43" level="5" object="land_19 " />
-          <Node left="2684" right="2982" top="43" bottom="0" level="5" object="land_19 " />
+          <Node left="2684" right="2982" top="86" bottom="43" level="5" object="land_4 " />
+          <Node left="2684" right="2982" top="43" bottom="0" level="5" object="land_4 " />
         </Node>
         <Node left="2982" right="3578" top="172" bottom="86" level="4" />
         <Node left="2982" right="3578" top="86" bottom="0" level="4">
-          <Node left="2982" right="3280" top="86" bottom="43" level="5" object="land_19 nahbi_1 " />
-          <Node left="2982" right="3280" top="43" bottom="0" level="5" object="land_19 " />
-          <Node left="3280" right="3578" top="86" bottom="43" level="5" object="land_19 nahbi_1 " />
-          <Node left="3280" right="3578" top="43" bottom="0" level="5" object="land_19 " />
+          <Node left="2982" right="3280" top="86" bottom="43" level="5" object="land_4 nahbi_1 " />
+          <Node left="2982" right="3280" top="43" bottom="0" level="5" object="land_4 " />
+          <Node left="3280" right="3578" top="86" bottom="43" level="5" object="land_4 nahbi_1 " />
+          <Node left="3280" right="3578" top="43" bottom="0" level="5" object="land_4 " />
         </Node>
       </Node>
       <Node left="3579" right="4772" top="344" bottom="172" level="3" object="pass_thought_land_8 ">
@@ -337,10 +322,10 @@
       <Node left="3579" right="4772" top="172" bottom="0" level="3">
         <Node left="3579" right="4175" top="172" bottom="86" level="4" />
         <Node left="3579" right="4175" top="86" bottom="0" level="4">
-          <Node left="3579" right="3877" top="86" bottom="43" level="5" object="land_19 nahbi_1 " />
-          <Node left="3579" right="3877" top="43" bottom="0" level="5" object="land_19 " />
-          <Node left="3877" right="4175" top="86" bottom="43" level="5" object="land_19 flame_land_4 nahbi_1 " />
-          <Node left="3877" right="4175" top="43" bottom="0" level="5" object="land_19 flame_land_4 " />
+          <Node left="3579" right="3877" top="86" bottom="43" level="5" object="land_4 nahbi_1 " />
+          <Node left="3579" right="3877" top="43" bottom="0" level="5" object="land_4 " />
+          <Node left="3877" right="4175" top="86" bottom="43" level="5" object="land_4 flame_land_4 nahbi_1 " />
+          <Node left="3877" right="4175" top="43" bottom="0" level="5" object="land_4 flame_land_4 " />
         </Node>
         <Node left="4175" right="4771" top="172" bottom="86" level="4">
           <Node left="4175" right="4473" top="172" bottom="129" level="5" object="wall1 " />
@@ -349,10 +334,10 @@
           <Node left="4473" right="4771" top="129" bottom="86" level="5" object="wall1 " />
         </Node>
         <Node left="4175" right="4771" top="86" bottom="0" level="4">
-          <Node left="4175" right="4473" top="86" bottom="43" level="5" object="land_20 flame_land_4 wall1 " />
-          <Node left="4175" right="4473" top="43" bottom="0" level="5" object="land_20 flame_land_4 wall1 " />
-          <Node left="4473" right="4771" top="86" bottom="43" level="5" object="land_26 wall1 " />
-          <Node left="4473" right="4771" top="43" bottom="0" level="5" object="land_26 wall1 " />
+          <Node left="4175" right="4473" top="86" bottom="43" level="5" object="land_5 flame_land_4 wall1 " />
+          <Node left="4175" right="4473" top="43" bottom="0" level="5" object="land_5 flame_land_4 wall1 " />
+          <Node left="4473" right="4771" top="86" bottom="43" level="5" object="land_11 wall1 " />
+          <Node left="4473" right="4771" top="43" bottom="0" level="5" object="land_11 wall1 " />
         </Node>
       </Node>
     </Node>
@@ -364,9 +349,9 @@
         <Node left="4773" right="5369" top="1205" bottom="1118" level="4" />
         <Node left="4773" right="5369" top="1118" bottom="1031" level="4">
           <Node left="4773" right="5071" top="1118" bottom="1074" level="5" />
-          <Node left="4773" right="5071" top="1074" bottom="1030" level="5" object="land_60 " />
+          <Node left="4773" right="5071" top="1074" bottom="1030" level="5" object="land_44 " />
           <Node left="5071" right="5369" top="1118" bottom="1074" level="5" />
-          <Node left="5071" right="5369" top="1074" bottom="1030" level="5" object="land_60 " />
+          <Node left="5071" right="5369" top="1074" bottom="1030" level="5" object="land_44 " />
         </Node>
         <Node left="5369" right="5965" top="1205" bottom="1118" level="4">
           <Node left="5369" right="5667" top="1205" bottom="1161" level="5" object="rope_vertical_4 " />
@@ -376,9 +361,9 @@
         </Node>
         <Node left="5369" right="5965" top="1118" bottom="1031" level="4">
           <Node left="5369" right="5667" top="1118" bottom="1074" level="5" object="rope_vertical_4 " />
-          <Node left="5369" right="5667" top="1074" bottom="1030" level="5" object="land_61 rope_vertical_4 " />
+          <Node left="5369" right="5667" top="1074" bottom="1030" level="5" object="land_45 rope_vertical_4 " />
           <Node left="5667" right="5965" top="1118" bottom="1074" level="5" />
-          <Node left="5667" right="5965" top="1074" bottom="1030" level="5" object="land_64 " />
+          <Node left="5667" right="5965" top="1074" bottom="1030" level="5" object="land_48 " />
         </Node>
       </Node>
       <Node left="5966" right="7159" top="1378" bottom="1205" level="3" />
@@ -386,32 +371,37 @@
         <Node left="5966" right="6562" top="1205" bottom="1118" level="4" />
         <Node left="5966" right="6562" top="1118" bottom="1031" level="4">
           <Node left="5966" right="6264" top="1118" bottom="1074" level="5" />
-          <Node left="5966" right="6264" top="1074" bottom="1030" level="5" object="land_64 " />
+          <Node left="5966" right="6264" top="1074" bottom="1030" level="5" object="land_48 " />
           <Node left="6264" right="6562" top="1118" bottom="1074" level="5" />
-          <Node left="6264" right="6562" top="1074" bottom="1030" level="5" object="land_64 " />
+          <Node left="6264" right="6562" top="1074" bottom="1030" level="5" object="land_48 " />
         </Node>
         <Node left="6562" right="7158" top="1205" bottom="1118" level="4">
           <Node left="6562" right="6860" top="1205" bottom="1161" level="5" />
           <Node left="6562" right="6860" top="1161" bottom="1117" level="5" />
           <Node left="6860" right="7158" top="1205" bottom="1161" level="5" />
-          <Node left="6860" right="7158" top="1161" bottom="1117" level="5" object="land_66 " />
+          <Node left="6860" right="7158" top="1161" bottom="1117" level="5" object="land_50 " />
         </Node>
-        <Node left="6562" right="7158" top="1118" bottom="1031" level="4" />
+        <Node left="6562" right="7158" top="1118" bottom="1031" level="4">
+          <Node left="6562" right="6860" top="1118" bottom="1074" level="5" />
+          <Node left="6562" right="6860" top="1074" bottom="1030" level="5" />
+          <Node left="6860" right="7158" top="1118" bottom="1074" level="5" object="land_50 " />
+          <Node left="6860" right="7158" top="1074" bottom="1030" level="5" />
+        </Node>
       </Node>
     </Node>
     <Node left="4773" right="7159" top="1033" bottom="688" level="2">
       <Node left="4773" right="5966" top="1033" bottom="860" level="3">
         <Node left="4773" right="5369" top="1033" bottom="946" level="4">
-          <Node left="4773" right="5071" top="1033" bottom="989" level="5" object="land_60 " />
+          <Node left="4773" right="5071" top="1033" bottom="989" level="5" object="land_44 " />
           <Node left="4773" right="5071" top="989" bottom="945" level="5" />
-          <Node left="5071" right="5369" top="1033" bottom="989" level="5" object="land_60 " />
+          <Node left="5071" right="5369" top="1033" bottom="989" level="5" object="land_44 " />
           <Node left="5071" right="5369" top="989" bottom="945" level="5" />
         </Node>
         <Node left="4773" right="5369" top="946" bottom="859" level="4" />
         <Node left="5369" right="5965" top="1033" bottom="946" level="4">
-          <Node left="5369" right="5667" top="1033" bottom="989" level="5" object="land_61 rope_vertical_4 " />
+          <Node left="5369" right="5667" top="1033" bottom="989" level="5" object="land_45 rope_vertical_4 " />
           <Node left="5369" right="5667" top="989" bottom="945" level="5" object="rope_vertical_4 " />
-          <Node left="5667" right="5965" top="1033" bottom="989" level="5" object="land_64 " />
+          <Node left="5667" right="5965" top="1033" bottom="989" level="5" object="land_48 " />
           <Node left="5667" right="5965" top="989" bottom="945" level="5" />
         </Node>
         <Node left="5369" right="5965" top="946" bottom="859" level="4">
@@ -426,22 +416,22 @@
         <Node left="4773" right="5369" top="773" bottom="686" level="4" />
         <Node left="5369" right="5965" top="860" bottom="773" level="4">
           <Node left="5369" right="5667" top="860" bottom="816" level="5" object="rope_vertical_4 " />
-          <Node left="5369" right="5667" top="816" bottom="772" level="5" object="land_62 rope_vertical_4 " />
+          <Node left="5369" right="5667" top="816" bottom="772" level="5" object="land_46 rope_vertical_4 " />
           <Node left="5667" right="5965" top="860" bottom="816" level="5" />
-          <Node left="5667" right="5965" top="816" bottom="772" level="5" object="land_62 falza_7 " />
+          <Node left="5667" right="5965" top="816" bottom="772" level="5" object="land_46 falza_7 " />
         </Node>
         <Node left="5369" right="5965" top="773" bottom="686" level="4">
-          <Node left="5369" right="5667" top="773" bottom="729" level="5" object="land_62 rope_vertical_4 " />
+          <Node left="5369" right="5667" top="773" bottom="729" level="5" object="land_46 rope_vertical_4 " />
           <Node left="5369" right="5667" top="729" bottom="685" level="5" />
-          <Node left="5667" right="5965" top="773" bottom="729" level="5" object="land_62 " />
+          <Node left="5667" right="5965" top="773" bottom="729" level="5" object="land_46 " />
           <Node left="5667" right="5965" top="729" bottom="685" level="5" />
         </Node>
       </Node>
       <Node left="5966" right="7159" top="1033" bottom="860" level="3">
         <Node left="5966" right="6562" top="1033" bottom="946" level="4">
-          <Node left="5966" right="6264" top="1033" bottom="989" level="5" object="land_64 " />
+          <Node left="5966" right="6264" top="1033" bottom="989" level="5" object="land_48 " />
           <Node left="5966" right="6264" top="989" bottom="945" level="5" />
-          <Node left="6264" right="6562" top="1033" bottom="989" level="5" object="land_64 " />
+          <Node left="6264" right="6562" top="1033" bottom="989" level="5" object="land_48 " />
           <Node left="6264" right="6562" top="989" bottom="945" level="5" />
         </Node>
         <Node left="5966" right="6562" top="946" bottom="859" level="4" />
@@ -451,22 +441,22 @@
       <Node left="5966" right="7159" top="860" bottom="687" level="3">
         <Node left="5966" right="6562" top="860" bottom="773" level="4">
           <Node left="5966" right="6264" top="860" bottom="816" level="5" />
-          <Node left="5966" right="6264" top="816" bottom="772" level="5" object="land_62 falza_7 " />
+          <Node left="5966" right="6264" top="816" bottom="772" level="5" object="land_46 falza_7 " />
           <Node left="6264" right="6562" top="860" bottom="816" level="5" />
-          <Node left="6264" right="6562" top="816" bottom="772" level="5" object="land_62 falza_7 " />
+          <Node left="6264" right="6562" top="816" bottom="772" level="5" object="land_46 falza_7 " />
         </Node>
         <Node left="5966" right="6562" top="773" bottom="686" level="4">
-          <Node left="5966" right="6264" top="773" bottom="729" level="5" object="land_62 " />
+          <Node left="5966" right="6264" top="773" bottom="729" level="5" object="land_46 " />
           <Node left="5966" right="6264" top="729" bottom="685" level="5" />
-          <Node left="6264" right="6562" top="773" bottom="729" level="5" object="land_62 land_63 nahbi_10 " />
-          <Node left="6264" right="6562" top="729" bottom="685" level="5" object="land_63 " />
+          <Node left="6264" right="6562" top="773" bottom="729" level="5" object="land_46 land_47 nahbi_10 " />
+          <Node left="6264" right="6562" top="729" bottom="685" level="5" object="land_47 " />
         </Node>
         <Node left="6562" right="7158" top="860" bottom="773" level="4" />
         <Node left="6562" right="7158" top="773" bottom="686" level="4">
-          <Node left="6562" right="6860" top="773" bottom="729" level="5" object="land_63 nahbi_10 " />
-          <Node left="6562" right="6860" top="729" bottom="685" level="5" object="land_63 " />
-          <Node left="6860" right="7158" top="773" bottom="729" level="5" object="land_63 " />
-          <Node left="6860" right="7158" top="729" bottom="685" level="5" object="land_63 " />
+          <Node left="6562" right="6860" top="773" bottom="729" level="5" object="land_47 nahbi_10 " />
+          <Node left="6562" right="6860" top="729" bottom="685" level="5" object="land_47 " />
+          <Node left="6860" right="7158" top="773" bottom="729" level="5" object="land_47 " />
+          <Node left="6860" right="7158" top="729" bottom="685" level="5" object="land_47 " />
         </Node>
       </Node>
     </Node>
@@ -475,21 +465,26 @@
       <Node left="7159" right="8352" top="1205" bottom="1032" level="3">
         <Node left="7159" right="7755" top="1205" bottom="1118" level="4">
           <Node left="7159" right="7457" top="1205" bottom="1161" level="5" />
-          <Node left="7159" right="7457" top="1161" bottom="1117" level="5" object="land_66 " />
+          <Node left="7159" right="7457" top="1161" bottom="1117" level="5" object="land_50 " />
           <Node left="7457" right="7755" top="1205" bottom="1161" level="5" />
           <Node left="7457" right="7755" top="1161" bottom="1117" level="5" />
         </Node>
-        <Node left="7159" right="7755" top="1118" bottom="1031" level="4" />
+        <Node left="7159" right="7755" top="1118" bottom="1031" level="4">
+          <Node left="7159" right="7457" top="1118" bottom="1074" level="5" object="land_50 " />
+          <Node left="7159" right="7457" top="1074" bottom="1030" level="5" />
+          <Node left="7457" right="7755" top="1118" bottom="1074" level="5" />
+          <Node left="7457" right="7755" top="1074" bottom="1030" level="5" />
+        </Node>
         <Node left="7755" right="8351" top="1205" bottom="1118" level="4" />
         <Node left="7755" right="8351" top="1118" bottom="1031" level="4" />
       </Node>
       <Node left="8352" right="9545" top="1378" bottom="1205" level="3">
         <Node left="8352" right="8948" top="1378" bottom="1291" level="4" />
         <Node left="8352" right="8948" top="1291" bottom="1204" level="4">
-          <Node left="8352" right="8650" top="1291" bottom="1247" level="5" object="land_68 " />
-          <Node left="8352" right="8650" top="1247" bottom="1203" level="5" object="land_68 " />
-          <Node left="8650" right="8948" top="1291" bottom="1247" level="5" object="land_68 " />
-          <Node left="8650" right="8948" top="1247" bottom="1203" level="5" object="land_68 rope_horizontal_2 " />
+          <Node left="8352" right="8650" top="1291" bottom="1247" level="5" object="land_52 " />
+          <Node left="8352" right="8650" top="1247" bottom="1203" level="5" object="land_52 " />
+          <Node left="8650" right="8948" top="1291" bottom="1247" level="5" object="land_52 " />
+          <Node left="8650" right="8948" top="1247" bottom="1203" level="5" object="land_52 rope_horizontal_2 " />
         </Node>
         <Node left="8948" right="9544" top="1378" bottom="1291" level="4" />
         <Node left="8948" right="9544" top="1291" bottom="1204" level="4">
@@ -520,34 +515,34 @@
       <Node left="7159" right="8352" top="1033" bottom="860" level="3">
         <Node left="7159" right="7755" top="1033" bottom="946" level="4">
           <Node left="7159" right="7457" top="1033" bottom="989" level="5" />
-          <Node left="7159" right="7457" top="989" bottom="945" level="5" object="land_67 " />
+          <Node left="7159" right="7457" top="989" bottom="945" level="5" object="land_51 " />
           <Node left="7457" right="7755" top="1033" bottom="989" level="5" />
-          <Node left="7457" right="7755" top="989" bottom="945" level="5" object="land_67 " />
+          <Node left="7457" right="7755" top="989" bottom="945" level="5" object="land_51 " />
         </Node>
         <Node left="7159" right="7755" top="946" bottom="859" level="4">
-          <Node left="7159" right="7457" top="946" bottom="902" level="5" object="land_67 " />
+          <Node left="7159" right="7457" top="946" bottom="902" level="5" object="land_51 " />
           <Node left="7159" right="7457" top="902" bottom="858" level="5" />
-          <Node left="7457" right="7755" top="946" bottom="902" level="5" object="land_67 " />
+          <Node left="7457" right="7755" top="946" bottom="902" level="5" object="land_51 " />
           <Node left="7457" right="7755" top="902" bottom="858" level="5" />
         </Node>
         <Node left="7755" right="8351" top="1033" bottom="946" level="4">
           <Node left="7755" right="8053" top="1033" bottom="989" level="5" />
-          <Node left="7755" right="8053" top="989" bottom="945" level="5" object="land_67 " />
+          <Node left="7755" right="8053" top="989" bottom="945" level="5" object="land_51 " />
           <Node left="8053" right="8351" top="1033" bottom="989" level="5" />
-          <Node left="8053" right="8351" top="989" bottom="945" level="5" object="land_67 " />
+          <Node left="8053" right="8351" top="989" bottom="945" level="5" object="land_51 " />
         </Node>
         <Node left="7755" right="8351" top="946" bottom="859" level="4">
-          <Node left="7755" right="8053" top="946" bottom="902" level="5" object="land_67 " />
+          <Node left="7755" right="8053" top="946" bottom="902" level="5" object="land_51 " />
           <Node left="7755" right="8053" top="902" bottom="858" level="5" />
-          <Node left="8053" right="8351" top="946" bottom="902" level="5" object="land_67 " />
+          <Node left="8053" right="8351" top="946" bottom="902" level="5" object="land_51 " />
           <Node left="8053" right="8351" top="902" bottom="858" level="5" />
         </Node>
       </Node>
       <Node left="7159" right="8352" top="860" bottom="687" level="3">
         <Node left="7159" right="7755" top="860" bottom="773" level="4" />
         <Node left="7159" right="7755" top="773" bottom="686" level="4">
-          <Node left="7159" right="7457" top="773" bottom="729" level="5" object="land_65 " />
-          <Node left="7159" right="7457" top="729" bottom="685" level="5" object="land_65 " />
+          <Node left="7159" right="7457" top="773" bottom="729" level="5" object="land_49 " />
+          <Node left="7159" right="7457" top="729" bottom="685" level="5" object="land_49 " />
           <Node left="7457" right="7755" top="773" bottom="729" level="5" />
           <Node left="7457" right="7755" top="729" bottom="685" level="5" />
         </Node>
@@ -557,26 +552,26 @@
       <Node left="8352" right="9545" top="1033" bottom="860" level="3">
         <Node left="8352" right="8948" top="1033" bottom="946" level="4">
           <Node left="8352" right="8650" top="1033" bottom="989" level="5" />
-          <Node left="8352" right="8650" top="989" bottom="945" level="5" object="land_67 " />
+          <Node left="8352" right="8650" top="989" bottom="945" level="5" object="land_51 " />
           <Node left="8650" right="8948" top="1033" bottom="989" level="5" />
-          <Node left="8650" right="8948" top="989" bottom="945" level="5" object="land_69 falza_8 " />
+          <Node left="8650" right="8948" top="989" bottom="945" level="5" object="land_53 falza_8 " />
         </Node>
         <Node left="8352" right="8948" top="946" bottom="859" level="4">
-          <Node left="8352" right="8650" top="946" bottom="902" level="5" object="land_67 " />
+          <Node left="8352" right="8650" top="946" bottom="902" level="5" object="land_51 " />
           <Node left="8352" right="8650" top="902" bottom="858" level="5" />
-          <Node left="8650" right="8948" top="946" bottom="902" level="5" object="land_69 " />
+          <Node left="8650" right="8948" top="946" bottom="902" level="5" object="land_53 " />
           <Node left="8650" right="8948" top="902" bottom="858" level="5" />
         </Node>
         <Node left="8948" right="9544" top="1033" bottom="946" level="4">
           <Node left="8948" right="9246" top="1033" bottom="989" level="5" />
-          <Node left="8948" right="9246" top="989" bottom="945" level="5" object="land_69 falza_8 " />
+          <Node left="8948" right="9246" top="989" bottom="945" level="5" object="land_53 falza_8 " />
           <Node left="9246" right="9544" top="1033" bottom="989" level="5" />
-          <Node left="9246" right="9544" top="989" bottom="945" level="5" object="land_69 falza_8 nahbi_11 " />
+          <Node left="9246" right="9544" top="989" bottom="945" level="5" object="land_53 falza_8 nahbi_11 " />
         </Node>
         <Node left="8948" right="9544" top="946" bottom="859" level="4">
-          <Node left="8948" right="9246" top="946" bottom="902" level="5" object="land_69 " />
+          <Node left="8948" right="9246" top="946" bottom="902" level="5" object="land_53 " />
           <Node left="8948" right="9246" top="902" bottom="858" level="5" />
-          <Node left="9246" right="9544" top="946" bottom="902" level="5" object="land_69 " />
+          <Node left="9246" right="9544" top="946" bottom="902" level="5" object="land_53 " />
           <Node left="9246" right="9544" top="902" bottom="858" level="5" />
         </Node>
       </Node>
@@ -605,15 +600,15 @@
         <Node left="4773" right="5369" top="602" bottom="515" level="4">
           <Node left="4773" right="5071" top="602" bottom="558" level="5" />
           <Node left="4773" right="5071" top="558" bottom="514" level="5" />
-          <Node left="5071" right="5369" top="602" bottom="558" level="5" object="land_59 nakim_2 " />
-          <Node left="5071" right="5369" top="558" bottom="514" level="5" object="land_59 " />
+          <Node left="5071" right="5369" top="602" bottom="558" level="5" object="land_43 nakim_2 " />
+          <Node left="5071" right="5369" top="558" bottom="514" level="5" object="land_43 " />
         </Node>
         <Node left="5369" right="5965" top="689" bottom="602" level="4" />
         <Node left="5369" right="5965" top="602" bottom="515" level="4">
-          <Node left="5369" right="5667" top="602" bottom="558" level="5" object="land_58 land_59 nakim_2 " />
-          <Node left="5369" right="5667" top="558" bottom="514" level="5" object="land_56 land_57 land_58 land_59 " />
+          <Node left="5369" right="5667" top="602" bottom="558" level="5" object="land_42 land_43 nakim_2 " />
+          <Node left="5369" right="5667" top="558" bottom="514" level="5" object="land_40 land_41 land_42 land_43 " />
           <Node left="5667" right="5965" top="602" bottom="558" level="5" />
-          <Node left="5667" right="5965" top="558" bottom="514" level="5" object="land_56 nahbi_9 " />
+          <Node left="5667" right="5965" top="558" bottom="514" level="5" object="land_40 nahbi_9 " />
         </Node>
       </Node>
       <Node left="4773" right="5966" top="516" bottom="343" level="3">
@@ -622,17 +617,17 @@
           <Node left="4773" right="5071" top="429" bottom="385" level="5" />
           <Node left="4773" right="5071" top="385" bottom="341" level="5" />
           <Node left="5071" right="5369" top="429" bottom="385" level="5" />
-          <Node left="5071" right="5369" top="385" bottom="341" level="5" object="land_28 " />
+          <Node left="5071" right="5369" top="385" bottom="341" level="5" object="land_12 " />
         </Node>
         <Node left="5369" right="5965" top="516" bottom="429" level="4">
-          <Node left="5369" right="5667" top="516" bottom="472" level="5" object="land_56 " />
+          <Node left="5369" right="5667" top="516" bottom="472" level="5" object="land_40 " />
           <Node left="5369" right="5667" top="472" bottom="428" level="5" />
-          <Node left="5667" right="5965" top="516" bottom="472" level="5" object="land_56 " />
+          <Node left="5667" right="5965" top="516" bottom="472" level="5" object="land_40 " />
           <Node left="5667" right="5965" top="472" bottom="428" level="5" />
         </Node>
         <Node left="5369" right="5965" top="429" bottom="342" level="4">
           <Node left="5369" right="5667" top="429" bottom="385" level="5" />
-          <Node left="5369" right="5667" top="385" bottom="341" level="5" object="land_28 " />
+          <Node left="5369" right="5667" top="385" bottom="341" level="5" object="land_12 " />
           <Node left="5667" right="5965" top="429" bottom="385" level="5" />
           <Node left="5667" right="5965" top="385" bottom="341" level="5" />
         </Node>
@@ -641,7 +636,7 @@
         <Node left="5966" right="6562" top="689" bottom="602" level="4" />
         <Node left="5966" right="6562" top="602" bottom="515" level="4">
           <Node left="5966" right="6264" top="602" bottom="558" level="5" />
-          <Node left="5966" right="6264" top="558" bottom="514" level="5" object="land_56 nahbi_9 " />
+          <Node left="5966" right="6264" top="558" bottom="514" level="5" object="land_40 nahbi_9 " />
           <Node left="6264" right="6562" top="602" bottom="558" level="5" />
           <Node left="6264" right="6562" top="558" bottom="514" level="5" />
         </Node>
@@ -655,23 +650,23 @@
       </Node>
       <Node left="5966" right="7159" top="516" bottom="343" level="3">
         <Node left="5966" right="6562" top="516" bottom="429" level="4">
-          <Node left="5966" right="6264" top="516" bottom="472" level="5" object="land_56 " />
+          <Node left="5966" right="6264" top="516" bottom="472" level="5" object="land_40 " />
           <Node left="5966" right="6264" top="472" bottom="428" level="5" />
           <Node left="6264" right="6562" top="516" bottom="472" level="5" />
           <Node left="6264" right="6562" top="472" bottom="428" level="5" />
         </Node>
         <Node left="5966" right="6562" top="429" bottom="342" level="4">
-          <Node left="5966" right="6264" top="429" bottom="385" level="5" object="land_55 " />
-          <Node left="5966" right="6264" top="385" bottom="341" level="5" object="land_55 " />
-          <Node left="6264" right="6562" top="429" bottom="385" level="5" object="land_55 nahbi_8 " />
-          <Node left="6264" right="6562" top="385" bottom="341" level="5" object="land_55 " />
+          <Node left="5966" right="6264" top="429" bottom="385" level="5" object="land_39 " />
+          <Node left="5966" right="6264" top="385" bottom="341" level="5" object="land_39 " />
+          <Node left="6264" right="6562" top="429" bottom="385" level="5" object="land_39 nahbi_8 " />
+          <Node left="6264" right="6562" top="385" bottom="341" level="5" object="land_39 " />
         </Node>
         <Node left="6562" right="7158" top="516" bottom="429" level="4" />
         <Node left="6562" right="7158" top="429" bottom="342" level="4">
-          <Node left="6562" right="6860" top="429" bottom="385" level="5" object="land_55 " />
-          <Node left="6562" right="6860" top="385" bottom="341" level="5" object="land_55 " />
-          <Node left="6860" right="7158" top="429" bottom="385" level="5" object="land_55 falza_6 " />
-          <Node left="6860" right="7158" top="385" bottom="341" level="5" object="land_55 " />
+          <Node left="6562" right="6860" top="429" bottom="385" level="5" object="land_39 " />
+          <Node left="6562" right="6860" top="385" bottom="341" level="5" object="land_39 " />
+          <Node left="6860" right="7158" top="429" bottom="385" level="5" object="land_39 falza_6 " />
+          <Node left="6860" right="7158" top="385" bottom="341" level="5" object="land_39 " />
         </Node>
       </Node>
     </Node>
@@ -680,7 +675,7 @@
         <Node left="4773" right="5369" top="344" bottom="258" level="4">
           <Node left="4773" right="5071" top="344" bottom="301" level="5" object="pass_thought_land_2 pass_thought_land_3 pass_thought_land_4 pass_thought_land_5 pass_thought_land_6 " />
           <Node left="4773" right="5071" top="301" bottom="258" level="5" object="pass_thought_land_3 pass_thought_land_4 pass_thought_land_5 pass_thought_land_6 pass_thought_land_7 pass_thought_land_8 pass_thought_land_9 " />
-          <Node left="5071" right="5369" top="344" bottom="301" level="5" object="land_28 pass_thought_land_1 pass_thought_land_2 " />
+          <Node left="5071" right="5369" top="344" bottom="301" level="5" object="land_12 pass_thought_land_1 pass_thought_land_2 " />
           <Node left="5071" right="5369" top="301" bottom="258" level="5" />
         </Node>
         <Node left="4773" right="5369" top="258" bottom="172" level="4">
@@ -690,54 +685,54 @@
           <Node left="5071" right="5369" top="215" bottom="172" level="5" />
         </Node>
         <Node left="5369" right="5965" top="344" bottom="258" level="4">
-          <Node left="5369" right="5667" top="344" bottom="301" level="5" object="land_28 " />
+          <Node left="5369" right="5667" top="344" bottom="301" level="5" object="land_12 " />
           <Node left="5369" right="5667" top="301" bottom="258" level="5" object="nahbi_4 " />
           <Node left="5667" right="5965" top="344" bottom="301" level="5" />
           <Node left="5667" right="5965" top="301" bottom="258" level="5" />
         </Node>
         <Node left="5369" right="5965" top="258" bottom="172" level="4">
-          <Node left="5369" right="5667" top="258" bottom="215" level="5" object="land_29 nahbi_4 " />
+          <Node left="5369" right="5667" top="258" bottom="215" level="5" object="land_13 nahbi_4 " />
           <Node left="5369" right="5667" top="215" bottom="172" level="5" />
-          <Node left="5667" right="5965" top="258" bottom="215" level="5" object="land_29 " />
+          <Node left="5667" right="5965" top="258" bottom="215" level="5" object="land_13 " />
           <Node left="5667" right="5965" top="215" bottom="172" level="5" />
         </Node>
       </Node>
       <Node left="4773" right="5966" top="172" bottom="0" level="3">
         <Node left="4773" right="5369" top="172" bottom="86" level="4">
-          <Node left="4773" right="5071" top="172" bottom="129" level="5" object="land_27 pass_thought_land_18 pass_thought_land_31 pass_thought_land_34 pass_thought_land_37 pass_thought_land_38 " />
-          <Node left="4773" right="5071" top="129" bottom="86" level="5" object="land_27 pass_thought_land_21 pass_thought_land_24 pass_thought_land_25 pass_thought_land_26 pass_thought_land_31 pass_thought_land_32 pass_thought_land_34 pass_thought_land_37 pass_thought_land_38 " />
+          <Node left="4773" right="5071" top="172" bottom="129" level="5" object="pass_thought_land_18 pass_thought_land_31 pass_thought_land_34 pass_thought_land_37 pass_thought_land_38 " />
+          <Node left="4773" right="5071" top="129" bottom="86" level="5" object="pass_thought_land_21 pass_thought_land_24 pass_thought_land_25 pass_thought_land_26 pass_thought_land_31 pass_thought_land_32 pass_thought_land_34 pass_thought_land_37 pass_thought_land_38 " />
           <Node left="5071" right="5369" top="172" bottom="129" level="5" />
           <Node left="5071" right="5369" top="129" bottom="86" level="5" object="pass_thought_land_19 pass_thought_land_21 pass_thought_land_32 " />
         </Node>
         <Node left="4773" right="5369" top="86" bottom="0" level="4">
-          <Node left="4773" right="5071" top="86" bottom="43" level="5" object="land_26 pass_thought_land_21 pass_thought_land_25 pass_thought_land_32 " />
-          <Node left="4773" right="5071" top="43" bottom="0" level="5" object="land_26 " />
-          <Node left="5071" right="5369" top="86" bottom="43" level="5" object="land_26 pass_thought_land_19 pass_thought_land_21 pass_thought_land_22 pass_thought_land_27 pass_thought_land_32 pass_thought_land_33 pass_thought_land_35 " />
-          <Node left="5071" right="5369" top="43" bottom="0" level="5" object="land_26 pass_thought_land_22 pass_thought_land_27 pass_thought_land_35 " />
+          <Node left="4773" right="5071" top="86" bottom="43" level="5" object="land_11 pass_thought_land_21 pass_thought_land_25 pass_thought_land_32 " />
+          <Node left="4773" right="5071" top="43" bottom="0" level="5" object="land_11 " />
+          <Node left="5071" right="5369" top="86" bottom="43" level="5" object="land_11 pass_thought_land_19 pass_thought_land_21 pass_thought_land_22 pass_thought_land_27 pass_thought_land_32 pass_thought_land_33 pass_thought_land_35 " />
+          <Node left="5071" right="5369" top="43" bottom="0" level="5" object="land_11 pass_thought_land_22 pass_thought_land_27 pass_thought_land_35 " />
         </Node>
         <Node left="5369" right="5965" top="172" bottom="86" level="4" />
         <Node left="5369" right="5965" top="86" bottom="0" level="4">
-          <Node left="5369" right="5667" top="86" bottom="43" level="5" object="land_26 land_30 " />
-          <Node left="5369" right="5667" top="43" bottom="0" level="5" object="land_26 land_30 " />
-          <Node left="5667" right="5965" top="86" bottom="43" level="5" object="land_30 " />
-          <Node left="5667" right="5965" top="43" bottom="0" level="5" object="land_30 " />
+          <Node left="5369" right="5667" top="86" bottom="43" level="5" object="land_11 land_14 " />
+          <Node left="5369" right="5667" top="43" bottom="0" level="5" object="land_11 land_14 " />
+          <Node left="5667" right="5965" top="86" bottom="43" level="5" object="land_14 " />
+          <Node left="5667" right="5965" top="43" bottom="0" level="5" object="land_14 " />
         </Node>
       </Node>
       <Node left="5966" right="7159" top="344" bottom="172" level="3" />
       <Node left="5966" right="7159" top="172" bottom="0" level="3">
         <Node left="5966" right="6562" top="172" bottom="86" level="4" />
         <Node left="5966" right="6562" top="86" bottom="0" level="4">
-          <Node left="5966" right="6264" top="86" bottom="43" level="5" object="land_30 flame_land_5 falza_3 " />
-          <Node left="5966" right="6264" top="43" bottom="0" level="5" object="land_30 flame_land_5 " />
-          <Node left="6264" right="6562" top="86" bottom="43" level="5" object="land_31 flame_land_5 falza_3 " />
-          <Node left="6264" right="6562" top="43" bottom="0" level="5" object="land_31 flame_land_5 " />
+          <Node left="5966" right="6264" top="86" bottom="43" level="5" object="land_14 flame_land_5 falza_3 " />
+          <Node left="5966" right="6264" top="43" bottom="0" level="5" object="land_14 flame_land_5 " />
+          <Node left="6264" right="6562" top="86" bottom="43" level="5" object="land_15 flame_land_5 falza_3 " />
+          <Node left="6264" right="6562" top="43" bottom="0" level="5" object="land_15 flame_land_5 " />
         </Node>
         <Node left="6562" right="7158" top="172" bottom="86" level="4" />
         <Node left="6562" right="7158" top="86" bottom="0" level="4">
-          <Node left="6562" right="6860" top="86" bottom="43" level="5" object="land_31 falza_3 nahbi_5 " />
-          <Node left="6562" right="6860" top="43" bottom="0" level="5" object="land_31 " />
-          <Node left="6860" right="7158" top="86" bottom="43" level="5" object="land_31 falza_4 nahbi_5 " />
-          <Node left="6860" right="7158" top="43" bottom="0" level="5" object="land_31 " />
+          <Node left="6562" right="6860" top="86" bottom="43" level="5" object="land_15 falza_3 nahbi_5 " />
+          <Node left="6562" right="6860" top="43" bottom="0" level="5" object="land_15 " />
+          <Node left="6860" right="7158" top="86" bottom="43" level="5" object="land_15 falza_4 nahbi_5 " />
+          <Node left="6860" right="7158" top="43" bottom="0" level="5" object="land_15 " />
         </Node>
       </Node>
     </Node>
@@ -748,24 +743,24 @@
           <Node left="7159" right="7457" top="516" bottom="472" level="5" />
           <Node left="7159" right="7457" top="472" bottom="428" level="5" />
           <Node left="7457" right="7755" top="516" bottom="472" level="5" />
-          <Node left="7457" right="7755" top="472" bottom="428" level="5" object="land_51 land_52 land_53 nahbi_7 " />
+          <Node left="7457" right="7755" top="472" bottom="428" level="5" object="land_35 land_36 land_37 nahbi_7 " />
         </Node>
         <Node left="7159" right="7755" top="429" bottom="342" level="4">
-          <Node left="7159" right="7457" top="429" bottom="385" level="5" object="land_55 falza_6 " />
-          <Node left="7159" right="7457" top="385" bottom="341" level="5" object="land_55 " />
-          <Node left="7457" right="7755" top="429" bottom="385" level="5" object="land_51 land_52 land_53 land_54 land_55 falza_6 " />
-          <Node left="7457" right="7755" top="385" bottom="341" level="5" object="land_55 " />
+          <Node left="7159" right="7457" top="429" bottom="385" level="5" object="land_39 falza_6 " />
+          <Node left="7159" right="7457" top="385" bottom="341" level="5" object="land_39 " />
+          <Node left="7457" right="7755" top="429" bottom="385" level="5" object="land_35 land_36 land_37 land_38 land_39 falza_6 " />
+          <Node left="7457" right="7755" top="385" bottom="341" level="5" object="land_39 " />
         </Node>
         <Node left="7755" right="8351" top="516" bottom="429" level="4">
-          <Node left="7755" right="8053" top="516" bottom="472" level="5" object="land_45 land_46 land_47 land_48 land_49 " />
-          <Node left="7755" right="8053" top="472" bottom="428" level="5" object="land_47 land_48 land_49 land_50 land_51 nahbi_7 " />
-          <Node left="8053" right="8351" top="516" bottom="472" level="5" object="land_45 " />
-          <Node left="8053" right="8351" top="472" bottom="428" level="5" object="land_44 " />
+          <Node left="7755" right="8053" top="516" bottom="472" level="5" object="land_29 land_30 land_31 land_32 land_33 " />
+          <Node left="7755" right="8053" top="472" bottom="428" level="5" object="land_30 land_31 land_32 land_33 land_34 land_35 nahbi_7 " />
+          <Node left="8053" right="8351" top="516" bottom="472" level="5" object="land_29 " />
+          <Node left="8053" right="8351" top="472" bottom="428" level="5" object="land_28 " />
         </Node>
         <Node left="7755" right="8351" top="429" bottom="342" level="4">
-          <Node left="7755" right="8053" top="429" bottom="385" level="5" object="land_51 " />
+          <Node left="7755" right="8053" top="429" bottom="385" level="5" object="land_35 " />
           <Node left="7755" right="8053" top="385" bottom="341" level="5" />
-          <Node left="8053" right="8351" top="429" bottom="385" level="5" object="land_44 " />
+          <Node left="8053" right="8351" top="429" bottom="385" level="5" object="land_28 " />
           <Node left="8053" right="8351" top="385" bottom="341" level="5" />
         </Node>
       </Node>
@@ -787,15 +782,15 @@
       </Node>
       <Node left="8352" right="9545" top="516" bottom="343" level="3">
         <Node left="8352" right="8948" top="516" bottom="429" level="4">
-          <Node left="8352" right="8650" top="516" bottom="472" level="5" object="land_43 " />
-          <Node left="8352" right="8650" top="472" bottom="428" level="5" object="land_42 land_43 " />
+          <Node left="8352" right="8650" top="516" bottom="472" level="5" object="land_27 " />
+          <Node left="8352" right="8650" top="472" bottom="428" level="5" object="land_26 land_27 " />
           <Node left="8650" right="8948" top="516" bottom="472" level="5" />
-          <Node left="8650" right="8948" top="472" bottom="428" level="5" object="land_42 " />
+          <Node left="8650" right="8948" top="472" bottom="428" level="5" object="land_26 " />
         </Node>
         <Node left="8352" right="8948" top="429" bottom="342" level="4">
-          <Node left="8352" right="8650" top="429" bottom="385" level="5" object="land_42 " />
+          <Node left="8352" right="8650" top="429" bottom="385" level="5" object="land_26 " />
           <Node left="8352" right="8650" top="385" bottom="341" level="5" />
-          <Node left="8650" right="8948" top="429" bottom="385" level="5" object="land_42 " />
+          <Node left="8650" right="8948" top="429" bottom="385" level="5" object="land_26 " />
           <Node left="8650" right="8948" top="385" bottom="341" level="5" />
         </Node>
         <Node left="8948" right="9544" top="516" bottom="429" level="4">
@@ -806,9 +801,9 @@
         </Node>
         <Node left="8948" right="9544" top="429" bottom="342" level="4">
           <Node left="8948" right="9246" top="429" bottom="385" level="5" />
-          <Node left="8948" right="9246" top="385" bottom="341" level="5" object="land_41 " />
+          <Node left="8948" right="9246" top="385" bottom="341" level="5" object="land_25 " />
           <Node left="9246" right="9544" top="429" bottom="385" level="5" object="rope_vertical_3 " />
-          <Node left="9246" right="9544" top="385" bottom="341" level="5" object="land_41 rope_vertical_3 " />
+          <Node left="9246" right="9544" top="385" bottom="341" level="5" object="land_25 rope_vertical_3 " />
         </Node>
       </Node>
     </Node>
@@ -832,17 +827,17 @@
       <Node left="7159" right="8352" top="172" bottom="0" level="3">
         <Node left="7159" right="7755" top="172" bottom="86" level="4" />
         <Node left="7159" right="7755" top="86" bottom="0" level="4">
-          <Node left="7159" right="7457" top="86" bottom="43" level="5" object="land_31 falza_4 nahbi_5 " />
-          <Node left="7159" right="7457" top="43" bottom="0" level="5" object="land_31 " />
-          <Node left="7457" right="7755" top="86" bottom="43" level="5" object="land_31 falza_4 " />
-          <Node left="7457" right="7755" top="43" bottom="0" level="5" object="land_31 " />
+          <Node left="7159" right="7457" top="86" bottom="43" level="5" object="land_15 falza_4 nahbi_5 " />
+          <Node left="7159" right="7457" top="43" bottom="0" level="5" object="land_15 " />
+          <Node left="7457" right="7755" top="86" bottom="43" level="5" object="land_15 falza_4 " />
+          <Node left="7457" right="7755" top="43" bottom="0" level="5" object="land_15 " />
         </Node>
         <Node left="7755" right="8351" top="172" bottom="86" level="4" />
         <Node left="7755" right="8351" top="86" bottom="0" level="4">
-          <Node left="7755" right="8053" top="86" bottom="43" level="5" object="land_31 falza_4 falza_5 " />
-          <Node left="7755" right="8053" top="43" bottom="0" level="5" object="land_31 " />
-          <Node left="8053" right="8351" top="86" bottom="43" level="5" object="land_31 falza_5 " />
-          <Node left="8053" right="8351" top="43" bottom="0" level="5" object="land_31 " />
+          <Node left="7755" right="8053" top="86" bottom="43" level="5" object="land_15 falza_4 falza_5 " />
+          <Node left="7755" right="8053" top="43" bottom="0" level="5" object="land_15 " />
+          <Node left="8053" right="8351" top="86" bottom="43" level="5" object="land_15 falza_5 " />
+          <Node left="8053" right="8351" top="43" bottom="0" level="5" object="land_15 " />
         </Node>
       </Node>
       <Node left="8352" right="9545" top="344" bottom="172" level="3">
@@ -860,20 +855,20 @@
         <Node left="8352" right="8948" top="172" bottom="86" level="4">
           <Node left="8352" right="8650" top="172" bottom="129" level="5" />
           <Node left="8352" right="8650" top="129" bottom="86" level="5" />
-          <Node left="8650" right="8948" top="172" bottom="129" level="5" object="land_39 land_40 " />
-          <Node left="8650" right="8948" top="129" bottom="86" level="5" object="land_33 land_34 land_35 land_36 land_37 land_38 land_39 land_40 " />
+          <Node left="8650" right="8948" top="172" bottom="129" level="5" object="land_23 land_24 " />
+          <Node left="8650" right="8948" top="129" bottom="86" level="5" object="land_18 land_19 land_20 land_21 land_22 land_23 land_24 " />
         </Node>
         <Node left="8352" right="8948" top="86" bottom="0" level="4">
-          <Node left="8352" right="8650" top="86" bottom="43" level="5" object="land_31 falza_5 " />
-          <Node left="8352" right="8650" top="43" bottom="0" level="5" object="land_31 " />
-          <Node left="8650" right="8948" top="86" bottom="43" level="5" object="land_31 land_32 land_33 land_34 land_35 land_36 falza_5 " />
-          <Node left="8650" right="8948" top="43" bottom="0" level="5" object="land_31 " />
+          <Node left="8352" right="8650" top="86" bottom="43" level="5" object="land_15 falza_5 " />
+          <Node left="8352" right="8650" top="43" bottom="0" level="5" object="land_15 " />
+          <Node left="8650" right="8948" top="86" bottom="43" level="5" object="land_15 land_16 land_17 land_18 land_19 land_20 land_21 falza_5 " />
+          <Node left="8650" right="8948" top="43" bottom="0" level="5" object="land_15 " />
         </Node>
         <Node left="8948" right="9544" top="172" bottom="86" level="4">
-          <Node left="8948" right="9246" top="172" bottom="129" level="5" object="land_39 land_40 nahbi_6 " />
-          <Node left="8948" right="9246" top="129" bottom="86" level="5" object="land_39 land_40 " />
-          <Node left="9246" right="9544" top="172" bottom="129" level="5" object="land_40 nahbi_6 " />
-          <Node left="9246" right="9544" top="129" bottom="86" level="5" object="land_40 " />
+          <Node left="8948" right="9246" top="172" bottom="129" level="5" object="land_23 land_24 nahbi_6 " />
+          <Node left="8948" right="9246" top="129" bottom="86" level="5" object="land_23 land_24 " />
+          <Node left="9246" right="9544" top="172" bottom="129" level="5" object="land_24 nahbi_6 " />
+          <Node left="9246" right="9544" top="129" bottom="86" level="5" object="land_24 " />
         </Node>
         <Node left="8948" right="9544" top="86" bottom="0" level="4" />
       </Node>
