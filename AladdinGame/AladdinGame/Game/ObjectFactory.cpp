@@ -115,72 +115,73 @@ std::function<GameObject*() > ObjectFactory::getFunctionById(xml_node node, eObj
 
 GameObject * ObjectFactory::getAladdin()
 {
+	auto aladdin = new GameObject(eObjectID::ALADDIN);
+
 	auto physicsComponent = new AladdinPhysicsComponent();
+	physicsComponent->setGameObject(aladdin);
+
 	auto animationComponent = new AladdinAnimationComponent();
+	animationComponent->setGameObject(aladdin);
+
 	auto behaviorComponent = new AladdinBehaviorComponent();
-
-	animationComponent->setPhysiscComponent(physicsComponent);
-	behaviorComponent->setPhysicsComponent(physicsComponent);
-	behaviorComponent->setAnimationComponent(animationComponent);
+	behaviorComponent->setGameObject(aladdin);
 	behaviorComponent->setGameController(GameController::getInstance());
-	physicsComponent->setAnimationComponent(animationComponent);
 
-	auto aladdin = new GameObject(eObjectID::ALADDIN, animationComponent, behaviorComponent, physicsComponent);
+	aladdin->setPhysicsComponent(physicsComponent);
+	aladdin->setAnimationComponent(animationComponent);
+	aladdin->setBehaviorComponent(behaviorComponent);
+
 	aladdin->init();
-	auto collisionComponent = (CollisionComponent*)aladdin->getPhysicsComponent()->getComponent("Collision");
-	collisionComponent->setTargerGameObject(aladdin);
 
 	return aladdin;
 }
 
 GameObject * ObjectFactory::getApple(GVector2 pos, GVector2 velocity)
 {
+	auto Apple = new GameObject(eObjectID::APPLE);
+
 	auto physicsComponent = new ApplePhysicsComponent();
-	auto animationComponent = new AppleAnimationComponent();
-	auto behaviorComponent = new AppleBehaviorComponent();
-
-	animationComponent->setPhysiscComponent(physicsComponent);
-	behaviorComponent->setPhysicsComponent(physicsComponent);
-	behaviorComponent->setAnimationComponent(animationComponent);
-	behaviorComponent->setGameController(GameController::getInstance());
-	physicsComponent->setAnimationComponent(animationComponent);
-
-
+	physicsComponent->setGameObject(Apple);
 	physicsComponent->setPosition(pos);
 
-	auto apple = new GameObject(eObjectID::APPLE, animationComponent, behaviorComponent, physicsComponent);
-	apple->init();
-	auto collisionComponent = (CollisionComponent*)apple->getPhysicsComponent()->getComponent("Collision");
-	collisionComponent->setTargerGameObject(apple);
+	auto animationComponent = new AppleAnimationComponent();
+	animationComponent->setGameObject(Apple);
 
+	auto behaviorComponent = new AppleBehaviorComponent();
+	behaviorComponent->setGameObject(Apple);
+	behaviorComponent->setGameController(GameController::getInstance());
 
+	Apple->setPhysicsComponent(physicsComponent);
+	Apple->setAnimationComponent(animationComponent);
+	Apple->setBehaviorComponent(behaviorComponent);
+
+	Apple->init();
 	auto move = (Movement*)physicsComponent->getComponent("Movement");
 	move->setVelocity(velocity);
 
-	return apple;
+	return Apple;
 }
 
 GameObject * ObjectFactory::getDagger(GVector2 pos, GVector2 velocity)
 {
+	auto Dagger = new GameObject(eObjectID::DAGGER);
+
 	auto physicsComponent = new DaggerPhysicsComponent();
-	auto animationComponent = new DaggerAnimationComponent();
-	auto behaviorComponent = new DaggerBehaviorComponent();
-
-	animationComponent->setPhysiscComponent(physicsComponent);
-	behaviorComponent->setPhysicsComponent(physicsComponent);
-	behaviorComponent->setAnimationComponent(animationComponent);
-	behaviorComponent->setGameController(GameController::getInstance());
-	physicsComponent->setAnimationComponent(animationComponent);
-
-
+	physicsComponent->setGameObject(Dagger);
 	physicsComponent->setPosition(pos);
 
-	auto Dagger = new GameObject(eObjectID::DAGGER, animationComponent, behaviorComponent, physicsComponent);
+	auto animationComponent = new DaggerAnimationComponent();
+	animationComponent->setGameObject(Dagger);
+
+	auto behaviorComponent = new DaggerBehaviorComponent();
+	behaviorComponent->setGameObject(Dagger);
+	behaviorComponent->setGameController(GameController::getInstance());
+
+	Dagger->setPhysicsComponent(physicsComponent);
+	Dagger->setAnimationComponent(animationComponent);
+	Dagger->setBehaviorComponent(behaviorComponent);
+
 	Dagger->init();
-	auto collisionComponent = (CollisionComponent*)Dagger->getPhysicsComponent()->getComponent("Collision");
-	collisionComponent->setTargerGameObject(Dagger);
-
-
 	auto move = (Movement*)physicsComponent->getComponent("Movement");
 	move->setVelocity(velocity);
 
@@ -189,22 +190,20 @@ GameObject * ObjectFactory::getDagger(GVector2 pos, GVector2 velocity)
 
 GameObject * ObjectFactory::getSword(GVector2 pos, float width, float height, bool canSlashEnemy)
 {
-	auto physicsComponent = new SwordPhysicsComponent();
-	auto behaviorComponent = new SwordBehaviorComponent();
-
-	behaviorComponent->setPhysicsComponent(physicsComponent);
-
-
 	auto sword = new Sword();
 	sword->setID(eObjectID::SWORD);
+
+	auto physicsComponent = new SwordPhysicsComponent();
+	physicsComponent->setGameObject(sword);
+
+	auto behaviorComponent = new SwordBehaviorComponent();
+	behaviorComponent->setGameObject(sword);
+
 	sword->setPhysicsComponent(physicsComponent);
 	sword->setBehaviorComponent(behaviorComponent);
+
 	sword->setAnimationComponent(nullptr);
 	sword->init(pos.x, pos.y, width, height, eDirection::ALL, canSlashEnemy);
-
-	auto collisionComponent = (CollisionComponent*)sword->getPhysicsComponent()->getComponent("Collision");
-	collisionComponent->setTargerGameObject(sword);
-	collisionComponent->setPhysicsSide(eDirection::ALL);
 
 	return sword;
 }
@@ -241,6 +240,7 @@ GameObject * ObjectFactory::getLand(xml_node node)
 	{
 		dir = eDirection::TOP;
 	}
+	auto land = new Land();
 
 	auto behaviorComponent = new LandBehaviorComponent();
 	PhysicsComponent * physicsComponent;
@@ -249,25 +249,21 @@ GameObject * ObjectFactory::getLand(xml_node node)
 	{
 		physicsComponent = new FallingLandPhysiscsComponent();
 		animationComponent = new FallingLandAnimationComponent();
-		animationComponent->setPhysiscComponent(physicsComponent);
+		animationComponent->setGameObject(land);
 		physicsComponent->setPosition(GVector2(x, y));
 	}
 	else
 	{
 		physicsComponent = new LandPhysiscsComponent();
 	}
-	behaviorComponent->setPhysicsComponent(physicsComponent);
-	behaviorComponent->setAnimationComponent(animationComponent);
+	behaviorComponent->setGameObject(land);
 
-	auto land = new Land();
+	
 	land->setPhysicsComponent(physicsComponent);
 	land->setBehaviorComponent(behaviorComponent);
 	land->setAnimationComponent(animationComponent);
 	land->init(x, y, width, height, dir, type);
 
-	auto collisionComponent = (CollisionComponent*)land->getPhysicsComponent()->getComponent("Collision");
-	collisionComponent->setTargerGameObject(land);
-	collisionComponent->setPhysicsSide(dir);
 	return land;
 }
 
@@ -310,35 +306,32 @@ GameObject * ObjectFactory::getRope(xml_node node)
 	rope->setPhysicsComponent(physicsComponent);
 	rope->init(x, y, width, height, dir, type);
 
-	auto collisionComponent = (CollisionComponent*)rope->getPhysicsComponent()->getComponent("Collision");
-	collisionComponent->setTargerGameObject(rope);
-	collisionComponent->setPhysicsSide(dir);
 	return rope;
 }
 
 GameObject * ObjectFactory::getHakim(GVector2 pos, float rangeXStart, float rangeXEnd)
 {
+	auto Hakim = new GameObject(eObjectID::HAKIM);
+
 	auto physicsComponent = new HakimPhysicsComponent();
-	auto animationComponent = new HakimAnimationComponent();
-	EnemyBehaviorComponent* behaviorComponent = new HakimBehaviorComponent();
-
-	animationComponent->setPhysiscComponent(physicsComponent);
-	behaviorComponent->setPhysicsComponent(physicsComponent);
-	behaviorComponent->setAnimationComponent(animationComponent);
-	behaviorComponent->setGameController(GameController::getInstance());
-	physicsComponent->setAnimationComponent(animationComponent);
-
+	physicsComponent->setGameObject(Hakim);
 	physicsComponent->setPosition(pos);
 
+	auto animationComponent = new HakimAnimationComponent();
+	animationComponent->setGameObject(Hakim);
+
+	EnemyBehaviorComponent* behaviorComponent = new HakimBehaviorComponent();
+	behaviorComponent->setGameObject(Hakim);
+	behaviorComponent->setGameController(GameController::getInstance());
 	behaviorComponent->setRange(rangeXStart, rangeXEnd);
 
-	auto hakim = new GameObject(eObjectID::HAKIM, animationComponent, behaviorComponent, physicsComponent);
-	hakim->init();
-	auto collisionComponent = (CollisionComponent*)hakim->getPhysicsComponent()->getComponent("Collision");
-	collisionComponent->setTargerGameObject(hakim);
-	collisionComponent->setPhysicsSide(eDirection::ALL);
+	Hakim->setPhysicsComponent(physicsComponent);
+	Hakim->setAnimationComponent(animationComponent);
+	Hakim->setBehaviorComponent(behaviorComponent);
 
-	return hakim;
+	Hakim->init();
+
+	return Hakim;
 }
 
 GameObject * ObjectFactory::getHakim(xml_node node)
@@ -354,25 +347,25 @@ GameObject * ObjectFactory::getHakim(xml_node node)
 
 GameObject * ObjectFactory::getFalza(GVector2 pos, float rangeXStart, float rangeXEnd)
 {
+	auto Falza = new GameObject(eObjectID::FALZA);
+
 	auto physicsComponent = new FalzaPhysicsComponent();
-	auto animationComponent = new FalzaAnimationComponent();
-	EnemyBehaviorComponent* behaviorComponent = new FalzaBehaviorComponent();
-
-	animationComponent->setPhysiscComponent(physicsComponent);
-	behaviorComponent->setPhysicsComponent(physicsComponent);
-	behaviorComponent->setAnimationComponent(animationComponent);
-	behaviorComponent->setGameController(GameController::getInstance());
-	physicsComponent->setAnimationComponent(animationComponent);
-
+	physicsComponent->setGameObject(Falza);
 	physicsComponent->setPosition(pos);
 
+	auto animationComponent = new FalzaAnimationComponent();
+	animationComponent->setGameObject(Falza);
+
+	EnemyBehaviorComponent* behaviorComponent = new FalzaBehaviorComponent();
+	behaviorComponent->setGameObject(Falza);
+	behaviorComponent->setGameController(GameController::getInstance());
 	behaviorComponent->setRange(rangeXStart, rangeXEnd);
 
-	auto Falza = new GameObject(eObjectID::FALZA, animationComponent, behaviorComponent, physicsComponent);
+	Falza->setPhysicsComponent(physicsComponent);
+	Falza->setAnimationComponent(animationComponent);
+	Falza->setBehaviorComponent(behaviorComponent);
+
 	Falza->init();
-	auto collisionComponent = (CollisionComponent*)Falza->getPhysicsComponent()->getComponent("Collision");
-	collisionComponent->setTargerGameObject(Falza);
-	collisionComponent->setPhysicsSide(eDirection::ALL);
 
 	return Falza;
 }
@@ -390,25 +383,25 @@ GameObject * ObjectFactory::getFalza(xml_node node)
 
 GameObject * ObjectFactory::getNahbi(GVector2 pos, float rangeXStart, float rangeXEnd)
 {
+	auto Nahbi = new GameObject(eObjectID::NAHBI);
+
 	auto physicsComponent = new NahbiPhysicsComponent();
-	auto animationComponent = new NahbiAnimationComponent();
-	EnemyBehaviorComponent* behaviorComponent = new NahbiBehaviorComponent();
-
-	animationComponent->setPhysiscComponent(physicsComponent);
-	behaviorComponent->setPhysicsComponent(physicsComponent);
-	behaviorComponent->setAnimationComponent(animationComponent);
-	behaviorComponent->setGameController(GameController::getInstance());
-	physicsComponent->setAnimationComponent(animationComponent);
-
+	physicsComponent->setGameObject(Nahbi);
 	physicsComponent->setPosition(pos);
 
+	auto animationComponent = new NahbiAnimationComponent();
+	animationComponent->setGameObject(Nahbi);
+
+	EnemyBehaviorComponent* behaviorComponent = new NahbiBehaviorComponent();
+	behaviorComponent->setGameObject(Nahbi);
+	behaviorComponent->setGameController(GameController::getInstance());
 	behaviorComponent->setRange(rangeXStart, rangeXEnd);
 
-	auto Nahbi = new GameObject(eObjectID::NAHBI, animationComponent, behaviorComponent, physicsComponent);
+	Nahbi->setPhysicsComponent(physicsComponent);
+	Nahbi->setAnimationComponent(animationComponent);
+	Nahbi->setBehaviorComponent(behaviorComponent);
+
 	Nahbi->init();
-	auto collisionComponent = (CollisionComponent*)Nahbi->getPhysicsComponent()->getComponent("Collision");
-	collisionComponent->setTargerGameObject(Nahbi);
-	collisionComponent->setPhysicsSide(eDirection::ALL);
 
 	return Nahbi;
 }
@@ -426,47 +419,48 @@ GameObject * ObjectFactory::getNahbi(xml_node node)
 
 GameObject * ObjectFactory::getFlame(GVector2 pos)
 {
-	FlamePhysicsComponent * physicsComponent = new FlamePhysicsComponent();
-	auto animationComponent = new FlameAnimationComponent();
-	auto behaviorComponent = new FlameBehaviorComponent();
+	auto Flame = new GameObject(eObjectID::FLAME);
 
-	animationComponent->setPhysiscComponent(physicsComponent);
-	behaviorComponent->setPhysicsComponent(physicsComponent);
-	behaviorComponent->setAnimationComponent(animationComponent);
-	behaviorComponent->setGameController(GameController::getInstance());
-	physicsComponent->setAnimationComponent(animationComponent);
-
+	auto physicsComponent = new FlamePhysicsComponent();
+	physicsComponent->setGameObject(Flame);
 	physicsComponent->setPosition(pos);
 
+	auto animationComponent = new FlameAnimationComponent();
+	animationComponent->setGameObject(Flame);
 
-	auto Flame = new GameObject(eObjectID::FLAME, animationComponent, behaviorComponent, physicsComponent);
+	auto behaviorComponent = new FlameBehaviorComponent();
+	behaviorComponent->setGameObject(Flame);
+	behaviorComponent->setGameController(GameController::getInstance());
+
+	Flame->setPhysicsComponent(physicsComponent);
+	Flame->setAnimationComponent(animationComponent);
+	Flame->setBehaviorComponent(behaviorComponent);
+
 	Flame->init();
-	auto collisionComponent = (CollisionComponent*)Flame->getPhysicsComponent()->getComponent("Collision");
-	collisionComponent->setTargerGameObject(Flame);
-	collisionComponent->setPhysicsSide(eDirection::ALL);
 
 	return Flame;
 }
 
 GameObject * ObjectFactory::getExlplosionPot(GVector2 pos)
 {
+	auto ExplosionPot = new GameObject(eObjectID::EXPLOSIONPOT);
+
 	auto physicsComponent = new ExplosionPotPhysicsComponent();
-	auto animationComponent = new ExplosionPotAnimationComponent();
-	auto behaviorComponent = new ExplosionPotBehaviorComponent();
-
-	animationComponent->setPhysiscComponent(physicsComponent);
-	behaviorComponent->setPhysicsComponent(physicsComponent);
-	behaviorComponent->setAnimationComponent(animationComponent);
-	behaviorComponent->setGameController(GameController::getInstance());
-	physicsComponent->setAnimationComponent(animationComponent);
-
-
+	physicsComponent->setGameObject(ExplosionPot);
 	physicsComponent->setPosition(pos);
 
-	auto ExplosionPot = new GameObject(eObjectID::EXPLOSIONPOT, animationComponent, behaviorComponent, physicsComponent);
+	auto animationComponent = new ExplosionPotAnimationComponent();
+	animationComponent->setGameObject(ExplosionPot);
+
+	auto behaviorComponent = new ExplosionPotBehaviorComponent();
+	behaviorComponent->setGameObject(ExplosionPot);
+	behaviorComponent->setGameController(GameController::getInstance());
+
+	ExplosionPot->setPhysicsComponent(physicsComponent);
+	ExplosionPot->setAnimationComponent(animationComponent);
+	ExplosionPot->setBehaviorComponent(behaviorComponent);
+
 	ExplosionPot->init();
-	auto collisionComponent = (CollisionComponent*)ExplosionPot->getPhysicsComponent()->getComponent("Collision");
-	collisionComponent->setTargerGameObject(ExplosionPot);
 
 	return ExplosionPot;
 }
@@ -474,22 +468,26 @@ GameObject * ObjectFactory::getExlplosionPot(GVector2 pos)
 
 GameObject * ObjectFactory::getThrower(GVector2 pos)
 {
+	auto Thrower = new GameObject(eObjectID::THROWER);
+
 	auto physicsComponent = new ThrowerPhysicsComponent();
-	auto animationComponent = new ThrowerAnimationComponent();
-	auto behaviorComponent = new ThrowerBehaviorComponent();
-
-	animationComponent->setPhysiscComponent(physicsComponent);
-	behaviorComponent->setPhysicsComponent(physicsComponent);
-	behaviorComponent->setAnimationComponent(animationComponent);
-	behaviorComponent->setGameController(GameController::getInstance());
-
-
+	physicsComponent->setGameObject(Thrower);
 	physicsComponent->setPosition(pos);
 
-	auto thrower = new GameObject(eObjectID::THROWER, animationComponent, behaviorComponent, physicsComponent);
-	thrower->init();
+	auto animationComponent = new ThrowerAnimationComponent();
+	animationComponent->setGameObject(Thrower);
 
-	return thrower;
+	auto behaviorComponent = new ThrowerBehaviorComponent();
+	behaviorComponent->setGameObject(Thrower);
+	behaviorComponent->setGameController(GameController::getInstance());
+
+	Thrower->setPhysicsComponent(physicsComponent);
+	Thrower->setAnimationComponent(animationComponent);
+	Thrower->setBehaviorComponent(behaviorComponent);
+
+	Thrower->init();
+
+	return Thrower;
 }
 
 GameObject * ObjectFactory::getThrower(xml_node node)

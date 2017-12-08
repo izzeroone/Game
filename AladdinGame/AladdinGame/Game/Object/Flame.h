@@ -13,10 +13,8 @@ class FlamePhysicsComponent : public PhysicsComponent
 {
 public:
 	void init() override;
-	void setAnimationComponent(AnimationComponent * animationComponent);
 	RECT getBounding();
 protected:
-	AnimationComponent * _animationComponent;
 };
 
 class FlameAnimationComponent : public AnimationComponent

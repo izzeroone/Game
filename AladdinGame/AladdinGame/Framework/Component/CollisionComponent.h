@@ -18,7 +18,11 @@ public:
 
 	void setTargerGameObject(GameObject * gameObject);
 
-	void checkCollision(GameObject* otherObject, float dt, bool updatePosition = false);
+
+	// if collise return true, else return false;
+	bool checkCollision(GameObject* otherObject, float dt, bool updatePosition = false);
+	bool checkCollision(GameObject* otherObject, RECT myBound, float dt, bool updatePosition = false);
+	bool checkCollision(GameObject* otherObject, RECT myBound, RECT otherBound, float dt, bool updatePosition = false);
 
 	void updatePosition(GameObject* otherObject);
 	bool isColliding(GameObject* otherObject);
@@ -34,7 +38,8 @@ public:
 	RECT getCollisionRect();
 	bool isColliding(RECT myRect, RECT otherRect);
 
-	RECT getBroadphaseRect(GameObject* object, float dt);
+	RECT getBroadphaseRect(float dt);
+	RECT getBroadphaseRect(RECT myBound, float dt);
 	eDirection getSide(GameObject* otherObject);
 
 	void setPhysicsSide(eDirection side);

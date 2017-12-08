@@ -35,16 +35,16 @@ void ThrowerBehaviorComponent::update(float detatime)
 
 	if (_toThrow == true)
 	{
-		if (_animationComponent->getCurrentAnimation()->getCount() >= 1)
+		if (_obj->getAnimationComponent()->getCurrentAnimation()->getCount() >= 1)
 		{
 			throwPot();
-			_animationComponent->getCurrentAnimation()->restart();
-			_animationComponent->getCurrentAnimation()->canAnimate(false);
+			_obj->getAnimationComponent()->getCurrentAnimation()->restart();
+			_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(false);
 			_toThrow = false;
 		}
 	}
 	//aladdin ở gần
-	if (abs(aladdinPos.x - _physicsComponent->getPositionX()) <= 50 * SCALE_FACTOR)
+	if (abs(aladdinPos.x - _obj->getPhysicsComponent()->getPositionX()) <= 50 * SCALE_FACTOR)
 	{
 		_timer += detatime;
 		if (_timer >= THROW_INTERVAL)
@@ -54,15 +54,15 @@ void ThrowerBehaviorComponent::update(float detatime)
 		else
 			return;
 		_toThrow = true;
-		_animationComponent->setAnimation(eStatus::NORMAL);
-		_animationComponent->getCurrentAnimation()->canAnimate(true);
+		_obj->getAnimationComponent()->setAnimation(eStatus::NORMAL);
+		_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(true);
 	}
 	else
 	{
 		if (_toThrow == false)
 		{
 			_timer = 0;
-			_animationComponent->getCurrentAnimation()->canAnimate(false);
+			_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(false);
 		}
 	}
 }
@@ -70,7 +70,7 @@ void ThrowerBehaviorComponent::update(float detatime)
 
 void ThrowerBehaviorComponent::throwPot()
 {
-	GVector2 pos = _physicsComponent->getPosition();
+	GVector2 pos = _obj->getPhysicsComponent()->getPosition();
 	pos.x += 15 * SCALE_FACTOR; // code cứng
 	pos.y -= 5 * SCALE_FACTOR;
 	auto explosionPot = ObjectFactory::getExlplosionPot(pos);

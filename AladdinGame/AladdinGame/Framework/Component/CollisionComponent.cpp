@@ -10,7 +10,7 @@ CollisionComponent::CollisionComponent(eDirection side)
 
 CollisionComponent::~CollisionComponent()
 {
-
+	_physicsSide = eDirection::ALL;
 }
 
 void CollisionComponent::setTargerGameObject(GameObject * gameObject)
@@ -18,38 +18,52 @@ void CollisionComponent::setTargerGameObject(GameObject * gameObject)
 	_target = gameObject;
 }
 
-void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool updatePosition)
+bool CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool updatePosition)
 {
 	//check if other game object has physiscs component
 	if (otherObject->getPhysicsComponent() == nullptr)
-		return;
+		return false;
 
-	//other object doesn't have collision component
-	if (otherObject->getPhysicsComponent()->getComponent("Collision") == nullptr)
-		return;
 
 	RECT myRect = _target->getPhysicsComponent()->getBounding();
 	RECT otherRect = otherObject->getPhysicsComponent()->getBounding();
+	return checkCollision(otherObject, myRect, otherRect, dt, updatePosition);
+}
 
+bool CollisionComponent::checkCollision(GameObject * otherObject, RECT myBound, float dt, bool updatePosition)
+{
+	//check if other game object has physiscs component
+	if (otherObject->getPhysicsComponent() == nullptr)
+		return false;
 
+	RECT otherRect = otherObject->getPhysicsComponent()->getBounding();
+	return checkCollision(otherObject, myBound, otherRect, dt, updatePosition);
+}
 
+bool CollisionComponent::checkCollision(GameObject * otherObject, RECT myBound, RECT otherBound, float dt, bool updatePosition)
+{
+	bool result = false;
 	// sử dụng Broadphase rect để kt vùng tiếp theo có va chạm ko
-	RECT broadphaseRect = getBroadphaseRect(_target, dt);	// là bound của object được mở rộng ra thêm một phần bằng với vận tốc (dự đoán trước bound)
-	if (!isColliding(broadphaseRect, otherRect))				// kiểm tra tính chồng lắp của 2 hcn
+	RECT broadphaseRect = getBroadphaseRect(myBound ,dt);	// là bound của object được mở rộng ra thêm một phần bằng với vận tốc (dự đoán trước bound)
+	if (!isColliding(broadphaseRect, otherBound))				// kiểm tra tính chồng lắp của 2 hcn
 	{
-		return; // doesn't have any chance to collision
+		return false; // doesn't have any chance to collision
 	}
 	GVector2 boxAVelo = _target->getPhysicsComponent()->getVelocity();
 	GVector2 boxBVelo = otherObject->getPhysicsComponent()->getVelocity();
 
 	//construct the aabb box
-	AABB boxA = myRect;
-	AABB boxB = otherRect;
+	AABB boxA = myBound;
+	AABB boxB = otherBound;
 	// construct the relative velocity ray
 	GVector2 rvRay = (boxAVelo - boxBVelo) * dt / 1000;
 
 	//targer physics side
-	eDirection targetSide = ((CollisionComponent*)otherObject->getPhysicsComponent()->getComponent("Collision"))->getPhysicsSide();
+	eDirection targetSide;
+	if (otherObject->getBehaviorComponent() != nullptr)
+		targetSide = otherObject->getBehaviorComponent()->getCollisionComponent()->getPhysicsSide();
+	else
+		targetSide = eDirection::ALL;
 	// see if there is already a collision
 	eDirection colliSide = eDirection::NONE;
 	GVector2 rvRayIntersection;
@@ -61,6 +75,7 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 		md.getMax().y >= 0)
 	{
 		// collision is occurring!
+		result = true;
 		_listColliding[otherObject] = true;
 		penetrationVector = md.cloestPointOnBoundsToPoint(VECTOR2ZERO, targetSide, colliSide);
 		_listColliside[otherObject] = colliSide;
@@ -88,56 +103,72 @@ void CollisionComponent::checkCollision(GameObject * otherObject, float dt, bool
 			}
 		}
 	}
-		else
+	else
+	{
+		// see if there WILL be a collision
+		float intersectFraction = md.getRayIntersectionFraction(VECTOR2ZERO, rvRay, targetSide, colliSide);
+
+		if (intersectFraction < std::numeric_limits<float>::infinity())
 		{
-			// see if there WILL be a collision
-			float intersectFraction = md.getRayIntersectionFraction(VECTOR2ZERO, rvRay, targetSide, colliSide);
-			
-			if (intersectFraction < std::numeric_limits<float>::infinity())
+			result = true;
+			_listColliding[otherObject] = true;
+			_listColliside[otherObject] = colliSide;
+			_listPenetrationVector[otherObject] = rvRay * intersectFraction;
+			if (updatePosition)
 			{
-				_listColliding[otherObject] = true;
-				_listColliside[otherObject] = colliSide;
-				_listPenetrationVector[otherObject] = rvRay * intersectFraction;
-				if (updatePosition)
+				// yup, there WILL be a collision this frame
+				rvRayIntersection = rvRay * intersectFraction;
+
+				// zero out the normal of the collision
+				GVector2 nrvRay = VectorHelper::normalized(rvRay);
+				GVector2 tangent = GVector2(-nrvRay.y, nrvRay.x);
+				boxAVelo = VectorHelper::dotProduct(boxAVelo, tangent) * tangent;
+				boxBVelo = VectorHelper::dotProduct(boxBVelo, tangent) * tangent;
+				auto move = (Movement*)_target->getPhysicsComponent()->getComponent("Movement");
+				if (move != nullptr)
 				{
-					// yup, there WILL be a collision this frame
-					rvRayIntersection = rvRay * intersectFraction;
+					move->setAddPos(boxAVelo * dt * intersectFraction / 1000);
+					move->setVelocity(boxAVelo);
 
-					// zero out the normal of the collision
-					GVector2 nrvRay = VectorHelper::normalized(rvRay);
-					GVector2 tangent = GVector2(-nrvRay.y, nrvRay.x);
-					boxAVelo = VectorHelper::dotProduct(boxAVelo, tangent) * tangent;
-					boxBVelo = VectorHelper::dotProduct(boxBVelo, tangent) * tangent;
-					auto move = (Movement*)_target->getPhysicsComponent()->getComponent("Movement");
-					if (move != nullptr)
-					{
-						move->setAddPos(boxAVelo * dt * intersectFraction / 1000);
-						move->setVelocity(boxAVelo);
-
-					}
-					move = (Movement*)otherObject->getPhysicsComponent()->getComponent("Movement");
-					if (move != nullptr)
-					{
-						move->setAddPos(boxBVelo * dt * intersectFraction / 1000);
-						move->setVelocity(boxBVelo);
-					}
+				}
+				move = (Movement*)otherObject->getPhysicsComponent()->getComponent("Movement");
+				if (move != nullptr)
+				{
+					move->setAddPos(boxBVelo * dt * intersectFraction / 1000);
+					move->setVelocity(boxBVelo);
 				}
 			}
 		}
 	}
+	return result;
+}
 
 
-RECT CollisionComponent::getBroadphaseRect(GameObject* object, float dt)
+RECT CollisionComponent::getBroadphaseRect(float dt)
 {
 	// vận tốc mỗi frame
-	auto velocity = GVector2(object->getPhysicsComponent()->getVelocity().x * dt / 1000, object->getPhysicsComponent()->getVelocity().y * dt / 1000);
-	auto myRect = object->getPhysicsComponent()->getBounding();
+	auto velocity = GVector2(_target->getPhysicsComponent()->getVelocity().x * dt / 1000, _target->getPhysicsComponent()->getVelocity().y * dt / 1000);
+	auto myRect = _target->getPhysicsComponent()->getBounding();
 
 	RECT rect;
 	rect.top = velocity.y > 0 ? myRect.top + velocity.y : myRect.top;
 	rect.bottom = velocity.y > 0 ? myRect.bottom : myRect.bottom + velocity.y;
 	rect.left = velocity.x > 0 ? myRect.left : myRect.left + velocity.x;
 	rect.right = velocity.y > 0 ? myRect.right + velocity.x : myRect.right;
+
+	return rect;
+}
+
+RECT CollisionComponent::getBroadphaseRect(RECT myBound, float dt)
+{
+	// vận tốc mỗi frame
+	auto velocity = GVector2(_target->getPhysicsComponent()->getVelocity().x * dt / 1000, _target->getPhysicsComponent()->getVelocity().y * dt / 1000);
+
+	RECT rect;
+	rect.top = velocity.y > 0 ? myBound.top + velocity.y : myBound.top;
+	rect.bottom = velocity.y > 0 ? myBound.bottom : myBound.bottom + velocity.y;
+	rect.left = velocity.x > 0 ? myBound.left : myBound.left + velocity.x;
+	rect.right = velocity.y > 0 ? myBound.right + velocity.x : myBound.right;
 
 	return rect;
 }

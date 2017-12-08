@@ -5,12 +5,14 @@
 #include "Component.h"
 //forward declarations
 class MovingComponent;
+class GameObject;
 
 class PhysicsComponent: public Component
 {
 public:
 
-	PhysicsComponent();
+	PhysicsComponent() {};
+	PhysicsComponent(GameObject* gameObject);
 	~PhysicsComponent();
 
 	virtual GVector2 getPosition();
@@ -43,6 +45,8 @@ public:
 	virtual RECT getBounding();
 	virtual void setBounding(RECT bounding);
 
+	virtual void setGameObject(GameObject* gameObject);
+
 
 protected:
 	int					_movingSpeed;
@@ -50,6 +54,7 @@ protected:
 	float				_zIndex;
 	RECT				_bounding;
 	map<string, Component*> _componentList;
+	GameObject* _obj;
 
 
 };

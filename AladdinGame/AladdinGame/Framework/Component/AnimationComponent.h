@@ -8,13 +8,15 @@
 using namespace std;
 
 //forward declarations
-class PhysicsComponent;
+class GameObject;
+
+LINK_FRAMEWORK
 
 class AnimationComponent : public Component
 {
 public:
 	AnimationComponent();
-	AnimationComponent(PhysicsComponent* physicsComponent);
+	AnimationComponent(GameObject* gameObject);
 	~AnimationComponent();
 	virtual void update(float deltatime);
 	virtual Animation* getCurrentAnimation();
@@ -56,8 +58,8 @@ public:
 	virtual void setZIndex(float z);
 	virtual float getZIndex();
 
+	virtual void setGameObject(GameObject* gameObject);
 
-	virtual void setPhysiscComponent(PhysicsComponent * physicsComponent);
 protected:
 	virtual bool updateTempAnimation(float deltatime);
 	bool drawTempAnimation(LPD3DXSPRITE spriteHandle, Viewport * viewport);
@@ -72,6 +74,7 @@ protected:
 	int _tempCount;
 
 	bool _transitionPlayed; // cờ hiệu đánh dấu chuyển cảnh
-	PhysicsComponent* _physicsComponent;
+
+	GameObject* _obj;
 };
 #endif // __ANIMATIONCOMPONENT_H__

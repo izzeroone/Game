@@ -6,7 +6,6 @@ void NahbiPhysicsComponent::init()
 	_movingSpeed = 50;
 	auto movement = new Movement(GVector2(10, 0), GVector2(0, 0), this);
 	_componentList["Movement"] = movement;
-	_componentList["Collision"] = new CollisionComponent();
 }
 
 GVector2 NahbiPhysicsComponent::getVelocity()
@@ -15,14 +14,10 @@ GVector2 NahbiPhysicsComponent::getVelocity()
 	return move->getVelocity();
 }
 
-void NahbiPhysicsComponent::setAnimationComponent(AnimationComponent * animationComponent)
-{
-	_animationComponent = animationComponent;
-}
 
 RECT NahbiPhysicsComponent::getBounding()
 {
-	return _animationComponent->getBounding();
+	return _obj->getAnimationComponent()->getBounding();
 }
 
 void NahbiAnimationComponent::init()
@@ -66,6 +61,8 @@ void NahbiBehaviorComponent::init()
 	setStatus(eStatus::TAUGHT);
 	_hitpoint = 100;
 	_standTime = 0;
+	_collisionComponent = new CollisionComponent(eDirection::ALL);
+	_collisionComponent->setTargerGameObject(_obj);
 }
 
 void NahbiBehaviorComponent::update(float detatime)
@@ -85,27 +82,26 @@ void NahbiBehaviorComponent::update(float detatime)
 	}
 
 	//check collision with flame_land
-	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 	GameObject * object;
-	object = collisionComponent->isColliding(eObjectID::LAND);
+	object = _collisionComponent->isColliding(eObjectID::LAND);
 	if (object != nullptr && ((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType() == eLandType::lFLAME) {
-		_animationComponent->setTempAnimation(eStatus::BURNED, 1);
+		_obj->getAnimationComponent()->setTempAnimation(eStatus::BURNED, 1);
 	}
 
 
 	auto aladdin = SceneManager::getInstance()->getCurrentScene()->getObject(eObjectID::ALADDIN);
 	auto aladdinPos = aladdin->getPhysicsComponent()->getPosition();
 
-	float diffirent = _physicsComponent->getPosition().x - aladdinPos.x;
-	RECT bound = _physicsComponent->getBounding();
+	float diffirent = _obj->getPhysicsComponent()->getPosition().x - aladdinPos.x;
+	RECT bound = _obj->getPhysicsComponent()->getBounding();
 	float width = bound.right - bound.left;
 
-	if (diffirent > width && _physicsComponent->getPositionX() >= _rangeXStart) // aladdin ở bến trái
+	if (diffirent > width && _obj->getPhysicsComponent()->getPositionX() >= _rangeXStart) // aladdin ở bến trái
 	{
 		setStatus(eStatus::RUNNING);
 		moveLeft();
 	}
-	else if (diffirent < -width && _physicsComponent->getPositionX() <= _rangeXEnd)
+	else if (diffirent < -width && _obj->getPhysicsComponent()->getPositionX() <= _rangeXEnd)
 	{
 		setStatus(eStatus::RUNNING);
 		moveRight();
@@ -118,7 +114,7 @@ void NahbiBehaviorComponent::update(float detatime)
 	}
 
 
-	if (_animationComponent->isTempAnimationEmpty() == true)
+	if (_obj->getAnimationComponent()->isTempAnimationEmpty() == true)
 	{
 		setWeapon(eStatus::TAUGHT);
 	}
@@ -134,7 +130,7 @@ void NahbiBehaviorComponent::setStatus(eStatus status)
 void NahbiBehaviorComponent::dropHitpoint(int damage)
 {
 	EnemyBehaviorComponent::dropHitpoint(damage);
-	_animationComponent->setTempAnimation(eStatus::BEATEN, 1);
+	_obj->getAnimationComponent()->setTempAnimation(eStatus::BEATEN, 1);
 	_standTime = STAND_TIME;
 }
 
@@ -143,10 +139,10 @@ void NahbiBehaviorComponent::updateAnimation()
 	switch (_status)
 	{
 	case TAUGHT:
-		_animationComponent->setAnimation(eStatus::TAUGHT);
+		_obj->getAnimationComponent()->setAnimation(eStatus::TAUGHT);
 		break;
 	case RUNNING:
-		_animationComponent->setAnimation(eStatus::RUNNING);
+		_obj->getAnimationComponent()->setAnimation(eStatus::RUNNING);
 		break;
 	default:
 		break;
@@ -156,47 +152,47 @@ void NahbiBehaviorComponent::updateAnimation()
 
 void NahbiBehaviorComponent::faceLeft()
 {
-	if (_animationComponent->getScale().x > 0)
+	if (_obj->getAnimationComponent()->getScale().x > 0)
 	{
-		_animationComponent->setScaleX(_animationComponent->getScale().x * (-1));
+		_obj->getAnimationComponent()->setScaleX(_obj->getAnimationComponent()->getScale().x * (-1));
 
-		RECT bound = _physicsComponent->getBounding();
+		RECT bound = _obj->getPhysicsComponent()->getBounding();
 		float width = bound.right - bound.left;
-		_animationComponent->setTranslateX(width);
+		_obj->getAnimationComponent()->setTranslateX(width);
 	}
 	setFacingDirection(eStatus::LEFTFACING);
 }
 
 void NahbiBehaviorComponent::faceRight()
 {
-	if (_animationComponent->getScale().x < 0)
+	if (_obj->getAnimationComponent()->getScale().x < 0)
 	{
-		_animationComponent->setScaleX(_animationComponent->getScale().x * (-1));
+		_obj->getAnimationComponent()->setScaleX(_obj->getAnimationComponent()->getScale().x * (-1));
 
-		_animationComponent->setTranslateX(0);
+		_obj->getAnimationComponent()->setTranslateX(0);
 	}
 	setFacingDirection(eStatus::RIGHTFACING);
 }
 
 void NahbiBehaviorComponent::standing()
 {
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
 	move->setVelocity(GVector2(0, 0));
 }
 
 void NahbiBehaviorComponent::moveLeft()
 {
 	faceLeft();
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
-	move->setVelocity(GVector2(-_physicsComponent->getMovingSpeed(), move->getVelocity().y));
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
+	move->setVelocity(GVector2(-_obj->getPhysicsComponent()->getMovingSpeed(), move->getVelocity().y));
 	setFacingDirection(eStatus::LEFTFACING);
 }
 
 void NahbiBehaviorComponent::moveRight()
 {
 	faceRight();
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
-	move->setVelocity(GVector2(_physicsComponent->getMovingSpeed(), move->getVelocity().y));
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
+	move->setVelocity(GVector2(_obj->getPhysicsComponent()->getMovingSpeed(), move->getVelocity().y));
 	setFacingDirection(eStatus::RIGHTFACING);
 }
 
@@ -212,24 +208,24 @@ void NahbiBehaviorComponent::slash()
 		{
 		case 1:
 			setWeapon(eStatus::SLASH1);
-			_animationComponent->setTempAnimation(eStatus::SLASH1, 1);
+			_obj->getAnimationComponent()->setTempAnimation(eStatus::SLASH1, 1);
 			break;
 		case 2:
 			setWeapon(eStatus::SLASH2);
-			_animationComponent->setTempAnimation(eStatus::SLASH2, 1);
+			_obj->getAnimationComponent()->setTempAnimation(eStatus::SLASH2, 1);
 			break;
 		}
-	auto pos = _physicsComponent->getPosition();
-	pos.y += _animationComponent->getSprite()->getFrameHeight();
-	float width = _animationComponent->getSprite()->getFrameWidth() * 4 / 3;
-	float height = _animationComponent->getSprite()->getFrameHeight();
+	auto pos = _obj->getPhysicsComponent()->getPosition();
+	pos.y += _obj->getAnimationComponent()->getSprite()->getFrameHeight();
+	float width = _obj->getAnimationComponent()->getSprite()->getFrameWidth() * 4 / 3;
+	float height = _obj->getAnimationComponent()->getSprite()->getFrameHeight();
 	if (_facingDirection == eStatus::RIGHTFACING)
 	{
-		pos += GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+		pos += GVector2(_obj->getAnimationComponent()->getSprite()->getFrameWidth(), 0);
 	}
 	else
 	{
-		pos -= GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+		pos -= GVector2(_obj->getAnimationComponent()->getSprite()->getFrameWidth(), 0);
 	}
 	auto sword = ObjectFactory::getSword(pos, width, height, false);
 	addToScene.Emit(sword);

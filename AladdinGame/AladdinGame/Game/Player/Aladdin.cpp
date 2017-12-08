@@ -10,7 +10,6 @@ void AladdinPhysicsComponent::init()
 	auto movement = new Movement(GVector2(0, 0), GVector2(0, 0), this);
 	_componentList["Movement"] = movement;
 	_componentList["Gravity"] = new Gravity(GVector2(0, -GRAVITY), movement);
-	_componentList["Collision"] = new CollisionComponent(eDirection::ALL);
 }
 
 void AladdinAnimationComponent::init()
@@ -168,14 +167,10 @@ GVector2 AladdinPhysicsComponent::getVelocity()
 	return move->getVelocity();
 }
 
-void AladdinPhysicsComponent::setAnimationComponent(AnimationComponent * animationComponent)
-{
-	_animationComponent = animationComponent;
-}
 
 RECT AladdinPhysicsComponent::getBounding()
 {
-	return _animationComponent->getBounding();
+	return _obj->getAnimationComponent()->getBounding();
 }
 
 
@@ -190,29 +185,30 @@ void AladdinBehaviorComponent::init()
 	setStatus(eStatus::FALLING);
 	falling();
 	srand(time(0));
+	_collisionComponent = new CollisionComponent(eDirection::ALL);
+	_collisionComponent->setTargerGameObject(_obj);
 }
 // Khi setstatus mới cho nhân vật thì break ngay đoạn đó để tránh lỗi
 void AladdinBehaviorComponent::update(float detatime)
 {
-	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 	vector<GameObject *> objs;
 	GameObject * object;
 	Land *	landObject;
 	Rope * ropeObject;
 	eDirection direction;
-	auto movement = (Movement *)_physicsComponent->getComponent("Movement");
+	auto movement = (Movement *)_obj->getPhysicsComponent()->getComponent("Movement");
 	float posY;
 	float posX;
-
+	checkCollision(detatime);
 	if (_input->isKeyPressed(BT_BOUND))
 	{
-		GVector2 velocity = _physicsComponent->getVelocity();
+		GVector2 velocity = _obj->getPhysicsComponent()->getVelocity();
 		OutputDebugStringW(L"Aladdin Velocity : ");
 		__debugoutput(velocity.x);
 		__debugoutput(velocity.y);
 	}
 
-	if (_physicsComponent->getPositionY() + ALADDIN_HEIGHT < 0)
+	if (_obj->getPhysicsComponent()->getPositionY() + ALADDIN_HEIGHT < 0)
 	{
 		respawn();
 		return;
@@ -221,26 +217,19 @@ void AladdinBehaviorComponent::update(float detatime)
 	if (_protectTime > 0)
 	{
 		_protectTime -= detatime;
-		_animationComponent->getCurrentAnimation()->enableFlashes(true);
+		_obj->getAnimationComponent()->getCurrentAnimation()->enableFlashes(true);
 	}
 	else
 	{
-		_animationComponent->getCurrentAnimation()->enableFlashes(false);
+		_obj->getAnimationComponent()->getCurrentAnimation()->enableFlashes(false);
 	}
 
 	switch (_status)
 	{
 	case NORMAL:
-		object = collisionComponent->isColliding(eObjectID::LAND);
-		if (object == nullptr)
+		if (_obj->getAnimationComponent()->getCurrentAnimation()->getTotalTimeAnimation() >= ALADDIN_BORING_TIME)
 		{
-			setStatus(eStatus::FALLING);
-			falling();
-			break;
-		}
-		if (_animationComponent->getCurrentAnimation()->getTotalTimeAnimation() >= ALADDIN_BORING_TIME)
-		{
-			_animationComponent->setAnimation(eStatus::BORING1);
+			_obj->getAnimationComponent()->setAnimation(eStatus::BORING1);
 			setBoringAnimation();
 		}
 		if (_input->isKeyDown(BT_LEFT))
@@ -290,68 +279,6 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		break;
 	case FALLING:
-		ropeObject = (Rope*)collisionComponent->isColliding(eObjectID::ROPE);
-		if (ropeObject != nullptr)
-		{
-			if (ropeObject->getRopeType() == eRopeType::rVERTICAL && ropeObject->getPhysicsComponent()->getPositionY() >= _physicsComponent->getPositionY() + ALADDIN_CLIMB_HEIGHT)
-			{
-				RECT ropeBound = ropeObject->getPhysicsComponent()->getBounding();
-
-				float newPostionX = ropeBound.left + (ropeBound.right - ropeBound.left) / 2;// middle postion of the rope
-				//since the origin is 0.0f 0.0f so must minus haft width of aladdin to get the right positon
-				newPostionX -= ALADDIN_WIDTH / 2;
-				_physicsComponent->setPositionX(newPostionX);
-				setStatus(eStatus::CLIMB_VERTICAL);
-				climbVertical();
-				faceRight();
-
-				_preObject = ropeObject;
-
-				break;
-
-			}
-			if (ropeObject->getRopeType() == eRopeType::rHORIZONTAL)
-			{
-				RECT ropeBound = ropeObject->getPhysicsComponent()->getBounding();
-				float newPostionY = ropeBound.top;
-				newPostionY -= ALADDIN_CLIMB_HEIGHT;
-				_physicsComponent->setPositionY(newPostionY);
-				setStatus(eStatus::CLIMB_HORIZON);
-				climbHorizon();
-
-				_preObject = ropeObject;
-
-				break;
-			}
-		}
-		//landing
-		objs = collisionComponent->areColliding(eObjectID::LAND);
-		if (objs.size() != 0)
-		{
-			bool canPassThrough;
-			for (auto obj : objs)
-			{
-				if (((LandBehaviorComponent*)obj->getBehaviorComponent())->getLandType() == eLandType::lFALLTHROUGHT && _physicsComponent->getVelocity().y <= -900)
-				{
-					canPassThrough = true;
-				}
-				else
-				{
-					canPassThrough = false;
-					break;
-				}
-			}
-			object = objs[0];
-			if(collisionComponent->getSide(object) != eDirection::BOTTOM && !canPassThrough)
-			{
-				__debugoutput(((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType());
-				setStatus(eStatus::NORMAL);
-				collisionComponent->updatePosition(object);
-				standing();
-				_preObject = object;
-				break;
-			}
-		}
 		//move left
 		if (_input->isKeyDown(BT_LEFT))
 		{
@@ -386,7 +313,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		break;
 	case JUMPING:
-		if (_physicsComponent->getVelocity().y < 0)
+		if (_obj->getPhysicsComponent()->getVelocity().y < 0)
 		{
 			setStatus(eStatus::FALLING);
 			break;
@@ -450,50 +377,6 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		break;
 	case RUNNING:
-		//climbing ladder
-		//object = collisionComponent->isColliding(eObjectID::LAND, eDirection::LEFT);
-		//if (object != nullptr)
-		//{
-		//	auto move = (Movement*)_physicsComponent->getComponent("Movement");
-		//	move->setAddPos(GVector2(0, object->getPhysicsComponent()->getPositionY() - _physicsComponent->getPositionY()));
-		//}
-
-		//object = collisionComponent->isColliding(eObjectID::LAND);
-		//if (object == nullptr)
-		//{
-		//	setStatus(eStatus::FALLING);
-		//	standing();
-		//	falling();
-		//	break;
-		//}
-		//else
-		//{
-		//	collisionComponent->updatePosition(object);
-		//}
-
-		objs = collisionComponent->areColliding(eObjectID::LAND);
-		posY = 0;
-		if (objs.size() != 0)
-		{
-			for (auto obj : objs)
-			{
-				//tìm tọa độ y lớn nhất
-				if (obj->getPhysicsComponent()->getPositionY() > posY)
-				{
-					posY = obj->getPhysicsComponent()->getPositionY();
-				}
-				collisionComponent->updatePosition(obj);				
-			}
-			//movement->setAddPos(GVector2(0, posY - _physicsComponent->getPositionY()));
-			_physicsComponent->setPositionY(posY);
-		}
-		else
-		{
-			setStatus(eStatus::FALLING);
-			standing();
-			falling();
-			break;
-		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
 			moveLeft();
@@ -510,10 +393,10 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (!_input->isKeyDown(BT_LEFT) && !_input->isKeyDown(BT_RIGHT))
 		{
-			if (_animationComponent->getCurrentAnimation()->getTotalTimeAnimation() >= RUNNING_BRAKE_TIME)
+			if (_obj->getAnimationComponent()->getCurrentAnimation()->getTotalTimeAnimation() >= RUNNING_BRAKE_TIME)
 			{
-				_animationComponent->setTempAnimation(eStatus::BRAKING, 1);
-				_animationComponent->getCurrentAnimation()->restart();
+				_obj->getAnimationComponent()->setTempAnimation(eStatus::BRAKING, 1);
+				_obj->getAnimationComponent()->getCurrentAnimation()->restart();
 			}
 			else
 			{
@@ -557,11 +440,11 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		break;
 	case CLIMB_VERTICAL:
-		ropeObject = (Rope*)collisionComponent->isColliding(eObjectID::ROPE);
+		ropeObject = (Rope*)_collisionComponent->isColliding(eObjectID::ROPE);
 		if (ropeObject == nullptr)
 		{
 			setStatus(eStatus::FALLING);
-			_physicsComponent->setPositionY(_physicsComponent->getPositionY() - JUMP_OFFSET*3.0);
+			_obj->getPhysicsComponent()->setPositionY(_obj->getPhysicsComponent()->getPositionY() - JUMP_OFFSET*3.0);
 			standing(); // to remove velocity
 			falling();
 			break;
@@ -570,23 +453,23 @@ void AladdinBehaviorComponent::update(float detatime)
 		{
 			if (ropeObject != nullptr)
 			{
-				if (ropeObject->getPhysicsComponent()->getPositionY() >= _physicsComponent->getPositionY() + ALADDIN_HEIGHT)
+				if (ropeObject->getPhysicsComponent()->getPositionY() >= _obj->getPhysicsComponent()->getPositionY() + ALADDIN_HEIGHT)
 				{
-					_animationComponent->getCurrentAnimation()->setReserve(false);
-					_animationComponent->getCurrentAnimation()->canAnimate(true);
+					_obj->getAnimationComponent()->getCurrentAnimation()->setReserve(false);
+					_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(true);
 					moveUp();
 				}
 				else
 				{
-					_animationComponent->getCurrentAnimation()->canAnimate(false);
+					_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(false);
 					standing();
 				}
 			}
 		}
 		if (_input->isKeyDown(BT_DOWN))
 		{
-			_animationComponent->getCurrentAnimation()->setReserve(true);
-			_animationComponent->getCurrentAnimation()->canAnimate(true);
+			_obj->getAnimationComponent()->getCurrentAnimation()->setReserve(true);
+			_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(true);
 			moveDown();
 		}
 		if (_input->isKeyDown(BT_LEFT))
@@ -599,7 +482,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		if (!_input->isKeyDown(BT_UP) && !_input->isKeyDown(BT_DOWN))
 		{
-			_animationComponent->getCurrentAnimation()->canAnimate(false);
+			_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(false);
 			standing();
 		}
 		if (_input->isKeyPressed(BT_JUMP))
@@ -628,36 +511,36 @@ void AladdinBehaviorComponent::update(float detatime)
 		}
 		break;
 	case CLIMB_HORIZON:
-		ropeObject = (Rope*)collisionComponent->isColliding(eObjectID::ROPE);
+		ropeObject = (Rope*)_collisionComponent->isColliding(eObjectID::ROPE);
 		if (ropeObject == nullptr)
 		{
 			setStatus(eStatus::FALLING);
-			_physicsComponent->setPositionY(_physicsComponent->getPositionY() - JUMP_OFFSET*3.0);
+			_obj->getPhysicsComponent()->setPositionY(_obj->getPhysicsComponent()->getPositionY() - JUMP_OFFSET*3.0);
 			standing(); // to remove velocity
 			falling();
 			break;
 		}
 		if (_input->isKeyDown(BT_LEFT))
 		{
-			_animationComponent->getCurrentAnimation()->canAnimate(true);
+			_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(true);
 			moveLeft();
 			faceLeft();
 		}
 		if (_input->isKeyDown(BT_RIGHT))
 		{
-			_animationComponent->getCurrentAnimation()->canAnimate(true);
+			_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(true);
 			moveRight();
 			faceRight();
 		}
 		if (!_input->isKeyDown(BT_LEFT) && !_input->isKeyDown(BT_RIGHT))
 		{
-			_animationComponent->getCurrentAnimation()->canAnimate(false);
+			_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(false);
 			standing();
 		}
 		if (_input->isKeyDown(BT_DOWN) && _input->isKeyDown(BT_JUMP))
 		{
 			setStatus(eStatus::FALLING);
-			_physicsComponent->setPositionY(_physicsComponent->getPositionY() - JUMP_OFFSET*5.0);
+			_obj->getPhysicsComponent()->setPositionY(_obj->getPhysicsComponent()->getPositionY() - JUMP_OFFSET*5.0);
 			standing(); // to remove velocity
 			falling();
 			break;
@@ -665,7 +548,7 @@ void AladdinBehaviorComponent::update(float detatime)
 		if (_input->isKeyPressed(BT_JUMP))
 		{
 			setStatus(eStatus::JUMPING);
-			_physicsComponent->setPositionY(_physicsComponent->getPositionY() + ALADDIN_CLIMB_HEIGHT * 2/3);
+			_obj->getPhysicsComponent()->setPositionY(_obj->getPhysicsComponent()->getPositionY() + ALADDIN_CLIMB_HEIGHT * 2/3);
 			jump();
 			break;
 		}
@@ -690,7 +573,7 @@ void AladdinBehaviorComponent::update(float detatime)
 	default:
 		break;
 	}
-	if (_animationComponent->isTempAnimationEmpty() == true)
+	if (_obj->getAnimationComponent()->isTempAnimationEmpty() == true)
 	{
 		setWeapon(eStatus::NORMAL);
 	}
@@ -715,59 +598,59 @@ void AladdinBehaviorComponent::updateAnimation()
 	case NORMAL:
 		if (_isBoring == false)
 		{
-			_animationComponent->setAnimation(eStatus::NORMAL);
+			_obj->getAnimationComponent()->setAnimation(eStatus::NORMAL);
 		}
 		break;
 	case JUMPING:
 			if (_preStatus == eStatus::RUNNING)
 			{
-				_animationComponent->setAnimation(eStatus::MOVING_JUMPING);
+				_obj->getAnimationComponent()->setAnimation(eStatus::MOVING_JUMPING);
 			}
 			else if (_preStatus == eStatus::CLIMB_VERTICAL)
 			{
-				_animationComponent->setAnimation(eStatus::CLIMB_VERTICAL | eStatus::JUMPING);
+				_obj->getAnimationComponent()->setAnimation(eStatus::CLIMB_VERTICAL | eStatus::JUMPING);
 			}
 			else if (_preStatus == eStatus::CLIMB_HORIZON)
 			{
-				_animationComponent->setAnimation(eStatus::CLIMB_HORIZON | eStatus::JUMPING);
+				_obj->getAnimationComponent()->setAnimation(eStatus::CLIMB_HORIZON | eStatus::JUMPING);
 			}
 			else
 			{
-				_animationComponent->setAnimation(eStatus::JUMPING);
+				_obj->getAnimationComponent()->setAnimation(eStatus::JUMPING);
 			}
 		break;
 	case LAYING_DOWN:
-		_animationComponent->setAnimation(eStatus::LAYING_DOWN);
+		_obj->getAnimationComponent()->setAnimation(eStatus::LAYING_DOWN);
 		break;
 	case RUNNING:
-		_animationComponent->setAnimation(eStatus::RUNNING);
+		_obj->getAnimationComponent()->setAnimation(eStatus::RUNNING);
 		break;
 	case LOOKING_UP:
-		_animationComponent->setAnimation(eStatus::LOOKING_UP);
+		_obj->getAnimationComponent()->setAnimation(eStatus::LOOKING_UP);
 		break;
 	case FALLING:
 		if (_preObject->getID() == eObjectID::LAND)// Nhảy từ mặt đất thì giữ hiệu wungs như cũ
 		{
 			//if (getWeapon() != eStatus::NORMAL)
 			//{
-			//	_animationComponent->setTempAnimation(eStatus::FALLING| _weapon, 1);
+			//	_obj->getAnimationComponent()->setTempAnimation(eStatus::FALLING| _weapon, 1);
 
 			//}
 			break;
 		}
-		_animationComponent->setAnimation(eStatus::FALLING);
+		_obj->getAnimationComponent()->setAnimation(eStatus::FALLING);
 		break;
 	case CLIMB_VERTICAL:
-		_animationComponent->setAnimation(eStatus::CLIMB_VERTICAL);
+		_obj->getAnimationComponent()->setAnimation(eStatus::CLIMB_VERTICAL);
 		break;
 	case CLIMB_HORIZON:
-		_animationComponent->setAnimation(eStatus::CLIMB_HORIZON);
+		_obj->getAnimationComponent()->setAnimation(eStatus::CLIMB_HORIZON);
 		break;
 	case BURNED:
-		_animationComponent->setAnimation(eStatus::BURNED);
+		_obj->getAnimationComponent()->setAnimation(eStatus::BURNED);
 		break;
 	case BRAKING:
-		_animationComponent->setAnimation(eStatus::BRAKING);
+		_obj->getAnimationComponent()->setAnimation(eStatus::BRAKING);
 	default:
 		break;
 	}
@@ -775,22 +658,22 @@ void AladdinBehaviorComponent::updateAnimation()
 
 void AladdinBehaviorComponent::setBoringAnimation()
 {
-	if (_animationComponent->getCurrentAnimation()->getCount() >= 1)
+	if (_obj->getAnimationComponent()->getCurrentAnimation()->getCount() >= 1)
 	{
 		int random = rand() % 3;
 		switch (random)
 		{
 		case 0:
-			_animationComponent->setAnimation(eStatus::BORING1);
+			_obj->getAnimationComponent()->setAnimation(eStatus::BORING1);
 			break;
 		case 1:
-			_animationComponent->setAnimation(eStatus::BORING2);
+			_obj->getAnimationComponent()->setAnimation(eStatus::BORING2);
 			break;
 		case 2:
-			_animationComponent->setAnimation(eStatus::BORING3);
+			_obj->getAnimationComponent()->setAnimation(eStatus::BORING3);
 			break;
 		default:
-			_animationComponent->setAnimation(eStatus::BORING1);
+			_obj->getAnimationComponent()->setAnimation(eStatus::BORING1);
 			break;
 		}
 	}
@@ -798,34 +681,34 @@ void AladdinBehaviorComponent::setBoringAnimation()
 
 void AladdinBehaviorComponent::faceLeft()
 {
-	if (_animationComponent->getScale().x > 0)
+	if (_obj->getAnimationComponent()->getScale().x > 0)
 	{
-		_animationComponent->setScaleX(_animationComponent->getScale().x * (-1));
+		_obj->getAnimationComponent()->setScaleX(_obj->getAnimationComponent()->getScale().x * (-1));
 		
-		RECT bound = _physicsComponent->getBounding();
+		RECT bound = _obj->getPhysicsComponent()->getBounding();
 		float width = bound.right - bound.left;
-		_animationComponent->setTranslateX(width);
+		_obj->getAnimationComponent()->setTranslateX(width);
 	}
 	setFacingDirection(eStatus::LEFTFACING);
 }
 
 void AladdinBehaviorComponent::faceRight()
 {
-	if (_animationComponent->getScale().x < 0)
+	if (_obj->getAnimationComponent()->getScale().x < 0)
 	{
-		_animationComponent->setScaleX(_animationComponent->getScale().x * (-1));
+		_obj->getAnimationComponent()->setScaleX(_obj->getAnimationComponent()->getScale().x * (-1));
 		
-		_animationComponent->setTranslateX(0);
+		_obj->getAnimationComponent()->setTranslateX(0);
 	}
 	setFacingDirection(eStatus::RIGHTFACING);
 }
 
 void AladdinBehaviorComponent::standing()
 {
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
 	move->setVelocity(GVector2(0, 0));
 
-	auto gravity = (Gravity*)_physicsComponent->getComponent("Gravity");
+	auto gravity = (Gravity*)_obj->getPhysicsComponent()->getComponent("Gravity");
 	gravity->setStatus(eGravityStatus::LANDED);
 
 }
@@ -833,38 +716,38 @@ void AladdinBehaviorComponent::standing()
 void AladdinBehaviorComponent::moveLeft()
 {
 	faceLeft();
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
-	move->setVelocity(GVector2(-_physicsComponent->getMovingSpeed(), move->getVelocity().y));
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
+	move->setVelocity(GVector2(-_obj->getPhysicsComponent()->getMovingSpeed(), move->getVelocity().y));
 	setFacingDirection(eStatus::LEFTFACING);
 }
 
 void AladdinBehaviorComponent::moveRight()
 {
 	faceRight();
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
-	move->setVelocity(GVector2(_physicsComponent->getMovingSpeed(), move->getVelocity().y));
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
+	move->setVelocity(GVector2(_obj->getPhysicsComponent()->getMovingSpeed(), move->getVelocity().y));
 	setFacingDirection(eStatus::RIGHTFACING);
 }
 
 void AladdinBehaviorComponent::moveUp()
 {
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
 	move->setVelocity(GVector2(0, ALADDIN_CLIMB_SPEED));
 }
 
 void AladdinBehaviorComponent::moveDown()
 {
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
 	move->setVelocity(GVector2(0, -ALADDIN_CLIMB_SPEED));
 }
 
 void AladdinBehaviorComponent::jump()
 {
-	_physicsComponent->setPositionY(_physicsComponent->getPositionY() + JUMP_OFFSET);
-	auto move = (Movement*)this->_physicsComponent->getComponent("Movement");
+	_obj->getPhysicsComponent()->setPositionY(_obj->getPhysicsComponent()->getPositionY() + JUMP_OFFSET);
+	auto move = (Movement*)this->_obj->getPhysicsComponent()->getComponent("Movement");
 	move->setVelocity(GVector2(move->getVelocity().x, ALADDIN_JUMP_VEL));
 
-	auto g = (Gravity*)this->_physicsComponent->getComponent("Gravity");
+	auto g = (Gravity*)this->_obj->getPhysicsComponent()->getComponent("Gravity");
 	g->setStatus(eGravityStatus::FALLING__DOWN);
 }
 
@@ -872,17 +755,17 @@ void AladdinBehaviorComponent::slash()
 {
 	setWeapon(eStatus::SLASH);
 	updateWeaponAnimation(_status);
-	auto pos = _physicsComponent->getPosition();
-	pos.y += _animationComponent->getSprite()->getFrameHeight();
-	float width = _animationComponent->getSprite()->getFrameWidth() * 4/3;
-	float height = _animationComponent->getSprite()->getFrameHeight();
+	auto pos = _obj->getPhysicsComponent()->getPosition();
+	pos.y += _obj->getAnimationComponent()->getSprite()->getFrameHeight();
+	float width = _obj->getAnimationComponent()->getSprite()->getFrameWidth() * 4/3;
+	float height = _obj->getAnimationComponent()->getSprite()->getFrameHeight();
 	if (_facingDirection == eStatus::RIGHTFACING)
 	{
-		pos += GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+		pos += GVector2(_obj->getAnimationComponent()->getSprite()->getFrameWidth(), 0);
 	}
 	else
 	{
-		pos -= GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+		pos -= GVector2(_obj->getAnimationComponent()->getSprite()->getFrameWidth(), 0);
 	}
 	auto sword = ObjectFactory::getSword(pos, width, height, true);
 	addToScene.Emit(sword);
@@ -893,12 +776,12 @@ void AladdinBehaviorComponent::throwApple()
 {
 	setWeapon(eStatus::THROW);
 	updateWeaponAnimation(_status);
-	auto pos = _physicsComponent->getPosition();
-	pos.y += _animationComponent->getSprite()->getFrameHeight() * 2 / 3;
+	auto pos = _obj->getPhysicsComponent()->getPosition();
+	pos.y += _obj->getAnimationComponent()->getSprite()->getFrameHeight() * 2 / 3;
 	GVector2 velocity(-400, 300);
 	if (_facingDirection == eStatus::RIGHTFACING)
 	{
-		pos += GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+		pos += GVector2(_obj->getAnimationComponent()->getSprite()->getFrameWidth(), 0);
 		velocity.x = -velocity.x;
 
 	}
@@ -912,45 +795,35 @@ void AladdinBehaviorComponent::updateWeaponAnimation(eStatus status)
 {
 	if (_weapon != eStatus::NORMAL)
 	{
-		_animationComponent->setTempAnimation(status | _weapon, 1);
+		_obj->getAnimationComponent()->setTempAnimation(status | _weapon, 1);
 	}
 	else
 	{
-		_animationComponent->setAnimation(status);
+		_obj->getAnimationComponent()->setAnimation(status);
 	}
 
-	if (_animationComponent->isTempAnimationEmpty() == true)
+	if (_obj->getAnimationComponent()->isTempAnimationEmpty() == true)
 	{
 		_weapon = eStatus::NORMAL;
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
 void AladdinBehaviorComponent::removeGravity()
 {
-	auto gravity = (Gravity*)_physicsComponent->getComponent("Gravity");
+	auto gravity = (Gravity*)_obj->getPhysicsComponent()->getComponent("Gravity");
 	gravity->setStatus(eGravityStatus::LANDED);
 }
 
 void AladdinBehaviorComponent::removeMovementX()
 {
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
 	move->setVelocity(GVector2(0, move->getVelocity().y));
 }
 
 
 void AladdinBehaviorComponent::falling()
 {
-	auto g = (Gravity*)this->_physicsComponent->getComponent("Gravity");
+	auto g = (Gravity*)this->_obj->getPhysicsComponent()->getComponent("Gravity");
 	g->setStatus(eGravityStatus::FALLING__DOWN);
 }
 
@@ -976,7 +849,7 @@ bool AladdinBehaviorComponent::dropHitpoint(int damage)
 		return false;
 
 	PlayerBehaviorComponent::dropHitpoint(damage);
-	_animationComponent->setTempAnimation(eStatus::BEATEN, 1);
+	_obj->getAnimationComponent()->setTempAnimation(eStatus::BEATEN, 1);
 	_protectTime = ALADDIN_PROTECT_TIME;
 	SoundManager::getInstance()->Play(eSoundId::sALADDIN_HURT);
 	return true;
@@ -984,11 +857,141 @@ bool AladdinBehaviorComponent::dropHitpoint(int damage)
 
 void AladdinBehaviorComponent::respawn()
 {
-	_physicsComponent->setPosition(_respawnPostion);
+	_obj->getPhysicsComponent()->setPosition(_respawnPostion);
 }
 
 void AladdinBehaviorComponent::executeCommand(eCommand command)
 {
 
+}
+
+void AladdinBehaviorComponent::checkCollision(float deltatime)
+{
+	auto active_object = SceneManager::getInstance()->getCurrentScene()->getActiveObject();
+	_collisionComponent->reset();
+	for (auto obj : active_object)
+	{
+		eObjectID id = obj->getID();
+		switch (id)
+		{
+		case LAND:
+			handleCollisionLand((Land*)obj, deltatime, _collisionComponent->checkCollision(obj, deltatime, false));
+			break;
+		case ROPE:
+			if (_collisionComponent->checkCollision(obj, deltatime, false))
+				handleCollisionRope((Rope*)obj, deltatime);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void AladdinBehaviorComponent::handleCollisionLand(Land* otherObject, float deltatime, bool isCollide)
+{
+	vector<GameObject *> objs;
+	GameObject * object;
+	Land *	landObject;
+	Rope * ropeObject;
+	eDirection direction;
+	auto movement = (Movement *)_obj->getPhysicsComponent()->getComponent("Movement");
+	float posY;
+	float posX;
+
+	switch (_status)
+	{
+	case NORMAL:
+		if (!isCollide)
+		{
+			setStatus(eStatus::FALLING);
+			falling();
+		}
+		break;
+	case FALLING:
+		//landing
+		objs = _collisionComponent->areColliding(eObjectID::LAND);
+		if (objs.size() != 0)
+		{
+			bool canPassThrough = false;
+			for (auto obj : objs)
+			{
+				if (((LandBehaviorComponent*)obj->getBehaviorComponent())->getLandType() == eLandType::lFALLTHROUGHT && _obj->getPhysicsComponent()->getVelocity().y <= -900)
+				{
+					canPassThrough = true;
+				}
+				else
+				{
+					canPassThrough = false;
+					break;
+				}
+			}
+			auto object = objs[0];
+			if (_collisionComponent->getSide(object) != eDirection::BOTTOM && !canPassThrough)
+			{
+				__debugoutput(((LandBehaviorComponent*)object->getBehaviorComponent())->getLandType());
+				setStatus(eStatus::NORMAL);
+				_collisionComponent->updatePosition(object);
+				standing();
+				_preObject = object;
+				break;
+			}
+		}
+	case RUNNING:
+		objs = _collisionComponent->areColliding(eObjectID::LAND);
+		posY = 0;
+		if (objs.size() != 0)
+		{
+			for (auto obj : objs)
+			{
+				//tìm tọa độ y lớn nhất
+				if (obj->getPhysicsComponent()->getPositionY() > posY)
+				{
+					posY = obj->getPhysicsComponent()->getPositionY();
+				}
+				_collisionComponent->updatePosition(obj);
+			}
+			//movement->setAddPos(GVector2(0, posY - _obj->getPhysicsComponent()->getPositionY()));
+			_obj->getPhysicsComponent()->setPositionY(posY);
+		}
+	}
+}
+
+void AladdinBehaviorComponent::handleCollisionRope(Rope* otherObject, float deltatime)
+{
+	switch (_status)
+	{
+	case FALLING:
+		if (otherObject->getRopeType() == eRopeType::rVERTICAL && otherObject->getPhysicsComponent()->getPositionY() >= _obj->getPhysicsComponent()->getPositionY() + ALADDIN_CLIMB_HEIGHT)
+		{
+			RECT ropeBound = otherObject->getPhysicsComponent()->getBounding();
+
+			float newPostionX = ropeBound.left + (ropeBound.right - ropeBound.left) / 2;// middle postion of the rope
+																						//since the origin is 0.0f 0.0f so must minus haft width of aladdin to get the right positon
+			newPostionX -= ALADDIN_WIDTH / 2;
+			_obj->getPhysicsComponent()->setPositionX(newPostionX);
+			setStatus(eStatus::CLIMB_VERTICAL);
+			climbVertical();
+			faceRight();
+
+			_preObject = otherObject;
+
+			break;
+
+		}
+		if (otherObject->getRopeType() == eRopeType::rHORIZONTAL)
+		{
+			RECT ropeBound = otherObject->getPhysicsComponent()->getBounding();
+			float newPostionY = ropeBound.top;
+			newPostionY -= ALADDIN_CLIMB_HEIGHT;
+			_obj->getPhysicsComponent()->setPositionY(newPostionY);
+			setStatus(eStatus::CLIMB_HORIZON);
+			climbHorizon();
+
+			_preObject = otherObject;
+
+			break;
+		}
+		break;
+	}
 }
 

@@ -21,10 +21,8 @@ public:
 	void init();
 
 	GVector2 getVelocity();
-	void setAnimationComponent(AnimationComponent * animationComponent);
 	RECT getBounding() override;
 protected:
-	AnimationComponent * _animationComponent;
 };
 
 class FalzaAnimationComponent : public AnimationComponent

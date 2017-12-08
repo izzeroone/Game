@@ -12,6 +12,7 @@ void Land::init(int x, int y, int width, int height, eDirection physicBodyDirect
 	bounding.right = x + width;
 	_physicsComponent->setBounding(bounding);
 	_physicsComponent->setPosition(GVector2(x, y));
+	_behaviorComponent->getCollisionComponent()->setPhysicsSide(physicBodyDirection);
 	setLandType(type);
 }
 
@@ -32,7 +33,6 @@ eLandType Land::getLandType()
 
 void LandPhysiscsComponent::init()
 {
-	_componentList["Collision"] = new CollisionComponent();
 }
 
 void LandBehaviorComponent::setLandType(eLandType type)
@@ -60,30 +60,28 @@ void LandBehaviorComponent::updateFlameLand(float deltatime)
 			return;
 		}
 	}
-	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 
-	GameObject * aladdin = collisionComponent->isColliding(eObjectID::ALADDIN);
+	GameObject * aladdin = _collisionComponent->isColliding(eObjectID::ALADDIN);
 
 	if (aladdin != nullptr && _timer == 0)
 	{
-		RECT landBound = _physicsComponent->getBounding();
+		RECT landBound = _obj->getPhysicsComponent()->getBounding();
 		_width = landBound.right - landBound.left;
-		float landX = _physicsComponent->getPositionX();
+		float landX = _obj->getPhysicsComponent()->getPositionX();
 		RECT aladdinBound = aladdin->getPhysicsComponent()->getBounding();
 		float aladdinPosX = aladdin->getPhysicsComponent()->getPositionX();
 		float width = (aladdinBound.right - aladdinBound.left);
 		if (aladdinPosX + width / 2 > landX && aladdinPosX  < landX + _width)
 		{
 			_timer += deltatime;
-			_flamePos = GVector2(aladdinPosX + width / 2, _physicsComponent->getPositionY());
+			_flamePos = GVector2(aladdinPosX + width / 2, _obj->getPhysicsComponent()->getPositionY());
 		}
 	}
 }
 
 void LandBehaviorComponent::updateFallingLand(float deltatime)
 {
-	_animationComponent->setAnimation(eStatus::NORMAL);
-	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
+	_obj->getAnimationComponent()->setAnimation(eStatus::NORMAL);
 
 	if (getStatus() == eStatus::FALLING)
 	{
@@ -101,12 +99,12 @@ void LandBehaviorComponent::updateFallingLand(float deltatime)
 		if (_holdTimer >= FALLING_LAND_HOLD_TIME)
 		{
 			setStatus(eStatus::FALLING);
-			auto g = (Gravity*)this->_physicsComponent->getComponent("Gravity");
+			auto g = (Gravity*)this->_obj->getPhysicsComponent()->getComponent("Gravity");
 			g->setStatus(eGravityStatus::FALLING__DOWN);
 		}
 	}
 
-	GameObject * aladdin = collisionComponent->isColliding(eObjectID::ALADDIN);
+	GameObject * aladdin = _collisionComponent->isColliding(eObjectID::ALADDIN);
 	if (aladdin != nullptr && _holdTimer == 0)
 	{
 		_holdTimer += deltatime;
@@ -120,6 +118,8 @@ void LandBehaviorComponent::init()
 {
 	_timer = 0;
 	_holdTimer = 0;
+	_collisionComponent = new CollisionComponent();
+	_collisionComponent->setTargerGameObject(_obj);
 }
 
 void LandBehaviorComponent::update(float deltatime)

@@ -311,9 +311,6 @@
     <ClInclude Include="Framework\VectorHelper.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Object\Sword.h">
-      <Filter>Header Files\Game\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Component\EnemyComponent.h">
       <Filter>Header Files\Framework\Component</Filter>
     </ClInclude>
@@ -322,9 +319,6 @@
     </ClInclude>
     <ClInclude Include="Framework\Component\PlayerComponent.h">
       <Filter>Header Files\Framework\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Object\Rope.h">
-      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Object\Apple.h">
       <Filter>Header Files\Game\Object</Filter>
@@ -351,6 +345,12 @@
       <Filter>Header Files\Game\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Game\Object\Dagger.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Rope.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Sword.h">
       <Filter>Header Files\Game\Object</Filter>
     </ClInclude>
   </ItemGroup>

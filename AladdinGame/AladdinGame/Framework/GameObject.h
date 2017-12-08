@@ -15,7 +15,7 @@ class GameObject
 {
 public:
 	GameObject();
-	GameObject(eObjectID eid, AnimationComponent* animationComponent, BehaviorComponent* behaviorComponent, PhysicsComponent* physicsComponent);
+	GameObject(eObjectID eid, AnimationComponent* animationComponent = nullptr, BehaviorComponent* behaviorComponent = nullptr, PhysicsComponent* physicsComponent = nullptr);
 	virtual ~GameObject();
 
 	virtual void init();

@@ -42,12 +42,9 @@ class AladdinPhysicsComponent : public PhysicsComponent
 {
 public:
 	void init();
-
 	GVector2 getVelocity();
-	void setAnimationComponent(AnimationComponent * animationComponent);
 	RECT getBounding() override;
 protected:
-	AnimationComponent * _animationComponent;
 };
 
 class AladdinAnimationComponent : public AnimationComponent
@@ -102,7 +99,10 @@ private:
 	void removeMovementX();
 	// Inherited via BehaviorComponent
 	virtual void executeCommand(eCommand command) override;
-
+	// Collision check 
+	void checkCollision(float deltatime);
+	void handleCollisionLand(Land* otherObject, float deltatime, bool isCollide);
+	void handleCollisionRope(Rope* otherObject, float deltatime);
 	float _protectTime;
 	bool _isBoring; // flag set not to update animation when boring
 	GVector2 _respawnPostion;

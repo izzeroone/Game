@@ -28,10 +28,9 @@ ExplosionPot::~ExplosionPot()
 
 void ExplosionPotBehaviorComponent::update(float deltatime)
 {
-	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 	GameObject * object;
 
-	object = collisionComponent->isColliding(eObjectID::LAND);
+	object = _collisionComponent->isColliding(eObjectID::LAND);
 
 	if (object != nullptr)
 	{
@@ -39,7 +38,7 @@ void ExplosionPotBehaviorComponent::update(float deltatime)
 		standing();
 	}
 
-	object = collisionComponent->isColliding(eObjectID::ALADDIN);
+	object = _collisionComponent->isColliding(eObjectID::ALADDIN);
 
 	if (object != nullptr && _status != eStatus::LANDING)
 	{
@@ -50,7 +49,7 @@ void ExplosionPotBehaviorComponent::update(float deltatime)
 	}
 
 	//done landing, get destroyed
-	if (_status == eStatus::LANDING && _animationComponent->getCurrentAnimation()->getCount() >= 1)
+	if (_status == eStatus::LANDING && _obj->getAnimationComponent()->getCurrentAnimation()->getCount() >= 1)
 	{
 		setStatus(eStatus::DESTROY);
 	}
@@ -61,10 +60,10 @@ void ExplosionPotBehaviorComponent::updateAnimation()
 	switch (_status)
 	{
 	case NORMAL:
-		_animationComponent->setAnimation(eStatus::NORMAL);
+		_obj->getAnimationComponent()->setAnimation(eStatus::NORMAL);
 		break;
 	case LANDING:
-		_animationComponent->setAnimation(eStatus::LANDING);
+		_obj->getAnimationComponent()->setAnimation(eStatus::LANDING);
 		break;
 	}
 }

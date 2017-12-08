@@ -2,13 +2,15 @@
 
 void SwordPhysicsComponent::init()
 {
-	_componentList["Collision"] = new CollisionComponent();
+
 }
 
 void SwordBehaviorComponent::init()
 {
 	_canSlashEnemy = false;
 	_livingTime = 0;
+	_collisionComponent = new CollisionComponent(eDirection::ALL);
+	_collisionComponent->setTargerGameObject(_obj);
 }
 
 void SwordBehaviorComponent::update(float detatime)
@@ -20,7 +22,6 @@ void SwordBehaviorComponent::update(float detatime)
 		return;
 	}
 
-	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 	auto isEnemyFunc = [](GameObject* obj) {
 		auto id = obj->getID();
 		return id == eObjectID::HAKIM || id == eObjectID::NAHBI || id == eObjectID::FALZA;
@@ -29,7 +30,7 @@ void SwordBehaviorComponent::update(float detatime)
 	GameObject * obj;
 	if (_canSlashEnemy)
 	{
-		obj = collisionComponent->isColliding(isEnemyFunc);
+		obj = _collisionComponent->isColliding(isEnemyFunc);
 		if (obj != nullptr)
 		{
 			auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);
@@ -42,7 +43,7 @@ void SwordBehaviorComponent::update(float detatime)
 	}
 	else
 	{
-		obj = collisionComponent->isColliding(eObjectID::ALADDIN);
+		obj = _collisionComponent->isColliding(eObjectID::ALADDIN);
 		if (obj != nullptr)
 		{
 			auto it = std::find(_slashObject.begin(), _slashObject.end(), obj);

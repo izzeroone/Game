@@ -1,7 +1,10 @@
 ﻿#include "PhysicsComponent.h"
 #include "MovingComponent.h"
-PhysicsComponent::PhysicsComponent()
+#include "../GameObject.h"
+
+PhysicsComponent::PhysicsComponent(GameObject * gameObject)
 {
+	_obj = gameObject;
 }
 
 PhysicsComponent::~PhysicsComponent()
@@ -141,4 +144,9 @@ RECT PhysicsComponent::getBounding()
 void PhysicsComponent::setBounding(RECT bounding)
 {
 	_bounding = bounding;
+}
+
+void PhysicsComponent::setGameObject(GameObject * gameObject)
+{
+	_obj = gameObject;
 }

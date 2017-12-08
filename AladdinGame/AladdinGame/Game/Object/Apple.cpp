@@ -16,7 +16,6 @@ void ApplePhysicsComponent::init()
 	auto movement = new Movement(GVector2(0, 0), GVector2(0, 0), this);
 	_componentList["Movement"] = movement;
 	_componentList["Gravity"] = new Gravity(GVector2(0, -GRAVITY), movement);
-	_componentList["Collision"] = new CollisionComponent(eDirection::ALL);
 }
 
 GVector2 ApplePhysicsComponent::getVelocity()
@@ -25,14 +24,11 @@ GVector2 ApplePhysicsComponent::getVelocity()
 	return move->getVelocity();
 }
 
-void ApplePhysicsComponent::setAnimationComponent(AnimationComponent * animationComponent)
-{
-	_animationComponent = animationComponent;
-}
+
 
 RECT ApplePhysicsComponent::getBounding()
 {
-	return _animationComponent->getBounding();
+	return _obj->getAnimationComponent()->getBounding();
 }
 
 void AppleAnimationComponent::init()
@@ -56,16 +52,16 @@ void AppleAnimationComponent::init()
 void AppleBehaviorComponent::init()
 {
 	setStatus(eStatus::NORMAL);
-	_animationComponent->setAnimation(eStatus::NORMAL);
+	_obj->getAnimationComponent()->setAnimation(eStatus::NORMAL);
+	_collisionComponent = new CollisionComponent(eDirection::ALL);
+	_collisionComponent->setTargerGameObject(_obj);
 }
 
 void AppleBehaviorComponent::update(float detatime)
 {
-
-	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 	GameObject * object;
 	
-	object = collisionComponent->isColliding(eObjectID::LAND);
+	object = _collisionComponent->isColliding(eObjectID::LAND);
 	
 	if (object != nullptr)
 	{
@@ -76,7 +72,7 @@ void AppleBehaviorComponent::update(float detatime)
 		auto id = obj->getID();
 		return id == eObjectID::HAKIM || id == eObjectID::NAHBI || id == eObjectID::FALZA;
 	};
-	object = collisionComponent->isColliding(isEnemyFunc);
+	object = _collisionComponent->isColliding(isEnemyFunc);
 
 	if (object != nullptr && _status != eStatus::LANDING)
 	{
@@ -87,7 +83,7 @@ void AppleBehaviorComponent::update(float detatime)
 	}
 
 	//done animation, get destroyed
-	if (_animationComponent->getCurrentAnimation()->getCount() >= 1)
+	if (_obj->getAnimationComponent()->getCurrentAnimation()->getCount() >= 1)
 	{
 		setStatus(eStatus::DESTROY);
 	}
@@ -105,23 +101,23 @@ void AppleBehaviorComponent::updateAnimation()
 	switch (_status)
 	{
 	case NORMAL:
-		_animationComponent->getCurrentAnimation()->canAnimate(false);
+		_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(false);
 		break;
 	case LANDING:
-		_animationComponent->getCurrentAnimation()->canAnimate(true);
+		_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(true);
 		break;
 	default:
-		_animationComponent->getCurrentAnimation()->canAnimate(false);
+		_obj->getAnimationComponent()->getCurrentAnimation()->canAnimate(false);
 		break;
 	}
 }
 
 void AppleBehaviorComponent::standing()
 {
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
 	move->setVelocity(GVector2(0, 0));
 
-	auto gravity = (Gravity*)_physicsComponent->getComponent("Gravity");
+	auto gravity = (Gravity*)_obj->getPhysicsComponent()->getComponent("Gravity");
 	gravity->setStatus(eGravityStatus::LANDED);
 
 }

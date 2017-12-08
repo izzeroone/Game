@@ -136,34 +136,34 @@ void TestScene::update(float dt)
 	// [Bước 5]
 	_active_object.insert(_active_object.end(), _listobject.begin(), _listobject.end());
 
-	// [Bước 6]
-	for (GameObject* obj : _active_object)
-	{
-		// một vài trạng thái không cần thiết phải check hàm va chạm
-		if (obj == nullptr || obj->getID() == eObjectID::ROPE || obj->getID() == eObjectID::THROWER)
-			continue;
-		// don't check Land except flame land
-		if (obj->getID() == eObjectID::LAND)
-		{
-			if (((LandBehaviorComponent *)obj->getBehaviorComponent())->getLandType() != eLandType::lFLAME)
-				continue;
-		}
-		auto collisionComponent = (CollisionComponent*)obj->getPhysicsComponent()->getComponent("Collision");
-		collisionComponent->reset();
-		for (GameObject* passiveobj : _active_object)
-		{
-			if (passiveobj == nullptr || passiveobj == obj)
-				continue;
-			if (collisionComponent != nullptr)
-			{
-				if (passiveobj->getID() == eObjectID::LAND) // aladdin can overlap rope so don't update target postion. Let aladdin behavior do it instead
-					collisionComponent->checkCollision(passiveobj, dt, false);
-				else
-					collisionComponent->checkCollision(passiveobj, dt, false);
-			}
-			
-		}
-	}
+	//// [Bước 6]
+	//for (GameObject* obj : _active_object)
+	//{
+	//	// một vài trạng thái không cần thiết phải check hàm va chạm
+	//	if (obj == nullptr || obj->getID() == eObjectID::ROPE || obj->getID() == eObjectID::THROWER)
+	//		continue;
+	//	// don't check Land except flame land
+	//	if (obj->getID() == eObjectID::LAND)
+	//	{
+	//		if (((LandBehaviorComponent *)obj->getBehaviorComponent())->getLandType() != eLandType::lFLAME)
+	//			continue;
+	//	}
+	//	auto collisionComponent = (CollisionComponent*)obj->getPhysicsComponent()->getComponent("Collision");
+	//	collisionComponent->reset();
+	//	for (GameObject* passiveobj : _active_object)
+	//	{
+	//		if (passiveobj == nullptr || passiveobj == obj)
+	//			continue;
+	//		if (collisionComponent != nullptr)
+	//		{
+	//			if (passiveobj->getID() == eObjectID::LAND) // aladdin can overlap rope so don't update target postion. Let aladdin behavior do it instead
+	//				collisionComponent->checkCollision(passiveobj, dt, false);
+	//			else
+	//				collisionComponent->checkCollision(passiveobj, dt, false);
+	//		}
+	//		
+	//	}
+	//}
 	//[Bước 7]
 	for (GameObject* obj : _active_object)
 	{
@@ -286,4 +286,9 @@ void TestScene::addToScene(GameObject * obj, sigcxx::SLOT slot)
 void TestScene::updateInput(float dt)
 {
 
+}
+
+vector<GameObject*> TestScene::getActiveObject()
+{
+	return _active_object;
 }

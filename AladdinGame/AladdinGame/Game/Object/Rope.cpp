@@ -32,5 +32,5 @@ eRopeType Rope::getRopeType()
 
 void RopePhysiscsComponent::init()
 {
-	_componentList["Collision"] = new CollisionComponent();
+
 }

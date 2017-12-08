@@ -1,15 +1,16 @@
 #include "AnimationComponent.h"
 #include "PhysicsComponent.h"
+#include "../GameObject.h"
 AnimationComponent::AnimationComponent()
 {
 	_transitionPlayed = true;
 	_tempIndex = -1;
 }
 
-AnimationComponent::AnimationComponent(PhysicsComponent * physicsComponent)
+AnimationComponent::AnimationComponent(GameObject * gameObject)
 {
 	_transitionPlayed = true;
-	_physicsComponent = physicsComponent;
+	_obj = gameObject;
 	_tempIndex = -1;
 }
 
@@ -20,7 +21,7 @@ AnimationComponent::~AnimationComponent()
 
 void AnimationComponent::update(float deltatime)
 {
-	_sprite->setPosition(_physicsComponent->getPosition());
+	_sprite->setPosition(_obj->getPhysicsComponent()->getPosition());
 
 	if (updateTempAnimation(deltatime) == true)
 		return;
@@ -230,6 +231,11 @@ float AnimationComponent::getZIndex()
 	return _sprite->getZIndex();
 }
 
+void AnimationComponent::setGameObject(GameObject * gameObject)
+{
+	_obj = gameObject;
+}
+
 void AnimationComponent::setOpacity(float opacity)
 {
 	_sprite->setOpacity(opacity);
@@ -238,12 +244,6 @@ void AnimationComponent::setOpacity(float opacity)
 float AnimationComponent::getOpacity()
 {
 	return _sprite->getOpacity();
-}
-
-
-void AnimationComponent::setPhysiscComponent(PhysicsComponent * physicsComponent)
-{
-	_physicsComponent = physicsComponent;
 }
 
 
@@ -270,7 +270,7 @@ Sprite * AnimationComponent::getSprite()
 
 RECT AnimationComponent::getBounding()
 {
-	_sprite->setPosition(_physicsComponent->getPosition());
+	_sprite->setPosition(_obj->getPhysicsComponent()->getPosition());
 	RECT newRect = _animations[_index]->getCurrentBounding();
 	RECT oldRect = _sprite->getFrameRect();
 	_sprite->setFrameRect(newRect);

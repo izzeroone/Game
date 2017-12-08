@@ -2,17 +2,13 @@
 
 void FlamePhysicsComponent::init()
 {
-	_componentList["Collision"] = new CollisionComponent();
+
 }
 
-void FlamePhysicsComponent::setAnimationComponent(AnimationComponent * animationComponent)
-{
-	_animationComponent = animationComponent;
-}
 
 RECT FlamePhysicsComponent::getBounding()
 {
-	return _animationComponent->getBounding();
+	return _obj->getAnimationComponent()->getBounding();
 }
 
 void FlameAnimationComponent::init()
@@ -35,20 +31,21 @@ void FlameAnimationComponent::init()
 
 void FlameBehaviorComponent::init()
 {
-	_animationComponent->setAnimation(eStatus::NORMAL);
+	_obj->getAnimationComponent()->setAnimation(eStatus::NORMAL);
 	setStatus(eStatus::NORMAL);
+	_collisionComponent = new CollisionComponent(eDirection::ALL);
+	_collisionComponent->setTargerGameObject(_obj);
 }
 
 void FlameBehaviorComponent::update(float deltatime)
 {
-	if (_animationComponent->getCurrentAnimation()->getCount() >= 1)
+	if (_obj->getAnimationComponent()->getCurrentAnimation()->getCount() >= 1)
 	{
 		setStatus(eStatus::DESTROY);
 		return;
 	}
-	auto collisionComponent = (CollisionComponent*)_physicsComponent->getComponent("Collision");
 
-	GameObject * obj = collisionComponent->isColliding(eObjectID::ALADDIN);
+	GameObject * obj = _collisionComponent->isColliding(eObjectID::ALADDIN);
 	if (obj != nullptr)
 	{
 		((PlayerBehaviorComponent*)obj->getBehaviorComponent())->dropHitpoint(10);

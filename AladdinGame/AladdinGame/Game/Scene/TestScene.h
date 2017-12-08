@@ -39,6 +39,8 @@ public:
 
 	void writeXMLQuadTree();
 
+	//Trả về đối tượng đang hoạt động
+	virtual vector<GameObject*> getActiveObject() override;
 	// Trả về một đối tượng theo id.
 	// id: kiểu enum eID, định danh một đối tượng.
 	// return: đối tượng cần tìm.
@@ -79,9 +81,7 @@ private:
 	RECT rootRect;
 
 	void addToScene(GameObject * obj, sigcxx::SLOT slot = nullptr);
-	// Inherited via Scene
 	virtual void updateInput(float dt) override;
-
 };
 
 #endif // !__TEST_SCENE_H__

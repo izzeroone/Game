@@ -7,17 +7,17 @@
 #include "../../../pugixml/src/pugixml.hpp"
 #include "../../../sigcxx/include/sigcxx/sigcxx.hpp"
 using namespace pugi;
-LINK_FRAMEWORK
 //forward declarations
-class AnimationComponent;
-class PhysicsComponent;
+class CollisionComponent;
 class GameObject;
+
+LINK_FRAMEWORK
 
 class BehaviorComponent: public Component
 {
 public:
 	BehaviorComponent();
-	BehaviorComponent(AnimationComponent* animationComponent, PhysicsComponent* physicsComponent);
+	BehaviorComponent(GameObject* gameObject);
 	~BehaviorComponent();
 	
 	virtual void update(float deltatime);
@@ -36,10 +36,11 @@ public:
 	virtual void updateAnimation();
 
 	virtual void setGameController(GameController * input);
-	virtual void setAnimationComponent(AnimationComponent * animationComponent);
-	virtual void setPhysicsComponent(PhysicsComponent * physicsComponent);
 
 	wstring getStatusString(eStatus status);
+
+	virtual void setGameObject(GameObject* gameObject);
+	virtual CollisionComponent* getCollisionComponent();
 
 	static sigcxx::Signal<GameObject * > addToScene;
 protected:
@@ -50,8 +51,8 @@ protected:
 
 	GameController * _input;
 	GameObject * _preObject;
-	AnimationComponent * _animationComponent;
-	PhysicsComponent* _physicsComponent;
+	GameObject * _obj;
+	CollisionComponent* _collisionComponent;
 };
 
 #endif //__BEHAVIORCOMPONENT_H__

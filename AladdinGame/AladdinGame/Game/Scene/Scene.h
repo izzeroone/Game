@@ -18,6 +18,7 @@ public:
 	void virtual draw(LPD3DXSPRITE spriteHandle) = 0;
 	void virtual release() = 0;
 	virtual GameObject * getObject(eObjectID eid) = 0;
+	virtual vector<GameObject *> getActiveObject() = 0;
 
 	Viewport* getViewport();
 protected:

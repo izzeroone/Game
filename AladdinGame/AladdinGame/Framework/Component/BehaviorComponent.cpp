@@ -12,10 +12,9 @@ BehaviorComponent::BehaviorComponent()
 {
 }
 
-BehaviorComponent::BehaviorComponent(AnimationComponent * animationComponent, PhysicsComponent * physicsComponent)
+BehaviorComponent::BehaviorComponent(GameObject* gameObject)
 {
-	_animationComponent = animationComponent;
-	_physicsComponent = physicsComponent;
+	_obj = gameObject;
 }
 
 
@@ -78,16 +77,6 @@ void BehaviorComponent::updateAnimation()
 void BehaviorComponent::setGameController(GameController * input)
 {
 	_input = input;
-}
-
-void BehaviorComponent::setAnimationComponent(AnimationComponent * animationComponent)
-{
-	_animationComponent = animationComponent;
-}
-
-void BehaviorComponent::setPhysicsComponent(PhysicsComponent * physicsComponent)
-{
-	_physicsComponent = physicsComponent;
 }
 
 wstring BehaviorComponent::getStatusString(eStatus status)
@@ -164,5 +153,15 @@ wstring BehaviorComponent::getStatusString(eStatus status)
 		return L"unknown";
 		break;
 	}
+}
+
+void BehaviorComponent::setGameObject(GameObject * gameObject)
+{
+	_obj = gameObject;
+}
+
+CollisionComponent * BehaviorComponent::getCollisionComponent()
+{
+	return _collisionComponent;
 }
 

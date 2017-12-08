@@ -6,7 +6,6 @@ void HakimPhysicsComponent::init()
 	_movingSpeed = 50;
 	auto movement = new Movement(GVector2(10, 0), GVector2(0, 0), this);
 	_componentList["Movement"] = movement;
-	_componentList["Collision"] = new CollisionComponent();
 }
 
 GVector2 HakimPhysicsComponent::getVelocity()
@@ -15,14 +14,10 @@ GVector2 HakimPhysicsComponent::getVelocity()
 	return move->getVelocity();
 }
 
-void HakimPhysicsComponent::setAnimationComponent(AnimationComponent * animationComponent)
-{
-	_animationComponent = animationComponent;
-}
 
 RECT HakimPhysicsComponent::getBounding()
 {
-	return _animationComponent->getBounding();
+	return _obj->getAnimationComponent()->getBounding();
 }
 
 void HakimAnimationComponent::init()
@@ -57,6 +52,8 @@ void HakimBehaviorComponent::init()
 	setStatus(eStatus::NORMAL);
 	_hitpoint = 100;
 	_standTime = 0;
+	_collisionComponent = new CollisionComponent(eDirection::ALL);
+	_collisionComponent->setTargerGameObject(_obj);
 }
 
 void HakimBehaviorComponent::update(float detatime)
@@ -78,16 +75,16 @@ void HakimBehaviorComponent::update(float detatime)
 	auto aladdin = SceneManager::getInstance()->getCurrentScene()->getObject(eObjectID::ALADDIN);
 	auto aladdinPos = aladdin->getPhysicsComponent()->getPosition();
 	
-	float diffirent = _physicsComponent->getPosition().x - aladdinPos.x;
-	RECT bound = _physicsComponent->getBounding();
+	float diffirent = _obj->getPhysicsComponent()->getPosition().x - aladdinPos.x;
+	RECT bound = _obj->getPhysicsComponent()->getBounding();
 	float width = bound.right - bound.left;
 
-	if (diffirent > width && _physicsComponent->getPositionX() >= _rangeXStart) // aladdin ở bến trái
+	if (diffirent > width && _obj->getPhysicsComponent()->getPositionX() >= _rangeXStart) // aladdin ở bến trái
 	{
 		setStatus(eStatus::RUNNING);
 		moveLeft();
 	}
-	else if (diffirent < -width && _physicsComponent->getPositionX() <= _rangeXEnd)
+	else if (diffirent < -width && _obj->getPhysicsComponent()->getPositionX() <= _rangeXEnd)
 	{
 		setStatus(eStatus::RUNNING);
 		moveRight();
@@ -100,7 +97,7 @@ void HakimBehaviorComponent::update(float detatime)
 	}
 
 
-	if (_animationComponent->isTempAnimationEmpty() == true)
+	if (_obj->getAnimationComponent()->isTempAnimationEmpty() == true)
 	{
 		setWeapon(eStatus::NORMAL);
 	}
@@ -116,7 +113,7 @@ void HakimBehaviorComponent::setStatus(eStatus status)
 void HakimBehaviorComponent::dropHitpoint(int damage)
 {
 	EnemyBehaviorComponent::dropHitpoint(damage);
-	_animationComponent->setTempAnimation(eStatus::BEATEN, 1);
+	_obj->getAnimationComponent()->setTempAnimation(eStatus::BEATEN, 1);
 	_standTime = STAND_TIME;
 }
 
@@ -125,10 +122,10 @@ void HakimBehaviorComponent::updateAnimation()
 	switch (_status)
 	{
 	case NORMAL:
-		_animationComponent->setAnimation(eStatus::NORMAL);
+		_obj->getAnimationComponent()->setAnimation(eStatus::NORMAL);
 		break;
 	case RUNNING:
-		_animationComponent->setAnimation(eStatus::RUNNING);
+		_obj->getAnimationComponent()->setAnimation(eStatus::RUNNING);
 		break;
 	default:
 		break;
@@ -138,47 +135,47 @@ void HakimBehaviorComponent::updateAnimation()
 
 void HakimBehaviorComponent::faceLeft()
 {
-	if (_animationComponent->getScale().x > 0)
+	if (_obj->getAnimationComponent()->getScale().x > 0)
 	{
-		_animationComponent->setScaleX(_animationComponent->getScale().x * (-1));
+		_obj->getAnimationComponent()->setScaleX(_obj->getAnimationComponent()->getScale().x * (-1));
 
-		RECT bound = _physicsComponent->getBounding();
+		RECT bound = _obj->getPhysicsComponent()->getBounding();
 		float width = bound.right - bound.left;
-		_animationComponent->setTranslateX(width);
+		_obj->getAnimationComponent()->setTranslateX(width);
 	}
 	setFacingDirection(eStatus::LEFTFACING);
 }
 
 void HakimBehaviorComponent::faceRight()
 {
-	if (_animationComponent->getScale().x < 0)
+	if (_obj->getAnimationComponent()->getScale().x < 0)
 	{
-		_animationComponent->setScaleX(_animationComponent->getScale().x * (-1));
+		_obj->getAnimationComponent()->setScaleX(_obj->getAnimationComponent()->getScale().x * (-1));
 
-		_animationComponent->setTranslateX(0);
+		_obj->getAnimationComponent()->setTranslateX(0);
 	}
 	setFacingDirection(eStatus::RIGHTFACING);
 }
 
 void HakimBehaviorComponent::standing()
 {
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
 	move->setVelocity(GVector2(0, 0));
 }
 
 void HakimBehaviorComponent::moveLeft()
 {
 	faceLeft();
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
-	move->setVelocity(GVector2(-_physicsComponent->getMovingSpeed(), move->getVelocity().y));
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
+	move->setVelocity(GVector2(-_obj->getPhysicsComponent()->getMovingSpeed(), move->getVelocity().y));
 	setFacingDirection(eStatus::LEFTFACING);
 }
 
 void HakimBehaviorComponent::moveRight()
 {
 	faceRight();
-	auto move = (Movement*)_physicsComponent->getComponent("Movement");
-	move->setVelocity(GVector2(_physicsComponent->getMovingSpeed(), move->getVelocity().y));
+	auto move = (Movement*)_obj->getPhysicsComponent()->getComponent("Movement");
+	move->setVelocity(GVector2(_obj->getPhysicsComponent()->getMovingSpeed(), move->getVelocity().y));
 	setFacingDirection(eStatus::RIGHTFACING);
 }
 
@@ -188,18 +185,18 @@ void HakimBehaviorComponent::slash()
 		return;
 
 	setWeapon(eStatus::SLASH);
-	_animationComponent->setTempAnimation(eStatus::SLASH, 1);
-	auto pos = _physicsComponent->getPosition();
-	pos.y += _animationComponent->getSprite()->getFrameHeight();
-	float width = _animationComponent->getSprite()->getFrameWidth() * 4 / 3;
-	float height = _animationComponent->getSprite()->getFrameHeight();
+	_obj->getAnimationComponent()->setTempAnimation(eStatus::SLASH, 1);
+	auto pos = _obj->getPhysicsComponent()->getPosition();
+	pos.y += _obj->getAnimationComponent()->getSprite()->getFrameHeight();
+	float width = _obj->getAnimationComponent()->getSprite()->getFrameWidth() * 4 / 3;
+	float height = _obj->getAnimationComponent()->getSprite()->getFrameHeight();
 	if (_facingDirection == eStatus::RIGHTFACING)
 	{
-		pos += GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+		pos += GVector2(_obj->getAnimationComponent()->getSprite()->getFrameWidth(), 0);
 	}
 	else
 	{
-		pos -= GVector2(_animationComponent->getSprite()->getFrameWidth(), 0);
+		pos -= GVector2(_obj->getAnimationComponent()->getSprite()->getFrameWidth(), 0);
 	}
 	auto sword = ObjectFactory::getSword(pos, width, height, false);
 	addToScene.Emit(sword);
