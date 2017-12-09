@@ -43,6 +43,8 @@ enum eObjectID
 	FLAME = 10,
 	EXPLOSIONPOT = 11,
 	DAGGER = 12, //throw by enemy
+	CAMEL=13,
+
 	JAFAR = 29, // the boss
 	MAP1 = 30,
 	MAP1BACKGROUND = 31,

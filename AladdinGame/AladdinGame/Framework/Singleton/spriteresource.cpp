@@ -48,6 +48,9 @@ void SpriteResource::loadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite[eObjectID::CIVILIAN] = civilian;
 	this->loadSpriteInfo(eObjectID::CIVILIAN, "Resources//Images//civilian_enemies.txt");
 
+	Sprite* camel = new Sprite(spriteHandle, L"Resources//Images//camel.png");
+	this->_listSprite[eObjectID::CAMEL] = camel;
+	this->loadSpriteInfo(eObjectID::CAMEL, "Resources//Images//camel.txt");
 
 }
 
