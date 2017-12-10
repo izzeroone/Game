@@ -50,8 +50,8 @@ protected:
 	eStatus _weapon;
 
 	GameController * _input;
-	GameObject * _preObject;
 	GameObject * _obj;
+	GameObject * _colliseObject;
 	CollisionComponent* _collisionComponent;
 };
 

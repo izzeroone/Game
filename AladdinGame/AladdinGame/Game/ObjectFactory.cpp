@@ -93,6 +93,8 @@ GameObject* ObjectFactory::getObjectById(xml_node node, eObjectID id)
 		return getFalza(node);
 	case NAHBI:
 		return getNahbi(node);
+	case WALL:
+		return getWall(node);
 	default:
 		break;
 	}
@@ -497,6 +499,39 @@ GameObject * ObjectFactory::getThrower(xml_node node)
 	pos.y = node.attribute("Y").as_float() * SCALE_FACTOR;
 
 	return getThrower(pos);
+}
+
+GameObject * ObjectFactory::getWall(xml_node node)
+{
+	auto properties = getObjectProperties(node);
+	if (properties.size() == 0)
+		return nullptr;
+
+	int x, y, width, height;
+	eDirection dir;
+
+	x = stoi(properties["X"]) * SCALE_FACTOR;
+	y = stoi(properties["Y"]) * SCALE_FACTOR;
+	width = stoi(properties["Width"]) * SCALE_FACTOR;
+	height = stoi(properties["Height"]) * SCALE_FACTOR;
+
+
+	if (properties.find("physicBodyDirection") != properties.end())
+	{
+		dir = (eDirection)(stoi(properties.find("physicBodyDirection")->second));
+	}
+	else
+	{
+		dir = eDirection::ALL;
+	}
+
+	auto physicsComponent = new RopePhysiscsComponent();
+
+	auto wall = new Wall();
+	wall->setPhysicsComponent(physicsComponent);
+	wall->init(x, y, width, height, dir);
+
+	return wall;
 }
 
 map<string, string> ObjectFactory::getObjectProperties(xml_node node)

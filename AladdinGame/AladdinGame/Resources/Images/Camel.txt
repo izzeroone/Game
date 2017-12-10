@@ -1,0 +1,12 @@
+name		left	top	width	height
+camel_1		4	21	63	44
+camel_2		73	11	81	54
+camel_3		163	9	95	56
+camel_4		268	9	113	56
+camel_5		396	10	148	55	
+camel_6		556	10	135	55	
+camel_7		707	19	170	46
+camel_8		268	9	113	56
+camel_9		163	9	95	56
+camel_10	73	11	81	54
+camel_11	4	21	63	44

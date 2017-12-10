@@ -1,0 +1,8 @@
+name		left	top	width	height
+normal_1	5	8	26	52
+normal_2	38	6	27	54	
+normal_3	73	5	28	55
+normal_4	108	4	28	56	
+normal_5	146	4	28	56
+normal_6	183	4	28	56
+normal_7	219	4	28	56

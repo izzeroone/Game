@@ -204,6 +204,12 @@
     <ClCompile Include="Game\Object\Dagger.cpp">
       <Filter>Source Files\Game\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Object\Wall.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Item.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Singleton\windowGUI.h">
@@ -351,6 +357,12 @@
       <Filter>Header Files\Game\Object</Filter>
     </ClInclude>
     <ClInclude Include="Game\Object\Sword.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Wall.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Item.h">
       <Filter>Header Files\Game\Object</Filter>
     </ClInclude>
   </ItemGroup>

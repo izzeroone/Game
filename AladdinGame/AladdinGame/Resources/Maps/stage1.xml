@@ -345,13 +345,6 @@
         <Elem Key="type" Value="2" />
       </Params>
     </Item>
-	
-	<Item Id="1" Name="wall1" X="2204" Y="399" Width="40" Height="399">
-      <Params>
-        <Elem Key="physicBodyDirection" Value="1" />
-        <Elem Key="type" Value="0" />
-      </Params>
-    </Item>
 
 	<Item Id="1" Name="pass_thought_land_1" X="2539" Y="170" Width="30" Height="15">
   <Params>
@@ -581,6 +574,41 @@
     <Elem Key="type" Value="3" />
   </Params>
 </Item>
+
+<Item Id="28" Name="wall_1" X="2189" Y="400" Width="53" Height="393">
+  <Elem Key="physicBodyDirection" Value="15" />
+</Item>
+<Item Id="28" Name="wall_2" X="1434" Y="684" Width="39" Height="431">
+  <Elem Key="physicBodyDirection" Value="15" />
+</Item>
+<Item Id="28" Name="wall_3" X="2779" Y="111" Width="39" Height="109">
+  <Elem Key="physicBodyDirection" Value="15" />
+</Item>
+<Item Id="28" Name="wall_4" X="3018" Y="257" Width="39" Height="66">
+  <Elem Key="physicBodyDirection" Value="15" />
+</Item>
+<Item Id="28" Name="wall_5" X="2603" Y="511" Width="38" Height="239">
+  <Elem Key="physicBodyDirection" Value="15" />
+</Item>
+<Item Id="28" Name="wall_6" X="2491" Y="688" Width="30" Height="176">
+  <Elem Key="physicBodyDirection" Value="15" />
+</Item>
+<Item Id="28" Name="wall_7" X="3161" Y="688" Width="25" Height="177">
+  <Elem Key="physicBodyDirection" Value="15" />
+</Item>
+<Item Id="28" Name="wall_8" X="3164" Y="387" Width="20" Height="36">
+  <Elem Key="physicBodyDirection" Value="15" />
+</Item>
+<Item Id="28" Name="wall_9" X="3561" Y="561" Width="41" Height="209">
+  <Elem Key="physicBodyDirection" Value="15" />
+</Item>
+<Item Id="28" Name="wall_10" X="4297" Y="614" Width="56" Height="151">
+  <Elem Key="physicBodyDirection" Value="15" />
+</Item>
+<Item Id="28" Name="wall_11" X="1429" Y="111" Width="45" Height="91">
+  <Elem Key="physicBodyDirection" Value="15" />
+</Item>
+
 
 
 <Item Id="2" Name="rope_vertical_1" X="2087" Y="341" Width="7" Height="235">

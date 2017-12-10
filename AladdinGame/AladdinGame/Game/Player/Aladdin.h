@@ -103,6 +103,7 @@ private:
 	void checkCollision(float deltatime);
 	void handleCollisionLand(GameObject* otherObject, float deltatime);
 	void handleCollisionRope(GameObject* otherObject, float deltatime);
+	void handleCollisionWall(GameObject* otherObject, float deltatime);
 	float _protectTime;
 	bool _isBoring; // flag set not to update animation when boring
 	bool _climbingLadder;
