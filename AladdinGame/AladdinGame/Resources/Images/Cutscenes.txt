@@ -1,0 +1,8 @@
+name			left	top	width	height
+Iago			1	56	136	104
+Jafar_left		142	1	112	159
+Aladdin			259	104	45	56
+Jafar_right		976	1	112	159
+GenieLamp		1093	136	49	24
+scene_DarkNight		1	225	320	224
+scene_FullMoon		1	454	320	224

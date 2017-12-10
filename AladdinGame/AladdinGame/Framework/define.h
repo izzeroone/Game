@@ -43,8 +43,9 @@ enum eObjectID
 	FLAME = 10,
 	EXPLOSIONPOT = 11,
 	DAGGER = 12, //throw by enemy
+	ITEM = 27,
+	WALL = 28,
 	CAMEL=13,
-
 	JAFAR = 29, // the boss
 	MAP1 = 30,
 	MAP1BACKGROUND = 31,
@@ -134,6 +135,15 @@ enum eSoundId
 	sALADDIN_SLASH,
 	sALADDIN_HURT,
 	sOBJECT_THROW,
+};
+
+enum eItem
+{
+	iEXTRA_HEART,
+	iAPPLE,
+	iMONEY,
+	iRESTART_POINT,
+	i1UP,
 };
 
 typedef D3DXVECTOR3 GVector3;

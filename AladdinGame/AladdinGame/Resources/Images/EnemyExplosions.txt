@@ -1,0 +1,17 @@
+name				left	top	width	height
+GenieLamp_explode_1		8	180	26	24	
+GenieLamp_explode_2		48	155	60	49
+GenieLamp_explode_3		120	118	81	86	
+GenieLamp_explode_4		208	123	83	81
+GenieLamp_explode_5		304	124	82	80
+GenieLamp_explode_6		400	128	83	76
+GenieLamp_explode_7		496	131	83	73
+GenieLamp_explode_8		8	214	80	70
+GenieLamp_explode_9		96	217	82	67
+GenieLamp_explode_10		192	222	83	62
+GenieLamp_explode_11		288	231	81	53
+GenieLamp_explode_12		376	236	77	48
+GenieLamp_explode_13		464	243	106	41
+GenieLamp_explode_14		584	251	44	33
+
+

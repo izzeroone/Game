@@ -24,9 +24,9 @@ void SpriteResource::loadResource(LPD3DXSPRITE spriteHandle)
 	Sprite* sp = NULL;
 
 
-	Sprite* aladdin = new Sprite(spriteHandle, L"Resources//Images//aladdin_animation_genesis.png");
+	Sprite* aladdin = new Sprite(spriteHandle, L"Resources//Images//aladdin.png");
 	this->_listSprite[eObjectID::ALADDIN] = aladdin;
-	this->loadSpriteInfo(eObjectID::ALADDIN, "Resources//Images//aladdin_animation_genesis.txt");
+	this->loadSpriteInfo(eObjectID::ALADDIN, "Resources//Images//aladdin.txt");
 
 	Sprite* map = new Sprite(spriteHandle, L"Resources//Images//map1.png");
 	this->_listSprite[eObjectID::MAP1] = map;
@@ -48,9 +48,16 @@ void SpriteResource::loadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite[eObjectID::CIVILIAN] = civilian;
 	this->loadSpriteInfo(eObjectID::CIVILIAN, "Resources//Images//civilian_enemies.txt");
 
+
+	Sprite* item = new Sprite(spriteHandle, L"Resources//Images//items.png");
+	this->_listSprite[eObjectID::ITEM] = civilian;
+	this->loadSpriteInfo(eObjectID::ITEM, "Resources//Images//items.txt");
+
+
 	Sprite* camel = new Sprite(spriteHandle, L"Resources//Images//camel.png");
 	this->_listSprite[eObjectID::CAMEL] = camel;
 	this->loadSpriteInfo(eObjectID::CAMEL, "Resources//Images//camel.txt");
+
 
 }
 

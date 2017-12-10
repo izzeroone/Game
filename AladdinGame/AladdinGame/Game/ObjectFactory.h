@@ -14,6 +14,7 @@
 #include "Object\Flame.h"
 #include "Object\ExplosionPot.h"
 #include "Object\Dagger.h"
+#include "Object\Wall.h"
 #include "../../pugixml/src/pugixml.hpp"
 #include <functional>
 using namespace pugi;
@@ -41,6 +42,7 @@ public:
 	static GameObject* getExlplosionPot(GVector2 pos);
 	static GameObject* getThrower(GVector2 pos);
 	static GameObject* getThrower(xml_node node);
+	static GameObject* getWall(xml_node node);
 private:
 	static map<string, string> ObjectFactory::getObjectProperties(xml_node node);
 	static GameObject* getObjectById(xml_node node, eObjectID id);
