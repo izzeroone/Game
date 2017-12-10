@@ -45,6 +45,7 @@ enum eObjectID
 	DAGGER = 12, //throw by enemy
 	ITEM = 27,
 	WALL = 28,
+	CAMEL=13,
 	JAFAR = 29, // the boss
 	MAP1 = 30,
 	MAP1BACKGROUND = 31,

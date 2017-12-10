@@ -1,0 +1,8 @@
+frame_name   left   top   right  bottom transitionx	transitiony
+camel_1      4      21    67     65         0           0
+camel_2      73     11    154    65         0           0  
+camel_3      163    9     258    65         0           0
+camel_4      268    9     381    65         0           0
+camel_5      396    10    544    65         0           0  
+camel_6      556    10    686    65         0           0
+camel_7      707    19    877    65         0           0
